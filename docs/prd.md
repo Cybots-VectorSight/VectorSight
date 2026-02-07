@@ -780,6 +780,129 @@ Judges will test our system against **multiple baseline models** to verify impro
 
 ## 11. Future Work
 
+### Self-Improving Guide (the flywheel)
+
+The VectorSight guide is not static documentation — it's a self-improving instruction set. Every failure tells us exactly what to fix.
+
+#### The feedback loop
+
+```
+SVG → Enrichment → LLM reasons with guide → Answer
+                                               ↓
+                                     Compare to ground truth
+                                               ↓
+                                         ❌ Wrong?
+                                               ↓
+                                  Root cause analysis:
+                                  ┌─────────────────────────────────┐
+                                  │ Enrichment missing data?        │
+                                  │ → Add/fix transform             │
+                                  │                                 │
+                                  │ Data present but LLM ignored?   │
+                                  │ → Reorder enrichment priority   │
+                                  │                                 │
+                                  │ Guide unclear on how to read?   │
+                                  │ → Rewrite guide section         │
+                                  │                                 │
+                                  │ Threshold wrong?                │
+                                  │ → Adjust T1.23 shape class      │
+                                  │   or DBSCAN eps, etc.           │
+                                  └─────────────────────────────────┘
+                                               ↓
+                                     Update guide / transforms
+                                               ↓
+                                   Re-run same SVG → ✅ Fixed?
+                                               ↓
+                                   Run full test suite → no regressions?
+                                               ↓
+                                          New guide version
+```
+
+#### How this follows established patterns
+
+This is the same self-improving pattern now widely used in AI systems:
+
+| Pattern | How they do it | How we do it |
+|---|---|---|
+| **CLAUDE.md self-improvement** | "Reflect on mistake → abstract pattern → write rule" | Failure on SVG → diagnose root cause → patch guide section |
+| **Self-Refine (NeurIPS 2023)** | Generate → self-feedback → refine, no training | Enrichment → LLM answer → compare ground truth → refine guide |
+| **OpenAI Self-Evolving Agents** | Baseline → evaluate → metaprompt refines → iterate | Guide v1 → test suite → failures → guide v2 → re-test |
+| **Claude Reflect** | "Correct once, never again" — corrections become permanent rules | Each SVG failure becomes a permanent guide improvement |
+
+The difference: those systems improve general-purpose prompts. We improve a **domain-specific technical guide** with **measurable accuracy** on a **fixed test suite**. Every improvement is quantifiable.
+
+#### Concrete example
+
+```
+FAILURE: Heart shape misidentified as "leaf"
+
+ENRICHMENT HAD:
+  bilateral_symmetry: 0.95
+  convexity: 0.78
+  concavities: 2
+
+ROOT CAUSE:
+  Concavity count (2) is same for heart and leaf.
+  Enrichment didn't report WHERE the concavities are.
+  Heart = concavity at TOP CENTER (cleft)
+  Leaf = concavity at BASE (stem attachment)
+
+FIX: Update T1.11 — always report concavity positions
+  relative to shape center (top/bottom/left/right)
+
+ENRICHMENT NOW:
+  concavities: 2, positions: [top-center], pattern: cleft
+
+RESULT: LLM correctly identifies heart. Test suite: no regressions.
+
+LOGGED:
+  {
+    "failure": "heart → leaf",
+    "missing_signal": "concavity spatial position",
+    "transform_updated": "T1.11",
+    "guide_version": "v4 → v5"
+  }
+```
+
+#### What to track
+
+| Artifact | Purpose |
+|---|---|
+| **Test suite** | Fixed set of 100-200 SVGs with known ground truth labels |
+| **Version-stamped guides** | v1, v2, v3... each with a changelog of what was patched and why |
+| **Accuracy per version** | Run same test suite against each guide version |
+| **Error log** | Which SVGs failed, root cause, what was changed, before/after accuracy |
+| **Improvement curve** | Plot accuracy over guide versions — this IS the demo |
+
+#### Semi-automated improvement
+
+The diagnosis step can itself use an LLM:
+
+```
+Feed to Claude:
+  "Here's the enrichment for this SVG.
+   Here's what the model answered.
+   Here's the correct answer.
+   What was missing from the enrichment that would have helped?"
+
+Claude suggests:
+  "The enrichment reports 2 concavities but not their positions.
+   Adding position data would distinguish heart (top cleft)
+   from leaf (base concavity)."
+
+Human reviews → approves → guide updated → new version
+```
+
+Claude improving its own guide. The human stays in the loop for approval, but the diagnosis is automated.
+
+#### The hackathon pitch
+
+> "VectorSight isn't just a tool — it's a self-improving system. Every misidentification tells us exactly which geometric property was missing. We patch the guide, re-run, and accuracy improves. Here's the improvement curve from v1 to v7."
+
+The accuracy curve over versions IS the demo. It shows the system learns.
+
+---
+
 ### After hackathon
 
 | Timeframe | Goal |
@@ -793,10 +916,94 @@ Judges will test our system against **multiple baseline models** to verify impro
 ### Long term: Fine-tuning
 
 Train open models (Llama, Mistral) on VectorSight's dataset:
-- Input: spatial data about shapes
+- Input: SVG code + enrichment (spatial JSON)
 - Output: what it looks like, clean code, correct answers
 
 After training, model learns patterns permanently. Doesn't need full context in every prompt.
+
+#### Three data generation strategies
+
+Each source produces (SVG, enrichment, ground truth label) triplets. Together they cover synthetic precision, real-world variety, and designer-quality code.
+
+**Source 1: VTraced real images**
+
+```
+Real image (PNG/JPG) → VTracer → SVG → VectorSight enrichment
+                ↑                                    ↓
+         ground truth                     (SVG, enrichment, label) triplet
+      (original image)
+```
+
+| Property | Value |
+|---|---|
+| **Pipeline** | Real image → `vtracer` (pip install) → SVG → geometry engine → enrichment |
+| **Ground truth** | Original image is the visual truth. Can also use image captioning models to generate text labels at scale. |
+| **Volume** | Millions of images available (ImageNet, COCO, icon datasets, logo datasets) |
+| **Strength** | Real-world visual complexity, organic shapes, actual design artifacts |
+| **Weakness** | VTracer conversion is lossy — artifacts, approximations. SVG quality depends on VTracer settings. |
+| **Training signal** | "Given this (imperfect) SVG and its enrichment, describe what the original image showed." Model learns to reason through vectorization noise. |
+
+**Source 2: Script-generated programmatic shapes**
+
+```
+Python script → SVG with known parameters → VectorSight enrichment
+      ↑                                              ↓
+  code defines                            (SVG, enrichment, label) triplet
+  exact labels
+```
+
+| Property | Value |
+|---|---|
+| **Pipeline** | Script generates SVG with controlled parameters (position, size, count, nesting) → enrichment |
+| **Ground truth** | Perfect — the script knows every parameter. "2 circles inside a rectangle, gap = 5 units, symmetric." |
+| **Volume** | Infinite. Parameterize and generate millions of variations. |
+| **Strength** | Perfect labels, controlled complexity ramp (1 shape → 5 → 20 → 100), can target specific failure modes |
+| **Weakness** | Synthetic — limited variety, geometric regularity that real SVGs don't have |
+| **Training signal** | "Given this SVG and enrichment, answer: how many circles? what's the gap? is it symmetric?" Model learns exact spatial reasoning with perfect ground truth. |
+
+Example generator:
+```python
+# Generate training pairs at controlled complexity
+def gen_face(eye_gap, mouth_width, symmetry_error=0):
+    svg = f"""<circle cx="12" cy="12" r="10"/>
+              <circle cx="{12-eye_gap/2}" cy="9" r="1.5"/>
+              <circle cx="{12+eye_gap/2+symmetry_error}" cy="9" r="1.5"/>"""
+    label = {
+        "type": "face", "eye_gap": eye_gap,
+        "symmetric": symmetry_error == 0,
+        "elements": 3, "containment": "eyes inside face"
+    }
+    return svg, label
+```
+
+**Source 3: Existing SVG icon sets**
+
+```
+Lucide/Heroicons/Simple Icons → already SVG → VectorSight enrichment
+              ↑                                        ↓
+     filename + metadata                    (SVG, enrichment, label) triplet
+       = category label
+```
+
+| Property | Value |
+|---|---|
+| **Pipeline** | Download icon set → run enrichment pipeline → pair with filename/metadata |
+| **Ground truth** | Filename ("home", "settings", "arrow-right") + category tags. Not spatial descriptions, but semantic identity. |
+| **Volume** | ~10,000+ across Lucide (1,400), Heroicons (300), Feather (280), Simple Icons (3,000+), Material Design (2,500+) |
+| **Strength** | Real SVGs by real designers, clean hand-authored code, consistent style within sets |
+| **Weakness** | Labels are names, not spatial descriptions. "home" doesn't tell you "triangle roof, rectangular door, centered." Need enrichment to bridge the gap. |
+| **Training signal** | "Given this enrichment, identify: this is a home icon." Model learns pattern → identity mapping. |
+
+#### Combined training strategy
+
+| Phase | Source | Volume | What model learns |
+|---|---|---|---|
+| **Phase 1: Spatial basics** | Script-generated | 100K+ pairs | Exact measurements, containment, symmetry, counting |
+| **Phase 2: Real-world shapes** | Existing icon sets | 10K+ pairs | Designer patterns, icon conventions, semantic identity |
+| **Phase 3: Noisy inputs** | VTraced images | 50K+ pairs | Robustness to vectorization artifacts, organic shapes |
+| **Phase 4: Mixed** | All three combined | 160K+ pairs | Generalization across clean, designed, and noisy SVGs |
+
+Curriculum learning: start with perfect data (scripted), add clean real data (icons), then add noisy real data (VTraced). Model builds spatial reasoning foundations before handling messiness.
 
 **Not required for hackathon. Future research direction.**
 
