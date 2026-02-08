@@ -1,0 +1,92 @@
+[
+  {
+    "id": "p001",
+    "condition": "symmetry_score < 0.65 AND fill_pct > 60",
+    "insight": "Low bilateral symmetry with high fill suggests a side-facing figure — NOT a front-facing symmetric character. Look at the mass distribution to determine facing direction.",
+    "confidence": 0.9,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": ["asymmetric", "side-profile", "dense-fill", "organic"]
+  },
+  {
+    "id": "p002",
+    "condition": "circular element (circ > 0.8) at front/bottom of figure, small relative to body",
+    "insight": "A small circular element positioned at the front or bottom of a side-facing figure is likely a held object (acorn, ball, tool) or a paw/foot pad — not an eye (eyes are usually inside the head region).",
+    "confidence": 0.8,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": ["circular", "side-profile", "complex", "dense-fill"]
+  },
+  {
+    "id": "p003",
+    "condition": "large non-convex shape above main body, fan-shaped",
+    "insight": "A large flowing shape above the main body mass is likely a tail (squirrel, fox, peacock), hair, or decorative plume — NOT ears. Ears are typically smaller, pointed, and come in symmetric pairs.",
+    "confidence": 0.85,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": ["organic", "complex", "side-profile", "asymmetric"]
+  },
+  {
+    "id": "p004",
+    "condition": "67+ elements, all organic, deep nesting, side-profile",
+    "insight": "Complex illustrations with 40+ organic elements and deep nesting (3+ levels) are typically detailed animal or character illustrations with layered body parts, shading regions, and decorative details — not geometric icons or logos.",
+    "confidence": 0.85,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": ["complex", "organic", "dense-fill"]
+  },
+  {
+    "id": "p005",
+    "condition": "positive space grid shows curved silhouette, not rectangular",
+    "insight": "Read the positive space grid as a low-resolution picture of the silhouette. A curved, non-rectangular outline strongly suggests an organic subject (animal, person, plant) rather than a geometric design (UI element, diagram, chart).",
+    "confidence": 0.9,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": ["organic", "dense-fill"]
+  },
+  {
+    "id": "p006",
+    "condition": "multiple concentric groups of 2-3 elements each",
+    "insight": "Concentric groups (elements sharing a center) represent detailed features like eyes (iris+pupil+highlight), wheels (rim+tire+hub), or buttons. Their position relative to the body helps identify them — on the head = eyes, on the body = buttons/details.",
+    "confidence": 0.85,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": ["circular", "organic", "complex"]
+  },
+  {
+    "id": "p007",
+    "condition": "symmetry pairs but moderate score (0.4-0.7)",
+    "insight": "Moderate symmetry with defined mirror pairs means the design has symmetric FEATURES (like two eyes, two ears, paired limbs) but the overall composition is NOT symmetric — likely because it's viewed from an angle or in a dynamic pose.",
+    "confidence": 0.8,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": ["asymmetric", "organic", "complex"]
+  },
+  {
+    "id": "p008",
+    "condition": "many elements with 0px nearest-neighbor distance",
+    "insight": "Elements with 0px distance are touching or overlapping — they form a continuous visual surface. This is common in illustrations that use stacked shapes for shading, gradient simulation, or color regions rather than discrete separate parts.",
+    "confidence": 0.85,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": ["complex", "dense-fill", "organic"]
+  },
+  {
+    "id": "p009",
+    "condition": "4+ spatial clusters, one dominant (40+ elements)",
+    "insight": "When one cluster dominates (contains most elements) and smaller clusters exist at the edges, the dominant cluster is the main body and the smaller clusters are appendages, accessories, or background elements. Analyze each cluster separately.",
+    "confidence": 0.8,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": ["complex", "dense-fill"]
+  },
+  {
+    "id": "p010",
+    "condition": "high overlap count (IoU > 0.3 in 10+ pairs)",
+    "insight": "Dense overlapping means shapes are layered on top of each other — like paint strokes building up an image. The stacking tree reveals the layering order. Don't try to interpret each shape independently — they work together to create regions.",
+    "confidence": 0.8,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": ["complex", "dense-fill", "organic"]
+  }
+]

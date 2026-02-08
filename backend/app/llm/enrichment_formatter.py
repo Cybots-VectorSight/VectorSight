@@ -344,5 +344,44 @@ def context_to_enrichment_text(ctx: PipelineContext) -> str:
                 lines.append(issue)
             lines.append("")
 
+    # ── Spatial Interpretation (synthesized from all transforms) ──
+    from app.engine.interpreter import interpret
+
+    interp = interpret(ctx)
+    interp_text = interp.to_text()
+    if interp_text:
+        lines.append(interp_text)
+        lines.append("")
+
+    # ── Learned patterns (from past sessions) ──
+    try:
+        from app.learning.memory import get_memory_store
+
+        store = get_memory_store()
+        # Build shape distribution for matching
+        shape_dist: dict[str, int] = {}
+        for sp in ctx.subpaths:
+            s = sp.features.get("shape_class", "organic")
+            shape_dist[s] = shape_dist.get(s, 0) + 1
+
+        fill_pct = 0.0
+        if ctx.subpaths:
+            fill_pct = ctx.subpaths[0].features.get("positive_fill_pct", 0.0)
+
+        learnings = store.get_relevant_learnings(
+            element_count=len(ctx.subpaths),
+            symmetry_score=ctx.symmetry_score,
+            fill_pct=fill_pct,
+            composition_type=interp.composition_type,
+            shape_distribution=shape_dist,
+        )
+        if learnings:
+            lines.append("LEARNED PATTERNS (from past sessions):")
+            for i, learning in enumerate(learnings, 1):
+                lines.append(f"  {i}. {learning}")
+            lines.append("")
+    except Exception:
+        pass  # Learning system is optional
+
     lines.append("=== END ENRICHMENT ===")
     return "\n".join(lines)

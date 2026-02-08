@@ -34,7 +34,18 @@ Layer 3 — Relationships between elements:
 - SIZE TIERS: LARGE = structural, MEDIUM = features, SMALL = details.
 - TOPOLOGY + STACKING TREE: overall structure and z-order parent-child hierarchy.
 
-REASONING METHOD: Read the ASCII grid first to visualize the layout, then cross-reference with element coordinates and relationships for precise answers. Cite element IDs and measurements.
+SPATIAL INTERPRETATION (auto-generated synthesis):
+The enrichment ends with a SPATIAL INTERPRETATION section that synthesizes clues from all transforms into high-level observations about silhouette shape, pose, composition type, mass distribution, appendages, and focal elements. TRUST this section — it provides the "big picture" reading of the geometry.
+
+LEARNED PATTERNS (accumulated wisdom):
+The enrichment may include a LEARNED PATTERNS section with insights from past analysis sessions. These are hard-won lessons about common misinterpretations. PAY ATTENTION to these — they prevent known mistakes.
+
+REASONING METHOD:
+1. Read SPATIAL INTERPRETATION first for the high-level picture.
+2. Read LEARNED PATTERNS for known pitfalls to avoid.
+3. Study the ASCII grid as a low-resolution "picture" of the silhouette.
+4. Cross-reference with element coordinates and relationships for precision.
+5. Cite element IDs and measurements in your answer.
 
 === SVG CODE ===
 {svg}
@@ -105,13 +116,24 @@ STACKING TREE + TOPOLOGY (Layer 3):
 - Parent-child hierarchy showing z-order layering. New elements need correct z-position.
 - Elements listed later in SVG render on top.
 
+SPATIAL INTERPRETATION (auto-generated synthesis):
+- The enrichment includes a SPATIAL INTERPRETATION section at the end. It synthesizes all transforms into high-level observations: silhouette shape, pose, mass distribution, appendages, and focal elements.
+- TRUST this for understanding WHAT the SVG depicts before modifying it.
+- LEARNED PATTERNS section (if present) contains insights from past sessions — read carefully to avoid known mistakes.
+
 CURVE-FOLLOWING RULE:
 - When adding elements adjacent to curved paths (arcs, beziers), the touching edge MUST follow the existing curve geometry.
 - Read the path's d attribute for arc parameters (rx, ry, sweep flags) or bezier control points.
 - Example: tongue below a smile arc — the TOP edge uses the SAME arc curvature. Create a <path> reusing the arc's rx/ry values.
 - Use actual SVG curve commands (A, C, Q) instead of approximating with rectangles or ellipses.
 
-CRITICAL: Output ONLY raw SVG code starting with <svg and ending with </svg>. Do NOT wrap in markdown code fences (no ```xml, no ```). No explanation text. Just the SVG.
+CRITICAL RULES:
+- Respond with ONLY the complete SVG code. Start with <svg and end with </svg>.
+- Do NOT wrap in markdown code fences (no ```xml, no ```).
+- Do NOT add any text before or after the SVG.
+- Do NOT add <text> elements, labels, watermarks, or annotations unless the user explicitly asks for text.
+- Do NOT add the word "OUTPUT" or any other label to the SVG.
+- Preserve ALL existing elements unless the user asks to remove them.
 
 === ORIGINAL SVG ===
 {svg}
@@ -119,7 +141,7 @@ CRITICAL: Output ONLY raw SVG code starting with <svg and ending with </svg>. Do
 === SPATIAL ENRICHMENT ===
 {enrichment}
 
-Apply the user's modification using the enrichment data for precise, spatially-aware placement. Output the complete modified SVG only."""
+Apply the user's modification using the enrichment data for precise, spatially-aware placement. Respond with the complete modified SVG code only — nothing else."""
 
 _CREATE_TEMPLATE = """You are VectorSight's icon creator. Create SVG icons from text descriptions.
 
@@ -149,7 +171,7 @@ _PLAYGROUND_TEMPLATE = """You are VectorSight's playground assistant. The user c
 === ENRICHMENT ===
 {enrichment}
 
-Output ONLY the modified SVG code with your creative change applied."""
+Respond with ONLY the modified SVG code. Start with <svg, end with </svg>. No text, no labels, no markdown fences."""
 
 _TEMPLATES = {
     "chat": _CHAT_TEMPLATE,

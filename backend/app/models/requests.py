@@ -25,6 +25,10 @@ class ChatRequest(BaseModel):
 class ModifyRequest(BaseModel):
     svg: str = Field(..., description="Raw SVG code")
     instruction: str = Field(..., description="Modification instruction in natural language")
+    history: list[dict[str, str]] = Field(
+        default_factory=list,
+        description="Chat history (role/content pairs) for multi-turn context",
+    )
 
 
 class CreateRequest(BaseModel):

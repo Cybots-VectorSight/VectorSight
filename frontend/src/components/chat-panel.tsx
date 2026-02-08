@@ -134,6 +134,13 @@ export function ChatPanel({
     setInput("")
     onSetLoading(true)
 
+    // Build conversation history from previous messages (exclude empty placeholders)
+    const history = messages
+      .filter((m) => m.content)
+      .map((m) => ({ role: m.role, content: m.content }))
+    // Add the current user message to history
+    history.push({ role: "user", content: input })
+
     const assistantId = generateId()
     const placeholderMessage: ChatMessage = {
       id: assistantId,
@@ -153,7 +160,7 @@ export function ChatPanel({
         const res = await fetch("/api/chat/stream", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ svg, question: cleanInput }),
+          body: JSON.stringify({ svg, question: cleanInput, history }),
           signal: controller.signal,
         })
 
@@ -213,7 +220,7 @@ export function ChatPanel({
         const res = await fetch("/api/modify", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ svg, instruction: cleanInput }),
+          body: JSON.stringify({ svg, instruction: cleanInput, history }),
           signal: controller.signal,
         })
         if (!res.ok) {

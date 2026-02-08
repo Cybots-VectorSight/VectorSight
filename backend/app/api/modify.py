@@ -12,11 +12,19 @@ from app.models.responses import ModifyResponse
 router = APIRouter()
 
 
-def _strip_markdown_fences(text: str) -> str:
-    """Remove markdown code fences (```xml ... ```) wrapping SVG output."""
+def _extract_svg(text: str) -> str:
+    """Extract SVG from LLM output, stripping markdown fences and surrounding text."""
+    # Remove markdown code fences
     stripped = re.sub(r"^```(?:xml|svg|html)?\s*\n?", "", text.strip())
     stripped = re.sub(r"\n?```\s*$", "", stripped)
-    return stripped.strip()
+    stripped = stripped.strip()
+
+    # Extract <svg>...</svg> if there's text before/after
+    match = re.search(r"(<svg[\s\S]*</svg>)", stripped, re.IGNORECASE)
+    if match:
+        return match.group(1).strip()
+
+    return stripped
 
 
 @router.post("/modify", response_model=ModifyResponse)
@@ -35,9 +43,9 @@ async def modify(req: ModifyRequest) -> ModifyResponse:
         svg=req.svg,
         enrichment=enrichment_text,
         question=req.instruction,
-        history=[],
+        history=req.history,
         task="modify",
     )
 
-    clean_svg = _strip_markdown_fences(result)
+    clean_svg = _extract_svg(result)
     return ModifyResponse(svg=clean_svg, changes=[req.instruction])
