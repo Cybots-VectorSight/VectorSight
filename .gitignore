@@ -1,5 +1,6 @@
-# Claude Code local settings
+# Claude Code
 .claude/
+.agents/
 
 # Python
 __pycache__/
@@ -16,7 +17,8 @@ dist/
 
 # Environment
 .env
-.env.local
+.env.*
+!.env.example
 
 # OS
 .DS_Store
