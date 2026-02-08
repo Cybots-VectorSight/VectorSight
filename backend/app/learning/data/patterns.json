@@ -129,5 +129,143 @@
       "dense-fill",
       "organic"
     ]
+  },
+  {
+    "id": "v011",
+    "condition": "Vision: When circ=1.00, conv=1.00, and aspect=1.00 with a single closed_loop path (from A simple black circle with a thick stroke on a white backgro)",
+    "insight": "The shape is a perfect circle; combined with low fill % (8%), this indicates a stroke-based outline rather than a solid fill",
+    "confidence": 0.8,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "circular",
+      "symmetric",
+      "outline",
+      "stroke-based",
+      "simple"
+    ]
+  },
+  {
+    "id": "v012",
+    "condition": "Vision: When a single MEDIUM-sized element occupies the full canvas with centroid at (12.0, 12.0) in a 24×24 canvas (from A simple black circle with a thick stroke on a white backgro)",
+    "insight": "The shape is perfectly centered and takes up most of the available space, indicating a well-composed, scalable icon design",
+    "confidence": 0.8,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "centered",
+      "scalable",
+      "icon-design"
+    ]
+  },
+  {
+    "id": "v013",
+    "condition": "Vision: When the positive-space grid shows a symmetrical ring pattern with 12 'corners' detected (from A simple black circle with a thick stroke on a white backgro)",
+    "insight": "The circle's discrete sampling creates octagonal-like artifacts in the grid, but the high circularity score confirms true roundness in the vector",
+    "confidence": 0.8,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "circular",
+      "sampling-artifact",
+      "geometric-precision"
+    ]
+  },
+  {
+    "id": "v014",
+    "condition": "Vision: high corner count (385) + low circularity (0.03) + very large area + closed loop (from Solid black silhouette of a cartoon duck/waterfowl character)",
+    "insight": "likely a dense silhouette outline or character boundary, not abstract organic shape",
+    "confidence": 0.8,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "silhouette",
+      "character",
+      "high-complexity-outline",
+      "closed-loop",
+      "mascot"
+    ]
+  },
+  {
+    "id": "v015",
+    "condition": "Vision: aspect ratio ~1.66-1.87 + organic closed loops clustered in upper-left quadrant (bbox 50-200 x 5-140) (from Solid black silhouette of a cartoon duck/waterfowl character)",
+    "insight": "head/facial region of a side-facing character",
+    "confidence": 0.8,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "side-profile",
+      "head-region",
+      "facial-feature-cluster"
+    ]
+  },
+  {
+    "id": "v016",
+    "condition": "Vision: semicircle_or_arc at bottom-right (E40: 214.7–251.5, 200.4–231.9) + high circularity (0.86) (from Solid black silhouette of a cartoon duck/waterfowl character)",
+    "insight": "rounded extremity or gesture element (e.g., thumbs-up digit) in character pose",
+    "confidence": 0.8,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "gesture",
+      "thumbs-up",
+      "extremity",
+      "pose-element",
+      "symbolic"
+    ]
+  },
+  {
+    "id": "v017",
+    "condition": "Vision: multiple small closed loops (area 800–2100) arranged vertically on left side (x: 2–100) (from Solid black silhouette of a cartoon duck/waterfowl character)",
+    "insight": "wing, flipper, or limb segmentation in side-profile character",
+    "confidence": 0.8,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "wing",
+      "limb",
+      "segmented-feature",
+      "side-profile",
+      "appendage"
+    ]
+  },
+  {
+    "id": "v018",
+    "condition": "Vision: circ=1.00 AND aspect=1.00 AND centroid at canvas center (from A centered, perfectly symmetrical black circle rendered with)",
+    "insight": "Perfect circular geometry with high symmetry — likely an icon, badge, or decorative element",
+    "confidence": 0.8,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "circular",
+      "symmetric",
+      "geometric",
+      "simple"
+    ]
+  },
+  {
+    "id": "v019",
+    "condition": "Vision: closed_loop topology with single path element (from A centered, perfectly symmetrical black circle rendered with)",
+    "insight": "Stroke-only circular shape; no fill — efficient, minimal design suitable for icons or outlines",
+    "confidence": 0.8,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "stroke-based",
+      "closed_loop",
+      "minimal"
+    ]
+  },
+  {
+    "id": "v020",
+    "condition": "Vision: bbox corners=12 with distributed positive space grid pattern (from A centered, perfectly symmetrical black circle rendered with)",
+    "insight": "The corner count reflects the octagonal approximation of the circle; grid shows smooth radial boundary",
+    "confidence": 0.8,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "circular",
+      "smooth-boundary"
+    ]
   }
 ]

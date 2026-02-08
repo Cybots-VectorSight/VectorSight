@@ -86,6 +86,49 @@ async def submit_feedback(req: FeedbackRequest) -> FeedbackResponse:
     )
 
 
+class ReflectRequest(BaseModel):
+    svg: str = Field(..., description="SVG code to self-reflect on")
+
+
+class ReflectResponse(BaseModel):
+    status: str = "ok"
+    visual_description: str = ""
+    enrichment_accuracy: str = ""
+    gaps: list[str] = Field(default_factory=list)
+    patterns_derived: int = 0
+
+
+@router.post("/feedback/reflect", response_model=ReflectResponse)
+async def self_reflect(req: ReflectRequest) -> ReflectResponse:
+    """Render SVG, show to LLM vision, auto-derive patterns.
+
+    This is the self-learning endpoint: the LLM sees the image and
+    compares what it sees with the enrichment data.
+    """
+    from app.engine.pipeline import create_pipeline
+    from app.learning.self_reflect import reflect_on_svg
+    from app.llm.enrichment_formatter import context_to_enrichment_text
+    from app.svg.parser import parse_svg
+
+    ctx = parse_svg(req.svg)
+    pipeline = create_pipeline()
+    ctx = pipeline.run(ctx)
+
+    enrichment_text = context_to_enrichment_text(ctx)
+    result = await reflect_on_svg(req.svg, enrichment_text, ctx)
+
+    if result is None:
+        return ReflectResponse(status="failed", visual_description="Could not reflect")
+
+    return ReflectResponse(
+        status="ok",
+        visual_description=result.get("visual_description", ""),
+        enrichment_accuracy=result.get("enrichment_accuracy", ""),
+        gaps=result.get("gaps", []),
+        patterns_derived=len(result.get("patterns", [])),
+    )
+
+
 class PatternsResponse(BaseModel):
     patterns: list[dict] = Field(default_factory=list)
     count: int = 0

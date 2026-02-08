@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from fastapi import APIRouter
+from fastapi import APIRouter, BackgroundTasks
 from fastapi.responses import StreamingResponse
 
 from app.models.requests import ChatRequest
@@ -12,7 +12,7 @@ router = APIRouter()
 
 
 @router.post("/chat", response_model=ChatResponse)
-async def chat(req: ChatRequest) -> ChatResponse:
+async def chat(req: ChatRequest, background_tasks: BackgroundTasks) -> ChatResponse:
     from app.engine.pipeline import create_pipeline
     from app.llm.client import get_chat_response
     from app.llm.enrichment_formatter import context_to_enrichment_text
@@ -36,11 +36,16 @@ async def chat(req: ChatRequest) -> ChatResponse:
 
     record_from_context(ctx, svg=req.svg, question=req.question, answer=answer)
 
+    # Self-reflect: LLM vision sees the rendered SVG and auto-learns
+    from app.learning.self_reflect import reflect_background
+
+    background_tasks.add_task(reflect_background, req.svg, enrichment_text, ctx)
+
     return ChatResponse(answer=answer, enrichment_used=True)
 
 
 @router.post("/chat/stream")
-async def chat_stream(req: ChatRequest) -> StreamingResponse:
+async def chat_stream(req: ChatRequest, background_tasks: BackgroundTasks) -> StreamingResponse:
     from app.engine.pipeline import create_pipeline
     from app.llm.enrichment_formatter import context_to_enrichment_text
     from app.llm.stream import stream_chat_response
@@ -56,6 +61,11 @@ async def chat_stream(req: ChatRequest) -> StreamingResponse:
     from app.learning.memory import record_from_context
 
     record_from_context(ctx, svg=req.svg, question=req.question)
+
+    # Self-reflect: LLM vision sees the rendered SVG and auto-learns
+    from app.learning.self_reflect import reflect_background
+
+    background_tasks.add_task(reflect_background, req.svg, enrichment_text, ctx)
 
     return StreamingResponse(
         stream_chat_response(

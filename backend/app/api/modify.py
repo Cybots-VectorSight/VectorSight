@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import re
 
-from fastapi import APIRouter
+from fastapi import APIRouter, BackgroundTasks
 
 from app.models.requests import ModifyRequest
 from app.models.responses import ModifyResponse
@@ -28,7 +28,7 @@ def _extract_svg(text: str) -> str:
 
 
 @router.post("/modify", response_model=ModifyResponse)
-async def modify(req: ModifyRequest) -> ModifyResponse:
+async def modify(req: ModifyRequest, background_tasks: BackgroundTasks) -> ModifyResponse:
     from app.engine.pipeline import create_pipeline
     from app.llm.client import get_chat_response
     from app.llm.enrichment_formatter import context_to_enrichment_text
@@ -53,5 +53,10 @@ async def modify(req: ModifyRequest) -> ModifyResponse:
     from app.learning.memory import record_from_context
 
     record_from_context(ctx, svg=req.svg, question=req.instruction)
+
+    # Self-reflect: LLM vision sees the rendered SVG and auto-learns
+    from app.learning.self_reflect import reflect_background
+
+    background_tasks.add_task(reflect_background, req.svg, enrichment_text, ctx)
 
     return ModifyResponse(svg=clean_svg, changes=[req.instruction])
