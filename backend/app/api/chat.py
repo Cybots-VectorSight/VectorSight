@@ -31,6 +31,11 @@ async def chat(req: ChatRequest) -> ChatResponse:
         task="chat",
     )
 
+    # Auto-record session for learning
+    from app.learning.memory import record_from_context
+
+    record_from_context(ctx, svg=req.svg, question=req.question, answer=answer)
+
     return ChatResponse(answer=answer, enrichment_used=True)
 
 
@@ -46,6 +51,11 @@ async def chat_stream(req: ChatRequest) -> StreamingResponse:
     ctx = pipeline.run(ctx)
 
     enrichment_text = context_to_enrichment_text(ctx)
+
+    # Auto-record session for learning (question only — streaming answer not captured)
+    from app.learning.memory import record_from_context
+
+    record_from_context(ctx, svg=req.svg, question=req.question)
 
     return StreamingResponse(
         stream_chat_response(

@@ -298,3 +298,68 @@ def get_memory_store() -> MemoryStore:
     if _store is None:
         _store = MemoryStore()
     return _store
+
+
+def record_from_context(
+    ctx: Any,
+    svg: str,
+    question: str = "",
+    answer: str = "",
+) -> None:
+    """Auto-record an analysis session from a PipelineContext.
+
+    Called after every chat/modify interaction so the system learns
+    from every user — what SVGs are being analyzed, what features
+    they have, and what questions are asked.
+    """
+    try:
+        store = get_memory_store()
+        svg_h = store.svg_hash(svg)
+
+        # Extract features from context
+        shape_dist: dict[str, int] = {}
+        for sp in ctx.subpaths:
+            s = sp.features.get("shape_class", "organic")
+            shape_dist[s] = shape_dist.get(s, 0) + 1
+
+        fill_pct = 0.0
+        if ctx.subpaths:
+            fill_pct = ctx.subpaths[0].features.get("positive_fill_pct", 0.0)
+
+        max_depth = 0
+        if ctx.containment_matrix is not None:
+            n = len(ctx.subpaths)
+            for i in range(n):
+                depth = sum(
+                    1 for j in range(n)
+                    if j != i and ctx.containment_matrix[j][i]
+                )
+                max_depth = max(max_depth, depth)
+
+        cluster_count = 0
+        if ctx.cluster_labels is not None:
+            cluster_count = len(set(int(l) for l in ctx.cluster_labels if l >= 0))
+
+        # Build composition type from interpreter
+        from app.engine.interpreter import _interpret_composition, _interpret_pose
+        comp = _interpret_composition(ctx)
+        pose = _interpret_pose(ctx, [])
+
+        session = AnalysisSession(
+            svg_hash=svg_h,
+            element_count=len(ctx.subpaths),
+            fill_pct=fill_pct,
+            symmetry_score=ctx.symmetry_score,
+            symmetry_axis=ctx.symmetry_axis or "none",
+            composition_type=comp,
+            pose=pose,
+            shape_distribution=shape_dist,
+            cluster_count=cluster_count,
+            max_nesting_depth=max_depth,
+            prediction=question,  # Store what was asked
+            actual=answer[:200] if answer else "",  # Store truncated response
+        )
+        store.record_session(session)
+        logger.debug("Auto-recorded session for SVG %s (%d elements)", svg_h, len(ctx.subpaths))
+    except Exception as e:
+        logger.warning("Failed to auto-record session: %s", e)

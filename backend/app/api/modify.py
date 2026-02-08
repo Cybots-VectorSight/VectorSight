@@ -48,4 +48,10 @@ async def modify(req: ModifyRequest) -> ModifyResponse:
     )
 
     clean_svg = _extract_svg(result)
+
+    # Auto-record session for learning
+    from app.learning.memory import record_from_context
+
+    record_from_context(ctx, svg=req.svg, question=req.instruction)
+
     return ModifyResponse(svg=clean_svg, changes=[req.instruction])
