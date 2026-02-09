@@ -88,25 +88,23 @@ async def submit_feedback(req: FeedbackRequest) -> FeedbackResponse:
 
 class ReflectRequest(BaseModel):
     svg: str = Field(..., description="SVG code to self-reflect on")
+    question: str = Field("What is this SVG?", description="Simulated user question")
 
 
 class ReflectResponse(BaseModel):
     status: str = "ok"
     visual_description: str = ""
-    enrichment_accuracy: str = ""
+    llm_was_correct: bool = True
     gaps: list[str] = Field(default_factory=list)
     patterns_derived: int = 0
 
 
 @router.post("/feedback/reflect", response_model=ReflectResponse)
 async def self_reflect(req: ReflectRequest) -> ReflectResponse:
-    """Render SVG, show to LLM vision, auto-derive patterns.
-
-    This is the self-learning endpoint: the LLM sees the image and
-    compares what it sees with the enrichment data.
-    """
+    """On-demand self-reflection: run pipeline, get LLM answer, then vision-verify."""
     from app.engine.pipeline import create_pipeline
-    from app.learning.self_reflect import reflect_on_svg
+    from app.learning.self_reflect import reflect_on_chat
+    from app.llm.client import get_chat_response
     from app.llm.enrichment_formatter import context_to_enrichment_text
     from app.svg.parser import parse_svg
 
@@ -115,7 +113,20 @@ async def self_reflect(req: ReflectRequest) -> ReflectResponse:
     ctx = pipeline.run(ctx)
 
     enrichment_text = context_to_enrichment_text(ctx)
-    result = await reflect_on_svg(req.svg, enrichment_text, ctx)
+
+    # Get LLM's answer first
+    llm_answer = await get_chat_response(
+        svg=req.svg,
+        enrichment=enrichment_text,
+        question=req.question,
+        history=[],
+        task="chat",
+    )
+
+    # Then let vision verify
+    result = await reflect_on_chat(
+        req.svg, enrichment_text, req.question, llm_answer, ctx
+    )
 
     if result is None:
         return ReflectResponse(status="failed", visual_description="Could not reflect")
@@ -123,8 +134,8 @@ async def self_reflect(req: ReflectRequest) -> ReflectResponse:
     return ReflectResponse(
         status="ok",
         visual_description=result.get("visual_description", ""),
-        enrichment_accuracy=result.get("enrichment_accuracy", ""),
-        gaps=result.get("gaps", []),
+        llm_was_correct=result.get("llm_was_correct", True),
+        gaps=result.get("enrichment_gaps", []),
         patterns_derived=len(result.get("patterns", [])),
     )
 

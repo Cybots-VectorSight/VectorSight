@@ -1,0 +1,396 @@
+=== VECTORSIGHT ENRICHMENT ===
+
+ELEMENTS: 67 paths | CANVAS: 256×259 | TYPE: fill-based
+
+SPATIAL INTERPRETATION:
+  LAYOUT SUMMARY: asymmetric composition; 6 structural layers; large background element: extends into upper half, spans wide, area=106% of primary (LARGER than primary boundary); Highest-circularity concentric group at x=89% — offset from center (far right)
+  Composition: complex illustration with deep nesting (3 levels), mixed shapes (circular, elliptical, linear, organic)
+  Orientation: semi-symmetric; roughly centered but with asymmetric features; moderate vertical symmetry (0.57)
+  Silhouette: mostly filled with shaped contour; roughly square proportions; bottom edge: mostly right; principal axis: diagonal (43°, eccentricity=0.16); boundary lobes: 2 distinct protruding regions (max/min distance ratio=inf)
+  Skeleton: main down axis (39px). with 3 branches — lower-left short (4px, center), lower-left short (3px, center), right short (3px, center). 3 junctions, 1 endpoints
+  Radial profile (0°=right, CCW, 15°): 14,11,17,20,16,15,14,15,16,20,17,15,15,15,17,16,15,15,15,15,17,20,17,15
+  Peaks: 45° (20px, upper-right), 135° (20px, upper-left), 315° (20px, lower-right). Valleys: 15° (11px, right)
+  Simplified outline (6 vertices): M 240,247 L 88,247 L 56,223 L 4,210 L 8,4 L 244,8 Z
+  Mass distribution: broadly distributed; vertically centered; quadrants: upper-left=90%, upper-right=85%, lower-left=73%, lower-right=82%; vertical thirds: top=33%, mid=33%, bottom=34%
+  Focal elements:
+    - Concentric group [E10, E55, E11] at (229,147) [mid-right], 3 layers, max circularity=1.00, tiers=SMALL/SMALL/SMALL, root-level (independent, drawn on top)
+    - Concentric group [E52, E56, E4, E66] at (0,1) [top-left], 4 layers, max circularity=0.95, tiers=SMALL/SMALL/SMALL/SMALL, at canvas edge
+    - Concentric group [E40, E41, E50, E51] at (235,215) [bottom-right], 4 layers, max circularity=0.86, tiers=LARGE/MEDIUM/SMALL/SMALL, inside E1
+    - Concentric group [E22, E21] at (159,33) [top-center], 2 layers, max circularity=0.73, tiers=LARGE/LARGE, root-level (independent, drawn on top)
+    -   -> group at (235,215) is below group at (229,147), 68px apart
+    -   -> group at (159,33) is above-left of group at (229,147), 134px apart
+    - Highest-circularity concentric group at x=89% — offset from center (far right)
+  Scene decomposition:
+    - Cluster 0 (mid-center, 50 elements, dominant shape: organic)
+    - Cluster 2 (upper-left, 8 elements, dominant shape: organic)
+    - Cluster 3 (lower-right, 7 elements, dominant shape: organic)
+    - Cluster 0 (mid-center) — Cluster 2 (upper-left) — separated by 143px
+    - Cluster 0 (mid-center) — Cluster 3 (lower-right) — separated by 155px
+    - Cluster 2 (upper-left) — Cluster 3 (lower-right) — separated by 298px
+  Reading hints:
+    - Deep nesting (3 levels).
+    - Major structural elements (top-level, ordered by draw layer — low z drawn first/behind, high z drawn last/in front): E1 (bottom-center, 97%w x 58%h, 18 children, z=0 ← background layer (lower z-index, drawn first), curved organic (conv=0.74, aspect=1.7), area=106% of primary (LARGER than primary boundary)); E7 (bottom-left, 26%w x 26%h, 4 children, z=6 ← background layer (lower z-index, drawn first), curved organic (conv=0.81, aspect=1.0), area=11% of primary); E22 (top-center, 17%w x 23%h, 2 children, z=21 ← background layer (lower z-index, drawn first), compact rounded (conv=0.97, aspect=0.7), area=7% of primary); E23 (top-center, 30%w x 16%h, 3 children, z=22 ← background layer (lower z-index, drawn first), compact rounded (conv=0.90, aspect=1.9), area=11% of primary); E44 (mid-left, 11%w x 25%h, 2 children, z=43 ← background layer (lower z-index, drawn first), curved organic (conv=0.77, aspect=0.5), area=4% of primary); E62 (spans full canvas, 24 children, z=61 ← primary boundary (outermost enclosing element)).
+    - Background element layout: largest background element (E1) centroid at y=65%, bbox top edge at y=41%, bbox bottom at y=99%. This background element extends UP into the upper half of the canvas (top edge at y=41%). Width spans 97% of canvas. Aspect=1.7 (wider than tall) — spreads laterally. Top-most feature (E23) at y=9%. Separation=56% — background element center is far below top feature.
+    - 4 spatial clusters.
+    - 3 circular elements.
+
+SILHOUETTE (Braille, each char=2×4 pixels, dots=filled):
+⣿⣿⡿⡷⠀⣀⣶⠶⣞⣻⣿⣟⣯⠭⠽⠛⢛⣻⢿⡏⣩⣿⣿⡛⣹⣷⣄⣴⢿⣿⣄⡀
+⢿⣿⣧⣳⢞⣯⣧⣤⠴⠚⠿⣿⣾⣭⣽⣿⣿⣵⣯⣿⢿⢹⣿⣮⣟⢻⣽⣵⡶⠶⢾⣷
+⠀⣩⣿⣿⣿⡿⠿⣇⠀⠀⢰⠺⣟⣻⠿⣿⣿⣿⣿⣿⣾⣾⣻⣯⡿⠼⣿⣁⠀⠀⠀⣿
+⢰⡟⠀⢫⣷⠁⠀⠈⠳⣌⣿⣦⣤⠬⢭⣿⢿⣿⣏⣟⣿⣿⠻⣿⡇⠀⠀⠉⠷⠶⢦⡟
+⣿⡗⣴⣿⠹⣄⣾⠲⡤⣬⣿⣇⣿⢿⣲⣿⣧⣷⢃⣿⣿⡿⣷⣿⣷⣀⣤⣤⣤⣤⡽⠃
+⣿⣸⣱⣿⣾⣯⣿⡶⠤⣤⣬⣿⣿⣼⣿⣿⣯⣿⣿⡿⣿⣹⡿⡿⣿⡷⡄⠈⠉⠉⠓⣆
+⣿⣷⢃⣽⣿⣿⡏⣻⣶⣤⣤⣾⣿⣿⣽⣿⣾⣧⣤⣾⣿⣿⣷⣧⣽⣽⡇⠀⠀⠀⢈⡿
+⢻⢯⣾⣿⣿⣿⣿⣷⣾⣿⣷⣶⣿⡛⠷⠶⠚⠛⠛⠿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⣸⡇
+⢸⣿⣿⣿⣿⣿⣷⣻⡛⠳⢿⠿⠿⣿⣿⣶⡶⢖⣒⠋⠉⠉⠙⢗⣿⡁⠀⣀⣤⣴⠏⠀
+⠀⣼⣿⢿⣿⡿⠹⣟⠿⠷⢾⣶⣶⣾⣿⣿⠿⣷⣿⡻⣿⣶⣾⡋⢻⡿⠿⠻⣿⣛⣀⠀
+⢰⡟⢘⡿⢻⣿⣿⡿⡵⣴⢻⣇⠀⠀⠀⠉⠙⡷⣧⡘⣜⣿⣻⣿⣿⣽⡷⢄⡀⠉⣺⠀
+⣿⢡⠟⠀⣾⣿⣿⣻⡿⣿⣿⣷⣧⠤⣄⡀⣠⣷⣣⣽⠟⣿⣿⣿⣿⣌⣿⠛⠛⠯⢥⡀
+⣿⡏⣠⠾⢿⢿⣿⣿⣮⣽⣿⣟⡟⠻⢽⣉⡁⣀⣀⣠⡞⣷⠟⣿⣽⣻⣿⣦⡖⠒⢲⡷
+⠹⠀⠁⠀⠈⠳⢬⣻⣿⣮⣽⢿⡧⠀⠀⠀⠉⠉⣻⣟⣽⣏⠁⣇⣯⣟⣜⣧⣭⣭⣿⣇
+⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⢟⢯⣙⠒⠶⠖⠚⠛⠉⠉⣀⡼⢷⣿⣿⡀⢿⣻⣿⣯⣿⡉
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠺⠿⠿⣤⣲⣔⡲⠯⠝⠊⠉⠀⠙⠦⣿⠞⠋⠉⠉⠃
+
+STACKING TREE:
+E1 [organic, LARGE, z=0]
+  E2 [organic, MEDIUM, z=1]
+  E5 [organic, LARGE, z=4]
+  E29 [organic, LARGE, z=28]
+    E30 [linear, MEDIUM, z=29]
+  E40 [circular, LARGE, z=39]
+    E41 [organic, MEDIUM, z=40]
+      E57 [organic, SMALL, z=56]
+  E46 [organic, MEDIUM, z=45]
+  E50 [organic, SMALL, z=49]
+  E51 [organic, SMALL, z=50]
+  E61 [organic, MEDIUM, z=60]
+  E67 [organic, MEDIUM, z=66]
+E6 [organic, SMALL, z=5]
+E7 [organic, LARGE, z=6]
+  E8 [organic, MEDIUM, z=7]
+  E9 [organic, MEDIUM, z=8]
+  E58 [organic, MEDIUM, z=57]
+  E60 [organic, SMALL, z=59]
+E10 [elliptical, SMALL, z=9]
+  E55 [circular, SMALL, z=54]
+E11 [organic, SMALL, z=10]
+E14 [organic, MEDIUM, z=13]
+E22 [organic, LARGE, z=21]
+  E20 [organic, LARGE, z=19]
+  E21 [organic, LARGE, z=20]
+E23 [organic, LARGE, z=22]
+  E24 [organic, MEDIUM, z=23]
+    E25 [organic, SMALL, z=24]
+  E26 [organic, LARGE, z=25]
+E36 [organic, MEDIUM, z=35]
+  E56 [circular, SMALL, z=55]
+    E4 [organic, SMALL, z=3]
+      E66 [linear, SMALL, z=65]
+E37 [organic, MEDIUM, z=36]
+E44 [organic, LARGE, z=43]
+  E45 [organic, MEDIUM, z=44]
+  E47 [organic, MEDIUM, z=46]
+E49 [organic, MEDIUM, z=48]
+  E48 [organic, SMALL, z=47]
+E52 [organic, SMALL, z=51]
+E54 [organic, MEDIUM, z=53]
+E62 [organic, LARGE, z=61]
+  E3 [organic, MEDIUM, z=2]
+  E12 [organic, LARGE, z=11]
+    E17 [organic, LARGE, z=16]
+    E18 [organic, LARGE, z=17]
+      E19 [organic, LARGE, z=18]
+    E27 [organic, LARGE, z=26]
+    E32 [organic, LARGE, z=31]
+    E34 [organic, MEDIUM, z=33]
+    E35 [organic, SMALL, z=34]
+    E38 [organic, MEDIUM, z=37]
+    E39 [organic, MEDIUM, z=38]
+  E13 [organic, SMALL, z=12]
+  E15 [organic, MEDIUM, z=14]
+  E16 [linear, SMALL, z=15]
+  E28 [organic, MEDIUM, z=27]
+  E31 [organic, MEDIUM, z=30]
+  E33 [organic, MEDIUM, z=32]
+  E42 [organic, LARGE, z=41]
+  E43 [organic, MEDIUM, z=42]
+  E53 [organic, SMALL, z=52]
+  E59 [organic, LARGE, z=58]
+E63 [organic, MEDIUM, z=62]
+  E64 [organic, SMALL, z=63]
+E65 [organic, SMALL, z=64]
+
+CONTAINMENT:
+  E1 contains: E2, E3, E5, E29, E30, E32, E33, E34, E35, E40, E41, E46, E50, E51, E57, E59, E61, E67
+  E4 contains: E66
+  E7 contains: E8, E9, E58, E60
+  E10 contains: E55
+  E12 contains: E17, E18, E19, E27, E32, E34, E35, E38, E39
+  E18 contains: E19
+  E22 contains: E20, E21
+  E23 contains: E24, E25, E26
+  E24 contains: E25
+  E26 contains: E25
+  E29 contains: E30
+  E36 contains: E56
+  E40 contains: E41, E57
+  E41 contains: E57
+  E44 contains: E45, E47
+  E49 contains: E48
+  E56 contains: E4
+  E62 contains: E3, E12, E13, E15, E16, E17, E18, E19, E20, E27, E28, E30, E31, E32, E33, E35, E38, E39, E42, E43, E45, E48, E53, E59
+  E63 contains: E64
+
+SYMMETRY: vertical (score 0.57)
+  Pairs: (E2↔E59), (E3↔E7), (E6↔E40 DIFF:organic/circular), (E10↔E44 DIFF:elliptical/organic), (E11↔E45 DIFF:organic/organic), (E15↔E32), (E16↔E34 DIFF:linear/organic), (E27↔E38), (E28↔E35), (E42↔E63 DIFF:organic/organic), (E43↔E64), (E47↔E55 DIFF:organic/circular), (E48↔E54)
+
+CONCENTRIC:
+  [E52, E56, E4, E66] share center at (0,1)
+  [E7, E9] share center at (62,204)
+  [E10, E55, E11] share center at (229,147)
+  [E12, E38] share center at (122,78)
+  [E15, E16] share center at (98,97)
+  [E18, E17, E19] share center at (123,93)
+  [E22, E21] share center at (159,33)
+  [E23, E26, E24] share center at (120,23)
+  [E29, E30] share center at (111,147)
+  [E34, E35] share center at (170,109)
+  [E40, E41, E50, E51] share center at (235,215)
+  [E42, E43] share center at (44,118)
+  [E44, E45] share center at (23,138)
+  [E59, E61] share center at (75,183)
+  [E63, E65, E64] share center at (207,116)
+
+PER-ELEMENT (top 15 by area):
+  E1: [LARGE] organic(closed_loop), area=20969, bbox(4,106,252,256), centroid(140,168), circ=0.16, conv=0.74, aspect=1.66, corners=98, GAPS
+  E62: [LARGE] organic(closed_loop), area=19718, bbox(0,0,255,258), centroid(124,117), circ=0.03, conv=0.38, aspect=0.99, corners=385
+  E12: [LARGE] organic(closed_loop), area=9117, bbox(50,5,200,139), centroid(121,77), circ=0.09, conv=0.75, aspect=1.12, corners=130, GAPS
+  E29: [LARGE] organic(semicircle_or_arc), area=4572, bbox(28,90,200,195), centroid(111,147), circ=0.15, conv=0.72, aspect=1.63, corners=20, GAPS
+  E23: [LARGE] organic(semicircle_or_arc), area=2155, bbox(76,3,153,44), centroid(119,22), circ=0.63, conv=0.90, aspect=1.87, corners=33, GAPS
+  E7: [LARGE] organic(closed_loop), area=2077, bbox(33,161,98,227), centroid(62,203), circ=0.23, conv=0.81, aspect=0.99, corners=21, GAPS
+  E18: [LARGE] organic(semicircle_or_arc), area=1496, bbox(94,56,138,126), centroid(117,88), circ=0.49, conv=0.70, aspect=0.62, corners=12
+  E22: [LARGE] organic(closed_loop), area=1464, bbox(140,6,183,64), centroid(164,40), circ=0.73, conv=0.97, aspect=0.74, corners=9
+  E5: [LARGE] organic(semicircle_or_arc), area=1080, bbox(2,142,45,220), centroid(18,172), circ=0.38, conv=0.81, aspect=0.56, corners=6
+  E21: [LARGE] organic(curved), area=865, bbox(130,3,178,55), centroid(159,33), circ=0.15, conv=0.75, aspect=0.93, corners=52, GAPS
+  E40: [LARGE] circular(semicircle_or_arc), area=847, bbox(214,200,251,231), centroid(234,214), circ=0.86, conv=0.95, aspect=1.17, corners=13, GAPS
+  E42: [LARGE] organic(closed_loop), area=841, bbox(32,84,66,146), centroid(44,117), circ=0.14, conv=0.66, aspect=0.54, corners=21, GAPS
+  E20: [LARGE] organic(closed_loop), area=830, bbox(165,16,188,76), centroid(177,50), circ=0.45, conv=0.86, aspect=0.38, corners=24, GAPS
+  E44: [LARGE] organic(semicircle_or_arc), area=816, bbox(9,106,39,171), centroid(23,138), circ=0.37, conv=0.77, aspect=0.45, corners=18, GAPS
+  E26: [LARGE] organic(closed_loop), area=792, bbox(76,5,152,36), centroid(117,21), circ=0.15, conv=0.50, aspect=2.48, corners=20, GAPS
+
+ELEMENT SHAPES (top 3, Braille 2×4 dots/char):
+  E1 (LARGE, organic):
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⣀⡤⠔⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⢲⣦⠀⠀⠀⠀
+    ⠀⢀⡴⠋⣁⡤⠖⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠛⣏⠁⠀⠀⠀⠀
+    ⢠⠎⢠⡾⠋⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⢠⠖⠛⠒⠦⡄⢀⡀
+    ⡏⢠⠞⣇⠀⢀⣀⣸⡄⠀⠀⠀⠀⠀⠀⢠⡏⠀⠀⢀⣀⣉⣉⡇
+    ⣷⠋⠀⠈⠓⠦⠭⢭⣻⢄⡀⠀⠠⠴⠞⠋⠀⠀⠀⠀⠉⠉⠓⢢
+    ⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠓⠲⠤⢤⣀⠀⠀⠀⠀⠀⠀⠀⣹
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢦⡀⠀⠀⠀⣠⠇
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠦⠖⠋⠁⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+  E62 (LARGE, organic):
+    ⠀⠀⠀⢀⣤⠖⠛⠋⠉⠉⠉⠉⠉⠉⠉⠉⠉⣍⣿⣷⡾⢿⣧⣄
+    ⠀⢀⡾⢋⣠⠖⠋⠁⡄⠀⠀⠀⠀⠀⠀⠀⠀⢈⣯⣿⡟⠛⠙⣿
+    ⢰⡏⢔⡿⠁⠀⠀⢰⡇⠀⠀⠀⠀⠀⠀⠀⡾⠋⠉⠉⠻⠦⢤⡿
+    ⣿⢦⣿⢻⣄⡓⠦⢼⣧⡀⠀⠀⠀⠀⣀⡼⠃⠀⠀⠤⢴⣦⣾⠃
+    ⣿⣿⢻⣦⠺⢭⣛⡓⠺⠿⣦⣄⡈⠉⠉⠀⠀⠀⠀⠀⠀⠀⠈⣷
+    ⢿⡇⢠⣿⣷⢦⣌⣉⡉⠉⠉⠉⠛⠻⠷⢶⣄⡀⠀⠀⠀⠀⢠⡏
+    ⠸⢿⣼⣿⣿⡄⠀⠈⠉⠻⣭⣷⣶⢤⡀⠀⠉⢳⣦⡀⣤⣴⠟⠁
+    ⠀⠀⠙⣿⣯⣻⣄⢠⣄⠀⠈⠘⠸⣯⢪⣻⢶⣶⣿⡝⠁⠀⠀⠀
+    ⠀⠀⠀⠈⠉⠙⠛⢷⣏⡆⠀⠀⣠⡟⠀⢱⢿⣿⣿⣻⡄⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠸⢋⡇⠀⠉⢁⣤⣴⣮⡼⣿⣿⠟⠁⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⣶⣋⢠⣀⣀⣤⡴⠿⠛⣀⣿⣟⠂⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠈⠛⠷⣶⣦⣤⣤⡶⠿⠛⠁⠉⠀⠀⠀⠀⠀
+
+  E12 (LARGE, organic):
+    ⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⡇⠉⠙⠒⠲⠤⢄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⢇⠀⠀⠀⠀⠀⠀⠈⠳⣴⣦⣠⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠘⣆⠀⠀⠀⠀⠀⠀⠀⠈⠃⠙⡇⢻⢿⢦⡀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠈⢧⡀⠘⢷⣄⠀⠀⠀⠀⠀⠁⠈⡏⡇⠈⢦⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠈⠳⡌⡏⢧⠀⠀⠀⠀⠀⢀⣧⠇⠀⠀⢧⢳⣄⡀⠀⠀
+    ⠀⠀⠀⠀⠀⠸⠃⠘⡆⠀⠀⣀⣴⠿⠋⠀⠀⠀⢸⠈⣷⣿⡹⣶
+    ⠀⠀⠀⠀⠀⠀⠀⢸⠁⠀⠈⠁⠀⠀⠀⠀⠀⢀⡞⣤⡿⡇⢳⣻
+    ⠀⠀⠀⠀⠀⣀⡴⠋⠀⠀⠀⠀⠀⠀⠀⢀⡤⣚⣼⠈⠁⢧⠀⠛
+    ⠀⠀⠀⠀⠘⢦⡀⠀⠦⣤⣀⣤⣤⣶⠾⠟⠞⠋⠀⢀⣀⡞⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠉⠓⢦⣤⣤⠀⠀⡀⠀⠀⣤⡴⠖⠋⠉⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠉⠛⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀
+
+
+CONCENTRIC GROUP SHAPES (Braille, combined members):
+  [E40+E41+E50+E51] at (235,215):
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⡤⠤⠤⢤⣀⡀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⢀⣀⡤⠾⠟⠓⠒⠒⠒⠒⠒⠲⢭⣙⢦⡀⠀
+    ⠀⠀⠀⠀⣠⠴⠊⣹⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢳⡙⡄
+    ⠀⠀⢀⡞⠁⠀⠀⠘⢆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢧⡇
+    ⠀⠀⢸⠀⠀⠀⠀⠀⠈⠳⢄⣀⣀⡀⣠⠖⠒⠒⠦⣄⠀⠀⣸⡇
+    ⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠁⠀⠀⠀⠀⠈⠳⠔⠁⡇
+    ⠀⠀⠈⠙⠲⢤⡀⠀⠀⠀⢀⣀⣀⣀⡠⢤⣀⣀⣀⡀⠀⠀⠀⡇
+    ⠀⠀⠀⠀⢀⣠⠭⠷⣞⣉⣁⡤⠤⠤⠤⠤⠤⠤⢤⣈⡉⠓⢦⣇
+    ⠀⠀⣠⠖⢋⡠⠴⠚⠉⢧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢢⡼⢸
+    ⣠⠎⢁⡖⠉⠀⠀⠀⠀⠀⠳⠤⠤⠤⠤⠒⠋⠙⠲⢄⣀⡜⠙⠋
+    ⡇⢀⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀
+    ⠉⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+  [E10+E55+E11] at (229,147):
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⣠⠔⣲⠶⠒⠛⠛⠛⠒⢶⡒⠤⠤⠤⠒⠲⢤
+    ⠀⠀⠀⠀⢀⡴⠋⢡⠞⠁⠀⠀⠀⠀⠀⠀⠀⠈⢦⠀⠀⠀⠀⢸
+    ⠀⣠⠔⠞⠁⠀⠀⡎⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⡇⠀⠀⠀⢸
+    ⣰⠁⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⢸
+    ⡇⠀⠀⠀⠀⠀⠀⢱⡀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣰⣃⣀⣠⢶⣸
+    ⡇⠀⠀⠀⠀⠀⠀⠀⠙⢦⡀⠀⠀⠀⠀⠀⣠⢷⡁⠀⠀⢀⡼⡇
+    ⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠒⠒⠚⠉⠁⠀⢣⡴⠚⠁⠀⢣
+    ⢳⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡰⠋⠙⢦⡀⠀⡞
+    ⠀⢳⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠇⠀⠀⠀⠓⠊⠁
+    ⠀⠀⠙⠒⠲⠤⠤⠤⣄⣀⢤⣀⣀⣀⣠⠴⠋⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+  [E18+E17+E19] at (123,93):
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⡷⡄⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⣴⠲⠤⠤⢤⣀⡀⠀⠀⠀⠙⢿⡄⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⢠⡽⣦⡀⠀⠀⠉⠙⠲⣄⠀⠈⢿⡄⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠉⠳⣿⡝⠲⢤⡀⠀⠈⢦⡀⢸⢧⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠈⢳⡄⠀⠙⣄⠀⠀⢱⡞⢸⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⢹⠀⠀⣸⡤⠞⠉⢹⢸⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡇⣸⠷⠚⠁⡇⠀⠀⢸⣸⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⢀⡼⢫⠏⠀⠀⢀⡇⠀⢀⡾⠃⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⡴⡿⣱⠋⠀⢀⣠⡾⣴⠶⠋⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⢸⣿⣽⠵⠚⣩⣿⠵⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⡼⡟⣀⡴⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⢳⡟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+  [E23+E26+E24] at (120,23):
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⠀⠀
+    ⡶⢤⣀⣠⠞⠉⠓⠦⠤⠤⠤⠤⠤⠒⠒⠚⠉⠉⠁⠀⢀⡬⠟⢿
+    ⡟⢾⡉⠉⠓⠲⠤⢤⣀⣀⡀⠀⠀⠀⠀⢀⣀⣠⣤⡞⠉⠀⢠⢿
+    ⠹⣄⡙⢦⣄⣀⠀⠀⠀⠀⠉⠉⢉⣉⡭⠽⢚⡽⠋⠀⠀⡴⠋⢸
+    ⠀⠀⠙⠲⣝⢿⡯⠭⡭⠭⠭⠭⣭⣤⠤⠖⣿⡤⢴⡶⠚⢦⠀⢸
+    ⠀⠀⠀⠀⠈⢳⣯⣷⡿⣿⡭⢍⣁⣀⣀⣠⠴⣚⣩⠴⠚⠉⣠⠏
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠉⠓⠺⠭⢭⣓⣚⣉⡭⡷⣀⣀⡤⠞⠁⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠁⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+
+CLUSTER SCENE:
+  Cluster 0 (mid-center, 50 elements, dominant shape: organic)
+  Cluster 2 (upper-left, 8 elements, dominant shape: organic)
+  Cluster 3 (lower-right, 7 elements, dominant shape: organic)
+  Cluster 0 (mid-center) — Cluster 2 (upper-left) — separated by 143px
+  Cluster 0 (mid-center) — Cluster 3 (lower-right) — separated by 155px
+  Cluster 2 (upper-left) — Cluster 3 (lower-right) — separated by 298px
+
+FIGURE-GROUND: both (82% fill) — Both positive and negative space carry design meaning
+
+SIZE TIERS:
+  LARGE: E1, E5, E7, E12, E17, E18, E19, E20, E21, E22, E23, E26, E27, E29, E32, E40, E42, E44, E59, E62
+  MEDIUM: E2, E3, E8, E9, E14, E15, E24, E28, E30, E31, E33, E34, E36, E37, E38, E39, E41, E43, E45, E46, E47, E49, E54, E58, E61, E63, E67
+  SMALL: E4, E6, E10, E11, E13, E16, E25, E35, E48, E50, E51, E52, E53, E55, E56, E57, E60, E64, E65, E66
+
+NEAREST NEIGHBORS: most elements touching/overlapping (layered illustration)
+
+RELATIVE POSITIONS (top 5 by area):
+  from E1: E2 is right, E3 is below-right, E5 is left, E7 is below-left
+  from E62: E1 is below-right, E2 is below-right, E3 is below-right, E5 is below-left
+  from E12: E1 is below-right, E2 is below-right, E3 is below-right, E5 is below-left
+  from E29: E1 is below-right, E2 is below-right, E3 is below-right, E5 is below-left
+  from E23: E1 is below-right, E2 is below-right, E3 is below-right, E5 is below-left
+
+OVERLAPS (top 30 by IoU, 299 total):
+  E50↔E51 (IoU=1.000)
+  E27↔E39 (IoU=0.795)
+  E34↔E35 (IoU=0.749)
+  E23↔E26 (IoU=0.747)
+  E7↔E9 (IoU=0.742)
+  E17↔E18 (IoU=0.731)
+  E15↔E16 (IoU=0.724)
+  E63↔E65 (IoU=0.707)
+  E42↔E43 (IoU=0.663)
+  E19↔E38 (IoU=0.651)
+  E21↔E22 (IoU=0.597)
+  E18↔E19 (IoU=0.589)
+  E48↔E49 (IoU=0.588)
+  E18↔E38 (IoU=0.580)
+  E17↔E38 (IoU=0.564)
+  E1↔E62 (IoU=0.563)
+  E40↔E67 (IoU=0.532)
+  E17↔E39 (IoU=0.516)
+  E44↔E45 (IoU=0.491)
+  E64↔E65 (IoU=0.479)
+  E17↔E27 (IoU=0.475)
+  E30↔E33 (IoU=0.468)
+  E17↔E19 (IoU=0.447)
+  E61↔E9 (IoU=0.406)
+  E1↔E29 (IoU=0.383)
+  E63↔E64 (IoU=0.382)
+  E18↔E39 (IoU=0.374)
+  E24↔E25 (IoU=0.363)
+  E40↔E41 (IoU=0.362)
+  E18↔E27 (IoU=0.358)
+
+ALIGNMENTS (groups of 3+):
+  Vertical x≈122: [E12, E14, E17, E18, E23, E24, E26, E38, E62]
+  Vertical x≈229: [E10, E11, E40, E46, E50, E51, E55]
+  Vertical x≈194: [E2, E13, E31, E48, E49]
+  Vertical x≈19: [E5, E37, E44, E45, E47]
+  Vertical x≈0: [E4, E36, E56, E66]
+  Vertical x≈46: [E8, E42, E43, E54]
+  Vertical x≈62: [E7, E9, E58]
+  Vertical x≈98: [E15, E16, E30]
+  Vertical x≈159: [E21, E22, E32]
+  Vertical x≈207: [E63, E64, E65]
+  Horizontal y≈147: [E10, E11, E29, E30, E33, E47, E55]
+  Horizontal y≈118: [E42, E43, E62, E63, E64, E65]
+  Horizontal y≈200: [E6, E7, E9, E41, E60]
+  Horizontal y≈78: [E12, E27, E31, E38, E39]
+  Horizontal y≈42: [E14, E22, E48, E49, E54]
+  Horizontal y≈1: [E4, E52, E56, E66]
+  Horizontal y≈97: [E15, E16, E17, E19]
+  Horizontal y≈108: [E28, E32, E34, E35]
+  Horizontal y≈168: [E1, E2, E5]
+  Horizontal y≈191: [E3, E8, E61]
+  Horizontal y≈33: [E21, E24, E25]
+  Horizontal y≈23: [E23, E26, E37]
+  Horizontal y≈215: [E40, E57, E58]
+  Horizontal y≈225: [E50, E51, E67]
+
+SPATIAL CLUSTERS:
+  Cluster 0 at (122,113): [E1, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, E17, E18, E19, E20, E21, E22, E23, E24, E25, E26, E27, E28, E29, E30, E31, E32, E33, E34, E35, E38, E39, E42, E43, E44, E45, E47, E48, E49, E55, E58, E59, E60, E61, E62, E63, E64, E65]
+  Cluster 1 at (188,181): [E2, E3]
+  Cluster 2 at (15,18): [E4, E36, E37, E52, E53, E54, E56, E66]
+  Cluster 3 at (233,221): [E40, E41, E46, E50, E51, E57, E67]
+
+DIRECTIONAL COVERAGE:
+  E5: 62% coverage, 90° gap, empty: E,W,SW
+  E20: 88% coverage, 45° gap, empty: NW
+  E26: 88% coverage, 45° gap, empty: SW
+
+TOPOLOGY: nested+adjacent
+  E1 contains 18 elements (organic, organic, organic, organic, linear, organic, organic, organic, organic, circular, organic, organic, organic, organic, organic, organic, organic, organic)
+  E7 contains 4 elements (organic, organic, organic, organic)
+  E12 contains 9 elements (organic, organic, organic, organic, organic, organic, organic, organic, organic)
+  E22 contains 2 elements (organic, organic)
+  E23 contains 3 elements (organic, organic, organic)
+
+VALIDATION ISSUES:
+  E16: High fill but classified as linear
+  E30: High fill but classified as linear
+  E66: High fill but classified as linear
+
+LEARNED PATTERNS (from past sessions):
+  1. Low fill percentage with many elements means stroke-based or outline-only rendering. The shapes exist as boundaries, not as filled regions. The visual result may appear solid to a viewer but the SVG construction uses outlines. Don't confuse SVG rendering technique with visual appearance.
+  2. High bilateral symmetry with few elements indicates intentional geometric construction — likely a designed symbol, icon, or simple illustration. The symmetry axis and paired elements define the compositional structure directly.
+  3. Concentric groups (elements sharing a center) are multi-ring constructions — a detail feature built from layered shapes. Their position relative to the largest containing element and their size tier determine their structural role.
+  4. Read the positive space grid as a low-resolution thumbnail. Trace the boundary between X and dot — that is the silhouette outline. Curved non-rectangular boundaries indicate non-geometric construction. The grid shape is often more informative than individual element properties.
+  5. Elements at 0px distance are touching or overlapping — they form continuous visual surfaces. This construction uses stacked shapes for shading, gradient simulation, or color regions rather than discrete separate parts. Read the stacking tree to see layering order.
+
+=== END ENRICHMENT ===

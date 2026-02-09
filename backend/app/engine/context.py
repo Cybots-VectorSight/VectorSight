@@ -111,6 +111,7 @@ class PipelineContext:
     # --- Layer 2 visualizations ---
     ascii_grid_positive: str = ""
     ascii_grid_negative: str = ""
+    ascii_grid_halfblock: str = ""
     region_map: dict[str, Any] = field(default_factory=dict)
 
     # --- Enrichment output ---

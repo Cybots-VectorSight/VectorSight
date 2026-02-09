@@ -1,92 +1,92 @@
 [
   {
     "id": "p001",
-    "condition": "symmetry_score < 0.65 AND fill_pct > 60",
-    "insight": "Low bilateral symmetry with high fill suggests a side-facing figure — NOT a front-facing symmetric character. Look at the mass distribution to determine facing direction.",
-    "confidence": 0.9,
+    "condition": "0px nearest-neighbor distance on many pairs",
+    "insight": "Elements at 0px distance are touching or overlapping — they form continuous visual surfaces. This construction uses stacked shapes for shading, gradient simulation, or color regions rather than discrete separate parts. Read the stacking tree to see layering order.",
+    "confidence": 0.85,
     "times_confirmed": 1,
     "times_contradicted": 0,
-    "tags": ["asymmetric", "side-profile", "dense-fill", "organic"]
+    "tags": ["organic"]
   },
   {
     "id": "p002",
-    "condition": "circular element (circ > 0.8) at front/bottom of figure, small relative to body",
-    "insight": "A small circular element positioned at the front or bottom of a side-facing figure is likely a held object (acorn, ball, tool) or a paw/foot pad — not an eye (eyes are usually inside the head region).",
-    "confidence": 0.8,
+    "condition": "concentric groups of 2-3 elements",
+    "insight": "Concentric groups (elements sharing a center) are multi-ring constructions — a detail feature built from layered shapes. Their position relative to the largest containing element and their size tier determine their structural role.",
+    "confidence": 0.85,
     "times_confirmed": 1,
     "times_contradicted": 0,
-    "tags": ["circular", "side-profile", "complex", "dense-fill"]
+    "tags": ["circular"]
   },
   {
     "id": "p003",
-    "condition": "large non-convex shape above main body, fan-shaped",
-    "insight": "A large flowing shape above the main body mass is likely a tail (squirrel, fox, peacock), hair, or decorative plume — NOT ears. Ears are typically smaller, pointed, and come in symmetric pairs.",
+    "condition": "deep nesting (3+ containment levels), 40+ elements",
+    "insight": "Deep nesting with many elements indicates hierarchical assembly — large shapes contain medium shapes which contain small shapes. Analyze the stacking tree level by level rather than element by element. Each nesting level represents a different construction layer.",
     "confidence": 0.85,
     "times_confirmed": 1,
     "times_contradicted": 0,
-    "tags": ["organic", "complex", "side-profile", "asymmetric"]
+    "tags": ["organic"]
   },
   {
     "id": "p004",
-    "condition": "67+ elements, all organic, deep nesting, side-profile",
-    "insight": "Complex illustrations with 40+ organic elements and deep nesting (3+ levels) are typically detailed animal or character illustrations with layered body parts, shading regions, and decorative details — not geometric icons or logos.",
-    "confidence": 0.85,
+    "condition": "high overlap count (IoU > 0.3 in 10+ pairs)",
+    "insight": "Dense overlapping means shapes are stacked on top of each other — layered construction building up regions. The stacking tree reveals the layering order. Don't interpret each shape independently — they combine to form composite regions.",
+    "confidence": 0.8,
     "times_confirmed": 1,
     "times_contradicted": 0,
-    "tags": ["complex", "organic", "dense-fill"]
+    "tags": ["organic"]
   },
   {
     "id": "p005",
-    "condition": "positive space grid shows curved silhouette, not rectangular",
-    "insight": "Read the positive space grid as a low-resolution picture of the silhouette. A curved, non-rectangular outline strongly suggests an organic subject (animal, person, plant) rather than a geometric design (UI element, diagram, chart).",
-    "confidence": 0.9,
+    "condition": "one dominant spatial cluster + smaller satellite clusters",
+    "insight": "When one cluster contains most elements and smaller clusters sit at edges, the dominant cluster is the main mass. Satellite clusters are extensions or separate sub-assemblies. Analyze each cluster's internal structure independently, then consider how they connect.",
+    "confidence": 0.8,
     "times_confirmed": 1,
     "times_contradicted": 0,
-    "tags": ["organic", "dense-fill"]
+    "tags": ["organic"]
   },
   {
     "id": "p006",
-    "condition": "multiple concentric groups of 2-3 elements each",
-    "insight": "Concentric groups (elements sharing a center) represent detailed features like eyes (iris+pupil+highlight), wheels (rim+tire+hub), or buttons. Their position relative to the body helps identify them — on the head = eyes, on the body = buttons/details.",
-    "confidence": 0.85,
+    "condition": "symmetry pairs present but moderate score (0.4-0.7)",
+    "insight": "Moderate symmetry with defined mirror pairs means some elements are mirrored across an axis while the overall composition is not symmetric. The paired elements share structural function. Elements ON the axis (unpaired) are typically central features.",
+    "confidence": 0.8,
     "times_confirmed": 1,
     "times_contradicted": 0,
-    "tags": ["circular", "organic", "complex"]
+    "tags": ["organic"]
   },
   {
     "id": "p007",
-    "condition": "symmetry pairs but moderate score (0.4-0.7)",
-    "insight": "Moderate symmetry with defined mirror pairs means the design has symmetric FEATURES (like two eyes, two ears, paired limbs) but the overall composition is NOT symmetric — likely because it's viewed from an angle or in a dynamic pose.",
+    "condition": "large non-convex element (convexity < 0.6) with high area",
+    "insight": "A large element with low convexity has distinct sub-parts — concavities divide it into regions. The convex hull ratio tells you how much branching or indentation exists. Combined with the element's position relative to the main mass, this reveals the overall structural topology.",
     "confidence": 0.8,
     "times_confirmed": 1,
     "times_contradicted": 0,
-    "tags": ["asymmetric", "organic", "complex"]
+    "tags": ["organic"]
   },
   {
     "id": "p008",
-    "condition": "many elements with 0px nearest-neighbor distance",
-    "insight": "Elements with 0px distance are touching or overlapping — they form a continuous visual surface. This is common in illustrations that use stacked shapes for shading, gradient simulation, or color regions rather than discrete separate parts.",
-    "confidence": 0.85,
+    "condition": "positive space grid shows curved, non-rectangular silhouette",
+    "insight": "Read the positive space grid as a low-resolution thumbnail. Trace the boundary between X and dot — that is the silhouette outline. Curved non-rectangular boundaries indicate non-geometric construction. The grid shape is often more informative than individual element properties.",
+    "confidence": 0.9,
     "times_confirmed": 1,
     "times_contradicted": 0,
-    "tags": ["complex", "dense-fill", "organic"]
+    "tags": ["organic"]
   },
   {
     "id": "p009",
-    "condition": "4+ spatial clusters, one dominant (40+ elements)",
-    "insight": "When one cluster dominates (contains most elements) and smaller clusters exist at the edges, the dominant cluster is the main body and the smaller clusters are appendages, accessories, or background elements. Analyze each cluster separately.",
-    "confidence": 0.8,
+    "condition": "fill percentage < 15% despite many elements",
+    "insight": "Low fill percentage with many elements means stroke-based or outline-only rendering. The shapes exist as boundaries, not as filled regions. The visual result may appear solid to a viewer but the SVG construction uses outlines. Don't confuse SVG rendering technique with visual appearance.",
+    "confidence": 0.85,
     "times_confirmed": 1,
     "times_contradicted": 0,
-    "tags": ["complex", "dense-fill"]
+    "tags": ["circular"]
   },
   {
     "id": "p010",
-    "condition": "high overlap count (IoU > 0.3 in 10+ pairs)",
-    "insight": "Dense overlapping means shapes are layered on top of each other — like paint strokes building up an image. The stacking tree reveals the layering order. Don't try to interpret each shape independently — they work together to create regions.",
-    "confidence": 0.8,
+    "condition": "strong symmetry (score > 0.85) with few elements (< 10)",
+    "insight": "High bilateral symmetry with few elements indicates intentional geometric construction — likely a designed symbol, icon, or simple illustration. The symmetry axis and paired elements define the compositional structure directly.",
+    "confidence": 0.85,
     "times_confirmed": 1,
     "times_contradicted": 0,
-    "tags": ["complex", "dense-fill", "organic"]
+    "tags": ["circular"]
   }
 ]

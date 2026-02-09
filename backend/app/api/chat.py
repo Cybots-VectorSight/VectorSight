@@ -36,10 +36,13 @@ async def chat(req: ChatRequest, background_tasks: BackgroundTasks) -> ChatRespo
 
     record_from_context(ctx, svg=req.svg, question=req.question, answer=answer)
 
-    # Self-reflect: LLM vision sees the rendered SVG and auto-learns
-    from app.learning.self_reflect import reflect_background
+    # Self-reflect: vision verifies what the LLM told the user
+    from app.learning.self_reflect import reflect_background_chat
 
-    background_tasks.add_task(reflect_background, req.svg, enrichment_text, ctx)
+    background_tasks.add_task(
+        reflect_background_chat,
+        req.svg, enrichment_text, req.question, answer, ctx,
+    )
 
     return ChatResponse(answer=answer, enrichment_used=True)
 
@@ -62,10 +65,13 @@ async def chat_stream(req: ChatRequest, background_tasks: BackgroundTasks) -> St
 
     record_from_context(ctx, svg=req.svg, question=req.question)
 
-    # Self-reflect: LLM vision sees the rendered SVG and auto-learns
-    from app.learning.self_reflect import reflect_background
+    # Self-reflect: vision verifies the SVG (no answer available for streaming)
+    from app.learning.self_reflect import reflect_background_chat
 
-    background_tasks.add_task(reflect_background, req.svg, enrichment_text, ctx)
+    background_tasks.add_task(
+        reflect_background_chat,
+        req.svg, enrichment_text, req.question, "(streaming — answer not captured)", ctx,
+    )
 
     return StreamingResponse(
         stream_chat_response(

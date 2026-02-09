@@ -57,6 +57,7 @@ class Pattern:
     times_confirmed: int = 0
     times_contradicted: int = 0
     tags: list[str] = field(default_factory=list)  # Feature tags for matching
+    source_svg_hash: str = ""  # Which SVG this pattern was derived from
 
 
 class MemoryStore:
@@ -153,35 +154,14 @@ class MemoryStore:
             return []
 
         scored: list[tuple[float, str]] = []
-        tags = set()
 
-        # Build feature tags for matching
-        if element_count > 30:
-            tags.add("complex")
-        elif element_count > 10:
-            tags.add("moderate")
-        else:
-            tags.add("simple")
+        # Factual tags only — nuanced tagging is the LLM's job
+        from app.learning.tags import build_factual_tags
 
-        if symmetry_score < 0.5:
-            tags.add("asymmetric")
-            tags.add("side-profile")
-        elif symmetry_score > 0.75:
-            tags.add("symmetric")
-            tags.add("front-facing")
-
-        if fill_pct > 70:
-            tags.add("dense-fill")
-        elif fill_pct < 40:
-            tags.add("sparse")
-
-        if shape_distribution:
-            for shape, count in shape_distribution.items():
-                if count > 0:
-                    tags.add(shape)
-
-        if composition_type:
-            tags.add(composition_type.split()[0].lower())
+        tags = build_factual_tags(
+            shape_distribution=shape_distribution,
+            composition_type=composition_type,
+        )
 
         # Score each pattern by tag overlap
         for pattern in patterns:
@@ -216,21 +196,12 @@ class MemoryStore:
         patterns = self._load_patterns()
         next_id = f"p{len(patterns) + 1:03d}"
 
-        tags = []
-        if session.symmetry_score < 0.5:
-            tags.extend(["asymmetric", "side-profile"])
-        elif session.symmetry_score > 0.75:
-            tags.extend(["symmetric", "front-facing"])
+        from app.learning.tags import build_factual_tags
 
-        if session.element_count > 30:
-            tags.append("complex")
-        if session.fill_pct > 70:
-            tags.append("dense-fill")
-        if session.composition_type:
-            tags.append(session.composition_type.split()[0].lower())
-
-        for shape in session.shape_distribution:
-            tags.append(shape)
+        tags = list(build_factual_tags(
+            shape_distribution=session.shape_distribution,
+            composition_type=session.composition_type,
+        ))
 
         for learning in session.learnings:
             pattern = Pattern(
@@ -341,9 +312,9 @@ def record_from_context(
             cluster_count = len(set(int(l) for l in ctx.cluster_labels if l >= 0))
 
         # Build composition type from interpreter
-        from app.engine.interpreter import _interpret_composition, _interpret_pose
+        from app.engine.interpreter import _interpret_composition, _interpret_orientation
         comp = _interpret_composition(ctx)
-        pose = _interpret_pose(ctx, [])
+        pose = _interpret_orientation(ctx, [])
 
         session = AnalysisSession(
             svg_hash=svg_h,

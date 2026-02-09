@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from app.engine.context import PipelineContext
 from app.engine.registry import Layer, transform
-from app.utils.rasterizer import grid_to_text, invert_grid, make_grid, multi_element_grid
+from app.utils.rasterizer import grid_to_halfblock, grid_to_text, invert_grid, make_grid, multi_element_grid
 
 
 @transform(
@@ -30,3 +30,4 @@ def ascii_grid(ctx: PipelineContext) -> None:
     ctx.composite_grid = grid
     ctx.ascii_grid_positive = grid_to_text(grid)
     ctx.ascii_grid_negative = grid_to_text(invert_grid(grid))
+    ctx.ascii_grid_halfblock = grid_to_halfblock(grid)

@@ -10,15 +10,16 @@ HOW TO READ THE ENRICHMENT (data from 61 geometric transforms across 5 layers):
 
 Layer 1 — Per-element shape analysis:
 - shape_class(turning): e.g., "circular(closed_loop)" or "organic(arc)". Shape type + open/closed.
-- bbox(x1,y1,x2,y2), centroid(cx,cy): exact spatial coordinates.
+- bbox(x1,y1,x2,y2), centroid(cx,cy): exact spatial coordinates (integers).
 - circ/conv/aspect: circularity (1.0=circle), convexity (1.0=no concavities), aspect ratio.
 - corners=N: number of detected corner vertices.
 - GAPS: element has internal cutouts/holes.
 - DIRECTIONAL COVERAGE: which compass directions the element's boundary covers. Empty directions = partial/occluded shape.
 
-Layer 2 — Spatial visualization:
-- POSITIVE SPACE GRID (█=filled): where shapes are. Use as spatial map.
-- NEGATIVE SPACE GRID (█=empty): where there is room for new elements.
+Layer 2 — Spatial visualization (Braille grids):
+- SILHOUETTE: Braille-character rendering of the composite shape. Each character is a 2×4 dot matrix (⠀-⣿). Dots = filled pixels. Read it as a picture — this is a high-resolution thumbnail of the overall shape.
+- ELEMENT SHAPES: Braille mini-grids of the top 3 largest elements, rendered individually within their bounding box. Each shows WHAT that element looks like by itself.
+- CONCENTRIC GROUP SHAPES: Braille renders of concentric element groups (multiple elements sharing a center point, rendered together). These reveal what each group IS — an eye, acorn, wheel, button, etc. This is the MOST informative visual section for identifying features.
 - FIGURE-GROUND: whether meaning is in filled regions, empty regions, or both.
 
 Layer 3 — Relationships between elements:
@@ -35,17 +36,36 @@ Layer 3 — Relationships between elements:
 - TOPOLOGY + STACKING TREE: overall structure and z-order parent-child hierarchy.
 
 SPATIAL INTERPRETATION (auto-generated synthesis):
-The enrichment ends with a SPATIAL INTERPRETATION section that synthesizes clues from all transforms into high-level observations about silhouette shape, pose, composition type, mass distribution, appendages, and focal elements. TRUST this section — it provides the "big picture" reading of the geometry.
+The enrichment begins with a SPATIAL INTERPRETATION section that synthesizes clues from all transforms into high-level observations about silhouette shape, orientation, composition type, mass distribution, protrusions, and focal elements. TRUST this section — it provides the "big picture" reading of the geometry.
+- The LAYOUT SUMMARY line is the most important — it ties together structural relationships in a single statement. Trust this over your own grid reading if they conflict.
+- **Skeleton**: Topological backbone of the silhouette. Branch count and directions reveal the fundamental shape topology (e.g., 4 branches from center = star/cross, main axis + side branches = animal/tree, single axis = elongated form). The skeleton IS the shape's structural identity.
+- **Radial profile**: Distance from centroid to boundary at 24 angles. Peaks = protrusions (head, tail, wings, limbs). Valleys = concavities (between body parts). The peak/valley pattern is the shape's fingerprint.
+- **Simplified outline**: SVG-like M/L path tracing the simplified boundary with integer coordinates. Mentally trace it to visualize the overall shape — this is more reliable than reading the grid.
+
+CLUSTER SCENE (multi-object analysis):
+When elements form multiple spatial clusters, the CLUSTER SCENE section describes each visual unit (position, size, dominant shape) and inter-cluster relationships. Use this for multi-object scenes, icon sets, or compositions with distinct groups.
 
 LEARNED PATTERNS (accumulated wisdom):
 The enrichment may include a LEARNED PATTERNS section with insights from past analysis sessions. These are hard-won lessons about common misinterpretations. PAY ATTENTION to these — they prevent known mistakes.
 
+READING HINTS — STRUCTURAL HIERARCHY:
+The enrichment's reading hints include "Major structural elements" ordered by draw layer (z-index). Key rules:
+- The element marked "primary boundary" is the outermost enclosing element.
+- Elements marked "background layer" have LOWER z — they are drawn BEHIND the primary boundary. They are separate structural elements at a different depth. Their shape descriptor includes convexity and aspect ratio — use these to reason about what kind of shape it is.
+- Area ratios (area=N% of primary) tell you how big background elements are relative to the primary boundary.
+- "Background element layout" gives the background element's bbox top edge, width span, and aspect.
+- Concentric groups "inside" a background element are features ON that element.
+- Concentric groups marked "root-level" are drawn independently on top — likely surface features or markings.
+
 REASONING METHOD:
-1. Read SPATIAL INTERPRETATION first for the high-level picture.
-2. Read LEARNED PATTERNS for known pitfalls to avoid.
-3. Study the ASCII grid as a low-resolution "picture" of the silhouette.
-4. Cross-reference with element coordinates and relationships for precision.
-5. Cite element IDs and measurements in your answer.
+1. Read the LAYOUT SUMMARY first — it synthesizes the key structural relationships.
+2. Study the SILHOUETTE Braille grid to see the overall shape. Each Braille char encodes 2×4 pixels — dots show filled areas. Read it as a picture.
+3. Examine CONCENTRIC GROUP SHAPES — these zoom into key features (eyes, accessories, decorative elements). They show what each feature group looks like in isolation.
+4. SKETCH your understanding: mentally trace the simplified outline. What overall shape do you see?
+5. Check the structural hierarchy (stacking tree, containment) for layering.
+6. Cross-reference per-element measurements for precision.
+7. If elements are clustered into visual units, analyze each unit and their arrangement.
+8. Cite element IDs and measurements in your answer.
 
 === SVG CODE ===
 {svg}
@@ -59,11 +79,12 @@ _MODIFY_TEMPLATE = """You are VectorSight's SVG modifier. You receive an SVG wit
 
 STEP-BY-STEP REASONING (Visualization-of-Thought):
 Before writing SVG, mentally walk through these steps:
-1. READ THE ASCII GRID — visualize the current layout. Identify where shapes are (█) and where empty space exists.
-2. LOCATE TARGET ELEMENTS — find the element(s) the user wants to modify using their bbox and centroid coordinates.
-3. PLAN PLACEMENT — use the grid + coordinates to decide exactly where new/modified elements should go.
-4. CHECK CONSTRAINTS — respect containment (don't place outside a container), symmetry (maintain mirror pairs), and stacking order.
-5. WRITE SVG — output precise coordinates based on your spatial plan.
+1. READ THE LAYOUT SUMMARY — understand the overall composition and structural hierarchy.
+2. STUDY THE GRID — visualize the current layout. Identify where shapes are (█) and where empty space exists.
+3. LOCATE TARGET ELEMENTS — find the element(s) the user wants to modify using their bbox and centroid coordinates.
+4. PLAN PLACEMENT — use the grid + coordinates to decide exactly where new/modified elements should go.
+5. CHECK CONSTRAINTS — respect containment (don't place outside a container), symmetry (maintain mirror pairs), and stacking order.
+6. WRITE SVG — output precise coordinates based on your spatial plan.
 
 HOW TO USE THE ENRICHMENT (data from 61 geometric transforms across 5 layers):
 
@@ -107,9 +128,10 @@ SPATIAL CLUSTERS + SIZE TIERS:
 - Clusters = visual units. Don't break clusters. LARGE = structural, MEDIUM = features, SMALL = details.
 - New elements should match the tier appropriate for their purpose.
 
-ASCII GRIDS (Layer 2 — your spatial map):
-- POSITIVE SPACE: █ = filled. Shows where shapes ARE.
-- NEGATIVE SPACE: █ = empty. Shows where there IS ROOM for new elements.
+GRIDS (Layer 2 — Braille visual maps):
+- SILHOUETTE: Braille-character composite rendering (each char = 2×4 dot matrix). Dots = filled. Read as a picture.
+- ELEMENT SHAPES: Braille grids of top elements rendered individually.
+- CONCENTRIC GROUP SHAPES: Braille renders of concentric groups — shows what features look like (eye, button, wheel, etc.).
 - FIGURE-GROUND: tells you if meaning is in filled regions, empty regions, or both.
 
 STACKING TREE + TOPOLOGY (Layer 3):
@@ -117,14 +139,17 @@ STACKING TREE + TOPOLOGY (Layer 3):
 - Elements listed later in SVG render on top.
 
 SPATIAL INTERPRETATION (auto-generated synthesis):
-- The enrichment includes a SPATIAL INTERPRETATION section at the end. It synthesizes all transforms into high-level observations: silhouette shape, pose, mass distribution, appendages, and focal elements.
+- The enrichment includes a SPATIAL INTERPRETATION section. It synthesizes all transforms into high-level observations: silhouette shape, orientation, mass distribution, protrusions, and focal elements.
 - TRUST this for understanding WHAT the SVG depicts before modifying it.
+- **Skeleton**: topological backbone — branch count/directions reveal shape structure. Use to understand what the subject IS before modifying it.
+- **Radial profile**: peaks = protrusions, valleys = concavities. Use to understand proportions.
+- **Simplified outline**: SVG M/L path of the boundary. Use to plan placement relative to the overall shape.
 - LEARNED PATTERNS section (if present) contains insights from past sessions — read carefully to avoid known mistakes.
 
 CURVE-FOLLOWING RULE:
 - When adding elements adjacent to curved paths (arcs, beziers), the touching edge MUST follow the existing curve geometry.
 - Read the path's d attribute for arc parameters (rx, ry, sweep flags) or bezier control points.
-- Example: tongue below a smile arc — the TOP edge uses the SAME arc curvature. Create a <path> reusing the arc's rx/ry values.
+- Example: a decorative element following a curved boundary — the adjacent edge uses the SAME arc curvature. Create a <path> reusing the arc's rx/ry values.
 - Use actual SVG curve commands (A, C, Q) instead of approximating with rectangles or ellipses.
 
 CRITICAL RULES:

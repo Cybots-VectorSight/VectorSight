@@ -54,9 +54,12 @@ async def modify(req: ModifyRequest, background_tasks: BackgroundTasks) -> Modif
 
     record_from_context(ctx, svg=req.svg, question=req.instruction)
 
-    # Self-reflect: LLM vision sees the rendered SVG and auto-learns
-    from app.learning.self_reflect import reflect_background
+    # Self-reflect: vision verifies the modification result
+    from app.learning.self_reflect import reflect_background_modify
 
-    background_tasks.add_task(reflect_background, req.svg, enrichment_text, ctx)
+    background_tasks.add_task(
+        reflect_background_modify,
+        req.svg, clean_svg, enrichment_text, req.instruction, ctx,
+    )
 
     return ModifyResponse(svg=clean_svg, changes=[req.instruction])

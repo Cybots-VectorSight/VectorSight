@@ -1,271 +1,203 @@
 [
   {
     "id": "p001",
-    "condition": "symmetry_score < 0.65 AND fill_pct > 60",
-    "insight": "Low bilateral symmetry with high fill suggests a side-facing figure — NOT a front-facing symmetric character. Look at the mass distribution to determine facing direction.",
-    "confidence": 0.9,
+    "condition": "0px nearest-neighbor distance on many pairs",
+    "insight": "Elements at 0px distance are touching or overlapping — they form continuous visual surfaces. This construction uses stacked shapes for shading, gradient simulation, or color regions rather than discrete separate parts. Read the stacking tree to see layering order.",
+    "confidence": 0.85,
     "times_confirmed": 1,
     "times_contradicted": 0,
     "tags": [
-      "asymmetric",
-      "side-profile",
-      "dense-fill",
       "organic"
-    ]
+    ],
+    "source_svg_hash": ""
   },
   {
     "id": "p002",
-    "condition": "circular element (circ > 0.8) at front/bottom of figure, small relative to body",
-    "insight": "A small circular element positioned at the front or bottom of a side-facing figure is likely a held object (acorn, ball, tool) or a paw/foot pad — not an eye (eyes are usually inside the head region).",
+    "condition": "concentric groups of 2-3 elements",
+    "insight": "Concentric groups (elements sharing a center) are multi-ring constructions — a detail feature built from layered shapes. Their position relative to the largest containing element and their size tier determine their structural role.",
+    "confidence": 0.95,
+    "times_confirmed": 4,
+    "times_contradicted": 0,
+    "tags": [
+      "circular"
+    ],
+    "source_svg_hash": ""
+  },
+  {
+    "id": "p003",
+    "condition": "deep nesting (3+ containment levels), 40+ elements",
+    "insight": "Deep nesting with many elements indicates hierarchical assembly — large shapes contain medium shapes which contain small shapes. Analyze the stacking tree level by level rather than element by element. Each nesting level represents a different construction layer.",
+    "confidence": 0.85,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "organic"
+    ],
+    "source_svg_hash": ""
+  },
+  {
+    "id": "p004",
+    "condition": "high overlap count (IoU > 0.3 in 10+ pairs)",
+    "insight": "Dense overlapping means shapes are stacked on top of each other — layered construction building up regions. The stacking tree reveals the layering order. Don't interpret each shape independently — they combine to form composite regions.",
     "confidence": 0.8,
     "times_confirmed": 1,
     "times_contradicted": 0,
     "tags": [
-      "circular",
-      "side-profile",
-      "complex",
-      "dense-fill"
-    ]
-  },
-  {
-    "id": "p003",
-    "condition": "large non-convex shape above main body, fan-shaped",
-    "insight": "A large flowing shape above the main body mass is likely a tail (squirrel, fox, peacock), hair, or decorative plume — NOT ears. Ears are typically smaller, pointed, and come in symmetric pairs.",
-    "confidence": 0.85,
-    "times_confirmed": 1,
-    "times_contradicted": 0,
-    "tags": [
-      "organic",
-      "complex",
-      "side-profile",
-      "asymmetric"
-    ]
-  },
-  {
-    "id": "p004",
-    "condition": "67+ elements, all organic, deep nesting, side-profile",
-    "insight": "Complex illustrations with 40+ organic elements and deep nesting (3+ levels) are typically detailed animal or character illustrations with layered body parts, shading regions, and decorative details — not geometric icons or logos.",
-    "confidence": 0.85,
-    "times_confirmed": 1,
-    "times_contradicted": 0,
-    "tags": [
-      "complex",
-      "organic",
-      "dense-fill"
-    ]
+      "organic"
+    ],
+    "source_svg_hash": ""
   },
   {
     "id": "p005",
-    "condition": "positive space grid shows curved silhouette, not rectangular",
-    "insight": "Read the positive space grid as a low-resolution picture of the silhouette. A curved, non-rectangular outline strongly suggests an organic subject (animal, person, plant) rather than a geometric design (UI element, diagram, chart).",
+    "condition": "one dominant spatial cluster + smaller satellite clusters",
+    "insight": "When one cluster contains most elements and smaller clusters sit at edges, the dominant cluster is the main mass. Satellite clusters are extensions or separate sub-assemblies. Analyze each cluster's internal structure independently, then consider how they connect.",
+    "confidence": 0.8,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "organic"
+    ],
+    "source_svg_hash": ""
+  },
+  {
+    "id": "p006",
+    "condition": "symmetry pairs present but moderate score (0.4-0.7)",
+    "insight": "Moderate symmetry with defined mirror pairs means some elements are mirrored across an axis while the overall composition is not symmetric. The paired elements share structural function. Elements ON the axis (unpaired) are typically central features.",
+    "confidence": 0.8,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "organic"
+    ],
+    "source_svg_hash": ""
+  },
+  {
+    "id": "p007",
+    "condition": "large non-convex element (convexity < 0.6) with high area",
+    "insight": "A large element with low convexity has distinct sub-parts — concavities divide it into regions. The convex hull ratio tells you how much branching or indentation exists. Combined with the element's position relative to the main mass, this reveals the overall structural topology.",
+    "confidence": 0.8,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "organic"
+    ],
+    "source_svg_hash": ""
+  },
+  {
+    "id": "p008",
+    "condition": "positive space grid shows curved, non-rectangular silhouette",
+    "insight": "Read the positive space grid as a low-resolution thumbnail. Trace the boundary between X and dot — that is the silhouette outline. Curved non-rectangular boundaries indicate non-geometric construction. The grid shape is often more informative than individual element properties.",
     "confidence": 0.9,
     "times_confirmed": 1,
     "times_contradicted": 0,
     "tags": [
-      "organic",
-      "dense-fill"
-    ]
-  },
-  {
-    "id": "p006",
-    "condition": "multiple concentric groups of 2-3 elements each",
-    "insight": "Concentric groups (elements sharing a center) represent detailed features like eyes (iris+pupil+highlight), wheels (rim+tire+hub), or buttons. Their position relative to the body helps identify them — on the head = eyes, on the body = buttons/details.",
-    "confidence": 0.85,
-    "times_confirmed": 1,
-    "times_contradicted": 0,
-    "tags": [
-      "circular",
-      "organic",
-      "complex"
-    ]
-  },
-  {
-    "id": "p007",
-    "condition": "symmetry pairs but moderate score (0.4-0.7)",
-    "insight": "Moderate symmetry with defined mirror pairs means the design has symmetric FEATURES (like two eyes, two ears, paired limbs) but the overall composition is NOT symmetric — likely because it's viewed from an angle or in a dynamic pose.",
-    "confidence": 0.8,
-    "times_confirmed": 1,
-    "times_contradicted": 0,
-    "tags": [
-      "asymmetric",
-      "organic",
-      "complex"
-    ]
-  },
-  {
-    "id": "p008",
-    "condition": "many elements with 0px nearest-neighbor distance",
-    "insight": "Elements with 0px distance are touching or overlapping — they form a continuous visual surface. This is common in illustrations that use stacked shapes for shading, gradient simulation, or color regions rather than discrete separate parts.",
-    "confidence": 0.85,
-    "times_confirmed": 1,
-    "times_contradicted": 0,
-    "tags": [
-      "complex",
-      "dense-fill",
       "organic"
-    ]
+    ],
+    "source_svg_hash": ""
   },
   {
     "id": "p009",
-    "condition": "4+ spatial clusters, one dominant (40+ elements)",
-    "insight": "When one cluster dominates (contains most elements) and smaller clusters exist at the edges, the dominant cluster is the main body and the smaller clusters are appendages, accessories, or background elements. Analyze each cluster separately.",
-    "confidence": 0.8,
-    "times_confirmed": 1,
+    "condition": "fill percentage < 15% despite many elements",
+    "insight": "Low fill percentage with many elements means stroke-based or outline-only rendering. The shapes exist as boundaries, not as filled regions. The visual result may appear solid to a viewer but the SVG construction uses outlines. Don't confuse SVG rendering technique with visual appearance.",
+    "confidence": 0.95,
+    "times_confirmed": 4,
     "times_contradicted": 0,
     "tags": [
-      "complex",
-      "dense-fill"
-    ]
+      "circular"
+    ],
+    "source_svg_hash": ""
   },
   {
     "id": "p010",
-    "condition": "high overlap count (IoU > 0.3 in 10+ pairs)",
-    "insight": "Dense overlapping means shapes are layered on top of each other — like paint strokes building up an image. The stacking tree reveals the layering order. Don't try to interpret each shape independently — they work together to create regions.",
-    "confidence": 0.8,
-    "times_confirmed": 1,
+    "condition": "strong symmetry (score > 0.85) with few elements (< 10)",
+    "insight": "High bilateral symmetry with few elements indicates intentional geometric construction — likely a designed symbol, icon, or simple illustration. The symmetry axis and paired elements define the compositional structure directly.",
+    "confidence": 0.95,
+    "times_confirmed": 4,
     "times_contradicted": 0,
     "tags": [
-      "complex",
-      "dense-fill",
-      "organic"
-    ]
+      "circular"
+    ],
+    "source_svg_hash": ""
   },
   {
-    "id": "v011",
-    "condition": "Vision: When circ=1.00, conv=1.00, and aspect=1.00 with a single closed_loop path (from A simple black circle with a thick stroke on a white backgro)",
-    "insight": "The shape is a perfect circle; combined with low fill % (8%), this indicates a stroke-based outline rather than a solid fill",
-    "confidence": 0.8,
+    "id": "vc011",
+    "condition": "single element with circularity=1.00, convexity=1.00, aspect_ratio=1.00, corners=12, centered in canvas, stroke-rendered, 8% fill (from: A simple circle rendered as a black stroke outline)",
+    "insight": "This is a canonical minimal geometric UI icon — the unfilled stroked circle. Used for selection toggles, radio buttons, loading spinners (as a base), or generic placeholder graphics. The perfect metrics and centered placement indicate tool-generated or design-system precision.",
+    "confidence": 0.75,
     "times_confirmed": 1,
     "times_contradicted": 0,
     "tags": [
-      "circular",
-      "symmetric",
-      "outline",
-      "stroke-based",
-      "simple"
-    ]
+      "geometric_ui_icon",
+      "minimal_stroke",
+      "functional_design",
+      "centered_symmetric",
+      "canonical_circle"
+    ],
+    "source_svg_hash": "edad620b041d"
   },
   {
-    "id": "v012",
-    "condition": "Vision: When a single MEDIUM-sized element occupies the full canvas with centroid at (12.0, 12.0) in a 24×24 canvas (from A simple black circle with a thick stroke on a white backgro)",
-    "insight": "The shape is perfectly centered and takes up most of the available space, indicating a well-composed, scalable icon design",
-    "confidence": 0.8,
+    "id": "vc012",
+    "condition": "aspect_ratio=1.00 and circularity=1.00 and convexity=1.00 and corners=12 together (from: A simple circle rendered as a black stroke outline)",
+    "insight": "These three perfect scores (1.0) are mutually reinforcing markers of an idealized geometric circle, most commonly found in UI components. The corner count of 12 is diagnostic of cubic Bézier approximation (not visual polygonality). This cluster of metrics is a reliable pattern for distinguishing tool-generated geometric icons from hand-drawn or organic circles.",
+    "confidence": 0.75,
     "times_confirmed": 1,
     "times_contradicted": 0,
     "tags": [
-      "centered",
-      "scalable",
-      "icon-design"
-    ]
+      "metric_cluster",
+      "bezier_standard",
+      "tool_generated",
+      "geometric_primitive"
+    ],
+    "source_svg_hash": "edad620b041d"
   },
   {
-    "id": "v013",
-    "condition": "Vision: When the positive-space grid shows a symmetrical ring pattern with 12 'corners' detected (from A simple black circle with a thick stroke on a white backgro)",
-    "insight": "The circle's discrete sampling creates octagonal-like artifacts in the grid, but the high circularity score confirms true roundness in the vector",
-    "confidence": 0.8,
+    "id": "vc013",
+    "condition": "circularity=1.00, convexity=1.00, aspect_ratio=1.00, corners=12, single element, centered, 8% fill, stroke-based rendering (from: A perfect circle rendered as a black stroke (outli)",
+    "insight": "This is a canonical geometric UI icon—a minimal, mathematically idealized circle used in interface design, potentially as a checkbox unchecked state, a radio button, a selection ring, or a decorative circular border",
+    "confidence": 0.75,
     "times_confirmed": 1,
     "times_contradicted": 0,
     "tags": [
-      "circular",
-      "sampling-artifact",
-      "geometric-precision"
-    ]
+      "ui-icon",
+      "geometric-primitive",
+      "stroke-rendered",
+      "centered-composition",
+      "canonical-circle",
+      "interaction-element"
+    ],
+    "source_svg_hash": "edad620b041d"
   },
   {
-    "id": "v014",
-    "condition": "Vision: high corner count (385) + low circularity (0.03) + very large area + closed loop (from Solid black silhouette of a cartoon duck/waterfowl character)",
-    "insight": "likely a dense silhouette outline or character boundary, not abstract organic shape",
-    "confidence": 0.8,
+    "id": "vc014",
+    "condition": "Perfect rotational symmetry (360°) combined with centered placement and low fill percentage (from: A perfect circle rendered as a black stroke (outli)",
+    "insight": "The visual system perceives this as a complete, closed form despite being a hollow outline. This is a perceptual completion phenomenon—the stroke traces a continuous loop that the eye follows as a unified boundary",
+    "confidence": 0.75,
     "times_confirmed": 1,
     "times_contradicted": 0,
     "tags": [
-      "silhouette",
-      "character",
-      "high-complexity-outline",
-      "closed-loop",
-      "mascot"
-    ]
+      "perceptual-closure",
+      "continuous-boundary",
+      "rotationally-symmetric",
+      "visual-completeness"
+    ],
+    "source_svg_hash": "edad620b041d"
   },
   {
-    "id": "v015",
-    "condition": "Vision: aspect ratio ~1.66-1.87 + organic closed loops clustered in upper-left quadrant (bbox 50-200 x 5-140) (from Solid black silhouette of a cartoon duck/waterfowl character)",
-    "insight": "head/facial region of a side-facing character",
-    "confidence": 0.8,
+    "id": "vc015",
+    "condition": "Single element with circularity=1.00, convexity=1.00, aspect_ratio=1.00, 12 corners, centered placement, stroke-based rendering, 8% fill (from: A simple black circle outline (stroke) centered on)",
+    "insight": "This is a canonical functional UI icon—specifically a geometric circle ring used for selection states, radio buttons, decorative borders, or status indicators. The perfect metrics and minimal rendering are hallmarks of tool-generated geometric primitives.",
+    "confidence": 0.75,
     "times_confirmed": 1,
     "times_contradicted": 0,
     "tags": [
-      "side-profile",
-      "head-region",
-      "facial-feature-cluster"
-    ]
-  },
-  {
-    "id": "v016",
-    "condition": "Vision: semicircle_or_arc at bottom-right (E40: 214.7–251.5, 200.4–231.9) + high circularity (0.86) (from Solid black silhouette of a cartoon duck/waterfowl character)",
-    "insight": "rounded extremity or gesture element (e.g., thumbs-up digit) in character pose",
-    "confidence": 0.8,
-    "times_confirmed": 1,
-    "times_contradicted": 0,
-    "tags": [
-      "gesture",
-      "thumbs-up",
-      "extremity",
-      "pose-element",
-      "symbolic"
-    ]
-  },
-  {
-    "id": "v017",
-    "condition": "Vision: multiple small closed loops (area 800–2100) arranged vertically on left side (x: 2–100) (from Solid black silhouette of a cartoon duck/waterfowl character)",
-    "insight": "wing, flipper, or limb segmentation in side-profile character",
-    "confidence": 0.8,
-    "times_confirmed": 1,
-    "times_contradicted": 0,
-    "tags": [
-      "wing",
-      "limb",
-      "segmented-feature",
-      "side-profile",
-      "appendage"
-    ]
-  },
-  {
-    "id": "v018",
-    "condition": "Vision: circ=1.00 AND aspect=1.00 AND centroid at canvas center (from A centered, perfectly symmetrical black circle rendered with)",
-    "insight": "Perfect circular geometry with high symmetry — likely an icon, badge, or decorative element",
-    "confidence": 0.8,
-    "times_confirmed": 1,
-    "times_contradicted": 0,
-    "tags": [
-      "circular",
-      "symmetric",
-      "geometric",
-      "simple"
-    ]
-  },
-  {
-    "id": "v019",
-    "condition": "Vision: closed_loop topology with single path element (from A centered, perfectly symmetrical black circle rendered with)",
-    "insight": "Stroke-only circular shape; no fill — efficient, minimal design suitable for icons or outlines",
-    "confidence": 0.8,
-    "times_confirmed": 1,
-    "times_contradicted": 0,
-    "tags": [
-      "stroke-based",
-      "closed_loop",
-      "minimal"
-    ]
-  },
-  {
-    "id": "v020",
-    "condition": "Vision: bbox corners=12 with distributed positive space grid pattern (from A centered, perfectly symmetrical black circle rendered with)",
-    "insight": "The corner count reflects the octagonal approximation of the circle; grid shows smooth radial boundary",
-    "confidence": 0.8,
-    "times_confirmed": 1,
-    "times_contradicted": 0,
-    "tags": [
-      "circular",
-      "smooth-boundary"
-    ]
+      "functional-ui-icon",
+      "geometric-primitive",
+      "stroke-based-circle",
+      "selection-ring",
+      "canonical-metrics",
+      "minimal-design",
+      "centered-placement"
+    ],
+    "source_svg_hash": "edad620b041d"
   }
 ]

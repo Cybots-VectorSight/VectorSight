@@ -1,60 +1,109 @@
-"""Self-Reflection — LLM vision sees the rendered SVG and auto-learns.
+"""Self-Reflection — automatic learning after every user interaction.
 
-Instead of relying on user feedback ("that was a squirrel"), the system:
-1. Renders SVG → PNG via cairosvg
-2. Sends the image + enrichment text to Claude vision (Haiku for cost)
-3. LLM compares what it SEES vs what the enrichment DATA says
-4. Auto-derives patterns from the gap → stored in learning memory
+Closed-loop workflow (no user feedback needed):
+1. User asks a question or requests a modification
+2. LLM responds (chat answer or modified SVG)
+3. Background: render SVG → PNG, send to vision model
+4. Vision compares: what it SEES vs enrichment vs LLM's answer vs user's intent
+5. Auto-derives patterns from mismatches → stored in learning memory
+6. Existing patterns confirmed/contradicted → confidence adjusted
 
-This is NOT fine-tuning. The LLM's image understanding is pretrained.
-We're just using it to generate structured experience records.
+The user's decision (their question or instruction) drives what gets learned.
 """
 
 from __future__ import annotations
 
-import asyncio
 import base64
 import logging
 from typing import Any
 
 logger = logging.getLogger(__name__)
 
-# Prompt for the vision model
-_REFLECT_PROMPT = """You are VectorSight's self-reflection system. You will see:
-1. A rendered image of an SVG
-2. The spatial enrichment data that our geometry engine produced from that SVG
+_CHAT_REFLECT_PROMPT = """You are VectorSight's self-learning system. After every user interaction, you verify what happened.
 
-Your job: Compare what you SEE in the image with what the enrichment DATA describes.
+SPATIAL REFERENCE (research-based correlations — use to interpret geometry):
+{spatial_reference}
 
-ENRICHMENT DATA:
+PRIOR KNOWLEDGE (learned from experience — add to this):
+{knowledge}
+
+THE USER ASKED: {user_input}
+
+THE LLM ANSWERED: {llm_output}
+
+ENRICHMENT DATA (geometry engine output, truncated):
 {enrichment}
 
-INSTRUCTIONS:
-1. First, describe what you see in the image in 1-2 sentences. Be specific (species, pose, objects, style).
-2. Then evaluate: did the enrichment data capture the key visual features correctly?
-3. Identify GAPS — what important visual information is missing or misleading in the enrichment?
-4. Generate 1-5 PATTERNS (lessons learned) in this exact JSON format:
+Look at the rendered SVG image above. Compare THREE things:
+1. What you SEE in the image
+2. What the ENRICHMENT DATA describes (use the spatial reference to interpret)
+3. What the LLM TOLD the user
+
+Use the spatial reference to understand what geometry measurements mean visually.
+Use prior knowledge to inform your analysis. Then derive NEW patterns — things
+the spatial reference doesn't already cover. Assign tags freely — use whatever
+words best describe the combination of spatial traits that matter for this SVG.
+
+RESPOND in this exact JSON format:
 
 ```json
 {{
-  "visual_description": "what you see in the image",
-  "enrichment_accuracy": "good/partial/poor",
-  "gaps": ["gap 1", "gap 2"],
+  "visual_description": "1-2 sentences: what you actually see in the image",
+  "llm_was_correct": true/false,
+  "llm_correction": "if incorrect, what should the LLM have said instead (empty if correct)",
+  "enrichment_gaps": ["what the enrichment missed that would have helped"],
   "patterns": [
     {{
-      "condition": "when you observe X in the data",
-      "insight": "it likely means Y in the image",
+      "condition": "when the enrichment shows X",
+      "insight": "the image likely depicts Y",
       "tags": ["tag1", "tag2"]
     }}
-  ]
+  ],
+  "knowledge_update": "if you learned something that should be added to or changed in the prior knowledge document, describe it here (empty if nothing new)"
 }}
-```
+```"""
 
-Tags should describe relevant features: shape types (organic, circular), complexity (simple, complex),
-symmetry (symmetric, asymmetric, side-profile, front-facing), fill density (dense-fill, sparse),
-specific shapes present in the SVG. These tags are used for pattern matching on future SVGs.
+_MODIFY_REFLECT_PROMPT = """You are VectorSight's self-learning system. The user requested an SVG modification.
 
-Be concise. Focus on ACTIONABLE patterns that would help identify similar SVGs in the future."""
+SPATIAL REFERENCE (research-based correlations — use to interpret geometry):
+{spatial_reference}
+
+PRIOR KNOWLEDGE (learned from experience — add to this):
+{knowledge}
+
+THE USER ASKED FOR: {user_input}
+
+ENRICHMENT DATA (from the ORIGINAL SVG before modification):
+{enrichment}
+
+Look at the rendered MODIFIED SVG image above. Evaluate:
+1. What you SEE in the modified image
+2. Did the modification achieve what the user wanted?
+3. What spatial patterns made this modification succeed or fail?
+
+Use the spatial reference to understand geometry measurements. Use prior
+knowledge to inform your analysis. Derive NEW patterns beyond what the
+reference covers. Assign tags freely — use whatever words best describe
+what matters about this SVG spatially.
+
+RESPOND in this exact JSON format:
+
+```json
+{{
+  "visual_description": "what the modified SVG looks like now",
+  "modification_succeeded": true/false,
+  "what_worked": "what spatial reasoning led to a good result (empty if failed)",
+  "what_failed": "what went wrong spatially (empty if succeeded)",
+  "patterns": [
+    {{
+      "condition": "when modifying SVGs with X spatial property",
+      "insight": "Y approach works well / should be avoided",
+      "tags": ["tag1", "tag2"]
+    }}
+  ],
+  "knowledge_update": "if you learned something new about spatial modification strategies, describe it here (empty if nothing new)"
+}}
+```"""
 
 
 def render_svg_to_png(svg: str, width: int = 256, height: int = 256) -> bytes:
@@ -62,38 +111,76 @@ def render_svg_to_png(svg: str, width: int = 256, height: int = 256) -> bytes:
     import cairosvg
 
     try:
-        png_bytes = cairosvg.svg2png(
+        return cairosvg.svg2png(
             bytestring=svg.encode("utf-8"),
             output_width=width,
             output_height=height,
         )
-        return png_bytes
     except Exception as e:
         logger.warning("Failed to render SVG to PNG: %s", e)
         raise
 
 
-async def reflect_on_svg(
+async def reflect_on_chat(
     svg: str,
     enrichment_text: str,
+    user_question: str,
+    llm_answer: str,
     ctx: Any | None = None,
 ) -> dict | None:
-    """Render SVG, show to LLM vision, auto-derive patterns.
+    """After a chat: vision verifies what the LLM told the user."""
+    from app.learning.tags import get_knowledge, get_spatial_reference
 
-    Returns the reflection result dict or None on failure.
-    """
+    prompt = _CHAT_REFLECT_PROMPT.format(
+        user_input=user_question[:500],
+        llm_output=llm_answer[:1000],
+        enrichment=enrichment_text[:2500],
+        knowledge=get_knowledge(),
+        spatial_reference=get_spatial_reference(),
+    )
+    return await _reflect(svg, prompt, ctx, task="chat",
+                          user_input=user_question, llm_output=llm_answer)
+
+
+async def reflect_on_modify(
+    original_svg: str,
+    modified_svg: str,
+    enrichment_text: str,
+    user_instruction: str,
+    ctx: Any | None = None,
+) -> dict | None:
+    """After a modify: vision verifies the modification result."""
+    from app.learning.tags import get_knowledge, get_spatial_reference
+
+    prompt = _MODIFY_REFLECT_PROMPT.format(
+        user_input=user_instruction[:500],
+        enrichment=enrichment_text[:2500],
+        knowledge=get_knowledge(),
+        spatial_reference=get_spatial_reference(),
+    )
+    # Show the MODIFIED svg to vision, not the original
+    return await _reflect(modified_svg, prompt, ctx, task="modify",
+                          user_input=user_instruction, llm_output="")
+
+
+async def _reflect(
+    svg: str,
+    prompt: str,
+    ctx: Any | None,
+    task: str,
+    user_input: str,
+    llm_output: str,
+) -> dict | None:
+    """Core reflection: render → vision → parse → store."""
     from app.config import settings
 
     if not settings.anthropic_api_key:
-        logger.debug("No API key — skipping self-reflection")
         return None
 
     try:
-        # 1. Render SVG → PNG
         png_bytes = render_svg_to_png(svg)
         png_b64 = base64.b64encode(png_bytes).decode("ascii")
 
-        # 2. Send to Claude vision (Haiku — cheap tier)
         from langchain_anthropic import ChatAnthropic
         from langchain_core.messages import HumanMessage
 
@@ -102,8 +189,6 @@ async def reflect_on_svg(
             api_key=settings.anthropic_api_key,
             max_tokens=1024,
         )
-
-        prompt = _REFLECT_PROMPT.format(enrichment=enrichment_text[:3000])
 
         message = HumanMessage(
             content=[
@@ -115,30 +200,24 @@ async def reflect_on_svg(
                         "data": png_b64,
                     },
                 },
-                {
-                    "type": "text",
-                    "text": prompt,
-                },
+                {"type": "text", "text": prompt},
             ]
         )
 
         response = await llm.ainvoke([message])
         result_text = str(response.content)
 
-        # 3. Parse the JSON from the response
         reflection = _parse_reflection(result_text)
         if reflection is None:
-            logger.warning("Could not parse reflection JSON")
+            logger.warning("Could not parse reflection JSON from: %s", result_text[:200])
             return None
 
-        # 4. Store patterns in learning memory
-        _store_reflection(reflection, svg, ctx)
+        # Store patterns + adjust existing ones
+        _store_and_adjust(reflection, svg, ctx, task, user_input)
 
-        logger.info(
-            "Self-reflection complete: saw '%s', %d patterns derived",
-            reflection.get("visual_description", "?")[:50],
-            len(reflection.get("patterns", [])),
-        )
+        visual = reflection.get("visual_description", "?")[:50]
+        n_patterns = len(reflection.get("patterns", []))
+        logger.info("Self-reflection (%s): saw '%s', %d patterns", task, visual, n_patterns)
         return reflection
 
     except Exception as e:
@@ -151,7 +230,7 @@ def _parse_reflection(text: str) -> dict | None:
     import json
     import re
 
-    # Try to find JSON block in markdown fences
+    # Try markdown fences first
     match = re.search(r"```(?:json)?\s*\n?({[\s\S]*?})\s*\n?```", text)
     if match:
         try:
@@ -159,7 +238,7 @@ def _parse_reflection(text: str) -> dict | None:
         except json.JSONDecodeError:
             pass
 
-    # Try to find raw JSON
+    # Try raw JSON
     match = re.search(r"({[\s\S]*\"patterns\"[\s\S]*})", text)
     if match:
         try:
@@ -170,9 +249,15 @@ def _parse_reflection(text: str) -> dict | None:
     return None
 
 
-def _store_reflection(reflection: dict, svg: str, ctx: Any | None) -> None:
-    """Store reflection patterns in the learning memory."""
-    from app.learning.memory import MemoryStore, Pattern, get_memory_store
+def _store_and_adjust(
+    reflection: dict,
+    svg: str,
+    ctx: Any | None,
+    task: str,
+    user_input: str,
+) -> None:
+    """Store new patterns and adjust confidence on existing ones."""
+    from app.learning.memory import Pattern, get_memory_store
 
     store = get_memory_store()
     svg_h = store.svg_hash(svg)
@@ -180,8 +265,45 @@ def _store_reflection(reflection: dict, svg: str, ctx: Any | None) -> None:
     visual_desc = reflection.get("visual_description", "")
     patterns_data = reflection.get("patterns", [])
 
-    existing_patterns = store.get_patterns()
-    next_num = len(existing_patterns) + 1
+    # --- Adjust existing patterns ---
+    # If vision confirms the LLM was correct, boost patterns that matched
+    # If vision contradicts, downgrade patterns that led to the wrong answer
+    existing = store.get_patterns()
+    llm_correct = reflection.get("llm_was_correct", True)
+    mod_succeeded = reflection.get("modification_succeeded", True)
+    was_correct = llm_correct if task == "chat" else mod_succeeded
+
+    if existing:
+        # Build tags from current SVG using shared rules
+        current_tags: set[str] = set()
+        if ctx:
+            from app.learning.tags import build_factual_tags_from_context
+
+            current_tags = build_factual_tags_from_context(ctx)
+
+        changed = False
+        for pat in existing:
+            overlap = len(current_tags.intersection(set(pat.tags)))
+            if overlap == 0:
+                continue
+
+            if was_correct:
+                pat.times_confirmed += 1
+                # Nudge confidence up (max 0.95)
+                pat.confidence = min(0.95, pat.confidence + 0.05)
+            else:
+                pat.times_contradicted += 1
+                # Nudge confidence down (min 0.1)
+                pat.confidence = max(0.1, pat.confidence - 0.1)
+            changed = True
+
+        if changed:
+            store._save_patterns(existing)
+            store._patterns_cache = existing
+
+    # --- Store new patterns ---
+    next_num = len(existing) + 1
+    prefix = "vc" if task == "chat" else "vm"  # vision-chat / vision-modify
 
     for p in patterns_data:
         condition = p.get("condition", "")
@@ -191,18 +313,20 @@ def _store_reflection(reflection: dict, svg: str, ctx: Any | None) -> None:
         if not condition or not insight:
             continue
 
+        source = f"[{task}] user: {user_input[:40]}"
         pattern = Pattern(
-            id=f"v{next_num:03d}",
-            condition=f"Vision: {condition} (from {visual_desc[:60]})",
+            id=f"{prefix}{next_num:03d}",
+            condition=f"{condition} (from: {visual_desc[:50]})",
             insight=insight,
-            confidence=0.8,  # Vision-derived patterns start high
+            confidence=0.75,
             times_confirmed=1,
             tags=tags,
+            source_svg_hash=svg_h,
         )
         store.add_pattern(pattern)
         next_num += 1
 
-    # Also update the most recent session with what was actually seen
+    # Update session record with vision's description
     sessions = store.get_sessions(limit=10)
     for session in reversed(sessions):
         if session.svg_hash == svg_h:
@@ -210,20 +334,47 @@ def _store_reflection(reflection: dict, svg: str, ctx: Any | None) -> None:
             session.learnings.extend(
                 [p.get("insight", "") for p in patterns_data if p.get("insight")]
             )
-            # Rewrite
             store._save_sessions(store._load_sessions())
             break
 
-    logger.info("Stored %d vision-derived patterns for SVG %s", len(patterns_data), svg_h)
+    # Self-edit knowledge document if the LLM learned something new
+    knowledge_update = reflection.get("knowledge_update", "")
+    if knowledge_update:
+        from app.learning.tags import update_knowledge
+
+        update_knowledge(knowledge_update)
+
+    logger.info(
+        "Stored %d patterns, adjusted %d existing (correct=%s) for SVG %s",
+        len(patterns_data), len(existing), was_correct, svg_h,
+    )
 
 
-async def reflect_background(
+async def reflect_background_chat(
     svg: str,
     enrichment_text: str,
+    user_question: str,
+    llm_answer: str,
     ctx: Any | None = None,
 ) -> None:
-    """Fire-and-forget self-reflection. Runs in background, never blocks."""
+    """Fire-and-forget after chat. Never blocks the response."""
     try:
-        await reflect_on_svg(svg, enrichment_text, ctx)
+        await reflect_on_chat(svg, enrichment_text, user_question, llm_answer, ctx)
     except Exception as e:
-        logger.debug("Background reflection failed (non-critical): %s", e)
+        logger.debug("Background chat reflection failed: %s", e)
+
+
+async def reflect_background_modify(
+    original_svg: str,
+    modified_svg: str,
+    enrichment_text: str,
+    user_instruction: str,
+    ctx: Any | None = None,
+) -> None:
+    """Fire-and-forget after modify. Never blocks the response."""
+    try:
+        await reflect_on_modify(
+            original_svg, modified_svg, enrichment_text, user_instruction, ctx
+        )
+    except Exception as e:
+        logger.debug("Background modify reflection failed: %s", e)
