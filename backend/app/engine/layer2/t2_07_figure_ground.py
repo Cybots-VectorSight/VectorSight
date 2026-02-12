@@ -12,6 +12,12 @@ from app.engine.context import PipelineContext
 from app.engine.registry import Layer, transform
 from app.utils.rasterizer import grid_fill_percentage
 
+# ── Figure-ground classification thresholds ──
+# Co-dominance: >30% fill (≈1/3) AND negative space = both carry meaning.
+_CODOMINANCE_THRESHOLD = 30.0  # ≈ 1/3
+# Positive-dominant: >50% fill (1/2) = positive space carries design.
+_POSITIVE_DOMINANT_THRESHOLD = 50.0  # 1/2
+
 
 @transform(
     id="T2.07",
@@ -29,10 +35,10 @@ def figure_ground(ctx: PipelineContext) -> None:
         neg_count = max(neg_count, sp.features.get("negative_space_count", 0))
 
     # Determine figure-ground relationship
-    if neg_count > 0 and pos_fill > 30:
+    if neg_count > 0 and pos_fill > _CODOMINANCE_THRESHOLD:
         figure_ground_type = "both"
         description = "Both positive and negative space carry design meaning"
-    elif pos_fill > 50:
+    elif pos_fill > _POSITIVE_DOMINANT_THRESHOLD:
         figure_ground_type = "positive"
         description = "Positive space (filled regions) carries the design"
     else:

@@ -10,6 +10,11 @@ import numpy as np
 
 from app.engine.context import PipelineContext
 from app.engine.registry import Layer, transform
+from app.engine.spatial_constants import SHARED_CENTER_FRACTION
+
+# Concentric arrangement requires "significantly different sizes".
+# 1.5x area ratio ~ sqrt(2.25) ~ 1.5x linear scale — one half-step on log-2 scale.
+_CONCENTRIC_AREA_RATIO = 1.5
 
 
 @transform(
@@ -24,7 +29,7 @@ def shared_center(ctx: PipelineContext) -> None:
         return
 
     diag = ctx.viewbox_diagonal
-    tolerance = diag * 0.03  # 3% of diagonal
+    tolerance = diag * SHARED_CENTER_FRACTION
 
     centroids = np.array([sp.centroid for sp in ctx.subpaths])
 
@@ -58,7 +63,7 @@ def shared_center(ctx: PipelineContext) -> None:
     concentric_groups = []
     for group in center_groups:
         areas = [ctx.subpaths[g].area for g in group]
-        if max(areas) > min(areas) * 1.5:  # Significant size difference
+        if max(areas) > min(areas) * _CONCENTRIC_AREA_RATIO:
             sorted_members = sorted(group, key=lambda g: ctx.subpaths[g].area, reverse=True)
             concentric_groups.append({
                 "members": [ctx.subpaths[g].id for g in sorted_members],

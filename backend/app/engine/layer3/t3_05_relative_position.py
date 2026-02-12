@@ -9,6 +9,7 @@ import math
 
 from app.engine.context import PipelineContext
 from app.engine.registry import Layer, transform
+from app.engine.spatial_constants import SPATIAL_JND_FRACTION
 
 
 def _describe_position(dx: float, dy: float, diag: float) -> str:
@@ -17,18 +18,18 @@ def _describe_position(dx: float, dy: float, diag: float) -> str:
         return "coincident"
 
     dist = math.sqrt(dx * dx + dy * dy)
-    if dist < diag * 0.02:
+    if dist < diag * SPATIAL_JND_FRACTION:
         return "coincident"
 
     parts = []
     # Vertical
-    if abs(dy) > diag * 0.02:
+    if abs(dy) > diag * SPATIAL_JND_FRACTION:
         if dy < 0:
             parts.append("above")
         else:
             parts.append("below")
     # Horizontal
-    if abs(dx) > diag * 0.02:
+    if abs(dx) > diag * SPATIAL_JND_FRACTION:
         if dx > 0:
             parts.append("right")
         else:

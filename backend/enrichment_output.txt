@@ -1,0 +1,25 @@
+=== VECTORSIGHT ENRICHMENT ===
+
+ELEMENTS: 0 paths | CANVAS: 24×24 | TYPE: fill-based
+
+SPATIAL INTERPRETATION:
+  LAYOUT SUMMARY: asymmetric composition
+  Composition: simple icon
+  Orientation: highly asymmetric / abstract; minimal symmetry (0.00)
+  Silhouette: no grid data available
+  Mass distribution: unknown
+  Reading hints:
+    - Low symmetry (0.00) — asymmetric composition, side-view, or angled arrangement.
+
+── VISUAL PYRAMID ──
+
+RECONSTRUCTION (build image mentally, step by step):
+
+KEY ELEMENTS (top 0 by area):
+
+=== END ENRICHMENT ===
+
+--- STATS ---
+Characters: 546
+Words: 72
+Lines: 20

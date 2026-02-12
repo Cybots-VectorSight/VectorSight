@@ -5,6 +5,7 @@ from __future__ import annotations
 from app.config import settings
 from app.llm.model_router import get_model_for_task
 from app.llm.prompts import get_prompt_template
+from app.svg.anonymizer import sanitize_for_llm
 
 
 async def get_chat_response(
@@ -29,7 +30,7 @@ async def get_chat_response(
     )
 
     template = get_prompt_template(task)
-    system_msg = template.format(svg=svg, enrichment=enrichment)
+    system_msg = template.format(svg=sanitize_for_llm(svg), enrichment=enrichment)
 
     messages: list = [SystemMessage(content=system_msg)]
     for msg in history:

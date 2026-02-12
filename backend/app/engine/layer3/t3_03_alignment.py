@@ -9,6 +9,7 @@ import numpy as np
 
 from app.engine.context import PipelineContext
 from app.engine.registry import Layer, transform
+from app.engine.spatial_constants import SPATIAL_JND_FRACTION
 
 
 @transform(
@@ -23,7 +24,7 @@ def alignment(ctx: PipelineContext) -> None:
         return
 
     diag = ctx.viewbox_diagonal
-    tolerance = diag * 0.02  # 2% of diagonal
+    tolerance = diag * SPATIAL_JND_FRACTION
 
     centroids = [sp.centroid for sp in ctx.subpaths]
 

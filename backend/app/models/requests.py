@@ -20,6 +20,10 @@ class ChatRequest(BaseModel):
         default_factory=list,
         description="Chat history (role/content pairs)",
     )
+    enrichment: str | None = Field(
+        default=None,
+        description="Pre-computed enrichment text from analyze. Skips pipeline if provided.",
+    )
 
 
 class ModifyRequest(BaseModel):
@@ -28,6 +32,10 @@ class ModifyRequest(BaseModel):
     history: list[dict[str, str]] = Field(
         default_factory=list,
         description="Chat history (role/content pairs) for multi-turn context",
+    )
+    enrichment: str | None = Field(
+        default=None,
+        description="Pre-computed enrichment text from analyze. Skips pipeline if provided.",
     )
 
 

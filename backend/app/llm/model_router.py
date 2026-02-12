@@ -8,6 +8,7 @@ _TASK_MODEL_MAP = {
     "chat": "cheap",
     "analyze": "cheap",
     "modify": "mid",
+    "edit": "mid",
     "create": "mid",
     "icon_set": "mid",
     "playground": "cheap",

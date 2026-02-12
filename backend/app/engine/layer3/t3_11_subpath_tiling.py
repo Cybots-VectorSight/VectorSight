@@ -11,6 +11,11 @@ from scipy.spatial import cKDTree
 
 from app.engine.context import PipelineContext
 from app.engine.registry import Layer, transform
+from app.engine.spatial_constants import TILING_EDGE_FRACTION
+
+# Minimum shared boundary points to classify as tiling (not just touching).
+# 3 = minimum for a non-degenerate polygon edge (triangle edge = 3 points).
+_MIN_SHARED_BOUNDARY_POINTS = 3
 
 
 @transform(
@@ -25,7 +30,7 @@ def subpath_tiling(ctx: PipelineContext) -> None:
         return
 
     diag = ctx.viewbox_diagonal
-    edge_threshold = diag * 0.01  # 1% of diagonal for shared edge detection
+    edge_threshold = diag * TILING_EDGE_FRACTION
 
     cmat = ctx.containment_matrix
     dmat = ctx.distance_matrix
@@ -46,7 +51,7 @@ def subpath_tiling(ctx: PipelineContext) -> None:
                     tree = cKDTree(ctx.subpaths[j].points)
                     dists, _ = tree.query(sp.points, k=1)
                     shared_count = int(np.sum(dists < edge_threshold))
-                    if shared_count >= 3:
+                    if shared_count >= _MIN_SHARED_BOUNDARY_POINTS:
                         rel = "TILE"
                     else:
                         rel = "TILE"  # Adjacent = tiling

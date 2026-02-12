@@ -1,0 +1,37 @@
+# This SVG depicts a **flamingo** (or similar long-necked wading bird)
+
+## Evidence from the spatial data:
+
+### **PRIMARY BOUNDARY (Most Critical)**
+The PRIMARY BOUNDARY Braille grid shows the actual subject outline, and it reveals:
+- A **distinctive curved S-shaped form** with a long slender neck extending upward from a rounded body
+- The outline shows a thick body mass at bottom-center, narrowing to a long curved extension at top-left
+- Clear bird-like proportions: compact body with elongated curved neck
+
+### **Skeleton Topology (Confirms Bird Structure)**
+- **Main lower-left axis (27px)** — the primary body/torso
+- **15 branches radiating from the core**, including:
+  - **Long upper-left branch (21px)** — the extended curved neck
+  - **Lower-right branches (19px, 16px, 13px)** — likely legs/feet
+  - **Short upper-right branch (6px)** — possibly head/beak
+- **15 junctions, 4 endpoints** — complex organic branching typical of bird anatomy
+
+### **Radial Profile (Shape Fingerprint)**
+The distance measurements from center show:
+- **Peak at 30° (30px, upper-right)** — head/neck extension reaching outward
+- **Peak at 165° (28px, left)** — body mass extends leftward
+- **Peak at 315° (26px, lower-right)** — legs/lower body
+- **Valley at 0° (11px, right)** — concave curve where neck meets body
+- This asymmetric profile with one major extension is characteristic of a long-necked bird in profile
+
+### **Simplified Outline Trace**
+Starting bottom-center: "extends short right → descends down → extends short right → rises long upper-right → rises short upper-left → descends short lower-left → extends long left → descends long down"
+
+This describes a bird standing upright with its neck curved backward in the classic flamingo S-curve pose.
+
+### **Supporting Details**
+- **Orientation**: The mass distribution and focal elements position this as an upright bird facing left
+- **Composition**: "Asymmetric" with "moderate vertical symmetry (0.57)" — appropriate for a bird in natural standing pose
+- **Aspect ratio 1.7** (wider than tall in the canvas, but the bird itself extends vertically)
+
+**Conclusion**: This is a stylized illustration of a flamingo or similar wading bird, characterized by its iconic long curved neck, compact body, and standing posture.

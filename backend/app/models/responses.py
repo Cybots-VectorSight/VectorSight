@@ -29,6 +29,8 @@ class ChatResponse(BaseModel):
 class ModifyResponse(BaseModel):
     svg: str
     changes: list[str] = Field(default_factory=list)
+    edit_ops: list[dict] | None = None  # Surgical ops applied (for debugging)
+    reasoning: str | None = None
 
 
 class CreateResponse(BaseModel):

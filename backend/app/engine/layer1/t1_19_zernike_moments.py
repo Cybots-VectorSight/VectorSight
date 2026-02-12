@@ -11,6 +11,18 @@ import numpy as np
 from app.engine.context import PipelineContext
 from app.engine.registry import Layer, transform
 
+# ── Zernike moment constants ──
+# Minimum points for stable moment computation: 2× ellipse DOF = 10.
+_MIN_POINTS = 10
+# Machine-epsilon for max radial distance (below = degenerate).
+_RADIUS_EPSILON = 1e-10
+# Max order n for Zernike polynomial basis.
+# Order 4 (n=0..4) yields up to 9 moments — captures shape features
+# up to 4-fold symmetry (sufficient for most icon discrimination).
+_MAX_ORDER = 5  # range(5) → n = 0, 1, 2, 3, 4
+# Output cap: max moments to store per element (keeps features compact).
+_MAX_MOMENTS = 10
+
 
 @transform(
     id="T1.19",
@@ -20,7 +32,7 @@ from app.engine.registry import Layer, transform
 )
 def zernike_moments(ctx: PipelineContext) -> None:
     for sp in ctx.subpaths:
-        if len(sp.points) < 10:
+        if len(sp.points) < _MIN_POINTS:
             sp.features["zernike_moments"] = []
             continue
 
@@ -28,7 +40,7 @@ def zernike_moments(ctx: PipelineContext) -> None:
         cx, cy = sp.centroid
         pts = sp.points - np.array([cx, cy])
         max_r = np.max(np.sqrt(pts[:, 0] ** 2 + pts[:, 1] ** 2))
-        if max_r < 1e-10:
+        if max_r < _RADIUS_EPSILON:
             sp.features["zernike_moments"] = []
             continue
 
@@ -38,7 +50,7 @@ def zernike_moments(ctx: PipelineContext) -> None:
 
         # Compute first few Zernike-like moments (radial polynomial × angular)
         moments: list[float] = []
-        for n in range(5):
+        for n in range(_MAX_ORDER):
             for m in range(-n, n + 1, 2):
                 if abs(m) > n:
                     continue
@@ -47,4 +59,4 @@ def zernike_moments(ctx: PipelineContext) -> None:
                 moment = float(np.abs(np.mean(z)))
                 moments.append(round(moment, 6))
 
-        sp.features["zernike_moments"] = moments[:10]  # cap at 10
+        sp.features["zernike_moments"] = moments[:_MAX_MOMENTS]

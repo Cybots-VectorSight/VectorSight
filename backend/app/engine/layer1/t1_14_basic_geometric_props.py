@@ -8,6 +8,7 @@ Cheap, always compute.
 from __future__ import annotations
 
 import numpy as np
+from skimage.filters import threshold_otsu
 
 from app.engine.context import PipelineContext
 from app.engine.registry import Layer, transform
@@ -50,9 +51,19 @@ def basic_geometric_props(ctx: PipelineContext) -> None:
         areas_arr = np.array(areas)
         if len(areas) >= 3:
             sorted_areas = np.sort(areas_arr)[::-1]
-            # Simple tier assignment: top 20% = LARGE, bottom 30% = SMALL, rest = MEDIUM
-            large_threshold = np.percentile(areas_arr[areas_arr > 0], 70) if np.any(areas_arr > 0) else 0
-            small_threshold = np.percentile(areas_arr[areas_arr > 0], 30) if np.any(areas_arr > 0) else 0
+            # Size tier classification via Otsu on log-areas (natural break between sizes)
+            log_areas = np.log1p(areas_arr[areas_arr > 0])
+            if len(log_areas) >= 4:
+                try:
+                    log_thresh = threshold_otsu(log_areas)
+                    large_threshold = np.expm1(log_thresh + 0.5 * np.std(log_areas))
+                    small_threshold = np.expm1(log_thresh - 0.5 * np.std(log_areas))
+                except ValueError:
+                    large_threshold = np.percentile(areas_arr, 70)
+                    small_threshold = np.percentile(areas_arr, 30)
+            else:
+                large_threshold = np.percentile(areas_arr, 70) if len(areas_arr) > 0 else 0
+                small_threshold = np.percentile(areas_arr, 30) if len(areas_arr) > 0 else 0
 
             for sp in ctx.subpaths:
                 a = sp.area

@@ -9,6 +9,10 @@ import numpy as np
 
 from app.engine.context import PipelineContext
 from app.engine.registry import Layer, transform
+from app.engine.spatial_constants import SPATIAL_JND_FRACTION
+
+# Tukey (1977): Q3 + 1.5*IQR = mild outlier threshold.
+_TUKEY_K = 1.5
 
 
 @transform(
@@ -41,8 +45,8 @@ def topology(ctx: PipelineContext) -> None:
                 f"({', '.join(child_classes)})"
             )
 
-    # 2. Touching / adjacent pairs (distance < 2% diagonal)
-    touch_threshold = diag * 0.02
+    # 2. Touching / adjacent pairs (distance < JND of diagonal)
+    touch_threshold = diag * SPATIAL_JND_FRACTION
     touching_pairs = []
     for i in range(n):
         for j in range(i + 1, n):
@@ -51,15 +55,25 @@ def topology(ctx: PipelineContext) -> None:
 
     if touching_pairs:
         patterns.append(f"{len(touching_pairs)} touching/adjacent pairs")
+        # Store structured pairs for enrichment surfacing
+        structured_pairs = [
+            (ctx.subpaths[i].id, ctx.subpaths[j].id, float(dmat[i][j]))
+            for i, j in touching_pairs
+        ]
+        ctx.subpaths[0].features["touching_pairs"] = structured_pairs
 
-    # 3. Isolated elements (far from everything)
-    far_threshold = diag * 0.25
+    # 3. Isolated elements — Tukey IQR fence on nearest-neighbor distances
+    nn_dists = []
     for i in range(n):
-        min_dist = float("inf")
-        for j in range(n):
-            if i != j and dmat[i][j] < min_dist:
-                min_dist = dmat[i][j]
-        if min_dist > far_threshold:
+        min_d = min(dmat[i][j] for j in range(n) if j != i) if n > 1 else 0
+        nn_dists.append(min_d)
+    if nn_dists:
+        q1, q3 = np.percentile(nn_dists, [25, 75])
+        far_threshold = q3 + _TUKEY_K * (q3 - q1)
+    else:
+        far_threshold = diag * 0.25
+    for i in range(n):
+        if nn_dists[i] > far_threshold:
             patterns.append(f"{ctx.subpaths[i].id} is spatially isolated")
 
     # 4. Overall topology label

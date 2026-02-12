@@ -101,6 +101,8 @@ def parse_svg(svg_text: str) -> PipelineContext:
                 winding=1 if signed_area(pts) > 0 else -1,
                 z_order=z_order,
                 bbox=bbox(pts),
+                source_tag=full_tag,
+                source_span=(match.start(), match.end()),
             )
 
             # Build polygon
@@ -137,6 +139,8 @@ def parse_svg(svg_text: str) -> PipelineContext:
             winding=1,
             z_order=z_order,
             bbox=bbox(pts),
+            source_tag=tag_text,
+            source_span=(match.start(), match.end()),
         )
 
         try:
@@ -172,6 +176,8 @@ def parse_svg(svg_text: str) -> PipelineContext:
             winding=0,
             z_order=z_order,
             bbox=bbox(pts),
+            source_tag=tag_text,
+            source_span=(match.start(), match.end()),
         )
 
         ctx.subpaths.append(sp_data)

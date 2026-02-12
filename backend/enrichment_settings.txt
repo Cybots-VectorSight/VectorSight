@@ -1,0 +1,85 @@
+=== VECTORSIGHT ENRICHMENT ===
+
+ELEMENTS: 2 paths | CANVAS: 24×24 | TYPE: stroke-based
+
+SPATIAL INTERPRETATION:
+  LAYOUT SUMMARY: symmetric composition (strong bilateral)
+  Composition: simple icon
+  Orientation: strong bilateral symmetry; strong vertical symmetry (1.00)
+  Silhouette: sparse, open composition; widest at top; roughly square proportions; upward protrusion from center; extends down on center; narrowest at row 31% (width drops to 10% vs 26% above/below) — distinct upper and lower mass regions; empty: upper-left, upper-right, lower-left, lower-right; principal axis: horizontal (18°, eccentricity=0.08); highly concave silhouette (hull fill=27%)
+  Skeleton: closed loop (97px), no branching
+  Radial profile (0°=right, CCW, 15°): 4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4
+  No significant peaks or valleys (approximately circular)
+  Simplified outline (10 vertices): M 4,14 L 3,14 L 4,10 L 2,8 L 4,5 L 9,4 L 8,6 L 3,7 L 3,9 L 5,10 Z
+  Mass distribution: evenly distributed; vertically centered; quadrants: upper-left=14%, upper-right=14%, lower-left=14%, lower-right=15%; vertical thirds: top=27%, mid=40%, bottom=33%
+  Focal elements:
+    - Concentric group [E1, E2] at (12,12) [mid-center], 2 layers, max circularity=1.00, tiers=MEDIUM/MEDIUM, root-level (independent, drawn on top)
+  Reading hints:
+    - High symmetry (1.00) — balanced/symmetric design or front-facing orientation.
+
+SHAPE NARRATIVE:
+  Contour: Starting from bottom-center: rises up at left, rises short up at upper-left (narrow peak), extends right at upper-left, rises short up at top (broad curved lobe), extends left at top, descends short lower-left at upper-left (narrow peak), descends short lower-right at upper-left, descends short down at left (broad curved lobe), extends right at lower-left (broad curved lobe).
+  Structural detail:
+    - E1: highly curved, complex boundary (33 inflections)
+    - E2: highly curved
+
+── VISUAL PYRAMID ──
+
+LEVEL 0 — ALL ELEMENTS (12×12, #=filled .=empty):
+............
+....####....
+..###..#.#..
+.####..####.
+.##.####.##.
+..#.#..#.#..
+..#.#..#.#..
+.##.####.##.
+.####..####.
+..#.#..###..
+....####....
+.....##.....
+
+LEVEL 3 — FEATURE ZOOMS (10×10 each, zoomed to feature bbox):
+  [E1+E2] at center:
+    ...####...
+    ##.#..#.##
+    ####..####
+    #..####..#
+    ##.#..#.##
+    ##.#..#.##
+    #..####..#
+    ####..####
+    ##.#..#.##
+    ...####...
+
+RECONSTRUCTION (build image mentally, step by step):
+  1. E1 [MEDIUM] organic at center
+  2. E2 [MEDIUM] circular at center
+
+KEY ELEMENTS (top 2 by area):
+  E1: [MEDIUM] organic(closed_loop), bbox(2,2,21,22), at(11,11), circ=0.58, conv=0.81, aspect=0.90
+    svg: <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+  E2: [MEDIUM] circular(closed_loop), bbox(9,9,15,15), at(12,11), circ=1.00, conv=1.00, aspect=1.00
+    svg: <circle cx="12" cy="12" r="3"/>
+
+SYMMETRY: vertical (score 1.00)
+
+CONCENTRIC GROUPS:
+  [E1, E2] at center (12,12)
+
+KEY OVERLAPS:
+  E1↔E2 (IoU=0.100)
+
+LEARNED PATTERNS:
+  1. Low fill percentage with many elements means stroke-based or outline-only rendering. The shapes exist as boundaries, not as filled regions. The visual result may appear solid to a viewer but the SVG construction uses outlines. Don't confuse SVG rendering technique with visual appearance.
+  2. High bilateral symmetry with few elements indicates intentional geometric construction — likely a designed symbol, icon, or simple illustration. The symmetry axis and paired elements define the compositional structure directly.
+  3. Concentric groups (elements sharing a center) are multi-ring constructions — a detail feature built from layered shapes. Their position relative to the largest containing element and their size tier determine their structural role.
+  4. Read the positive space grid as a low-resolution thumbnail. Trace the boundary between X and dot — that is the silhouette outline. Curved non-rectangular boundaries indicate non-geometric construction. The grid shape is often more informative than individual element properties.
+  5. Elements at 0px distance are touching or overlapping — they form continuous visual surfaces. This construction uses stacked shapes for shading, gradient simulation, or color regions rather than discrete separate parts. Read the stacking tree to see layering order.
+
+=== END ENRICHMENT ===
+
+--- STATS ---
+Characters: 4845
+Words: 677
+Lines: 80

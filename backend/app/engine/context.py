@@ -37,6 +37,10 @@ class SubPathData:
     bbox: tuple[float, float, float, float] = (0.0, 0.0, 0.0, 0.0)
     # All computed features go here (keyed by transform ID or feature name)
     features: dict[str, Any] = field(default_factory=dict)
+    # Original SVG tag text, e.g. '<circle cx="12" cy="12" r="10"/>'
+    source_tag: str = ""
+    # Character offsets (start, end) in svg_raw
+    source_span: tuple[int, int] = (0, 0)
 
     @property
     def centroid(self) -> tuple[float, float]:
@@ -74,7 +78,8 @@ class PipelineContext:
 
     # Raw SVG code
     svg_raw: str = ""
-    # Canvas dimensions from viewBox
+    # Canvas dimensions from viewBox.
+    # Default: 24×24 — standard Material Design icon grid (mdicons spec).
     canvas_width: float = 24.0
     canvas_height: float = 24.0
     # Parsed sub-paths / elements
@@ -120,6 +125,8 @@ class PipelineContext:
     # --- Pipeline metadata ---
     completed_transforms: set[str] = field(default_factory=set)
     errors: dict[str, str] = field(default_factory=dict)
+    # Optional callback for transforms to report sub-progress (0.0–1.0)
+    progress_callback: Any = None  # Callable[[float], None] | None
 
     @property
     def num_elements(self) -> int:

@@ -1,15 +1,20 @@
 """T3.09 — Repetition Detection. ★★
 
 Cluster elements by Hu moments to find repeated shapes.
+Threshold derived via Otsu's method on pairwise Hu-moment distances.
 """
 
 from __future__ import annotations
 
 import numpy as np
 from scipy.spatial.distance import cdist
+from skimage.filters import threshold_otsu
 
 from app.engine.context import PipelineContext
 from app.engine.registry import Layer, transform
+
+# Fallback threshold when Otsu cannot be computed (<2 elements).
+_HU_DIST_FALLBACK = 0.5
 
 
 @transform(
@@ -39,8 +44,15 @@ def repetition(ctx: PipelineContext) -> None:
     # Pairwise distance in Hu-moment space
     dists = cdist(moment_arr, moment_arr, metric="euclidean")
 
-    # Greedy clustering: elements with Hu distance < threshold are "same shape"
-    threshold = 0.5
+    # Otsu's method splits Hu-moment distances into "same"/"different" classes.
+    flat_dists = dists[np.triu_indices_from(dists, k=1)]
+    if len(flat_dists) >= 2:
+        try:
+            threshold = threshold_otsu(flat_dists)
+        except ValueError:
+            threshold = float(np.median(flat_dists))
+    else:
+        threshold = _HU_DIST_FALLBACK
     visited = set()
     groups: list[list[int]] = []
 

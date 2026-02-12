@@ -9,6 +9,13 @@ from app.engine.context import PipelineContext
 from app.engine.registry import Layer, transform
 from app.utils.rasterizer import region_density
 
+# ── Density classification thresholds ──
+# Based on thirds of fill range [0%, 100%]:
+#   Dense >70% (≈2/3 mark), Medium >30% (≈1/3 mark), Sparse >5% (noise floor).
+_DENSE_THRESHOLD = 70.0   # ≈ 2/3
+_MEDIUM_THRESHOLD = 30.0  # ≈ 1/3
+_SPARSE_THRESHOLD = 5.0   # noise floor: below = effectively empty
+
 
 @transform(
     id="T2.02",
@@ -35,11 +42,11 @@ def region_map(ctx: PipelineContext) -> None:
             c0, c1 = col * cell, (col + 1) * cell
             density = region_density(grid, r0, r1, c0, c1)
 
-            if density > 70:
+            if density > _DENSE_THRESHOLD:
                 label = "dense"
-            elif density > 30:
+            elif density > _MEDIUM_THRESHOLD:
                 label = "medium"
-            elif density > 5:
+            elif density > _SPARSE_THRESHOLD:
                 label = "sparse"
             else:
                 label = "empty"

@@ -11,6 +11,11 @@ from app.engine.context import PipelineContext
 from app.engine.registry import Layer, transform
 from app.utils.rasterizer import multi_element_grid, grid_fill_percentage
 
+# Multi-resolution grid: octave doubling (standard in image processing).
+_RES_COARSE = 4   # 2**2
+_RES_MEDIUM = 8   # 2**3
+_RES_FINE = 16     # 2**4
+
 
 @transform(
     id="T2.03",
@@ -23,7 +28,7 @@ def multi_resolution(ctx: PipelineContext) -> None:
     if not all_points:
         return
 
-    resolutions = {"coarse": 4, "medium": 8, "fine": 16}
+    resolutions = {"coarse": _RES_COARSE, "medium": _RES_MEDIUM, "fine": _RES_FINE}
     multi_res: dict[str, dict] = {}
 
     for name, res in resolutions.items():

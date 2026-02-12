@@ -1,0 +1,1312 @@
+
+================================================================
+  Smiley (5503ms)
+================================================================
+================================================================
+PIXEL SEGMENTATION RESULTS
+================================================================
+
+Resolution: 200x200
+Atomic segments: 5
+Felzenszwalb: scale=112.6, sigma=0.0000, min_size=115
+RAG thresholds (Jenks): [245.9, 256.6]
+RAG levels: 2 (data-determined)
+
+--- PRIMARY BOUNDARY ---
+Center: (0.49,0.49), radius=45% of canvas, 1 sub-centers
+
+--- BACKGROUND (1) ---
+  R1: 35.6%, color=rgb(0, 0, 0)
+
+--- LARGE REGIONS (2) ---
+  R2[#]: 60.8% at (0.50,0.50), ecc=0.073, sol=0.937, euler=-6, color=rgb(254, 214, 0), adj=[R3,R4,R5], contains=[R5,R3,R4], grid[0:7,0:15]
+  R5[@]: 1.4% at (0.50,0.71), ecc=0.963, sol=0.359, euler=-3, color=rgb(66, 63, 47), adj=[R2], inside=R2, grid[5:6,4:11]
+
+--- SMALL REGIONS (2) ---
+  R3[%]: 1.1% at (0.35,0.40), ecc=0.165, sol=0.996, color=rgb(58, 56, 49), adj=[R2], inside=R2, grid[2:3,4:6]
+  R4[&]: 1.1% at (0.65,0.40), ecc=0.165, sol=0.996, color=rgb(58, 56, 49), adj=[R2], inside=R2, grid[2:3,9:11]
+
+--- SYMMETRIC PAIRS ---
+  R3[%] <-> R4[&] (vertical, sim=1.0)
+
+--- MERGE TREE ---
+  scale 256.6: 1 merge(s) -> 4 regions
+    [R1+R4]
+
+--- SEGMENT MAP ---
+.................
+.....########....
+...############..
+..####%####&####.
+.###############.
+.###############.
+..#####@##@####..
+....##########...
+.................
+--- ENRICHMENT OUTPUT ---
+PIXEL DECOMPOSITION (data-derived):
+  4 foreground regions (64%), background 36%
+  Major (2):
+    R2[#] (0.50,0.50) 60.8% ecc=0.073 sol=0.937 holes=6 rgb(254, 214, 0)
+      grid[0:7,0:15] | touches R3[%],R4[&],R5[@] | contains R5[@],R3[%],R4[&]
+    R5[@] (0.50,0.71) 1.4% ecc=0.963 sol=0.359 holes=3 rgb(66, 63, 47)
+      grid[5:6,4:11] | touches R2[#] | inside R2[#]
+
+SYMMETRIC PAIRS:
+  R3[%] (0.35,0.40) <-> R4[&] (0.65,0.40) sim=1.0
+
+MERGE TREE:
+  scale 257: [R1+R4] -> 4 regions
+
+PRIMARY MASS: center=(0.49,0.49), inscribed_radius=45%, 1 sub-centers
+
+SEGMENT MAP (.=bg #=R2 %=R3 &=R4 @=R5):
+.................
+.....########....
+...############..
+..####%####&####.
+.###############.
+.###############.
+..#####@##@####..
+....##########...
+.................
+
+
+
+================================================================
+  Settings Gear (486ms)
+================================================================
+================================================================
+PIXEL SEGMENTATION RESULTS
+================================================================
+
+Resolution: 48x48
+Atomic segments: 3
+Felzenszwalb: scale=33.9, sigma=0.0000, min_size=48
+RAG thresholds (Jenks): [147.4]
+RAG levels: 1 (data-determined)
+
+--- PRIMARY BOUNDARY ---
+Center: (0.25,0.35), radius=13% of canvas, 11 sub-centers
+
+--- BACKGROUND (1) ---
+  R1: 51.6%, color=rgb(0, 0, 0)
+
+--- LARGE REGIONS (1) ---
+  R2[#]: 43.1% at (0.49,0.49), ecc=0.201, sol=0.758, euler=0, color=rgb(85, 85, 85), adj=[R3], contains=[R3], grid[0:3,0:7]
+
+--- SMALL REGIONS (1) ---
+  R3[@]: 5.4% at (0.49,0.49), ecc=0.0, sol=0.939, color=rgb(0, 0, 0), adj=[R2], inside=R2, grid[1:2,3:5]
+
+--- SYMMETRIC PAIRS ---
+  R2[#] <-> R3[@] (vertical, sim=1.0)
+
+--- MERGE TREE ---
+
+--- SEGMENT MAP ---
+........
+..#####.
+..#@@##.
+..#####.
+--- ENRICHMENT OUTPUT ---
+PIXEL DECOMPOSITION (data-derived):
+  2 foreground regions (48%), background 52%
+  Major (1):
+    R2[#] (0.49,0.49) 43.1% ecc=0.201 sol=0.758 holes=0 rgb(85, 85, 85)
+      grid[0:3,0:7] | touches R3[@] | contains R3[@]
+  Features (1):
+    R3[@] (0.49,0.49) 5.4% ecc=0.0 sol=0.939 rgb(0, 0, 0)
+      grid[1:2,3:5] | touches R2[#] | inside R2[#]
+
+SYMMETRIC PAIRS:
+  R2[#] (0.49,0.49) <-> R3[@] (0.49,0.49) sim=1.0
+
+PRIMARY MASS: center=(0.25,0.35), inscribed_radius=13%, 11 sub-centers
+
+SEGMENT MAP (.=bg #=R2 @=R3):
+........
+..#####.
+..#@@##.
+..#####.
+
+
+
+================================================================
+  Flink Squirrel (34107ms)
+================================================================
+================================================================
+PIXEL SEGMENTATION RESULTS
+================================================================
+
+Resolution: 518x518
+Atomic segments: 477
+Felzenszwalb: scale=15.0, sigma=0.0000, min_size=41
+RAG thresholds (Jenks): [170.6, 352.1]
+RAG levels: 2 (data-determined)
+
+--- PRIMARY BOUNDARY ---
+Center: (0.45,0.62), radius=37% of canvas, 33 sub-centers
+
+--- LARGE REGIONS (4) ---
+  R219[#]: 24.7% at (0.59,0.75), ecc=0.878, sol=0.727, euler=-4, color=rgb(229, 81, 111), adj=[R2,R209,R231,R263,R358,R361], grid[34:84,9:169]
+  R1[@]: 16.9% at (0.17,0.36), ecc=0.86, sol=0.241, euler=0, color=rgb(0, 0, 0), adj=[R2,R466,R476], grid[0:86,0:154]
+  R2[%]: 15.1% at (0.50,0.48), ecc=0.344, sol=0.193, euler=-9, color=rgb(18, 15, 16), adj=[R1,R3,R4,R5,R6,R7], contains=[R352,R149,R19,R373,R5,R9], grid[0:86,1:171]
+  R3[&]: 11.6% at (0.89,0.27), ecc=0.952, sol=0.402, color=rgb(0, 0, 0), adj=[R2], contains=[R95,R468,R475,R10,R6,R422], grid[0:86,90:172]
+
+--- SMALL REGIONS (473) ---
+  R352[*]: 1.1% at (0.21,0.60), ecc=0.97, sol=0.464, euler=0, color=rgb(190, 114, 240), adj=[R2,R324,R325,R345,R353,R365], inside=R2, contains=[R366,R353], grid[45:64,20:64]
+  R149[+]: 1.0% at (0.26,0.46), ecc=0.643, sol=0.521, color=rgb(190, 115, 239), adj=[R2,R125,R141,R155,R156,R161], inside=R2, contains=[R189,R156,R276,R176,R248,R161], grid[29:45,35:63]
+  R95[=]: 0.8% at (0.74,0.32), ecc=0.953, sol=0.734, euler=0, color=rgb(225, 80, 111), adj=[R2,R151], inside=R3, contains=[R99,R151,R157,R97,R107,R172], grid[22:33,108:142]
+  R468[-]: 0.7% at (0.91,0.86), ecc=0.836, sol=0.802, color=rgb(248, 160, 0), adj=[R2,R448,R453,R458,R463,R466], inside=R3, grid[70:77,147:168]
+  R19[~]: 0.6% at (0.48,0.15), ecc=0.991, sol=0.74, color=rgb(245, 231, 160), adj=[R2,R11,R14,R15,R21,R22], inside=R2, grid[11:14,61:102]
+  R373[:]: 0.6% at (0.25,0.63), ecc=0.981, sol=0.363, color=rgb(160, 99, 201), adj=[R2,R352,R369,R374,R377,R378], inside=R2, contains=[R378,R400,R404,R423,R428,R403], grid[49:65,23:66]
+  R475[;]: 0.5% at (0.89,0.93), ecc=0.849, sol=0.635, color=rgb(227, 81, 110), adj=[R2,R466,R474], inside=R3, grid[76:85,142:168]
+  R10[!]: 0.5% at (0.67,0.13), ecc=0.702, sol=0.771, euler=-3, color=rgb(245, 148, 17), adj=[R2,R6,R12,R17,R18,R27], inside=R3, contains=[R17], grid[7:14,104:123]
+  R5[?]: 0.5% at (0.52,0.06), ecc=0.97, sol=0.739, color=rgb(245, 208, 132), adj=[R2,R4,R7,R8,R9], inside=R2, grid[2:10,73:102]
+  R9[/]: 0.5% at (0.41,0.08), ecc=0.974, sol=0.523, color=rgb(245, 209, 133), adj=[R2,R5,R8,R11], inside=R2, grid[5:11,54:92]
+  R6[\]: 0.5% at (0.62,0.08), ecc=0.836, sol=0.748, color=rgb(246, 159, 1), adj=[R2,R4,R10], inside=R3, grid[2:10,96:118]
+  R422[|]: 0.5% at (0.71,0.82), ecc=0.952, sol=0.621, color=rgb(194, 67, 94), adj=[R2,R219], inside=R3, grid[62:75,113:131]
+  R104[<]: 0.4% at (0.44,0.37), ecc=0.969, sol=0.534, euler=0, color=rgb(227, 81, 112), adj=[R2,R100,R117,R129,R153,R185], inside=R2, contains=[R166,R237,R252], grid[23:39,67:82]
+  R378[>]: 0.4% at (0.28,0.63), ecc=0.991, sol=0.544, color=rgb(188, 113, 238), adj=[R2,R373,R377], inside=R373, contains=[R388,R390,R389,R396,R387,R383], grid[52:60,26:65]
+  R300[^]: 0.4% at (0.09,0.55), ecc=0.961, sol=0.742, euler=-2, color=rgb(161, 99, 202), adj=[R2,R264,R268,R290,R298,R311], inside=R2, grid[41:54,10:20]
+  R14[v]: 0.3% at (0.45,0.12), ecc=0.983, sol=0.604, color=rgb(254, 253, 251), adj=[R2,R11,R15,R19], inside=R2, contains=[R15], grid[8:12,62:98]
+  R324[X]: 0.3% at (0.25,0.54), ecc=0.991, sol=0.54, color=rgb(160, 99, 201), adj=[R2,R317,R325,R352], inside=R2, grid[43:52,25:57]
+  R381[O]: 0.3% at (0.76,0.70), ecc=0.949, sol=0.502, color=rgb(194, 67, 93), adj=[R2,R219,R384], inside=R3, contains=[R384], grid[54:62,121:144]
+  R311[Q]: 0.3% at (0.12,0.55), ecc=0.951, sol=0.824, color=rgb(189, 114, 240), adj=[R2,R298,R300,R314], inside=R2, grid[42:52,16:26]
+  R407[W]: 0.3% at (0.22,0.76), ecc=0.954, sol=0.36, color=rgb(226, 81, 113), adj=[R2,R408,R411,R412,R415,R416], inside=R2, contains=[R439,R443,R457,R411,R414,R446], grid[60:74,33:53]
+  R100[M]: 0.3% at (0.46,0.34), ecc=0.98, sol=0.56, euler=0, color=rgb(211, 81, 126), adj=[R2,R93,R104,R114,R134], inside=R2, contains=[R114,R153,R178,R115,R162,R167], grid[22:36,67:85]
+  R358[B]: 0.3% at (0.89,0.57), ecc=0.343, sol=0.645, euler=0, color=rgb(25, 20, 21), adj=[R219,R360,R361,R362], inside=R3, contains=[R362,R361,R360], grid[46:51,147:160]
+  R11[Z]: 0.2% at (0.37,0.12), ecc=0.978, sol=0.492, color=rgb(243, 229, 159), adj=[R2,R9,R14,R19], inside=R2, grid[7:12,54:86]
+  R138[S]: 0.2% at (0.35,0.39), ecc=0.968, sol=0.828, color=rgb(225, 180, 214), adj=[R2,R133,R144,R165,R173,R189], inside=R2, contains=[R144,R173,R165], grid[28:37,55:64]
+  R380[0]: 0.2% at (0.08,0.67), ecc=0.963, sol=0.943, color=rgb(187, 113, 237), adj=[R2,R376], inside=R2, grid[54:62,9:19]
+  R4[1]: 0.2% at (0.56,0.06), ecc=0.959, sol=0.719, color=rgb(243, 228, 156), adj=[R2,R5,R6], inside=R2, grid[1:10,89:103]
+  R319[2]: 0.2% at (0.07,0.58), ecc=0.992, sol=0.585, color=rgb(187, 112, 236), adj=[R2,R300], inside=R2, grid[43:57,7:19]
+  R425[3]: 0.2% at (0.26,0.75), ecc=0.929, sol=0.721, color=rgb(207, 99, 184), adj=[R2,R407,R409,R421,R424,R430], inside=R2, contains=[R430], grid[62:67,38:57]
+  R445[4]: 0.2% at (0.32,0.81), ecc=0.948, sol=0.849, color=rgb(195, 67, 94), adj=[R2,R219,R433,R439], inside=R2, grid[66:74,50:60]
+  R8[5]: 0.2% at (0.47,0.06), ecc=0.977, sol=0.682, color=rgb(244, 229, 157), adj=[R2,R5,R9], inside=R2, grid[4:8,70:92]
+  R463[6]: 0.2% at (0.91,0.82), ecc=0.94, sol=0.886, color=rgb(248, 181, 48), adj=[R448,R458,R461,R464,R468], inside=R3, contains=[R464], grid[68:72,151:164]
+  R473[7]: 0.2% at (0.92,0.90), ecc=0.984, sol=0.458, color=rgb(150, 64, 81), adj=[R2,R466,R472], inside=R3, grid[75:78,144:169]
+  R418[8]: 0.2% at (0.07,0.73), ecc=0.946, sol=0.884, color=rgb(209, 96, 171), adj=[R2,R401,R405,R427], inside=R2, grid[61:65,5:20]
+  R466[9]: 0.2% at (0.82,0.88), ecc=0.933, sol=0.391, euler=-1, color=rgb(28, 14, 16), adj=[R1,R2,R219,R447,R467,R468], inside=R3, contains=[R472,R474], grid[69:81,139:147]
+  R71[a]: 0.1% at (0.54,0.24), ecc=0.969, sol=0.63, color=rgb(243, 155, 25), adj=[R2,R57,R64,R66,R74,R75], inside=R2, contains=[R86], grid[19:22,83:102]
+  R250[b]: 0.1% at (0.19,0.46), ecc=0.953, sol=0.888, color=rgb(198, 121, 201), adj=[R2,R240,R320], inside=R2, grid[37:43,31:35]
+  R427[c]: 0.1% at (0.08,0.75), ecc=0.981, sol=0.853, euler=0, color=rgb(214, 93, 159), adj=[R2,R418,R434,R436,R441], inside=R2, contains=[R436], grid[63:66,6:21]
+  R15[d]: 0.1% at (0.50,0.11), ecc=0.991, sol=0.604, color=rgb(238, 226, 161), adj=[R2,R14,R19], inside=R14, grid[8:11,75:97]
+  R314[e]: 0.1% at (0.15,0.53), ecc=0.966, sol=0.801, color=rgb(187, 113, 237), adj=[R2,R265,R311,R316], inside=R2, contains=[R316], grid[42:48,22:29]
+  R363[f]: 0.1% at (0.47,0.56), ecc=0.996, sol=0.799, color=rgb(209, 148, 211), adj=[R2,R345,R349,R350,R357,R359], inside=R2, contains=[R364], grid[47:48,69:95]
+  R81[#]: 0.1% at (0.43,0.27), ecc=0.956, sol=0.77, color=rgb(240, 184, 145), adj=[R2,R62,R70,R73,R76,R77], inside=R2, contains=[R93], grid[20:25,68:80]
+  R36[@]: 0.1% at (0.46,0.20), ecc=0.995, sol=0.458, color=rgb(244, 192, 159), adj=[R2,R32,R39,R40,R41,R44], inside=R2, contains=[R44,R40,R41,R37], grid[15:17,66:95]
+  R450[%]: 0.1% at (0.23,0.81), ecc=0.972, sol=0.479, color=rgb(190, 75, 123), adj=[R2,R219,R425,R443,R446,R451], inside=R2, grid[67:75,38:45]
+  R27[&]: 0.1% at (0.68,0.17), ecc=0.96, sol=0.882, color=rgb(240, 130, 40), adj=[R2,R10,R18,R35,R42], inside=R3, grid[13:16,112:123]
+  R126[*]: 0.1% at (0.53,0.32), ecc=0.91, sol=0.726, color=rgb(224, 80, 110), adj=[R2,R110,R119,R132,R139,R143], inside=R2, grid[25:32,88:94]
+  R382[+]: 0.1% at (0.04,0.65), ecc=0.728, sol=0.965, color=rgb(190, 114, 230), adj=[R2,R379,R393], inside=R2, grid[54:57,4:10]
+  R22[=]: 0.1% at (0.56,0.17), ecc=0.996, sol=0.348, color=rgb(248, 185, 91), adj=[R2,R19,R21,R23,R28,R30], inside=R2, grid[12:15,82:108]
+  R185[-]: 0.1% at (0.43,0.41), ecc=0.975, sol=0.575, color=rgb(228, 120, 126), adj=[R2,R104,R153,R167,R178,R198], inside=R2, contains=[R198,R224,R230], grid[32:40,68:77]
+  R231[~]: 0.1% at (0.80,0.45), ecc=0.952, sol=0.658, color=rgb(188, 72, 96), adj=[R209,R219], inside=R3, grid[35:42,136:141]
+  R257[:]: 0.1% at (0.69,0.45), ecc=0.944, sol=0.922, color=rgb(236, 190, 175), adj=[R213,R214,R215,R217,R233,R244], inside=R3, grid[37:39,114:123]
+  R359[;]: 0.1% at (0.55,0.54), ecc=0.96, sol=0.899, color=rgb(205, 127, 171), adj=[R2,R342,R344,R357,R363,R364], inside=R2, grid[46:47,89:101]
+  R366[!]: 0.1% at (0.29,0.57), ecc=0.996, sol=0.541, euler=0, color=rgb(200, 140, 240), adj=[R2,R352,R365], inside=R352, grid[48:52,38:60]
+  R376[?]: 0.1% at (0.05,0.61), ecc=0.918, sol=0.91, color=rgb(196, 119, 205), adj=[R2,R367,R380], inside=R2, grid[50:54,6:13]
+  R432[/]: 0.1% at (0.19,0.77), ecc=0.892, sol=0.866, color=rgb(169, 84, 175), adj=[R407,R428,R429,R437,R455,R460], inside=R2, grid[64:68,30:35]
+  R433[\]: 0.1% at (0.32,0.78), ecc=0.719, sol=0.931, color=rgb(161, 53, 78), adj=[R2,R430,R439,R445], inside=R2, grid[64:68,51:57]
+  R447[|]: 0.1% at (0.88,0.80), ecc=0.972, sol=0.581, euler=0, color=rgb(31, 18, 18), adj=[R2,R219,R448,R466,R467], inside=R3, grid[66:71,144:159]
+  R467[<]: 0.1% at (0.85,0.84), ecc=0.915, sol=0.704, color=rgb(211, 130, 5), adj=[R2,R447,R448,R466,R468], inside=R3, grid[70:75,144:150]
+  R23[>]: 0.1% at (0.43,0.16), ecc=0.998, sol=0.433, color=rgb(245, 186, 99), adj=[R2,R19,R22,R26,R28,R30], inside=R2, contains=[R26,R24,R28], grid[13:15,62:89]
+  R50[^]: 0.1% at (0.59,0.21), ecc=0.986, sol=0.525, color=rgb(237, 145, 128), adj=[R36,R45,R47,R49,R53,R54], inside=R3, grid[17:20,92:109]
+  R55[v]: 0.1% at (0.59,0.22), ecc=0.885, sol=0.854, color=rgb(241, 175, 167), adj=[R50,R53,R57,R65,R66], inside=R3, grid[17:21,97:105]
+  R72[X]: 0.1% at (0.64,0.26), ecc=0.98, sol=0.718, color=rgb(233, 125, 124), adj=[R2,R50,R58,R65,R80,R83], inside=R3, grid[19:26,106:112]
+  R91[O]: 0.1% at (0.56,0.26), ecc=0.962, sol=0.713, color=rgb(236, 150, 43), adj=[R2,R66,R71,R94,R102], inside=R3, grid[21:23,90:102]
+  R114[Q]: 0.1% at (0.46,0.31), ecc=0.984, sol=0.86, euler=0, color=rgb(218, 147, 147), adj=[R81,R93,R100,R108,R115,R119], inside=R100, grid[24:29,73:84]
+  R119[W]: 0.1% at (0.49,0.31), ecc=0.795, sol=0.872, color=rgb(238, 160, 137), adj=[R101,R103,R106,R110,R114,R115], inside=R2, grid[25:28,80:88]
+  R175[M]: 0.1% at (0.21,0.38), ecc=0.722, sol=0.913, color=rgb(219, 137, 118), adj=[R2,R163,R170,R184,R203], inside=R2, grid[32:34,33:40]
+  R189[B]: 0.1% at (0.32,0.41), ecc=0.97, sol=0.779, color=rgb(199, 123, 209), adj=[R138,R149,R156,R173,R197,R226], inside=R149, grid[33:38,52:59]
+  R255[Z]: 0.1% at (0.38,0.46), ecc=0.865, sol=0.901, color=rgb(178, 106, 228), adj=[R2,R242,R246,R252,R254,R261], inside=R2, grid[37:41,63:67]
+  R377[S]: 0.1% at (0.40,0.60), ecc=0.95, sol=0.871, color=rgb(189, 114, 229), adj=[R2,R369,R370,R371,R373,R374], inside=R2, grid[51:53,64:74]
+  R388[0]: 0.1% at (0.31,0.66), ecc=0.978, sol=0.896, color=rgb(194, 117, 217), adj=[R2,R386,R387,R389], inside=R378, grid[55:57,46:59]
+  R400[1]: 0.1% at (0.27,0.69), ecc=0.992, sol=0.681, color=rgb(158, 91, 201), adj=[R2,R391,R392,R394,R395,R396], inside=R373, grid[58:61,39:56]
+  R405[2]: 0.1% at (0.07,0.71), ecc=0.939, sol=0.778, euler=0, color=rgb(198, 98, 185), adj=[R2,R398,R401,R418], inside=R2, grid[60:62,7:16]
+  R454[3]: 0.1% at (0.09,0.80), ecc=0.951, sol=0.755, color=rgb(222, 87, 135), adj=[R2,R219,R434,R449,R465], inside=R2, grid[67:70,10:21]
+  R13[4]: 0.1% at (0.75,0.13), ecc=0.993, sol=0.774, color=rgb(244, 159, 45), adj=[R2,R16,R20,R25,R29], inside=R3, grid[8:15,128:131]
+  R29[5]: 0.1% at (0.73,0.19), ecc=0.91, sol=0.847, color=rgb(199, 124, 77), adj=[R2,R13,R25], inside=R3, grid[14:19,125:129]
+  R32[6]: 0.1% at (0.43,0.18), ecc=0.999, sol=0.67, color=rgb(249, 162, 29), adj=[R2,R23,R30,R33,R34,R36], inside=R2, contains=[R33], grid[14:15,65:89]
+  R44[7]: 0.1% at (0.47,0.19), ecc=0.999, sol=0.877, color=rgb(249, 162, 22), adj=[R36,R41,R45], inside=R36, grid[16:16,70:94]
+  R73[8]: 0.1% at (0.44,0.24), ecc=0.974, sol=0.793, color=rgb(233, 120, 123), adj=[R2,R64,R70,R74,R77,R79], inside=R2, grid[19:22,71:82]
+  R85[9]: 0.1% at (0.49,0.27), ecc=0.973, sol=0.707, color=rgb(230, 103, 119), adj=[R2,R81,R82,R87,R98,R108], inside=R2, grid[21:24,78:89]
+  R102[a]: 0.1% at (0.57,0.27), ecc=0.962, sol=0.916, color=rgb(235, 149, 58), adj=[R2,R91,R94,R109], inside=R3, grid[23:24,94:103]
+  R133[b]: 0.1% at (0.38,0.35), ecc=0.986, sol=0.719, color=rgb(212, 132, 147), adj=[R2,R130,R138,R190], inside=R2, grid[27:33,63:66]
+  R141[c]: 0.1% at (0.32,0.34), ecc=0.779, sol=0.628, color=rgb(214, 133, 143), adj=[R2,R125,R135,R149], inside=R2, grid[28:31,49:57]
+  R156[d]: 0.1% at (0.32,0.38), ecc=0.964, sol=0.905, color=rgb(234, 203, 221), adj=[R2,R144,R149,R165,R173,R176], inside=R149, grid[30:34,51:60]
+  R209[e]: 0.1% at (0.81,0.45), ecc=0.99, sol=0.54, color=rgb(28, 17, 19), adj=[R2,R219,R231], inside=R3, grid[34:42,138:142]
+  R244[f]: 0.1% at (0.70,0.45), ecc=0.985, sol=0.458, color=rgb(217, 167, 170), adj=[R2,R233,R256,R257,R267,R274], inside=R3, grid[36:40,113:129]
+  R276[#]: 0.1% at (0.33,0.47), ecc=0.623, sol=0.912, color=rgb(196, 125, 243), adj=[R149,R269], inside=R149, grid[39:41,55:61]
+  R280[@]: 0.1% at (0.58,0.48), ecc=0.962, sol=0.885, color=rgb(212, 132, 151), adj=[R270,R279,R281,R305], inside=R3, grid[39:43,97:104]
+  R290[%]: 0.1% at (0.08,0.52), ecc=0.995, sol=0.467, color=rgb(188, 113, 236), adj=[R2,R268,R300], inside=R2, grid[40:51,12:16]
+  R305[&]: 0.1% at (0.58,0.50), ecc=0.993, sol=0.587, color=rgb(173, 103, 171), adj=[R277,R278,R279,R280,R281,R282], inside=R3, grid[41:44,93:111]
+  R308[*]: 0.1% at (0.40,0.50), ecc=0.955, sol=0.874, color=rgb(196, 119, 212), adj=[R2,R306,R307,R317,R332], inside=R2, grid[42:43,64:73]
+  R309[+]: 0.1% at (0.47,0.50), ecc=0.788, sol=0.784, color=rgb(201, 123, 191), adj=[R303,R307,R312,R334,R338,R340], inside=R2, grid[42:44,77:84]
+  R384[=]: 0.1% at (0.74,0.67), ecc=0.985, sol=0.429, color=rgb(25, 16, 18), adj=[R219,R381], inside=R381, grid[54:60,121:135]
+  R390[-]: 0.1% at (0.28,0.67), ecc=0.993, sol=0.834, color=rgb(192, 116, 227), adj=[R2,R389,R391,R397], inside=R378, grid[56:58,40:55]
+  R398[~]: 0.1% at (0.06,0.69), ecc=0.923, sol=0.889, color=rgb(197, 105, 207), adj=[R2,R393,R405], inside=R2, grid[58:60,5:14]
+  R448[:]: 0.1% at (0.91,0.79), ecc=0.983, sol=0.426, color=rgb(208, 146, 67), adj=[R2,R447,R453,R456,R461,R463], inside=R3, grid[66:70,150:166]
+  R456[;]: 0.1% at (0.93,0.80), ecc=0.934, sol=0.795, color=rgb(247, 182, 74), adj=[R448,R453,R458,R461], inside=R3, grid[68:70,155:164]
+  R21[!]: 0.1% at (0.59,0.16), ecc=0.861, sol=0.693, color=rgb(249, 189, 105), adj=[R2,R19,R22], inside=R3, grid[12:14,96:106]
+  R31[?]: 0.1% at (0.76,0.20), ecc=0.978, sol=0.864, color=rgb(224, 142, 49), adj=[R2,R38,R67,R68], inside=R3, contains=[R38], grid[14:19,128:133]
+  R47[/]: 0.1% at (0.60,0.20), ecc=0.991, sol=0.688, color=rgb(248, 160, 16), adj=[R2,R45,R46,R50,R54], inside=R3, grid[16:17,96:110]
+  R51[\]: 0.1% at (0.70,0.22), ecc=0.961, sol=0.818, color=rgb(228, 108, 69), adj=[R2,R18,R43], inside=R3, grid[17:21,118:123]
+  R53[|]: 0.1% at (0.55,0.21), ecc=0.903, sol=0.816, color=rgb(242, 182, 169), adj=[R49,R50,R55,R57], inside=R3, grid[17:19,90:99]
+  R57[<]: 0.1% at (0.53,0.22), ecc=0.995, sol=0.686, color=rgb(238, 157, 133), adj=[R36,R48,R49,R53,R55,R59], inside=R2, grid[17:19,83:98]
+  R62[>]: 0.1% at (0.42,0.23), ecc=0.942, sol=0.807, color=rgb(235, 128, 126), adj=[R52,R60,R61,R63,R64,R70], inside=R2, grid[19:21,68:76]
+  R64[^]: 0.1% at (0.50,0.23), ecc=0.999, sol=0.836, color=rgb(247, 159, 9), adj=[R57,R62,R63,R70,R71,R73], inside=R2, grid[19:19,76:96]
+  R94[v]: 0.1% at (0.60,0.28), ecc=0.988, sol=0.696, color=rgb(234, 128, 126), adj=[R65,R66,R83,R90,R91,R102], inside=R3, grid[22:28,102:105]
+  R110[X]: 0.1% at (0.52,0.30), ecc=0.863, sol=0.736, color=rgb(229, 88, 114), adj=[R2,R106,R119,R126,R132], inside=R2, grid[24:27,86:93]
+  R127[O]: 0.1% at (0.39,0.34), ecc=0.908, sol=0.421, color=rgb(202, 124, 144), adj=[R2,R117,R129,R130,R145,R153], inside=R2, contains=[R129,R145], grid[26:32,65:73]
+  R137[Q]: 0.1% at (0.61,0.35), ecc=0.991, sol=0.881, color=rgb(231, 149, 157), adj=[R2,R128,R159,R164,R171,R181], inside=R3, grid[27:33,102:110]
+  R176[W]: 0.1% at (0.29,0.40), ecc=0.977, sol=0.776, color=rgb(202, 126, 200), adj=[R2,R149,R156,R188,R192,R197], inside=R149, contains=[R226], grid[32:36,47:54]
+  R184[M]: 0.1% at (0.18,0.39), ecc=0.705, sol=0.905, color=rgb(179, 115, 112), adj=[R2,R170,R175,R203,R210,R223], inside=R2, grid[32:35,28:34]
+  R248[B]: 0.1% at (0.29,0.45), ecc=0.368, sol=0.804, color=rgb(203, 141, 244), adj=[R149,R189,R241,R285], inside=R149, grid[37:40,48:52]
+  R267[Z]: 0.1% at (0.71,0.47), ecc=0.925, sol=0.783, color=rgb(217, 136, 106), adj=[R2,R244,R292], inside=R3, grid[38:42,119:127]
+  R281[S]: 0.1% at (0.60,0.48), ecc=0.977, sol=0.736, color=rgb(214, 132, 146), adj=[R270,R280,R283,R305], inside=R3, grid[39:43,100:106]
+  R286[0]: 0.1% at (0.52,0.47), ecc=0.916, sol=0.825, color=rgb(204, 126, 169), adj=[R2,R282,R299,R301,R304,R305], inside=R2, grid[39:41,84:93]
+  R316[1]: 0.1% at (0.16,0.52), ecc=0.981, sol=0.816, color=rgb(160, 99, 201), adj=[R2,R265,R302,R314], inside=R314, grid[42:48,26:29]
+  R362[2]: 0.1% at (0.89,0.56), ecc=0.708, sol=1.0, color=rgb(220, 158, 164), adj=[R358,R360], inside=R358, grid[47:49,151:157]
+  R389[3]: 0.1% at (0.29,0.66), ecc=0.995, sol=0.809, color=rgb(191, 116, 221), adj=[R2,R387,R388,R390,R397], inside=R378, grid[56:58,43:56]
+  R396[4]: 0.1% at (0.23,0.68), ecc=0.986, sol=0.831, color=rgb(192, 113, 233), adj=[R2,R395,R399,R400,R404], inside=R378, grid[58:59,33:45]
+  R430[5]: 0.1% at (0.30,0.76), ecc=0.958, sol=0.637, color=rgb(174, 79, 147), adj=[R2,R421,R425,R431,R433,R439], inside=R425, contains=[R431], grid[64:66,46:57]
+  R434[6]: 0.1% at (0.11,0.78), ecc=0.978, sol=0.567, euler=0, color=rgb(181, 78, 122), adj=[R2,R427,R436,R438,R440,R441], inside=R2, contains=[R444,R441], grid[64:69,13:24]
+  R458[7]: 0.1% at (0.96,0.81), ecc=0.953, sol=0.878, color=rgb(254, 251, 246), adj=[R453,R456,R461,R463,R464,R468], inside=R3, grid[68:72,163:166]
+  R465[8]: 0.1% at (0.11,0.82), ecc=0.968, sol=0.736, color=rgb(221, 85, 129), adj=[R2,R219,R454,R470], inside=R2, grid[69:72,14:24]
+  R477[9]: 0.1% at (0.53,0.98), ecc=1.0, sol=1.0, color=rgb(37, 20, 24), adj=[R2,R219], inside=R2, grid[84:85,62:119]
+  R12[a]: 0.1% at (0.72,0.14), ecc=0.997, sol=0.383, color=rgb(226, 145, 127), adj=[R2,R10,R18,R78], inside=R3, grid[7:20,122:125]
+  R26[b]: 0.1% at (0.44,0.16), ecc=0.999, sol=0.756, color=rgb(250, 191, 106), adj=[R19,R23,R24], inside=R23, grid[13:14,66:87]
+  R30[c]: 0.1% at (0.44,0.17), ecc=0.999, sol=0.705, color=rgb(250, 163, 36), adj=[R22,R23,R28,R32,R33,R34], inside=R2, grid[14:15,66:87]
+  R34[d]: 0.1% at (0.55,0.18), ecc=0.993, sol=0.867, color=rgb(244, 185, 94), adj=[R2,R22,R30,R32,R33,R37], inside=R2, grid[15:15,87:102]
+  R39[e]: 0.1% at (0.40,0.20), ecc=0.959, sol=0.674, color=rgb(247, 160, 16), adj=[R2,R36,R48,R52,R56], inside=R2, grid[15:18,66:75]
+  R45[f]: 0.1% at (0.54,0.19), ecc=0.999, sol=0.654, color=rgb(248, 161, 20), adj=[R2,R36,R41,R44,R46,R47], inside=R2, grid[16:17,80:105]
+  R52[#]: 0.1% at (0.40,0.22), ecc=0.566, sol=0.616, color=rgb(235, 136, 126), adj=[R2,R39,R56,R59,R60,R62], inside=R2, grid[17:21,67:73]
+  R66[@]: 0.1% at (0.58,0.24), ecc=0.967, sol=0.766, color=rgb(236, 140, 129), adj=[R55,R57,R65,R71,R91,R94], inside=R3, grid[19:22,96:104]
+  R79[%]: 0.1% at (0.46,0.25), ecc=0.989, sol=0.661, color=rgb(231, 114, 122), adj=[R2,R73,R77,R81,R82], inside=R2, grid[20:23,74:84]
+  R88[&]: 0.1% at (0.70,0.26), ecc=0.945, sol=0.794, color=rgb(219, 96, 111), adj=[R2,R78,R97,R107], inside=R3, grid[21:24,117:123]
+  R93[*]: 0.1% at (0.41,0.27), ecc=0.971, sol=0.86, color=rgb(221, 166, 153), adj=[R2,R76,R81,R100,R114], inside=R81, grid[22:25,68:75]
+  R96[+]: 0.1% at (0.62,0.28), ecc=0.911, sol=0.93, color=rgb(240, 162, 164), adj=[R72,R90,R105], inside=R3, grid[22:26,106:110]
+  R105[=]: 0.1% at (0.62,0.30), ecc=0.917, sol=0.554, color=rgb(239, 157, 161), adj=[R72,R90,R94,R96,R111], inside=R3, grid[23:27,105:110]
+  R112[-]: 0.1% at (0.58,0.30), ecc=0.954, sol=0.699, color=rgb(227, 143, 80), adj=[R2,R94,R109,R116,R123], inside=R3, contains=[R116], grid[24:26,96:104]
+  R122[~]: 0.1% at (0.33,0.31), ecc=0.872, sol=0.954, color=rgb(226, 142, 97), adj=[R2,R113,R118,R125,R135], inside=R2, grid[25:27,53:60]
+  R125[:]: 0.1% at (0.29,0.34), ecc=0.857, sol=0.324, color=rgb(211, 132, 128), adj=[R2,R122,R135,R141,R149,R155], inside=R2, contains=[R155], grid[25:31,44:55]
+  R129[;]: 0.1% at (0.40,0.33), ecc=0.926, sol=0.746, color=rgb(222, 137, 116), adj=[R104,R117,R127,R145,R153], inside=R127, grid[26:29,65:73]
+  R130[!]: 0.1% at (0.38,0.36), ecc=0.993, sol=0.5, color=rgb(167, 99, 174), adj=[R2,R127,R133,R166,R190,R196], inside=R2, grid[26:35,65:67]
+  R132[?]: 0.1% at (0.50,0.32), ecc=0.913, sol=0.766, color=rgb(237, 151, 135), adj=[R110,R114,R119,R126,R134,R139], inside=R2, grid[27:29,82:90]
+  R134[/]: 0.1% at (0.49,0.35), ecc=0.966, sol=0.367, color=rgb(213, 120, 138), adj=[R2,R100,R114,R132,R139,R143], inside=R2, grid[27:34,78:86]
+  R142[\]: 0.1% at (0.59,0.33), ecc=0.897, sol=1.0, color=rgb(220, 137, 120), adj=[R2,R94,R120,R124,R136,R150], inside=R3, grid[28:29,98:104]
+  R161[|]: 0.1% at (0.27,0.36), ecc=0.902, sol=0.826, color=rgb(209, 129, 161), adj=[R2,R125,R149,R155,R180], inside=R149, grid[30:33,43:51]
+  R182[<]: 0.1% at (0.52,0.39), ecc=0.935, sol=0.895, color=rgb(231, 118, 123), adj=[R2,R168,R177,R199], inside=R2, grid[32:35,86:92]
+  R205[>]: 0.1% at (0.36,0.42), ecc=0.957, sol=0.89, color=rgb(196, 120, 217), adj=[R130,R138,R149,R190,R211,R245], inside=R2, contains=[R246], grid[34:38,60:65]
+  R222[^]: 0.1% at (0.65,0.42), ecc=0.925, sol=0.883, color=rgb(220, 138, 119), adj=[R202,R212,R221,R253,R256], inside=R3, grid[35:37,109:114]
+  R227[v]: 0.1% at (0.50,0.43), ecc=0.948, sol=0.807, color=rgb(223, 102, 116), adj=[R2,R199], inside=R2, grid[35:38,83:90]
+  R228[X]: 0.1% at (0.61,0.43), ecc=0.937, sol=0.724, color=rgb(216, 134, 134), adj=[R2,R202,R229,R238,R253,R271], inside=R3, grid[35:39,102:108]
+  R233[O]: 0.1% at (0.73,0.43), ecc=0.956, sol=0.775, color=rgb(233, 170, 134), adj=[R2,R200,R204,R207,R208,R217], inside=R3, grid[35:38,122:129]
+  R254[Q]: 0.1% at (0.36,0.46), ecc=0.937, sol=0.854, color=rgb(156, 90, 205), adj=[R2,R149,R205,R246,R255], inside=R2, grid[37:41,61:64]
+  R289[W]: 0.1% at (0.63,0.48), ecc=0.97, sol=0.825, color=rgb(216, 135, 135), adj=[R271,R274,R288,R291,R293,R305], inside=R3, grid[40:43,106:112]
+  R307[M]: 0.1% at (0.44,0.50), ecc=0.608, sol=0.7, color=rgb(199, 121, 198), adj=[R2,R303,R306,R308,R309,R332], inside=R2, grid[42:44,73:79]
+  R320[B]: 0.1% at (0.19,0.52), ecc=0.905, sol=0.947, color=rgb(187, 112, 237), adj=[R2,R250], inside=R2, grid[43:46,31:34]
+  R331[Z]: 0.1% at (0.41,0.52), ecc=0.807, sol=0.932, color=rgb(166, 104, 177), adj=[R306,R327,R330,R332,R348,R349], inside=R2, grid[43:45,69:74]
+  R344[S]: 0.1% at (0.58,0.53), ecc=0.995, sol=0.846, color=rgb(174, 110, 135), adj=[R2,R318,R321,R322,R323,R335], inside=R3, grid[45:46,94:108]
+  R354[0]: 0.1% at (0.46,0.54), ecc=0.809, sol=0.939, color=rgb(201, 122, 200), adj=[R338,R351,R355,R364], inside=R2, grid[45:47,77:83]
+  R361[1]: 0.1% at (0.88,0.57), ecc=0.956, sol=0.392, color=rgb(233, 211, 217), adj=[R219,R358], inside=R358, grid[47:51,148:158]
+  R370[2]: 0.1% at (0.40,0.58), ecc=0.789, sol=0.874, color=rgb(163, 102, 190), adj=[R2,R368,R369,R371,R377], inside=R2, grid[49:51,66:73]
+  R387[3]: 0.1% at (0.34,0.67), ecc=0.929, sol=0.734, color=rgb(161, 94, 199), adj=[R2,R383,R385,R386,R388,R389], inside=R378, grid[55:59,55:61]
+  R420[4]: 0.1% at (0.16,0.73), ecc=0.92, sol=0.754, color=rgb(207, 98, 175), adj=[R2,R410,R419,R426,R429,R435], inside=R2, grid[62:65,25:30]
+  R437[5]: 0.1% at (0.17,0.77), ecc=0.81, sol=0.803, color=rgb(220, 123, 177), adj=[R420,R429,R432,R435,R452,R459], inside=R2, contains=[R452], grid[65:69,27:30]
+  R439[6]: 0.1% at (0.27,0.77), ecc=0.951, sol=0.87, color=rgb(182, 80, 143), adj=[R219,R425,R430,R433,R443,R445], inside=R407, grid[65:67,42:52]
+  R442[7]: 0.1% at (0.07,0.78), ecc=0.984, sol=0.8, color=rgb(218, 89, 142), adj=[R2,R219,R434,R440,R449], inside=R2, grid[66:68,8:17]
+  R443[8]: 0.1% at (0.22,0.78), ecc=0.756, sol=0.76, color=rgb(214, 93, 158), adj=[R407,R425,R439,R446,R450,R457], inside=R407, grid[66:68,36:43]
+  R457[9]: 0.1% at (0.21,0.81), ecc=0.894, sol=0.893, color=rgb(219, 90, 145), adj=[R407,R443,R450,R469], inside=R407, grid[68:71,36:39]
+  R469[a]: 0.1% at (0.21,0.84), ecc=0.951, sol=0.795, color=rgb(220, 86, 132), adj=[R2,R407,R450,R457], inside=R2, grid[70:75,36:38]
+  R472[b]: 0.1% at (0.83,0.87), ecc=0.925, sol=0.845, color=rgb(134, 54, 71), adj=[R2,R466,R473], inside=R466, grid[73:76,141:146]
+  R18[c]: 0.0% at (0.71,0.20), ecc=0.997, sol=0.498, color=rgb(235, 125, 110), adj=[R2,R10,R12,R27,R35,R43], inside=R3, grid[10:20,121:123]
+  R20[d]: 0.0% at (0.74,0.14), ecc=0.912, sol=0.962, color=rgb(205, 128, 92), adj=[R2,R13,R16,R25], inside=R3, grid[11:13,126:128]
+  R33[e]: 0.0% at (0.47,0.17), ecc=0.999, sol=0.817, color=rgb(250, 162, 30), adj=[R30,R32,R34], inside=R32, grid[15:15,72:89]
+  R43[f]: 0.0% at (0.70,0.20), ecc=0.92, sol=0.656, color=rgb(233, 118, 58), adj=[R2,R18,R35,R51], inside=R3, grid[16:18,118:123]
+  R48[#]: 0.0% at (0.45,0.20), ecc=0.996, sol=0.735, color=rgb(240, 174, 133), adj=[R36,R39,R56,R57,R59], inside=R2, grid[17:18,71:84]
+  R49[@]: 0.0% at (0.52,0.20), ecc=0.943, sol=0.832, color=rgb(242, 186, 170), adj=[R36,R50,R53,R57], inside=R2, grid[17:18,85:93]
+  R58[%]: 0.0% at (0.63,0.22), ecc=0.956, sol=0.69, color=rgb(244, 156, 11), adj=[R2,R50,R54,R72,R80], inside=R3, grid[18:20,105:111]
+  R60[&]: 0.0% at (0.47,0.22), ecc=0.999, sol=0.824, color=rgb(249, 160, 3), adj=[R52,R57,R59,R61,R62], inside=R2, grid[18:19,72:89]
+  R65[*]: 0.0% at (0.61,0.24), ecc=0.305, sol=0.591, color=rgb(241, 168, 164), adj=[R50,R55,R66,R72,R83,R94], inside=R3, grid[19:22,101:108]
+  R67[+]: 0.0% at (0.74,0.24), ecc=0.972, sol=0.815, color=rgb(215, 136, 50), adj=[R2,R31,R68,R69,R84,R89], inside=R3, grid[19:22,123:130]
+  R69[=]: 0.0% at (0.77,0.24), ecc=0.886, sol=0.705, color=rgb(238, 153, 19), adj=[R2,R67,R68,R84,R89], inside=R3, contains=[R68], grid[19:21,127:134]
+  R70[-]: 0.0% at (0.43,0.24), ecc=0.988, sol=0.733, color=rgb(234, 124, 124), adj=[R62,R64,R73,R76,R81], inside=R2, grid[19:21,70:79]
+  R82[~]: 0.0% at (0.47,0.26), ecc=0.993, sol=0.697, color=rgb(231, 110, 121), adj=[R2,R79,R81,R85,R87], inside=R2, grid[20:23,76:86]
+  R84[:]: 0.0% at (0.74,0.26), ecc=0.941, sol=0.647, color=rgb(237, 151, 39), adj=[R2,R67,R68,R69,R89,R97], inside=R3, grid[21:23,124:132]
+  R87[;]: 0.0% at (0.47,0.26), ecc=0.991, sol=0.762, color=rgb(233, 108, 121), adj=[R2,R81,R82,R85], inside=R2, grid[21:23,77:87]
+  R92[!]: 0.0% at (0.34,0.28), ecc=0.811, sol=0.838, color=rgb(228, 144, 63), adj=[R2,R113,R118], inside=R2, grid[22:25,57:60]
+  R99[?]: 0.0% at (0.72,0.27), ecc=0.969, sol=0.8, color=rgb(232, 148, 54), adj=[R2,R67,R84,R97,R107], inside=R95, grid[22:25,119:129]
+  R101[/]: 0.0% at (0.50,0.28), ecc=0.988, sol=0.74, color=rgb(232, 98, 118), adj=[R2,R98,R103,R108,R115,R119], inside=R2, grid[23:25,82:90]
+  R103[\]: 0.0% at (0.51,0.28), ecc=0.985, sol=0.701, color=rgb(230, 95, 116), adj=[R2,R101,R106,R115,R119], inside=R2, grid[23:25,83:91]
+  R118[|]: 0.0% at (0.34,0.32), ecc=0.982, sol=0.812, color=rgb(221, 140, 71), adj=[R2,R92,R113,R122,R135], inside=R2, grid[25:30,57:60]
+  R135[<]: 0.0% at (0.32,0.32), ecc=0.817, sol=0.458, color=rgb(221, 139, 114), adj=[R2,R118,R122,R125,R141], inside=R2, grid[27:30,51:58]
+  R140[>]: 0.0% at (0.24,0.34), ecc=0.953, sol=0.847, color=rgb(227, 144, 66), adj=[R2,R147,R152], inside=R2, grid[28:30,37:45]
+  R143[^]: 0.0% at (0.51,0.34), ecc=0.965, sol=0.804, color=rgb(236, 141, 131), adj=[R126,R134,R139,R148], inside=R2, grid[28:30,84:92]
+  R147[v]: 0.0% at (0.20,0.36), ecc=0.944, sol=0.806, color=rgb(187, 120, 80), adj=[R2,R140,R152,R163,R170], inside=R2, grid[29:32,31:38]
+  R151[X]: 0.0% at (0.66,0.35), ecc=0.929, sol=0.761, color=rgb(174, 79, 153), adj=[R2,R95], inside=R95, grid[29:31,111:119]
+  R152[O]: 0.0% at (0.23,0.35), ecc=0.884, sol=0.885, color=rgb(227, 143, 83), adj=[R2,R140,R147,R163], inside=R149, grid[29:31,36:43]
+  R153[Q]: 0.0% at (0.43,0.37), ecc=0.964, sol=0.819, color=rgb(236, 141, 132), adj=[R104,R127,R129,R145,R162,R167], inside=R100, grid[29:33,72:76]
+  R154[W]: 0.0% at (0.52,0.35), ecc=0.979, sol=0.69, color=rgb(235, 134, 129), adj=[R126,R134,R148,R158,R160], inside=R2, grid[29:32,85:92]
+  R157[M]: 0.0% at (0.76,0.36), ecc=0.897, sol=0.757, color=rgb(174, 105, 136), adj=[R2,R169,R172,R194], inside=R95, grid[30:33,129:134]
+  R166[B]: 0.0% at (0.40,0.38), ecc=0.903, sol=0.933, color=rgb(193, 117, 174), adj=[R127,R130,R162,R167,R196,R198], inside=R104, grid[31:34,67:69]
+  R169[Z]: 0.0% at (0.76,0.39), ecc=0.944, sol=0.844, color=rgb(224, 142, 77), adj=[R2,R157,R172,R194], inside=R3, grid[31:35,129:133]
+  R178[S]: 0.0% at (0.42,0.38), ecc=0.791, sol=1.0, color=rgb(208, 128, 172), adj=[R153,R162,R167,R185], inside=R100, grid[32:33,70:74]
+  R180[0]: 0.0% at (0.25,0.39), ecc=0.94, sol=0.913, color=rgb(202, 124, 181), adj=[R2,R149,R161,R195], inside=R149, grid[32:34,40:46]
+  R181[1]: 0.0% at (0.57,0.38), ecc=0.938, sol=0.912, color=rgb(206, 127, 170), adj=[R2,R137,R171,R193], inside=R3, grid[32:33,96:102]
+  R188[2]: 0.0% at (0.26,0.42), ecc=0.992, sol=0.69, color=rgb(197, 120, 220), adj=[R149,R176,R192,R236,R251], inside=R149, contains=[R192,R236], grid[33:38,40:49]
+  R191[3]: 0.0% at (0.69,0.40), ecc=0.915, sol=0.862, color=rgb(170, 102, 150), adj=[R2,R186,R202,R207], inside=R3, grid[33:34,115:122]
+  R199[4]: 0.0% at (0.51,0.41), ecc=0.947, sol=0.848, color=rgb(231, 111, 121), adj=[R2,R182,R227], inside=R2, grid[34:36,85:91]
+  R201[5]: 0.0% at (0.56,0.40), ecc=0.943, sol=0.898, color=rgb(195, 119, 190), adj=[R2,R193], inside=R3, grid[34:36,92:99]
+  R202[6]: 0.0% at (0.65,0.40), ecc=0.996, sol=0.555, color=rgb(170, 102, 150), adj=[R2,R191,R207,R212,R213,R214], inside=R3, grid[34:35,105:122]
+  R210[7]: 0.0% at (0.17,0.41), ecc=0.805, sol=0.833, color=rgb(175, 112, 128), adj=[R2,R184,R235], inside=R2, grid[34:36,27:32]
+  R217[8]: 0.0% at (0.70,0.42), ecc=0.954, sol=0.874, color=rgb(225, 141, 102), adj=[R202,R215,R216,R218,R233,R257], inside=R3, grid[34:37,118:123]
+  R229[9]: 0.0% at (0.62,0.43), ecc=0.961, sol=0.876, color=rgb(218, 136, 130), adj=[R2,R202,R225,R228,R253], inside=R3, grid[35:39,104:108]
+  R241[a]: 0.0% at (0.29,0.43), ecc=0.721, sol=0.857, color=rgb(212, 160, 239), adj=[R149,R176,R189,R226,R248], inside=R149, grid[36:38,48:52]
+  R249[b]: 0.0% at (0.58,0.44), ecc=0.856, sol=0.928, color=rgb(212, 132, 145), adj=[R2,R243], inside=R3, grid[37:38,96:102]
+  R251[c]: 0.0% at (0.26,0.44), ecc=0.556, sol=0.913, color=rgb(201, 138, 242), adj=[R149,R188,R236,R266], inside=R149, grid[37:39,43:46]
+  R253[d]: 0.0% at (0.64,0.44), ecc=0.634, sol=0.836, color=rgb(222, 147, 139), adj=[R221,R222,R225,R228,R229,R256], inside=R3, grid[37:39,108:113]
+  R256[e]: 0.0% at (0.65,0.45), ecc=0.742, sol=0.677, color=rgb(228, 165, 153), adj=[R212,R213,R222,R244,R253,R257], inside=R3, grid[37:39,110:116]
+  R261[f]: 0.0% at (0.40,0.45), ecc=0.772, sol=0.953, color=rgb(190, 114, 240), adj=[R2,R185,R252,R255], inside=R2, grid[38:40,67:71]
+  R265[#]: 0.0% at (0.14,0.48), ecc=0.866, sol=0.592, color=rgb(190, 115, 224), adj=[R2,R259,R262,R273,R284,R302], inside=R2, contains=[R284], grid[38:43,22:26]
+  R268[@]: 0.0% at (0.08,0.47), ecc=0.948, sol=0.972, color=rgb(163, 102, 186), adj=[R2,R264,R290,R300], inside=R2, grid[38:42,13:15]
+  R270[%]: 0.0% at (0.57,0.45), ecc=0.996, sol=0.696, color=rgb(196, 120, 154), adj=[R2,R238,R243,R271,R277,R278], inside=R3, grid[38:39,92:104]
+  R273[&]: 0.0% at (0.16,0.47), ecc=0.708, sol=0.946, color=rgb(166, 104, 176), adj=[R2,R259,R265,R302], inside=R2, grid[39:41,26:29]
+  R274[*]: 0.0% at (0.65,0.46), ecc=0.981, sol=0.89, color=rgb(209, 146, 162), adj=[R244,R253,R256,R271,R289,R291], inside=R3, grid[39:40,108:116]
+  R282[+]: 0.0% at (0.54,0.47), ecc=0.95, sol=0.763, color=rgb(209, 128, 162), adj=[R2,R270,R277,R286,R305], inside=R3, grid[39:42,91:97]
+  R283[=]: 0.0% at (0.61,0.48), ecc=0.987, sol=0.76, color=rgb(215, 133, 143), adj=[R270,R271,R281,R287,R305], inside=R3, grid[39:43,102:108]
+  R293[-]: 0.0% at (0.65,0.49), ecc=0.988, sol=0.838, color=rgb(217, 135, 130), adj=[R2,R289,R291,R294], inside=R3, grid[40:44,109:115]
+  R295[~]: 0.0% at (0.68,0.48), ecc=0.934, sol=0.669, color=rgb(218, 136, 119), adj=[R2,R244,R292,R294,R296,R297], inside=R3, grid[40:43,115:119]
+  R298[:]: 0.0% at (0.10,0.48), ecc=0.699, sol=0.946, color=rgb(193, 116, 232), adj=[R2,R264,R272,R300,R311], inside=R2, grid[40:42,16:20]
+  R299[;]: 0.0% at (0.48,0.48), ecc=0.901, sol=0.828, color=rgb(164, 97, 183), adj=[R2,R286,R301,R303,R310], inside=R2, grid[40:42,80:87]
+  R301[!]: 0.0% at (0.51,0.48), ecc=0.832, sol=0.717, euler=0, color=rgb(170, 101, 181), adj=[R286,R299,R303,R304,R310,R313], inside=R2, grid[41:42,83:91]
+  R312[?]: 0.0% at (0.49,0.51), ecc=0.826, sol=0.678, color=rgb(203, 125, 184), adj=[R303,R309,R310,R338,R340,R341], inside=R2, grid[42:44,82:87]
+  R313[/]: 0.0% at (0.52,0.51), ecc=0.936, sol=0.754, color=rgb(206, 126, 175), adj=[R301,R310,R315,R342], inside=R2, grid[42:45,87:92]
+  R317[\]: 0.0% at (0.35,0.50), ecc=0.989, sol=0.626, color=rgb(184, 112, 218), adj=[R2,R306,R308,R324,R325,R326], inside=R2, grid[42:44,54:68]
+  R318[|]: 0.0% at (0.54,0.51), ecc=0.868, sol=0.73, color=rgb(207, 128, 169), adj=[R304,R305,R315,R321,R322,R342], inside=R3, grid[43:45,91:96]
+  R323[<]: 0.0% at (0.58,0.52), ecc=0.789, sol=0.711, color=rgb(209, 129, 158), adj=[R305,R322,R335,R336,R344], inside=R3, grid[43:45,98:103]
+  R325[>]: 0.0% at (0.34,0.52), ecc=0.889, sol=0.656, color=rgb(165, 102, 202), adj=[R317,R324,R326,R327,R345,R352], inside=R149, contains=[R326], grid[43:45,56:63]
+  R329[^]: 0.0% at (0.39,0.52), ecc=0.828, sol=0.941, color=rgb(165, 102, 185), adj=[R317,R327,R328,R330], inside=R2, grid[43:45,64:69]
+  R334[v]: 0.0% at (0.45,0.52), ecc=0.835, sol=0.917, color=rgb(168, 106, 168), adj=[R307,R309,R332,R338], inside=R2, grid[44:45,75:80]
+  R340[X]: 0.0% at (0.48,0.52), ecc=0.811, sol=0.825, color=rgb(171, 108, 160), adj=[R309,R310,R312,R338,R341], inside=R2, grid[44:45,81:86]
+  R342[O]: 0.0% at (0.53,0.53), ecc=0.95, sol=0.814, color=rgb(174, 110, 149), adj=[R310,R313,R315,R318,R341,R344], inside=R2, grid[44:46,88:94]
+  R345[Q]: 0.0% at (0.38,0.54), ecc=0.946, sol=0.443, color=rgb(195, 121, 229), adj=[R325,R327,R346,R347,R348,R349], inside=R2, contains=[R346,R347,R348], grid[45:47,62:73]
+  R355[W]: 0.0% at (0.48,0.54), ecc=0.835, sol=0.89, color=rgb(202, 124, 193), adj=[R338,R341,R354,R356,R364], inside=R2, grid[45:47,81:86]
+  R357[M]: 0.0% at (0.51,0.54), ecc=0.638, sol=0.719, color=rgb(202, 124, 181), adj=[R341,R342,R356,R359,R363,R364], inside=R2, grid[46:47,86:92]
+  R365[B]: 0.0% at (0.38,0.56), ecc=0.991, sol=0.851, color=rgb(204, 143, 234), adj=[R2,R345,R352,R363,R366], inside=R2, grid[47:48,60:69]
+  R379[Z]: 0.0% at (0.03,0.62), ecc=0.767, sol=0.805, color=rgb(187, 114, 207), adj=[R2,R375,R382], inside=R2, grid[52:54,4:8]
+  R383[S]: 0.0% at (0.36,0.65), ecc=0.977, sol=0.493, color=rgb(137, 75, 155), adj=[R2,R385,R387,R397], inside=R378, grid[54:59,58:65]
+  R391[0]: 0.0% at (0.26,0.67), ecc=0.997, sol=0.758, color=rgb(191, 115, 232), adj=[R2,R390,R392,R397,R400], inside=R378, grid[57:58,38:52]
+  R392[1]: 0.0% at (0.25,0.67), ecc=0.997, sol=0.753, color=rgb(190, 115, 235), adj=[R2,R391,R394,R400], inside=R378, grid[57:59,37:51]
+  R393[2]: 0.0% at (0.05,0.67), ecc=0.944, sol=0.788, color=rgb(192, 109, 224), adj=[R2,R382,R398], inside=R2, grid[57:59,5:12]
+  R399[3]: 0.0% at (0.21,0.69), ecc=0.97, sol=0.477, color=rgb(194, 109, 221), adj=[R2,R396,R403,R404,R406], inside=R378, grid[58:60,29:40]
+  R401[4]: 0.0% at (0.04,0.71), ecc=0.936, sol=0.797, color=rgb(194, 95, 176), adj=[R2,R405,R418], inside=R2, grid[59:62,4:9]
+  R404[5]: 0.0% at (0.22,0.70), ecc=0.99, sol=0.734, color=rgb(208, 135, 222), adj=[R396,R399,R400,R403,R406,R411], inside=R373, grid[59:61,33:44]
+  R423[6]: 0.0% at (0.21,0.73), ecc=0.811, sol=0.912, color=rgb(165, 87, 187), adj=[R2,R407,R411,R413,R414,R419], inside=R373, grid[62:63,32:38]
+  R428[7]: 0.0% at (0.20,0.74), ecc=0.798, sol=0.896, color=rgb(168, 87, 182), adj=[R407,R423,R426,R429,R432], inside=R373, grid[63:65,31:36]
+  R435[8]: 0.0% at (0.15,0.77), ecc=0.949, sol=0.938, color=rgb(211, 92, 154), adj=[R2,R420,R437,R452], inside=R2, grid[65:68,25:27]
+  R444[9]: 0.0% at (0.12,0.78), ecc=0.954, sol=0.843, euler=0, color=rgb(214, 88, 144), adj=[R2,R434,R441], inside=R434, grid[66:68,16:23]
+  R453[a]: 0.0% at (0.96,0.80), ecc=0.909, sol=0.584, color=rgb(244, 181, 95), adj=[R2,R448,R456,R458,R468], inside=R3, grid[67:70,163:168]
+  R455[b]: 0.0% at (0.19,0.83), ecc=0.887, sol=0.543, color=rgb(173, 81, 161), adj=[R2,R407,R432,R459,R460], inside=R2, grid[68:73,30:35]
+  R460[c]: 0.0% at (0.18,0.81), ecc=0.797, sol=0.913, color=rgb(171, 83, 169), adj=[R432,R437,R455,R459], inside=R2, grid[68:71,30:33]
+  R474[d]: 0.0% at (0.82,0.89), ecc=0.931, sol=0.875, color=rgb(194, 67, 93), adj=[R2,R466,R475], inside=R466, grid[75:79,140:143]
+  R17[e]: 0.0% at (0.64,0.12), ecc=0.97, sol=0.45, color=rgb(242, 150, 10), adj=[R2,R10], inside=R10, grid[9:12,106:116]
+  R24[f]: 0.0% at (0.43,0.15), ecc=0.999, sol=0.771, color=rgb(250, 192, 110), adj=[R19,R26], inside=R23, grid[13:13,67:80]
+  R35[#]: 0.0% at (0.70,0.18), ecc=0.897, sol=0.861, color=rgb(238, 124, 49), adj=[R2,R18,R27,R43], inside=R3, grid[15:16,118:123]
+  R38[@]: 0.0% at (0.77,0.21), ecc=0.979, sol=0.768, color=rgb(245, 158, 13), adj=[R2,R31,R68], inside=R31, grid[15:19,130:133]
+  R40[%]: 0.0% at (0.43,0.18), ecc=0.999, sol=0.75, color=rgb(249, 162, 26), adj=[R32,R36,R37,R41], inside=R36, grid[15:16,67:83]
+  R41[&]: 0.0% at (0.47,0.18), ecc=1.0, sol=0.368, color=rgb(247, 161, 24), adj=[R2,R34,R36,R37,R40,R44], inside=R36, grid[15:16,69:93]
+  R59[*]: 0.0% at (0.45,0.21), ecc=0.999, sol=0.8, color=rgb(249, 160, 5), adj=[R48,R52,R56,R57,R60], inside=R2, grid[18:18,70:86]
+  R80[+]: 0.0% at (0.65,0.25), ecc=0.969, sol=0.719, color=rgb(234, 149, 36), adj=[R2,R58,R72], inside=R3, grid[20:24,110:113]
+  R83[=]: 0.0% at (0.62,0.26), ecc=0.895, sol=0.899, color=rgb(240, 166, 165), adj=[R65,R72,R90,R94], inside=R3, grid[21:23,104:108]
+  R97[-]: 0.0% at (0.70,0.27), ecc=0.972, sol=0.558, color=rgb(217, 135, 77), adj=[R2,R67,R84,R88,R99,R107], inside=R95, grid[22:25,117:125]
+  R106[~]: 0.0% at (0.51,0.29), ecc=0.984, sol=0.726, color=rgb(230, 91, 115), adj=[R2,R103,R110,R119], inside=R2, grid[24:26,85:92]
+  R107[:]: 0.0% at (0.68,0.29), ecc=0.971, sol=0.776, euler=-3, color=rgb(200, 124, 89), adj=[R2,R88,R97,R99], inside=R95, grid[24:27,116:121]
+  R109[;]: 0.0% at (0.58,0.28), ecc=0.992, sol=0.863, color=rgb(232, 147, 68), adj=[R2,R94,R102,R112,R116], inside=R3, grid[24:24,96:104]
+  R115[!]: 0.0% at (0.47,0.30), ecc=0.93, sol=0.856, color=rgb(239, 168, 140), adj=[R98,R101,R103,R108,R114,R119], inside=R100, grid[24:26,78:84]
+  R117[?]: 0.0% at (0.39,0.30), ecc=0.745, sol=0.781, color=rgb(224, 139, 93), adj=[R2,R104,R127,R129], inside=R2, grid[25:27,65:70]
+  R123[/]: 0.0% at (0.59,0.31), ecc=0.975, sol=0.743, color=rgb(227, 143, 92), adj=[R2,R94,R112,R131], inside=R3, grid[25:26,98:104]
+  R136[\]: 0.0% at (0.59,0.32), ecc=0.962, sol=1.0, color=rgb(223, 140, 107), adj=[R2,R94,R131,R142], inside=R3, grid[27:28,98:104]
+  R139[|]: 0.0% at (0.51,0.33), ecc=0.976, sol=0.861, color=rgb(236, 146, 133), adj=[R126,R132,R134,R143], inside=R2, grid[28:29,84:91]
+  R144[<]: 0.0% at (0.35,0.35), ecc=0.832, sol=0.778, color=rgb(214, 135, 147), adj=[R2,R138,R156,R165], inside=R138, grid[29:31,58:62]
+  R145[>]: 0.0% at (0.41,0.34), ecc=0.773, sol=0.953, color=rgb(216, 135, 137), adj=[R127,R129,R153], inside=R127, grid[29:30,68:73]
+  R146[^]: 0.0% at (0.16,0.36), ecc=0.907, sol=0.919, color=rgb(219, 138, 96), adj=[R2,R174], inside=R2, grid[29:32,25:28]
+  R150[v]: 0.0% at (0.58,0.34), ecc=0.959, sol=0.989, color=rgb(216, 134, 133), adj=[R2,R120,R128,R142,R159], inside=R3, grid[29:30,98:104]
+  R155[X]: 0.0% at (0.29,0.35), ecc=0.958, sol=0.92, color=rgb(214, 133, 145), adj=[R2,R125,R149,R161], inside=R125, grid[29:30,46:53]
+  R158[O]: 0.0% at (0.52,0.37), ecc=0.987, sol=0.625, color=rgb(234, 129, 127), adj=[R2,R126,R134,R154,R160,R168], inside=R2, contains=[R160], grid[30:32,86:93]
+  R159[Q]: 0.0% at (0.58,0.35), ecc=0.959, sol=0.989, color=rgb(214, 133, 144), adj=[R2,R128,R137,R150,R164], inside=R3, grid[30:31,98:104]
+  R162[W]: 0.0% at (0.41,0.36), ecc=0.763, sol=0.948, color=rgb(211, 131, 156), adj=[R127,R153,R166,R167,R178], inside=R100, grid[30:32,69:74]
+  R163[M]: 0.0% at (0.22,0.36), ecc=0.913, sol=0.864, color=rgb(224, 141, 97), adj=[R2,R147,R152,R170,R175], inside=R149, grid[31:32,35:41]
+  R167[B]: 0.0% at (0.41,0.39), ecc=0.823, sol=0.469, color=rgb(204, 125, 182), adj=[R127,R153,R162,R166,R178,R185], inside=R100, grid[31:34,69:74]
+  R168[Z]: 0.0% at (0.52,0.38), ecc=0.966, sol=0.412, color=rgb(226, 122, 123), adj=[R2,R126,R134,R158,R177,R182], inside=R2, contains=[R177], grid[31:34,86:93]
+  R170[S]: 0.0% at (0.19,0.37), ecc=0.858, sol=0.888, color=rgb(185, 119, 97), adj=[R2,R147,R163,R175,R184], inside=R2, grid[31:33,30:35]
+  R171[0]: 0.0% at (0.58,0.37), ecc=0.955, sol=0.976, color=rgb(210, 130, 160), adj=[R2,R137,R164,R181], inside=R3, grid[31:32,97:103]
+  R172[1]: 0.0% at (0.75,0.38), ecc=0.705, sol=0.824, color=rgb(173, 104, 142), adj=[R2,R157,R169,R179,R194], inside=R95, grid[31:33,127:131]
+  R173[2]: 0.0% at (0.34,0.38), ecc=0.851, sol=0.899, color=rgb(208, 130, 174), adj=[R138,R156,R165,R189], inside=R138, grid[31:33,56:61]
+  R179[3]: 0.0% at (0.74,0.38), ecc=0.77, sol=0.885, color=rgb(174, 105, 144), adj=[R2,R172,R183,R194,R200], inside=R3, grid[32:34,125:129]
+  R183[4]: 0.0% at (0.72,0.39), ecc=0.776, sol=0.904, color=rgb(174, 105, 145), adj=[R2,R179,R186,R200,R204], inside=R3, grid[32:34,123:127]
+  R187[5]: 0.0% at (0.15,0.40), ecc=0.693, sol=0.83, color=rgb(212, 132, 137), adj=[R2,R174,R220], inside=R2, grid[33:35,24:27]
+  R195[6]: 0.0% at (0.23,0.41), ecc=0.981, sol=0.626, color=rgb(189, 115, 205), adj=[R2,R149,R180], inside=R149, grid[33:37,37:44]
+  R197[7]: 0.0% at (0.30,0.40), ecc=0.855, sol=0.89, color=rgb(228, 189, 227), adj=[R156,R176,R189,R226], inside=R149, grid[34:35,50:55]
+  R198[8]: 0.0% at (0.41,0.40), ecc=0.916, sol=0.868, color=rgb(202, 123, 194), adj=[R166,R167,R185,R196,R224], inside=R185, grid[34:35,69:74]
+  R200[9]: 0.0% at (0.74,0.41), ecc=0.841, sol=0.765, color=rgb(228, 144, 88), adj=[R2,R179,R183,R194,R204,R233], inside=R3, grid[34:36,125:130]
+  R203[a]: 0.0% at (0.20,0.40), ecc=0.896, sol=0.848, color=rgb(214, 133, 138), adj=[R2,R175,R184,R223], inside=R2, grid[34:35,32:37]
+  R206[b]: 0.0% at (0.39,0.41), ecc=0.689, sol=0.892, color=rgb(185, 111, 203), adj=[R130,R196,R211,R224,R230,R237], inside=R2, grid[34:36,65:69]
+  R212[c]: 0.0% at (0.66,0.42), ecc=0.963, sol=0.591, color=rgb(218, 136, 118), adj=[R202,R213,R221,R222,R256], inside=R3, grid[34:37,109:116]
+  R214[d]: 0.0% at (0.67,0.42), ecc=0.979, sol=0.853, color=rgb(223, 140, 111), adj=[R202,R213,R215,R257], inside=R3, grid[34:37,114:118]
+  R215[e]: 0.0% at (0.68,0.42), ecc=0.976, sol=0.679, color=rgb(224, 141, 109), adj=[R202,R214,R216,R217,R257], inside=R3, contains=[R216], grid[34:37,115:121]
+  R220[f]: 0.0% at (0.14,0.41), ecc=0.863, sol=0.64, color=rgb(189, 118, 142), adj=[R2,R187,R235,R239,R247,R259], inside=R2, grid[35:38,23:26]
+  R221[#]: 0.0% at (0.63,0.42), ecc=0.967, sol=0.831, color=rgb(217, 135, 125), adj=[R202,R212,R222,R225,R253], inside=R3, grid[35:37,107:111]
+  R226[@]: 0.0% at (0.30,0.42), ecc=0.793, sol=0.949, color=rgb(221, 175, 231), adj=[R176,R189,R197,R241], inside=R176, grid[35:36,49:53]
+  R232[%]: 0.0% at (0.11,0.43), ecc=0.84, sol=0.714, color=rgb(200, 123, 172), adj=[R2,R258], inside=R2, grid[35:38,16:20]
+  R237[&]: 0.0% at (0.41,0.43), ecc=0.938, sol=0.78, color=rgb(195, 118, 222), adj=[R185,R206,R230,R242,R252], inside=R104, grid[36:37,68:73]
+  R239[*]: 0.0% at (0.14,0.43), ecc=0.675, sol=0.968, color=rgb(204, 126, 174), adj=[R2,R220,R259,R262], inside=R2, grid[36:38,23:26]
+  R240[+]: 0.0% at (0.19,0.43), ecc=0.931, sol=0.919, color=rgb(206, 127, 163), adj=[R2,R234,R250], inside=R2, grid[36:37,31:36]
+  R243[=]: 0.0% at (0.58,0.44), ecc=0.879, sol=0.333, color=rgb(209, 129, 144), adj=[R2,R238,R249,R270,R271], inside=R3, grid[36:39,95:104]
+  R245[-]: 0.0% at (0.33,0.43), ecc=0.955, sol=0.837, color=rgb(210, 156, 239), adj=[R138,R149,R189,R205,R260], inside=R149, grid[36:38,54:60]
+  R258[~]: 0.0% at (0.10,0.45), ecc=0.735, sol=0.938, color=rgb(202, 123, 195), adj=[R2,R232,R264,R272], inside=R2, grid[37:39,16:20]
+  R259[:]: 0.0% at (0.16,0.45), ecc=0.55, sol=0.919, color=rgb(169, 106, 158), adj=[R2,R220,R239,R247,R262,R265], inside=R2, grid[37:39,26:29]
+  R260[;]: 0.0% at (0.33,0.45), ecc=0.929, sol=0.967, color=rgb(205, 147, 244), adj=[R149,R245,R269], inside=R149, grid[38:39,54:60]
+  R262[!]: 0.0% at (0.14,0.45), ecc=0.612, sol=0.888, color=rgb(199, 122, 195), adj=[R2,R239,R259,R265,R284], inside=R2, grid[38:40,22:26]
+  R264[?]: 0.0% at (0.10,0.47), ecc=0.621, sol=0.456, color=rgb(192, 117, 212), adj=[R2,R258,R268,R272,R298,R300], inside=R2, grid[38:42,15:19]
+  R266[/]: 0.0% at (0.26,0.46), ecc=0.833, sol=0.918, color=rgb(196, 125, 243), adj=[R149,R251,R275], inside=R149, grid[38:40,42:46]
+  R277[\]: 0.0% at (0.56,0.47), ecc=0.981, sol=0.864, color=rgb(210, 130, 159), adj=[R270,R278,R282,R305], inside=R3, grid[39:42,93:98]
+  R284[|]: 0.0% at (0.14,0.47), ecc=0.443, sol=0.947, color=rgb(197, 120, 215), adj=[R2,R262,R265], inside=R265, grid[39:41,22:25]
+  R285[<]: 0.0% at (0.30,0.47), ecc=0.864, sol=0.857, color=rgb(196, 126, 243), adj=[R149,R248], inside=R149, grid[39:41,48:53]
+  R287[>]: 0.0% at (0.62,0.48), ecc=0.994, sol=0.793, color=rgb(216, 134, 140), adj=[R271,R283,R288,R305], inside=R3, grid[39:43,104:109]
+  R288[^]: 0.0% at (0.62,0.48), ecc=0.994, sol=0.787, color=rgb(216, 134, 138), adj=[R271,R287,R289,R305], inside=R3, grid[39:43,105:110]
+  R291[v]: 0.0% at (0.65,0.50), ecc=0.98, sol=0.389, color=rgb(215, 134, 134), adj=[R2,R274,R289,R293,R294,R305], inside=R3, grid[40:45,108:113]
+  R292[X]: 0.0% at (0.69,0.48), ecc=0.897, sol=0.835, color=rgb(221, 139, 116), adj=[R2,R244,R267,R295], inside=R3, grid[40:42,117:120]
+  R294[O]: 0.0% at (0.66,0.48), ecc=0.916, sol=0.359, color=rgb(218, 138, 130), adj=[R2,R244,R274,R291,R293,R295], inside=R3, contains=[R296], grid[40:44,111:116]
+  R297[Q]: 0.0% at (0.67,0.48), ecc=0.976, sol=0.857, color=rgb(219, 137, 124), adj=[R2,R294,R295,R296], inside=R3, grid[40:43,113:117]
+  R302[W]: 0.0% at (0.16,0.49), ecc=0.817, sol=0.75, color=rgb(159, 99, 190), adj=[R2,R265,R273,R316], inside=R2, grid[41:44,26:28]
+  R303[M]: 0.0% at (0.46,0.49), ecc=0.984, sol=0.442, color=rgb(164, 97, 185), adj=[R2,R299,R301,R307,R309,R310], inside=R2, grid[41:43,74:87]
+  R310[B]: 0.0% at (0.50,0.50), ecc=0.945, sol=0.517, euler=0, color=rgb(204, 125, 179), adj=[R299,R301,R303,R312,R313,R340], inside=R2, grid[42:44,83:89]
+  R315[Z]: 0.0% at (0.53,0.51), ecc=0.926, sol=0.561, color=rgb(205, 126, 172), adj=[R301,R304,R305,R313,R318,R342], inside=R2, grid[42:45,89:93]
+  R322[S]: 0.0% at (0.57,0.51), ecc=0.91, sol=0.732, color=rgb(209, 129, 162), adj=[R305,R318,R321,R323,R344], inside=R3, grid[43:45,95:100]
+  R327[0]: 0.0% at (0.37,0.52), ecc=0.959, sol=0.427, color=rgb(165, 103, 192), adj=[R317,R325,R326,R328,R329,R330], inside=R2, contains=[R328,R330], grid[43:45,60:70]
+  R338[1]: 0.0% at (0.46,0.52), ecc=0.79, sol=0.485, color=rgb(175, 109, 170), adj=[R309,R312,R332,R334,R340,R341], inside=R2, grid[44:45,75:82]
+  R341[2]: 0.0% at (0.50,0.53), ecc=0.89, sol=0.598, color=rgb(175, 110, 159), adj=[R310,R312,R338,R340,R342,R355], inside=R2, grid[44:46,81:89]
+  R343[3]: 0.0% at (0.04,0.55), ecc=0.98, sol=0.762, color=rgb(211, 132, 121), adj=[R2,R367], inside=R2, grid[45:49,5:8]
+  R346[4]: 0.0% at (0.38,0.54), ecc=0.892, sol=0.894, euler=-1, color=rgb(194, 118, 226), adj=[R327,R345,R347], inside=R345, grid[45:47,64:68]
+  R347[5]: 0.0% at (0.40,0.54), ecc=0.918, sol=0.886, color=rgb(196, 119, 221), adj=[R327,R345,R346,R348], inside=R345, grid[45:47,66:71]
+  R348[6]: 0.0% at (0.41,0.54), ecc=0.915, sol=0.895, color=rgb(196, 119, 217), adj=[R327,R331,R345,R347,R349], inside=R345, grid[45:47,69:73]
+  R350[7]: 0.0% at (0.43,0.54), ecc=0.926, sol=0.893, color=rgb(198, 121, 210), adj=[R331,R338,R349,R351,R363,R364], inside=R2, grid[45:47,72:76]
+  R351[8]: 0.0% at (0.45,0.54), ecc=0.88, sol=0.857, color=rgb(199, 121, 206), adj=[R331,R332,R338,R350,R354,R364], inside=R2, grid[45:47,74:79]
+  R360[9]: 0.0% at (0.90,0.55), ecc=0.899, sol=0.681, color=rgb(236, 152, 27), adj=[R358,R362], inside=R358, grid[46:48,151:157]
+  R369[a]: 0.0% at (0.38,0.58), ecc=0.917, sol=0.609, color=rgb(156, 98, 188), adj=[R2,R368,R370,R373,R374,R377], inside=R2, grid[49:51,61:68]
+  R371[b]: 0.0% at (0.42,0.58), ecc=0.829, sol=0.893, color=rgb(165, 102, 184), adj=[R2,R368,R370,R372,R377], inside=R2, grid[49:51,71:75]
+  R372[c]: 0.0% at (0.44,0.58), ecc=0.929, sol=0.911, color=rgb(163, 102, 176), adj=[R2,R368,R371], inside=R2, grid[49:50,73:80]
+  R374[d]: 0.0% at (0.37,0.59), ecc=0.922, sol=0.901, color=rgb(162, 101, 197), adj=[R369,R373,R377], inside=R2, grid[49:51,62:66]
+  R385[e]: 0.0% at (0.34,0.64), ecc=0.965, sol=0.807, color=rgb(196, 120, 208), adj=[R2,R383,R386,R387], inside=R378, grid[55:56,54:61]
+  R386[f]: 0.0% at (0.33,0.65), ecc=0.977, sol=0.399, color=rgb(192, 116, 209), adj=[R2,R385,R387,R388], inside=R378, grid[55:57,51:61]
+  R394[#]: 0.0% at (0.25,0.68), ecc=0.999, sol=0.685, color=rgb(191, 115, 238), adj=[R2,R392,R395,R400], inside=R378, grid[57:59,36:48]
+  R395[@]: 0.0% at (0.24,0.68), ecc=0.998, sol=0.648, color=rgb(190, 115, 240), adj=[R2,R394,R396,R400], inside=R378, grid[57:59,35:47]
+  R397[%]: 0.0% at (0.32,0.68), ecc=0.954, sol=0.772, color=rgb(160, 94, 203), adj=[R2,R383,R387,R389,R390,R391], inside=R378, grid[58:59,51:58]
+  R403[&]: 0.0% at (0.20,0.69), ecc=0.966, sol=0.807, color=rgb(199, 110, 217), adj=[R2,R399,R404,R406], inside=R373, grid[59:60,31:38]
+  R406[*]: 0.0% at (0.18,0.70), ecc=0.884, sol=0.783, color=rgb(201, 106, 207), adj=[R2,R399,R403,R404,R410,R413], inside=R373, grid[60:61,29:35]
+  R409[+]: 0.0% at (0.33,0.72), ecc=0.964, sol=0.72, color=rgb(165, 89, 184), adj=[R2,R408,R412,R415,R417,R421], inside=R373, grid[60:63,56:58]
+  R410[=]: 0.0% at (0.17,0.71), ecc=0.786, sol=0.792, color=rgb(202, 102, 192), adj=[R2,R406,R413,R419,R420], inside=R373, grid[60:62,27:32]
+  R411[-]: 0.0% at (0.23,0.71), ecc=0.784, sol=0.504, color=rgb(154, 83, 178), adj=[R2,R400,R404,R407,R414,R423], inside=R407, grid[60:63,37:42]
+  R412[~]: 0.0% at (0.31,0.71), ecc=0.979, sol=0.8, color=rgb(196, 110, 223), adj=[R407,R408,R409,R415], inside=R373, grid[61:62,49:56]
+  R416[:]: 0.0% at (0.29,0.73), ecc=0.994, sol=0.621, color=rgb(200, 106, 209), adj=[R407,R417,R421], inside=R373, grid[61:63,46:56]
+  R417[;]: 0.0% at (0.30,0.72), ecc=0.995, sol=0.527, color=rgb(198, 107, 213), adj=[R407,R409,R415,R416,R421], inside=R373, grid[61:63,47:56]
+  R429[!]: 0.0% at (0.17,0.75), ecc=0.498, sol=0.901, color=rgb(220, 127, 186), adj=[R420,R426,R428,R432,R437], inside=R2, grid[63:65,27:31]
+  R431[?]: 0.0% at (0.31,0.75), ecc=0.932, sol=0.861, color=rgb(179, 84, 160), adj=[R425,R430], inside=R430, grid[64:65,50:55]
+  R449[/]: 0.0% at (0.08,0.79), ecc=0.99, sol=0.669, color=rgb(220, 88, 139), adj=[R2,R219,R434,R442,R454], inside=R2, grid[67:68,8:18]
+  R459[\]: 0.0% at (0.17,0.81), ecc=0.912, sol=0.9, color=rgb(216, 116, 162), adj=[R2,R437,R452,R455,R460], inside=R2, grid[68:71,27:30]
+  R471[|]: 0.0% at (0.15,0.84), ecc=0.988, sol=0.649, color=rgb(221, 84, 123), adj=[R2,R219,R470], inside=R2, grid[72:73,21:30]
+  R7[<]: 0.0% at (0.43,0.04), ecc=0.99, sol=0.842, color=rgb(215, 202, 139), adj=[R2,R5], inside=R2, grid[3:4,71:79]
+  R16[>]: 0.0% at (0.74,0.12), ecc=0.97, sol=0.812, color=rgb(199, 125, 102), adj=[R2,R13,R20], inside=R3, grid[8:11,127:129]
+  R25[^]: 0.0% at (0.74,0.17), ecc=0.438, sol=0.765, color=rgb(203, 127, 87), adj=[R2,R13,R20,R29], inside=R3, grid[13:15,126:129]
+  R28[v]: 0.0% at (0.43,0.17), ecc=0.999, sol=0.84, color=rgb(250, 165, 42), adj=[R22,R23,R30], inside=R23, grid[14:14,68:82]
+  R37[X]: 0.0% at (0.50,0.18), ecc=0.999, sol=0.728, color=rgb(244, 159, 26), adj=[R2,R32,R34,R40,R41], inside=R36, grid[15:16,78:92]
+  R42[O]: 0.0% at (0.67,0.19), ecc=0.567, sol=0.884, color=rgb(227, 119, 48), adj=[R2,R27], inside=R3, grid[15:17,114:117]
+  R46[Q]: 0.0% at (0.61,0.19), ecc=0.986, sol=0.849, color=rgb(236, 153, 21), adj=[R2,R45,R47], inside=R3, grid[16:16,101:108]
+  R54[W]: 0.0% at (0.61,0.20), ecc=0.993, sol=0.597, color=rgb(247, 159, 11), adj=[R2,R47,R50,R58], inside=R3, grid[17:18,102:110]
+  R56[M]: 0.0% at (0.43,0.21), ecc=0.998, sol=0.703, color=rgb(249, 161, 9), adj=[R39,R48,R52,R59], inside=R2, grid[17:18,69:81]
+  R61[B]: 0.0% at (0.48,0.22), ecc=1.0, sol=0.709, color=rgb(248, 160, 7), adj=[R57,R60,R62,R63], inside=R2, grid[18:19,74:91]
+  R63[Z]: 0.0% at (0.49,0.22), ecc=1.0, sol=0.707, color=rgb(248, 159, 8), adj=[R57,R61,R62,R64], inside=R2, grid[19:19,75:93]
+  R68[S]: 0.0% at (0.75,0.23), ecc=0.932, sol=0.81, color=rgb(244, 157, 13), adj=[R2,R31,R38,R67,R69,R84], inside=R69, grid[19:21,128:132]
+  R74[0]: 0.0% at (0.51,0.23), ecc=1.0, sol=0.681, color=rgb(241, 154, 13), adj=[R2,R64,R71,R73,R75], inside=R2, grid[19:20,80:95]
+  R75[1]: 0.0% at (0.52,0.23), ecc=1.0, sol=1.0, color=rgb(245, 157, 14), adj=[R2,R71,R74], inside=R2, grid[20:20,82:96]
+  R76[2]: 0.0% at (0.40,0.25), ecc=0.802, sol=0.875, color=rgb(242, 201, 150), adj=[R2,R52,R62,R70,R81,R93], inside=R2, grid[20:22,68:71]
+  R77[3]: 0.0% at (0.45,0.25), ecc=0.996, sol=0.761, color=rgb(233, 116, 123), adj=[R2,R73,R79,R81], inside=R2, grid[20:22,74:82]
+  R78[4]: 0.0% at (0.71,0.24), ecc=0.666, sol=0.964, color=rgb(228, 106, 119), adj=[R2,R12,R18,R88], inside=R3, grid[20:21,121:123]
+  R86[5]: 0.0% at (0.55,0.25), ecc=0.998, sol=0.805, color=rgb(241, 154, 31), adj=[R2,R71], inside=R71, grid[21:21,89:99]
+  R89[6]: 0.0% at (0.75,0.25), ecc=0.99, sol=0.845, color=rgb(241, 154, 31), adj=[R2,R67,R69,R84], inside=R3, grid[21:22,126:134]
+  R90[7]: 0.0% at (0.62,0.27), ecc=0.973, sol=0.82, color=rgb(240, 163, 163), adj=[R72,R83,R94,R96,R105], inside=R3, grid[21:24,105:109]
+  R98[8]: 0.0% at (0.49,0.27), ecc=0.994, sol=0.615, color=rgb(232, 101, 119), adj=[R2,R85,R101,R108,R115], inside=R2, grid[22:24,81:89]
+  R108[9]: 0.0% at (0.46,0.29), ecc=0.941, sol=0.738, color=rgb(239, 172, 141), adj=[R81,R85,R98,R101,R114,R115], inside=R100, grid[24:25,77:82]
+  R111[a]: 0.0% at (0.63,0.30), ecc=0.996, sol=0.716, color=rgb(239, 157, 161), adj=[R72,R94,R105,R120,R121], inside=R3, grid[24:28,105:111]
+  R113[b]: 0.0% at (0.34,0.29), ecc=0.917, sol=0.984, color=rgb(228, 144, 81), adj=[R2,R92,R118,R122], inside=R2, grid[24:25,56:60]
+  R116[c]: 0.0% at (0.58,0.29), ecc=0.996, sol=1.0, color=rgb(232, 147, 73), adj=[R2,R109,R112], inside=R112, grid[24:25,97:104]
+  R120[d]: 0.0% at (0.62,0.32), ecc=0.997, sol=0.478, color=rgb(239, 155, 160), adj=[R2,R72,R111,R121,R124,R128], inside=R3, grid[25:30,104:111]
+  R121[e]: 0.0% at (0.62,0.31), ecc=0.998, sol=0.828, color=rgb(240, 158, 163), adj=[R94,R111,R120,R124], inside=R3, grid[25:28,105:111]
+  R124[f]: 0.0% at (0.62,0.32), ecc=0.997, sol=0.631, color=rgb(239, 155, 161), adj=[R94,R120,R121,R142], inside=R3, grid[25:29,104:111]
+  R128[#]: 0.0% at (0.62,0.33), ecc=0.998, sol=0.61, color=rgb(237, 154, 160), adj=[R2,R120,R137,R150,R159], inside=R3, grid[26:31,103:111]
+  R131[@]: 0.0% at (0.59,0.31), ecc=0.989, sol=1.0, color=rgb(225, 142, 98), adj=[R2,R94,R123,R136], inside=R3, grid[26:27,98:104]
+  R148[%]: 0.0% at (0.51,0.35), ecc=0.995, sol=0.729, color=rgb(235, 137, 131), adj=[R126,R134,R143,R154], inside=R2, grid[29:31,85:92]
+  R160[&]: 0.0% at (0.52,0.36), ecc=0.994, sol=0.774, color=rgb(235, 132, 129), adj=[R154,R158], inside=R158, grid[30:32,86:92]
+  R164[*]: 0.0% at (0.58,0.36), ecc=0.984, sol=0.743, color=rgb(210, 130, 151), adj=[R2,R137,R159,R171], inside=R3, grid[31:31,97:103]
+  R165[+]: 0.0% at (0.34,0.36), ecc=0.894, sol=1.0, color=rgb(211, 132, 161), adj=[R138,R144,R156,R173], inside=R138, grid[31:32,57:61]
+  R174[=]: 0.0% at (0.15,0.38), ecc=0.596, sol=0.897, color=rgb(215, 135, 118), adj=[R2,R146,R187], inside=R2, grid[32:33,25:28]
+  R177[-]: 0.0% at (0.52,0.38), ecc=0.987, sol=0.798, color=rgb(234, 123, 126), adj=[R2,R168,R182], inside=R168, grid[32:33,86:92]
+  R186[~]: 0.0% at (0.71,0.39), ecc=0.753, sol=0.918, color=rgb(173, 104, 146), adj=[R2,R183,R191,R204,R207,R208], inside=R3, grid[33:34,121:124]
+  R190[:]: 0.0% at (0.37,0.39), ecc=0.693, sol=0.939, color=rgb(204, 125, 189), adj=[R130,R133,R138,R205], inside=R2, grid[33:34,62:66]
+  R192[;]: 0.0% at (0.27,0.41), ecc=0.966, sol=0.767, color=rgb(218, 167, 224), adj=[R149,R176,R188,R236], inside=R188, grid[33:36,45:49]
+  R193[!]: 0.0% at (0.57,0.39), ecc=0.964, sol=0.894, color=rgb(203, 125, 180), adj=[R2,R181,R201], inside=R3, grid[33:34,95:101]
+  R194[?]: 0.0% at (0.75,0.40), ecc=0.908, sol=0.727, color=rgb(228, 144, 84), adj=[R2,R157,R169,R172,R179,R200], inside=R3, grid[33:35,127:130]
+  R196[/]: 0.0% at (0.39,0.40), ecc=0.61, sol=0.847, color=rgb(188, 113, 191), adj=[R130,R166,R198,R206,R224], inside=R2, grid[33:35,66:69]
+  R204[\]: 0.0% at (0.73,0.41), ecc=0.949, sol=0.822, color=rgb(227, 143, 92), adj=[R183,R186,R200,R208,R233], inside=R3, grid[34:36,124:127]
+  R207[|]: 0.0% at (0.71,0.41), ecc=0.983, sol=0.803, color=rgb(225, 142, 97), adj=[R186,R191,R202,R208,R218,R233], inside=R3, grid[34:37,121:125]
+  R208[<]: 0.0% at (0.72,0.41), ecc=0.965, sol=0.847, color=rgb(227, 143, 95), adj=[R186,R204,R207,R233], inside=R3, grid[34:37,122:126]
+  R211[>]: 0.0% at (0.38,0.41), ecc=0.923, sol=0.873, color=rgb(159, 93, 195), adj=[R130,R205,R206,R242,R246], inside=R2, grid[34:36,63:66]
+  R213[^]: 0.0% at (0.67,0.42), ecc=0.989, sol=0.788, color=rgb(222, 139, 113), adj=[R202,R212,R214,R256,R257], inside=R3, grid[34:37,113:117]
+  R216[v]: 0.0% at (0.69,0.42), ecc=0.989, sol=0.8, color=rgb(224, 141, 105), adj=[R202,R215,R217], inside=R215, grid[34:37,117:121]
+  R218[X]: 0.0% at (0.71,0.42), ecc=0.987, sol=0.778, color=rgb(226, 142, 99), adj=[R202,R207,R217,R233], inside=R3, grid[34:37,120:124]
+  R223[O]: 0.0% at (0.20,0.41), ecc=0.947, sol=0.779, color=rgb(210, 130, 148), adj=[R2,R184,R203,R234], inside=R2, grid[35:36,32:36]
+  R224[Q]: 0.0% at (0.41,0.41), ecc=0.964, sol=0.896, color=rgb(199, 121, 205), adj=[R185,R196,R198,R206,R230], inside=R185, grid[35:36,69:74]
+  R225[W]: 0.0% at (0.62,0.42), ecc=0.966, sol=0.827, color=rgb(218, 136, 127), adj=[R202,R221,R229,R253], inside=R3, grid[35:37,106:110]
+  R230[M]: 0.0% at (0.41,0.42), ecc=0.965, sol=0.897, color=rgb(197, 120, 214), adj=[R185,R206,R224,R237], inside=R185, grid[35:36,68:73]
+  R234[B]: 0.0% at (0.20,0.42), ecc=0.97, sol=0.896, color=rgb(210, 130, 156), adj=[R2,R223,R240], inside=R2, grid[36:36,31:36]
+  R235[Z]: 0.0% at (0.17,0.42), ecc=0.908, sol=0.966, color=rgb(173, 110, 138), adj=[R2,R210,R220,R247], inside=R2, grid[36:37,26:30]
+  R236[S]: 0.0% at (0.26,0.43), ecc=0.73, sol=0.864, color=rgb(208, 149, 233), adj=[R149,R176,R188,R192,R251], inside=R188, grid[36:37,43:47]
+  R238[0]: 0.0% at (0.60,0.44), ecc=0.976, sol=0.653, color=rgb(214, 134, 137), adj=[R2,R228,R243,R270,R271], inside=R3, grid[36:39,102:105]
+  R242[1]: 0.0% at (0.38,0.43), ecc=0.706, sol=0.868, color=rgb(182, 108, 218), adj=[R206,R211,R237,R246,R252,R255], inside=R2, grid[36:37,64:68]
+  R246[2]: 0.0% at (0.37,0.43), ecc=0.766, sol=0.926, color=rgb(156, 90, 201), adj=[R205,R211,R242,R254,R255], inside=R205, grid[36:38,62:65]
+  R247[3]: 0.0% at (0.16,0.43), ecc=0.872, sol=0.924, color=rgb(171, 108, 147), adj=[R2,R220,R235,R259], inside=R2, grid[37:38,26:30]
+  R252[4]: 0.0% at (0.41,0.44), ecc=0.924, sol=0.904, color=rgb(193, 116, 233), adj=[R185,R237,R242,R255,R261], inside=R104, grid[37:38,67:72]
+  R263[5]: 0.0% at (0.85,0.47), ecc=0.982, sol=0.638, color=rgb(38, 21, 24), adj=[R219], inside=R3, grid[38:42,144:147]
+  R269[6]: 0.0% at (0.33,0.45), ecc=0.977, sol=0.907, color=rgb(202, 139, 244), adj=[R149,R260,R276], inside=R149, grid[38:39,54:59]
+  R271[7]: 0.0% at (0.61,0.46), ecc=0.91, sol=0.74, color=rgb(202, 125, 145), adj=[R228,R238,R243,R253,R270,R274], inside=R3, grid[39:40,103:108]
+  R272[8]: 0.0% at (0.10,0.46), ecc=0.824, sol=0.593, color=rgb(194, 118, 204), adj=[R2,R258,R264,R298], inside=R2, grid[39:41,16:20]
+  R275[9]: 0.0% at (0.26,0.47), ecc=0.939, sol=0.49, color=rgb(192, 117, 242), adj=[R149,R266], inside=R149, grid[39:40,42:47]
+  R278[a]: 0.0% at (0.56,0.48), ecc=0.992, sol=0.741, color=rgb(211, 130, 156), adj=[R270,R277,R279,R305], inside=R3, grid[39:42,95:99]
+  R279[b]: 0.0% at (0.57,0.48), ecc=0.995, sol=0.773, color=rgb(211, 131, 154), adj=[R270,R278,R280,R305], inside=R3, grid[39:43,96:100]
+  R296[c]: 0.0% at (0.66,0.49), ecc=0.992, sol=0.787, color=rgb(218, 136, 126), adj=[R2,R294,R295,R297], inside=R294, grid[40:44,112:116]
+  R304[d]: 0.0% at (0.53,0.49), ecc=0.823, sol=0.802, color=rgb(168, 99, 179), adj=[R286,R301,R305,R315,R318], inside=R3, grid[41:43,90:94]
+  R306[e]: 0.0% at (0.42,0.50), ecc=0.649, sol=0.496, color=rgb(195, 119, 202), adj=[R2,R307,R308,R317,R330,R331], inside=R2, grid[42:43,68:75]
+  R321[f]: 0.0% at (0.56,0.51), ecc=0.98, sol=0.82, color=rgb(209, 129, 165), adj=[R318,R322,R344], inside=R3, grid[43:45,94:97]
+  R326[#]: 0.0% at (0.35,0.52), ecc=0.909, sol=0.903, color=rgb(162, 101, 194), adj=[R317,R325,R327], inside=R325, grid[43:45,58:62]
+  R328[@]: 0.0% at (0.37,0.52), ecc=0.897, sol=0.89, color=rgb(163, 102, 189), adj=[R317,R327,R329], inside=R327, grid[43:45,62:66]
+  R330[%]: 0.0% at (0.40,0.52), ecc=0.935, sol=0.857, color=rgb(166, 103, 181), adj=[R306,R317,R327,R329,R331], inside=R327, grid[43:45,67:70]
+  R332[&]: 0.0% at (0.43,0.52), ecc=0.906, sol=0.867, color=rgb(167, 105, 173), adj=[R306,R307,R308,R331,R334,R338], inside=R2, grid[43:45,72:76]
+  R333[*]: 0.0% at (0.64,0.52), ecc=0.807, sol=0.862, color=rgb(214, 133, 138), adj=[R2,R291,R305,R337], inside=R3, grid[43:45,108:111]
+  R335[+]: 0.0% at (0.60,0.52), ecc=0.768, sol=0.474, color=rgb(210, 130, 153), adj=[R305,R323,R336,R337,R339,R344], inside=R3, grid[44:45,101:108]
+  R336[=]: 0.0% at (0.60,0.52), ecc=0.888, sol=0.865, color=rgb(213, 132, 150), adj=[R305,R323,R335,R339,R344], inside=R3, grid[44:45,102:106]
+  R337[-]: 0.0% at (0.63,0.52), ecc=0.926, sol=0.849, color=rgb(213, 133, 142), adj=[R2,R305,R333,R335,R339], inside=R3, grid[44:45,107:110]
+  R339[~]: 0.0% at (0.62,0.52), ecc=0.892, sol=0.857, color=rgb(212, 132, 145), adj=[R2,R335,R336,R337,R344], inside=R3, grid[44:45,105:109]
+  R349[:]: 0.0% at (0.42,0.54), ecc=0.955, sol=0.851, color=rgb(197, 120, 214), adj=[R331,R345,R348,R350,R363], inside=R2, grid[45:47,71:74]
+  R353[;]: 0.0% at (0.36,0.54), ecc=0.949, sol=0.879, color=rgb(193, 116, 234), adj=[R325,R345,R352], inside=R352, grid[45:47,60:64]
+  R356[!]: 0.0% at (0.50,0.54), ecc=0.939, sol=0.873, color=rgb(204, 125, 188), adj=[R341,R355,R357,R364], inside=R2, grid[46:47,84:88]
+  R364[?]: 0.0% at (0.48,0.55), ecc=1.0, sol=1.0, color=rgb(210, 145, 206), adj=[R350,R351,R354,R355,R356,R357], inside=R363, grid[47:47,75:91]
+  R367[/]: 0.0% at (0.04,0.58), ecc=0.688, sol=0.873, color=rgb(204, 126, 157), adj=[R2,R343,R376], inside=R2, grid[49:50,6:9]
+  R368[\]: 0.0% at (0.43,0.57), ecc=1.0, sol=0.677, color=rgb(30, 24, 32), adj=[R2,R369,R370,R371,R372], inside=R2, grid[49:49,66:81]
+  R375[|]: 0.0% at (0.03,0.60), ecc=0.942, sol=0.901, color=rgb(183, 112, 187), adj=[R2,R379], inside=R2, grid[50:53,4:6]
+  R402[<]: 0.0% at (0.88,0.69), ecc=0.98, sol=0.758, color=rgb(0, 0, 0), adj=[R2], inside=R3, grid[59:60,149:156]
+  R408[>]: 0.0% at (0.32,0.71), ecc=0.92, sol=0.871, color=rgb(194, 111, 228), adj=[R2,R407,R409,R412], inside=R373, grid[60:61,51:56]
+  R413[^]: 0.0% at (0.19,0.72), ecc=0.826, sol=0.84, color=rgb(214, 133, 207), adj=[R404,R406,R410,R414,R419,R423], inside=R373, grid[61:62,31:35]
+  R414[v]: 0.0% at (0.22,0.72), ecc=0.871, sol=0.849, color=rgb(165, 89, 193), adj=[R2,R404,R411,R413,R419,R423], inside=R407, grid[61:62,35:40]
+  R415[X]: 0.0% at (0.30,0.72), ecc=0.996, sol=0.72, color=rgb(198, 108, 217), adj=[R407,R409,R412,R417], inside=R373, grid[61:62,48:56]
+  R419[O]: 0.0% at (0.18,0.73), ecc=0.937, sol=0.566, color=rgb(213, 127, 199), adj=[R404,R410,R413,R414,R420,R423], inside=R373, grid[61:63,28:35]
+  R421[Q]: 0.0% at (0.30,0.73), ecc=0.997, sol=0.455, color=rgb(201, 105, 204), adj=[R407,R409,R416,R417,R424,R425], inside=R373, grid[62:64,45:56]
+  R424[W]: 0.0% at (0.29,0.73), ecc=0.998, sol=0.578, color=rgb(203, 104, 201), adj=[R407,R421,R425], inside=R373, grid[62:64,44:55]
+  R426[M]: 0.0% at (0.18,0.74), ecc=0.89, sol=0.845, color=rgb(218, 129, 194), adj=[R419,R420,R423,R428,R429], inside=R373, grid[63:64,28:32]
+  R436[B]: 0.0% at (0.06,0.76), ecc=0.99, sol=0.807, color=rgb(215, 91, 150), adj=[R2,R427,R434,R438], inside=R427, grid[65:66,7:15]
+  R438[Z]: 0.0% at (0.07,0.77), ecc=0.996, sol=0.705, color=rgb(217, 90, 148), adj=[R2,R434,R436,R440], inside=R2, grid[65:66,7:15]
+  R440[S]: 0.0% at (0.07,0.77), ecc=0.994, sol=0.771, color=rgb(219, 90, 147), adj=[R2,R434,R438,R442], inside=R2, grid[66:67,8:15]
+  R441[0]: 0.0% at (0.11,0.77), ecc=0.983, sol=0.753, color=rgb(216, 91, 151), adj=[R2,R427,R434,R444], inside=R434, grid[66:67,15:22]
+  R446[1]: 0.0% at (0.26,0.78), ecc=0.978, sol=0.815, color=rgb(183, 78, 138), adj=[R219,R425,R439,R443,R450,R451], inside=R407, grid[66:67,42:47]
+  R451[2]: 0.0% at (0.25,0.80), ecc=0.991, sol=0.514, color=rgb(198, 69, 98), adj=[R219,R446,R450], inside=R407, grid[67:70,40:47]
+  R452[3]: 0.0% at (0.17,0.79), ecc=0.736, sol=0.815, color=rgb(225, 123, 169), adj=[R2,R435,R437,R459], inside=R437, grid[67:68,27:30]
+  R461[4]: 0.0% at (0.92,0.80), ecc=0.996, sol=0.66, color=rgb(248, 182, 58), adj=[R448,R456,R458,R463,R464], inside=R3, grid[68:70,154:164]
+  R462[5]: 0.0% at (0.13,0.80), ecc=0.963, sol=0.87, color=rgb(178, 75, 114), adj=[R2,R434], inside=R2, grid[68:70,20:25]
+  R464[6]: 0.0% at (0.92,0.81), ecc=0.998, sol=0.595, color=rgb(249, 182, 53), adj=[R458,R461,R463], inside=R463, grid[69:70,154:164]
+  R470[7]: 0.0% at (0.13,0.83), ecc=0.993, sol=0.667, euler=0, color=rgb(223, 85, 128), adj=[R2,R219,R465,R471], inside=R2, grid[71:72,18:26]
+  R476[8]: 0.0% at (0.81,0.91), ecc=0.984, sol=0.71, color=rgb(15, 12, 13), adj=[R1,R2,R466], inside=R3, grid[77:80,138:142]
+
+--- MERGE TREE ---
+  scale 170.6: 11 merge(s) -> 14 regions
+    [R0+R1+R2+R208+R218+R230+R360+R367+R374+R378+R380+R381+R382+R384+R385+R386+R387+R388+R389+R390+R391+R392+R393+R394+R395+R396+R397+R398+R399+R400+R401+R402+R403+R404+R405+R406+R407+R408+R409+R410+R411+R412+R413+R414+R415+R416+R417+R418+R419+R420+R421+R422+R423+R424+R425+R426+R427+R428+R429+R430+R431+R432+R433+R434+R435+R436+R437+R438+R439+R440+R441+R442+R443+R444+R445+R446+R448+R449+R450+R451+R453+R454+R456+R458+R459+R461+R464+R465+R468+R469+R470+R471+R472+R475+R476]
+    [R3+R4+R6+R7+R8+R10+R13+R14+R18+R20+R21+R22+R23+R25+R27+R29+R31+R32+R33+R35+R36+R38+R39+R40+R43+R44+R45+R46+R47+R48+R49+R51+R52+R53+R54+R55+R56+R57+R58+R59+R60+R61+R62+R63+R64+R65+R69+R70+R71+R72+R73+R74+R75+R76+R78+R79+R80+R81+R82+R84+R85+R86+R89+R90+R91+R92+R93+R95+R97+R99+R100+R101+R102+R103+R104+R105+R107+R108+R109+R110+R111+R112+R113+R114+R115+R116+R117+R118+R119+R120+R121+R122+R123+R124+R125+R126+R127+R128+R129+R130+R131+R132+R133+R134+R135+R136+R137+R138+R140+R141+R142+R143+R144+R147+R148+R149+R152+R153+R154+R155+R157+R158+R159+R160+R161+R163+R164+R165+R166+R167+R170+R172+R175+R176+R177+R179+R180+R181+R184+R187+R188+R189+R191+R192+R194+R195+R196+R197+R198+R200+R204+R205+R210+R223+R225+R226+R229+R235+R236+R240+R241+R244+R245+R247+R250+R251+R253+R254+R259+R260+R265+R268+R274+R275+R284]
+    [R5+R9+R11+R16+R17+R26+R30+R34+R37+R41+R42+R50+R66+R67+R68+R77+R83+R87+R88+R96+R98+R106]
+    [R12+R15+R19+R24+R28]
+    [R94+R150]
+    [R139+R145+R146+R151+R162+R169+R173+R174+R183+R186+R202+R209+R219+R222+R231+R233+R234+R238+R239+R246+R249+R257+R258+R261+R263+R264+R267+R271+R272+R283+R289+R297+R299+R301+R310+R313+R315+R318+R319]
+  scale 352.1: 1 merge(s) -> 1 regions
+    [R0+R1+R2+R3+R4+R5+R6+R7+R8+R9+R10+R11+R12+R13]
+
+--- SEGMENT MAP ---
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%%%%%%11%%%%%%%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%???????????????%%1111111\\\%%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%%%%%%%5????????????1111111\\\%\\%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%/555555555555555??????????111111\\\\\\%\\%%%%%%%%&%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%////////////////5555555?????????11111\\\\\\\\\\\%%%%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%/////////////////////////555????????1111\\\\\\\\\\\\\%\%%%%%%%&&&&&%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%////////////ZZZ%%%%%%%%%%%%%////5????????11\\\\\\\\\\\\\\\%!!!a%%%&&%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%///////ZZZZZZ%vvvvvvddddddddddd%%%%%%%%??????1\\\\\\\\\\!!!!!!!!!!a%%%%%>4%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%////ZZZZZZZZZvvvvvvvvvvvvvvvvdddddddddd%%%%%%%?1%!!!!!!!!ee!!!!!!!!!!a%%%>44%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%/ZZZZZZZZZZvvvvvvvvvvvvvvvvvvvvvv~~vvvvvdddd%%%%%%%!%ee!!!!!!!!!!!!!!!a%%>>44%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%ZZZZ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%%%%%%e%!%!!!!!!!!!!!!a%%dd4%%%&%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~!!%%%%%%!%!!!!!!!!!!!!%%%dd4%%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%~>>>>>>>>>>>>>>>bbbbbbbb~~~~~~~~~~~~!!!!!!%%%%%%!!!!!!&&&&&&%%^^^4%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%666666eeeeeeeeeeeeccccddddddd=============%%%%%&&&&&&&&&&#%%5555%%?%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%e@%&&&&&&&&&&&&&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%%OOOO%####f%%555%%??%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%eeee#@@@@@@@@@@@@@@@@@@@@^^^^^^///////////%%%%%%O%ffff\f%%555%??@%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%@@@@@@@@%%##MMMMMMMMM######<<<@@@@|||||||vv^^^^%%%%%%%%%%%%%%%%\\c%%55%%??@%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%@@@@@@%%%######BBBBBBBBBBBBBBBBBBZ<<<<vvvvvvv^^^^%%%%%%%%%%%%\\cc%%%%%??@@%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%@@@@%%%#>>>>>>----88%111111111111111a@@@vvvv**^X^%%%%%%%%%\\\cc%%%%++SS%==%%%%&&&%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%@@@%%%%#2>---8888833%%%%%%%aaaaaaaaaaaaa@@****=XXX++%%%%%%\%%44%%%++SS====%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%!%%%%%%%%*2###833%%%%~~~;;;;9%%%%OOOOOOOOOa@@v*==7XXX+%%%%%%%&&&%%++666666%%%%%%%%=%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%!%%%%%%%%***######~;;;;9999988/%%%%OOOOOOOOOvvv77++XX+%%%%%%&&&--??????%%%%%%======%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%!!!%%%%%%%<MM***######9988////\\\~%%%%aaaaaaaavv++++=XX%%%%%&::-???%%%%%%%%%=======%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%bbbb%%%%%%?<<MMMQQQ##9999!!\\~~~XXXX%%%%-cccccc-v++===XX%%%%%:-%%%%%%=%%%%=========%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%:~~~~|%%%%%???<<<MMMMQQQQ!!WWWWWXXXXX**%%%%-------v+==aed%%%%%:%%%%====%%%==========%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%%%:~~~~~|%%%%%!O;;;<<<<MMMMQQQQWWWWWW?******%%%%@@@@@@v=aef#%%%%%:%%=====%%======%=====%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%@@@@@%%%%%%%%%%%%%%%:<<<<<<||%%%%bb!O;;;<<<<<MMMM/QQ???????|****%%%%\\\\\\vefdQ%%%%%%============%%======%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%@%%%%%%%%>>>>%%%%%::::::cc<|%%%SSSb!OO;;;;<<<<<MMMM///||||^^^***%%%%\\\\\\fd#Q%%%%%%==========%%%======%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@%^^%%%%%%%vvOOOOO%%%%:XXXXX++cc<%%<<SSSbb!OO>>>Q<<<<<<MMMM//^^^%%WW**%%%%vvvvv##QQ%%%%%%XXXX===%%%%======%%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@%^^^%%%%vvvvMMOOM%%%:|||||++++c%%d<<<SSSbb!OOWWWWQ<<<<<MMMM//WWWW&&O*%%%%QQQQQQQQ%%%%%%XX===%%%%======%%%%MMM%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@%%%==%%%vSSSMMMMM%%%%||||++++++Wddd222SSSSbb!BBWWWWQQ<<<<<<MMM/OOOOZZZ%%%%%00000QQ%%%%%%%%%%%======%%%%%%111MMZ%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@%%%%===%%MMMMMMMMM%%%0000+++++WWddd2222SSSSbb!!BBSSSSSQQ<<<<<MMM/Z---<<<%%%%11111Q%%%%%%%=====%%%%%%%%~4433311ZZ%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@%%%%%%55%%MMMMMMMMMM%%006++++2WWWdddBBBSSSSS:::!///BBBBB---<<<<MMM%Z<<<<<%%%%!!!!%%%%%%%%%%%%%%%%333333~~~443?ZZZ%%%%&&&%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@%%%%%%%fff%7777Maaaaa%%66++++2;WW7777BBBSSSSSS>>>>bb/88888--%<<<<MMM%<4444%%%%555%%%%%%%%6###^^cc^deev88X|<<\999??%%%%&%%%%##e%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@%%%%%%%%%fff77777BBBBB%%6++++2;;WW@@@@BBBSSSSSS>>>>bbbMMMMM---%<<<<M%%%44vv%%%5%%%%%%%%%%X99WW#^^^cc^deev88X|<<\9OO%%%&%%%%###~e##%%&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@%%%%%%%%%%**f3333%++++%%6+++22SSS++aaaaBBSSSSSS>>22111&&&&&--%%<<<<<%%%vvvv%%%%%%%%%%%%=00XX99WW#^^^cc^deev88X|OOOO%%%&%%%###~~ee###%%%%%%%&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@%%%%%~~~%%%***::::%bbbbb%++++++cccc++BBBBBB;;;;;+>Q22ZZZ4444-%%%%<<%%%%%v%%%%%%%%%%%%%bbbb=00XX99dddeee::::::::OOOff%%%%%%%###~~~e########%%%%%%%%&&&&&&&&&&&&&&&
+@@@@@%@@@@@%%%%@~~~~%%%!!!::::%bbbb%%++++++///c++BBBB++66666++QQZZZZfff%%%%<<%%%%%%%%%%%%%%%%%%%%%%%%%%%%XXXddddeee::::::ffffZ%%%%%%%%%##~~~e######5#######%%%%%%&&&&&&&&&&&&
+@@@@@%@@@@%%%%@@????%%%|||&&&%%bbbb%+++++++99//++<<<<++#####++QQZZZZf%%%%%%%%%%%%%%%%%%%%%00++\\ab@@@SS==>^WW*******ffffZZZZZ%%%%####%%##~~e#######5##########%%%%%&&&&&&&&&&
+@@@@@%@@@%%%%%@@::::%%%|||&&&%%bbbb%+++++++++++++++<<<++#####++QZZ%%%%%%%%%%%%%%%%%;;;0000000+++\ab@@@SS==>^WW--OcQQ~~XXZZZ%%%%###########~e######5#############%%%%&&&&&&&&&
+@@@@%%@%%%%%^%@@::::%%%###WWW%%bbb%%+++++++++++++++++++++++++%%%%%%%%%%%%eMMMMMMMM;;;;;!!!!dd&&++\ab@@@SS==>^WWv-OcQQ~~XX%%%%###############e####5################%%%&&&&&&&&
+@@@@%%%%%%^^^%^^QQQQQ%%eeee11%%bbb%%++++++++++++++++++%%%%%%%%\\*********eeMMMM++++???MB//ZZ|&&&&&&&&@@@SS==>^WWv-OcQQ~%%%%########################################%%%&&&&&&&
+@@@@%%%%%%2^^%^^QQQQQ%%eeee11%%%BB%%++++++++++%%%%%%%XXX>>>##00@@^^^%%ZZZ&&vv+++++++????B//ZZ|||fSS<<+++++++-**vvv-O%%%%%###########################################%%%&&&&&&
+@@@@%%%%%22^^%^^^QQQQ%%%eee11%%%BB%%+++%%%%%%%XXXXXXXXXXX>>>##00@@^^^%%ZZZ&&vvvv11XXXX222OOZZZ|||fSS<<<+==~~--**v%%%%%%##############################################%%%&&&&&
+@@@@%%%%222^^%^^^QQQQQ%%eeee1%%%B%%%%%%%%XXXXXXXXXXXX********;;QQ4455566:778880000WWW!!MMMMMMOOSSSSSSSSSSSS%%%%%%%%%#####################################BBB##########%%&&&&&
+@@@@%%3%%222^%^^^^QQQQQ%%eee1%%%%%%%%XXXXXXX******************;;QQ4455566:778880000WWW!!MMM;;;;;;;;;;;%%%%%%%%%%%#####################################BBB999BBB#######%%%&&&&
+@@@%%%33%222^^%^^^^QQQQQQ%eee1%%%XXXXXX**********************BBBBBBBBBffffffffffffffffffffff%%%%%%%%%%%%%%%#########################################B1BB22229BBB######%%%&&&&
+@@@%%%33%%222^^^^^^QQQQQQQQ%%%%XXXX****************!!!!!%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%################################################B11B22222BBB######%%%&&&&
+@@%%%%%//%%22^^^^^^^QQQQQ%%%%XXX**************!!!%%%%%%%:::::::ddaa22222bbccccc%%%%%%%%%%%%%########################################################BBB111BBB1BB#######%%%&&&
+@@%%%|%???%%22^^^^^^%QQQ%%%XX*************!!%%%%::::::::::::::::ddaa222222S%%%%%%%%%%#################################################################BBBBBBBBBB########%%%&&
+@@%%%||%???%%222^^^^%%Q%%%X************!%%%:::::::::::::::::::>>SSSSSSSS%%%%%%%%#########################################################################################%%&&
+@%%%%ZZ%????%%222^^^%%%%%************%%::::::::::>>>>>>>>>>>>>>>>SSS%%%%%%%%%########################################################################################%%##%%&&
+@%%%%ZZZ%????%%2222%^%%***********%:::::::>>>>>>>>>>>>>>>>>>%%%%%%%%%%%%%##############################################################################################%%%%&&
+@%%%%++++%00000%%22%%%*********:::::::>>>>>>>>>>>%%%%%%%%%%%%SSSS%%%%%%###################################################=#############################################%%&&&
+@%%%%+++++%00000%%22%********:::::>>>>>>%%%%%%%%0000000ffffee3SS%%%%%#####################################################==############################################%&&&&
+@%%%%++++++%00000%%2%******:::::>>>%%%%%0-------33333000000333%%%%%################################%%%%%%#################O==########################################%%%&&&&&
+@%%%%%222222%000000%%*****::::>>%%%4@@###11110000------33333S%%%%########################################%%%%#############OOO==#################################%%%&&&&&&&&&&
+@@%%%%~~~~~~~%00000%%****:::>>%%%3334444444@@@###111111%%%%%%%%#############################################%%%###########OOOOO===####################%%%%%%%%%&&&&&&&&&&&&&&
+@@%%%442~~~~~~%%000%%***:::>%%%*&&&&&&33555111111%%%%%%%%%%%%%################################################%%%##########OOOOOOOO====###########%%%%<<%%%%%%%%%%%%&&&&&&&&&
+@@%%%4442222222%%00%%***:::%%==***5555-----%%%%WWWWW>>>>>++%%###################################################%%###########OOOOOOOOOOOOOOOOOOO####%%%%%%%#######%%%&&&&&&&&
+@@@%%%44488888822%%0%%**::%%4===^^^Ovvvv%%WWWWW:;;;XXX~~~+%%#####################################################|%##############OOOOOOOOOOOO######################%%%%&&&&&&
+@@@%%%888888888888%%%%%*:%%444OOOO6666-WWWWW333WWQQQ::::;+%%######################################################|%#################################################%%&&&&&&
+@@@@%%%cccccc8888888%%%%:%444!!!77777WWWWW3333333333333W3%%#######################################################||%##############################################%#%%&&&&&&
+@@@@%%%%ccccccccccccc%%%%%84!!!////WWWWW33333333335????5\%%########################################################|%################################################%%&&&&&&
+@@@@@%%%SSZZZBB600cccc%%%888555////WWWW333336666665555\\\%%########################################################||%###############################################%%&&&&&&
+@@@@@@%%%77777776699999%%%88555///WWWW8888%111166##44\\\\%%########################################################|||%#################################|||||||%###%%:%%%&&&&
+@@@@@@@%%%#3//////666999%%%8335///WWW888%%%%2######444\\\%%########################################################||||%###############################||::::::::::::aa%%%&&&
+@@@@@@@@%%%##333333%65566%%%\\\cccWW999%%%2########444444%%########################################################|||||%############################|||:666444;;;;;777a%%%&&
+@@@@@@@@@%%%###883333%%%55%%%\\cccWW999%%###########444444%#########################################################||||||%########################9||<666666666664;;77aa%%&&
+@@@@@@@@@@%%%#####88888%%%%%%%%bbbWW99a%%############44444%##########################################################|||||||%%%################%%9|<<<---66666666666677--%%&&
+@@@@@@@@@@@@%%#######||777%%%%%%bbbWaaa%##############44444###########################################################|||||||||||%%%%%%%%%%%%%%99<<<<---------------77---%%&&
+@@@@@@@@@@@@@%%%##########||||%%%%bWWaa%#################444############################################################||||||||||||%%@@@@@@%%999<<<---------------------%%&&
+@@@@@@@@@@@@@@%%%################%%%Waa%##################################################################################||||||||||%%@@@@@%99bb9<<---------------------%%%&&
+@@@@@@@@@@@@@@@@%%%#################%%%%#######################################################################################|||||%%@@@@@999bbb9<---------------------%%%&&
+@@@@@@@@@@@@@@@@@@%%%##################%%%#########################################################################################%%@@@@@%99d99bbb%%-----------------%%7%%%&
+@@@@@@@@@@@@@@@@@@@@%%%####################%%#####################################################################################%%@@@@@@@99ddd;%%77777%%%%-------%%%7777%%&
+@@@@@@@@@@@@@@@@@@@@@@%%%#######################%###############################################################################%%@@@@@@@@@899dd;;;;%%%%77777777777777%%%%%%&
+@@@@@@@@@@@@@@@@@@@@@@@@%%%%#################################################################################################%%%%%%%%%%%%@@@899;;;;;;;;;;;;%%%%%%%%;;;;;%%%&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%############################################################################################%%%%%%######%%%%%@@99%;;;;;;;;;;;;;;;;;;;;;%%%%&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%#########################################################################################%##############%%%@@@9%%%;;;;;;;;;;;;;;;;%%%%&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%#############################################################################################%%###%##%%@@@@@@%%%;;;;%%%%%%%%%%%&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%##########################################################################################%###%%%%@@@@@@%%%;;;;;;;%%&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%###################################################################################%###%%%@@@@@@@@%%%%%%;;;%%%&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@@@@@@@@@@@@@@@@%%%%%%&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%&&&&&&&&&&&&&&&&
+--- ENRICHMENT OUTPUT ---
+PIXEL DECOMPOSITION (data-derived):
+  477 regions filling canvas
+  Major (4):
+    R219[#] (0.59,0.75) 24.7% ecc=0.878 sol=0.727 holes=4 rgb(229, 81, 111)
+      grid[34:84,9:169] | touches R2[%],R209[e],R231[~],R263[5],R358[B],R361[1]
+    R1[@] (0.17,0.36) 16.9% ecc=0.86 sol=0.241 holes=0 rgb(0, 0, 0)
+      grid[0:86,0:154] | touches R2[%],R466[9],R476[8]
+    R2[%] (0.50,0.48) 15.1% ecc=0.344 sol=0.193 holes=9 rgb(18, 15, 16)
+      grid[0:86,1:171] | touches R1[@],R3[&],R4[1],R5[?],R6[\],R7[<] | contains R352[*],R149[+],R19[~],R373[:],R5[?],R9[/]
+    R3[&] (0.89,0.27) 11.6% ecc=0.952 sol=0.402 rgb(0, 0, 0)
+      grid[0:86,90:172] | touches R2[%] | contains R95[=],R468[-],R475[;],R10[!],R6[\],R422[|]
+  Features (24, 449 omitted by entropy):
+    R352[*] (0.21,0.60) 1.1% ecc=0.97 sol=0.464 holes=0 rgb(190, 114, 240)
+      grid[45:64,20:64] | touches R2[%],R324[X],R325[>],R345[Q],R353[;],R365[B] | inside R2[%] | contains R366[!],R353[;]
+    R149[+] (0.26,0.46) 1.0% ecc=0.643 sol=0.521 rgb(190, 115, 239)
+      grid[29:45,35:63] | touches R2[%],R125[:],R141[c],R155[X],R156[d],R161[|] | inside R2[%] | contains R189[B],R156[d],R276[#],R176[W],R248[B],R161[|]
+    R95[=] (0.74,0.32) 0.8% ecc=0.953 sol=0.734 holes=0 rgb(225, 80, 111)
+      grid[22:33,108:142] | touches R2[%],R151[X] | inside R3[&] | contains R99[?],R151[X],R157[M],R97[-],R107[:],R172[1]
+    R468[-] (0.91,0.86) 0.7% ecc=0.836 sol=0.802 rgb(248, 160, 0)
+      grid[70:77,147:168] | touches R2[%],R448[:],R453[a],R458[7],R463[6],R466[9] | inside R3[&]
+    R19[~] (0.48,0.15) 0.6% ecc=0.991 sol=0.74 rgb(245, 231, 160)
+      grid[11:14,61:102] | touches R2[%],R11[Z],R14[v],R15[d],R21[!],R22[=] | inside R2[%]
+    R373[:] (0.25,0.63) 0.6% ecc=0.981 sol=0.363 rgb(160, 99, 201)
+      grid[49:65,23:66] | touches R2[%],R352[*],R369[a],R374[d],R377[S],R378[>] | inside R2[%] | contains R378[>],R400[1],R404[5],R423[6],R428[7],R403[&]
+    R475[;] (0.89,0.93) 0.5% ecc=0.849 sol=0.635 rgb(227, 81, 110)
+      grid[76:85,142:168] | touches R2[%],R466[9],R474[d] | inside R3[&]
+    R10[!] (0.67,0.13) 0.5% ecc=0.702 sol=0.771 holes=3 rgb(245, 148, 17)
+      grid[7:14,104:123] | touches R2[%],R6[\],R12[a],R17[e],R18[c],R27[&] | inside R3[&] | contains R17[e]
+    R5[?] (0.52,0.06) 0.5% ecc=0.97 sol=0.739 rgb(245, 208, 132)
+      grid[2:10,73:102] | touches R2[%],R4[1],R7[<],R8[5],R9[/] | inside R2[%]
+    R9[/] (0.41,0.08) 0.5% ecc=0.974 sol=0.523 rgb(245, 209, 133)
+      grid[5:11,54:92] | touches R2[%],R5[?],R8[5],R11[Z] | inside R2[%]
+    R6[\] (0.62,0.08) 0.5% ecc=0.836 sol=0.748 rgb(246, 159, 1)
+      grid[2:10,96:118] | touches R2[%],R4[1],R10[!] | inside R3[&]
+    R422[|] (0.71,0.82) 0.5% ecc=0.952 sol=0.621 rgb(194, 67, 94)
+      grid[62:75,113:131] | touches R2[%],R219[#] | inside R3[&]
+    R104[<] (0.44,0.37) 0.4% ecc=0.969 sol=0.534 holes=0 rgb(227, 81, 112)
+      grid[23:39,67:82] | touches R2[%],R100[M],R117[?],R129[;],R153[Q],R185[-] | inside R2[%] | contains R166[B],R237[&],R252[4]
+    R378[>] (0.28,0.63) 0.4% ecc=0.991 sol=0.544 rgb(188, 113, 238)
+      grid[52:60,26:65] | touches R2[%],R373[:],R377[S] | inside R373[:] | contains R388[0],R390[-],R389[3],R396[4],R387[3],R383[S]
+    R300[^] (0.09,0.55) 0.4% ecc=0.961 sol=0.742 holes=2 rgb(161, 99, 202)
+      grid[41:54,10:20] | touches R2[%],R264[?],R268[@],R290[%],R298[:],R311[Q] | inside R2[%]
+    R14[v] (0.45,0.12) 0.3% ecc=0.983 sol=0.604 rgb(254, 253, 251)
+      grid[8:12,62:98] | touches R2[%],R11[Z],R15[d],R19[~] | inside R2[%] | contains R15[d]
+    R324[X] (0.25,0.54) 0.3% ecc=0.991 sol=0.54 rgb(160, 99, 201)
+      grid[43:52,25:57] | touches R2[%],R317[\],R325[>],R352[*] | inside R2[%]
+    R381[O] (0.76,0.70) 0.3% ecc=0.949 sol=0.502 rgb(194, 67, 93)
+      grid[54:62,121:144] | touches R2[%],R219[#],R384[=] | inside R3[&] | contains R384[=]
+    R311[Q] (0.12,0.55) 0.3% ecc=0.951 sol=0.824 rgb(189, 114, 240)
+      grid[42:52,16:26] | touches R2[%],R298[:],R300[^],R314[e] | inside R2[%]
+    R407[W] (0.22,0.76) 0.3% ecc=0.954 sol=0.36 rgb(226, 81, 113)
+      grid[60:74,33:53] | touches R2[%],R408[>],R411[-],R412[~],R415[X],R416[:] | inside R2[%] | contains R439[6],R443[8],R457[9],R411[-],R414[v],R446[1]
+    R100[M] (0.46,0.34) 0.3% ecc=0.98 sol=0.56 holes=0 rgb(211, 81, 126)
+      grid[22:36,67:85] | touches R2[%],R93[*],R104[<],R114[Q],R134[/] | inside R2[%] | contains R114[Q],R153[Q],R178[S],R115[!],R162[W],R167[B]
+    R358[B] (0.89,0.57) 0.3% ecc=0.343 sol=0.645 holes=0 rgb(25, 20, 21)
+      grid[46:51,147:160] | touches R219[#],R360[9],R361[1],R362[2] | inside R3[&] | contains R362[2],R361[1],R360[9]
+    R11[Z] (0.37,0.12) 0.2% ecc=0.978 sol=0.492 rgb(243, 229, 159)
+      grid[7:12,54:86] | touches R2[%],R9[/],R14[v],R19[~] | inside R2[%]
+    R138[S] (0.35,0.39) 0.2% ecc=0.968 sol=0.828 rgb(225, 180, 214)
+      grid[28:37,55:64] | touches R2[%],R133[b],R144[<],R165[+],R173[2],R189[B] | inside R2[%] | contains R144[<],R173[2],R165[+]
+
+MERGE TREE:
+  scale 171: [R0+R1+R2+R208+R218+R230+R360+R367+R374+R378+R380+R381+R382+R384+R385+R386+R387+R388+R389+R390+R391+R392+R393+R394+R395+R396+R397+R398+R399+R400+R401+R402+R403+R404+R405+R406+R407+R408+R409+R410+R411+R412+R413+R414+R415+R416+R417+R418+R419+R420+R421+R422+R423+R424+R425+R426+R427+R428+R429+R430+R431+R432+R433+R434+R435+R436+R437+R438+R439+R440+R441+R442+R443+R444+R445+R446+R448+R449+R450+R451+R453+R454+R456+R458+R459+R461+R464+R465+R468+R469+R470+R471+R472+R475+R476], [R3+R4+R6+R7+R8+R10+R13+R14+R18+R20+R21+R22+R23+R25+R27+R29+R31+R32+R33+R35+R36+R38+R39+R40+R43+R44+R45+R46+R47+R48+R49+R51+R52+R53+R54+R55+R56+R57+R58+R59+R60+R61+R62+R63+R64+R65+R69+R70+R71+R72+R73+R74+R75+R76+R78+R79+R80+R81+R82+R84+R85+R86+R89+R90+R91+R92+R93+R95+R97+R99+R100+R101+R102+R103+R104+R105+R107+R108+R109+R110+R111+R112+R113+R114+R115+R116+R117+R118+R119+R120+R121+R122+R123+R124+R125+R126+R127+R128+R129+R130+R131+R132+R133+R134+R135+R136+R137+R138+R140+R141+R142+R143+R144+R147+R148+R149+R152+R153+R154+R155+R157+R158+R159+R160+R161+R163+R164+R165+R166+R167+R170+R172+R175+R176+R177+R179+R180+R181+R184+R187+R188+R189+R191+R192+R194+R195+R196+R197+R198+R200+R204+R205+R210+R223+R225+R226+R229+R235+R236+R240+R241+R244+R245+R247+R250+R251+R253+R254+R259+R260+R265+R268+R274+R275+R284], [R5+R9+R11+R16+R17+R26+R30+R34+R37+R41+R42+R50+R66+R67+R68+R77+R83+R87+R88+R96+R98+R106], [R12+R15+R19+R24+R28], [R94+R150], [R139+R145+R146+R151+R162+R169+R173+R174+R183+R186+R202+R209+R219+R222+R231+R233+R234+R238+R239+R246+R249+R257+R258+R261+R263+R264+R267+R271+R272+R283+R289+R297+R299+R301+R310+R313+R315+R318+R319] -> 14 regions
+  scale 352: [R0+R1+R2+R3+R4+R5+R6+R7+R8+R9+R10+R11+R12+R13] -> 1 regions
+
+PRIMARY MASS: center=(0.45,0.62), inscribed_radius=37%, 33 sub-centers
+
+SEGMENT MAP (.=bg 9=R275 a=R278 b=R279 c=R296 d=R304 e=R306 f=R321 #=R326 @=R328 %=R330 &=R332 *=R333 +=R335 ==R336 -=R337 ~=R339 :=R349 ;=R353 !=R356 ?=R364 /=R367 \=R368 |=R375 <=R402 >=R408 ^=R413 v=R414 X=R415 O=R419 Q=R421 W=R424 M=R426 B=R436 Z=R438 S=R440 0=R441 1=R446 2=R451 3=R452 4=R461 5=R462 6=R464 7=R470 8=R476):
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%%%%%%11%%%%%%%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%???????????????%%1111111\\\%%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%%%%%%%5????????????1111111\\\%\\%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%/555555555555555??????????111111\\\\\\%\\%%%%%%%%&%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%////////////////5555555?????????11111\\\\\\\\\\\%%%%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%/////////////////////////555????????1111\\\\\\\\\\\\\%\%%%%%%%&&&&&%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%////////////ZZZ%%%%%%%%%%%%%////5????????11\\\\\\\\\\\\\\\%!!!a%%%&&%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%///////ZZZZZZ%vvvvvvddddddddddd%%%%%%%%??????1\\\\\\\\\\!!!!!!!!!!a%%%%%>4%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%////ZZZZZZZZZvvvvvvvvvvvvvvvvdddddddddd%%%%%%%?1%!!!!!!!!ee!!!!!!!!!!a%%%>44%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%/ZZZZZZZZZZvvvvvvvvvvvvvvvvvvvvvv~~vvvvvdddd%%%%%%%!%ee!!!!!!!!!!!!!!!a%%>>44%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%ZZZZ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%%%%%%e%!%!!!!!!!!!!!!a%%dd4%%%&%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~!!%%%%%%!%!!!!!!!!!!!!%%%dd4%%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%~>>>>>>>>>>>>>>>bbbbbbbb~~~~~~~~~~~~!!!!!!%%%%%%!!!!!!&&&&&&%%^^^4%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%666666eeeeeeeeeeeeccccddddddd=============%%%%%&&&&&&&&&&#%%5555%%?%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%e@%&&&&&&&&&&&&&&&&&&&&&&&%%%%%%%%%%%%%%%%%%%%%OOOO%####f%%555%%??%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%eeee#@@@@@@@@@@@@@@@@@@@@^^^^^^///////////%%%%%%O%ffff\f%%555%??@%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%@@@@@@@@%%##MMMMMMMMM######<<<@@@@|||||||vv^^^^%%%%%%%%%%%%%%%%\\c%%55%%??@%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%@@@@@@%%%######BBBBBBBBBBBBBBBBBBZ<<<<vvvvvvv^^^^%%%%%%%%%%%%\\cc%%%%%??@@%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%@@@@%%%#>>>>>>----88%111111111111111a@@@vvvv**^X^%%%%%%%%%\\\cc%%%%++SS%==%%%%&&&%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%@@@%%%%#2>---8888833%%%%%%%aaaaaaaaaaaaa@@****=XXX++%%%%%%\%%44%%%++SS====%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%!%%%%%%%%*2###833%%%%~~~;;;;9%%%%OOOOOOOOOa@@v*==7XXX+%%%%%%%&&&%%++666666%%%%%%%%=%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%!%%%%%%%%***######~;;;;9999988/%%%%OOOOOOOOOvvv77++XX+%%%%%%&&&--??????%%%%%%======%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%!!!%%%%%%%<MM***######9988////\\\~%%%%aaaaaaaavv++++=XX%%%%%&::-???%%%%%%%%%=======%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%bbbb%%%%%%?<<MMMQQQ##9999!!\\~~~XXXX%%%%-cccccc-v++===XX%%%%%:-%%%%%%=%%%%=========%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%:~~~~|%%%%%???<<<MMMMQQQQ!!WWWWWXXXXX**%%%%-------v+==aed%%%%%:%%%%====%%%==========%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%%%:~~~~~|%%%%%!O;;;<<<<MMMMQQQQWWWWWW?******%%%%@@@@@@v=aef#%%%%%:%%=====%%======%=====%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%@@@@@%%%%%%%%%%%%%%%:<<<<<<||%%%%bb!O;;;<<<<<MMMM/QQ???????|****%%%%\\\\\\vefdQ%%%%%%============%%======%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%@%%%%%%%%>>>>%%%%%::::::cc<|%%%SSSb!OO;;;;<<<<<MMMM///||||^^^***%%%%\\\\\\fd#Q%%%%%%==========%%%======%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@%^^%%%%%%%vvOOOOO%%%%:XXXXX++cc<%%<<SSSbb!OO>>>Q<<<<<<MMMM//^^^%%WW**%%%%vvvvv##QQ%%%%%%XXXX===%%%%======%%%%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@%^^^%%%%vvvvMMOOM%%%:|||||++++c%%d<<<SSSbb!OOWWWWQ<<<<<MMMM//WWWW&&O*%%%%QQQQQQQQ%%%%%%XX===%%%%======%%%%MMM%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@%%%==%%%vSSSMMMMM%%%%||||++++++Wddd222SSSSbb!BBWWWWQQ<<<<<<MMM/OOOOZZZ%%%%%00000QQ%%%%%%%%%%%======%%%%%%111MMZ%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@%%%%===%%MMMMMMMMM%%%0000+++++WWddd2222SSSSbb!!BBSSSSSQQ<<<<<MMM/Z---<<<%%%%11111Q%%%%%%%=====%%%%%%%%~4433311ZZ%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@%%%%%%55%%MMMMMMMMMM%%006++++2WWWdddBBBSSSSS:::!///BBBBB---<<<<MMM%Z<<<<<%%%%!!!!%%%%%%%%%%%%%%%%333333~~~443?ZZZ%%%%&&&%%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@%%%%%%%fff%7777Maaaaa%%66++++2;WW7777BBBSSSSSS>>>>bb/88888--%<<<<MMM%<4444%%%%555%%%%%%%%6###^^cc^deev88X|<<\999??%%%%&%%%%##e%%%&&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@%%%%%%%%%fff77777BBBBB%%6++++2;;WW@@@@BBBSSSSSS>>>>bbbMMMMM---%<<<<M%%%44vv%%%5%%%%%%%%%%X99WW#^^^cc^deev88X|<<\9OO%%%&%%%%###~e##%%&&&&&&&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@%%%%%%%%%%**f3333%++++%%6+++22SSS++aaaaBBSSSSSS>>22111&&&&&--%%<<<<<%%%vvvv%%%%%%%%%%%%=00XX99WW#^^^cc^deev88X|OOOO%%%&%%%###~~ee###%%%%%%%&&&&&&&&&&&&&&&&&&&&
+@@@@@@@@@@@@%%%%%~~~%%%***::::%bbbbb%++++++cccc++BBBBBB;;;;;+>Q22ZZZ4444-%%%%<<%%%%%v%%%%%%%%%%%%%bbbb=00XX99dddeee::::::::OOOff%%%%%%%###~~~e########%%%%%%%%&&&&&&&&&&&&&&&
+@@@@@%@@@@@%%%%@~~~~%%%!!!::::%bbbb%%++++++///c++BBBB++66666++QQZZZZfff%%%%<<%%%%%%%%%%%%%%%%%%%%%%%%%%%%XXXddddeee::::::ffffZ%%%%%%%%%##~~~e######5#######%%%%%%&&&&&&&&&&&&
+@@@@@%@@@@%%%%@@????%%%|||&&&%%bbbb%+++++++99//++<<<<++#####++QQZZZZf%%%%%%%%%%%%%%%%%%%%%00++\\ab@@@SS==>^WW*******ffffZZZZZ%%%%####%%##~~e#######5##########%%%%%&&&&&&&&&&
+@@@@@%@@@%%%%%@@::::%%%|||&&&%%bbbb%+++++++++++++++<<<++#####++QZZ%%%%%%%%%%%%%%%%%;;;0000000+++\ab@@@SS==>^WW--OcQQ~~XXZZZ%%%%###########~e######5#############%%%%&&&&&&&&&
+@@@@%%@%%%%%^%@@::::%%%###WWW%%bbb%%+++++++++++++++++++++++++%%%%%%%%%%%%eMMMMMMMM;;;;;!!!!dd&&++\ab@@@SS==>^WWv-OcQQ~~XX%%%%###############e####5################%%%&&&&&&&&
+@@@@%%%%%%^^^%^^QQQQQ%%eeee11%%bbb%%++++++++++++++++++%%%%%%%%\\*********eeMMMM++++???MB//ZZ|&&&&&&&&@@@SS==>^WWv-OcQQ~%%%%########################################%%%&&&&&&&
+@@@@%%%%%%2^^%^^QQQQQ%%eeee11%%%BB%%++++++++++%%%%%%%XXX>>>##00@@^^^%%ZZZ&&vv+++++++????B//ZZ|||fSS<<+++++++-**vvv-O%%%%%###########################################%%%&&&&&&
+@@@@%%%%%22^^%^^^QQQQ%%%eee11%%%BB%%+++%%%%%%%XXXXXXXXXXX>>>##00@@^^^%%ZZZ&&vvvv11XXXX222OOZZZ|||fSS<<<+==~~--**v%%%%%%##############################################%%%&&&&&
+@@@@%%%%222^^%^^^QQQQQ%%eeee1%%%B%%%%%%%%XXXXXXXXXXXX********;;QQ4455566:778880000WWW!!MMMMMMOOSSSSSSSSSSSS%%%%%%%%%#####################################BBB##########%%&&&&&
+@@@@%%3%%222^%^^^^QQQQQ%%eee1%%%%%%%%XXXXXXX******************;;QQ4455566:778880000WWW!!MMM;;;;;;;;;;;%%%%%%%%%%%#####################################BBB999BBB#######%%%&&&&
+@@@%%%33%222^^%^^^^QQQQQQ%eee1%%%XXXXXX**********************BBBBBBBBBffffffffffffffffffffff%%%%%%%%%%%%%%%#########################################B1BB22229BBB######%%%&&&&
+@@@%%%33%%222^^^^^^QQQQQQQQ%%%%XXXX****************!!!!!%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%################################################B11B22222BBB######%%%&&&&
+@@%%%%%//%%22^^^^^^^QQQQQ%%%%XXX**************!!!%%%%%%%:::::::ddaa22222bbccccc%%%%%%%%%%%%%########################################################BBB111BBB1BB#######%%%&&&
+@@%%%|%???%%22^^^^^^%QQQ%%%XX*************!!%%%%::::::::::::::::ddaa222222S%%%%%%%%%%#################################################################BBBBBBBBBB########%%%&&
+@@%%%||%???%%222^^^^%%Q%%%X************!%%%:::::::::::::::::::>>SSSSSSSS%%%%%%%%#########################################################################################%%&&
+@%%%%ZZ%????%%222^^^%%%%%************%%::::::::::>>>>>>>>>>>>>>>>SSS%%%%%%%%%########################################################################################%%##%%&&
+@%%%%ZZZ%????%%2222%^%%***********%:::::::>>>>>>>>>>>>>>>>>>%%%%%%%%%%%%%##############################################################################################%%%%&&
+@%%%%++++%00000%%22%%%*********:::::::>>>>>>>>>>>%%%%%%%%%%%%SSSS%%%%%%###################################################=#############################################%%&&&
+@%%%%+++++%00000%%22%********:::::>>>>>>%%%%%%%%0000000ffffee3SS%%%%%#####################################################==############################################%&&&&
+@%%%%++++++%00000%%2%******:::::>>>%%%%%0-------33333000000333%%%%%################################%%%%%%#################O==########################################%%%&&&&&
+@%%%%%222222%000000%%*****::::>>%%%4@@###11110000------33333S%%%%########################################%%%%#############OOO==#################################%%%&&&&&&&&&&
+@@%%%%~~~~~~~%00000%%****:::>>%%%3334444444@@@###111111%%%%%%%%#############################################%%%###########OOOOO===####################%%%%%%%%%&&&&&&&&&&&&&&
+@@%%%442~~~~~~%%000%%***:::>%%%*&&&&&&33555111111%%%%%%%%%%%%%################################################%%%##########OOOOOOOO====###########%%%%<<%%%%%%%%%%%%&&&&&&&&&
+@@%%%4442222222%%00%%***:::%%==***5555-----%%%%WWWWW>>>>>++%%###################################################%%###########OOOOOOOOOOOOOOOOOOO####%%%%%%%#######%%%&&&&&&&&
+@@@%%%44488888822%%0%%**::%%4===^^^Ovvvv%%WWWWW:;;;XXX~~~+%%#####################################################|%##############OOOOOOOOOOOO######################%%%%&&&&&&
+@@@%%%888888888888%%%%%*:%%444OOOO6666-WWWWW333WWQQQ::::;+%%######################################################|%#################################################%%&&&&&&
+@@@@%%%cccccc8888888%%%%:%444!!!77777WWWWW3333333333333W3%%#######################################################||%##############################################%#%%&&&&&&
+@@@@%%%%ccccccccccccc%%%%%84!!!////WWWWW33333333335????5\%%########################################################|%################################################%%&&&&&&
+@@@@@%%%SSZZZBB600cccc%%%888555////WWWW333336666665555\\\%%########################################################||%###############################################%%&&&&&&
+@@@@@@%%%77777776699999%%%88555///WWWW8888%111166##44\\\\%%########################################################|||%#################################|||||||%###%%:%%%&&&&
+@@@@@@@%%%#3//////666999%%%8335///WWW888%%%%2######444\\\%%########################################################||||%###############################||::::::::::::aa%%%&&&
+@@@@@@@@%%%##333333%65566%%%\\\cccWW999%%%2########444444%%########################################################|||||%############################|||:666444;;;;;777a%%%&&
+@@@@@@@@@%%%###883333%%%55%%%\\cccWW999%%###########444444%#########################################################||||||%########################9||<666666666664;;77aa%%&&
+@@@@@@@@@@%%%#####88888%%%%%%%%bbbWW99a%%############44444%##########################################################|||||||%%%################%%9|<<<---66666666666677--%%&&
+@@@@@@@@@@@@%%#######||777%%%%%%bbbWaaa%##############44444###########################################################|||||||||||%%%%%%%%%%%%%%99<<<<---------------77---%%&&
+@@@@@@@@@@@@@%%%##########||||%%%%bWWaa%#################444############################################################||||||||||||%%@@@@@@%%999<<<---------------------%%&&
+@@@@@@@@@@@@@@%%%################%%%Waa%##################################################################################||||||||||%%@@@@@%99bb9<<---------------------%%%&&
+@@@@@@@@@@@@@@@@%%%#################%%%%#######################################################################################|||||%%@@@@@999bbb9<---------------------%%%&&
+@@@@@@@@@@@@@@@@@@%%%##################%%%#########################################################################################%%@@@@@%99d99bbb%%-----------------%%7%%%&
+@@@@@@@@@@@@@@@@@@@@%%%####################%%#####################################################################################%%@@@@@@@99ddd;%%77777%%%%-------%%%7777%%&
+@@@@@@@@@@@@@@@@@@@@@@%%%#######################%###############################################################################%%@@@@@@@@@899dd;;;;%%%%77777777777777%%%%%%&
+@@@@@@@@@@@@@@@@@@@@@@@@%%%%#################################################################################################%%%%%%%%%%%%@@@899;;;;;;;;;;;;%%%%%%%%;;;;;%%%&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%############################################################################################%%%%%%######%%%%%@@99%;;;;;;;;;;;;;;;;;;;;;%%%%&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%#########################################################################################%##############%%%@@@9%%%;;;;;;;;;;;;;;;;%%%%&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%#############################################################################################%%###%##%%@@@@@@%%%;;;;%%%%%%%%%%%&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%##########################################################################################%###%%%%@@@@@@%%%;;;;;;;%%&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%###################################################################################%###%%%@@@@@@@@%%%%%%;;;%%%&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@@@@@@@@@@@@@@@@%%%%%%&&&&&&&&&&&&&&
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%&&&&&&&&&&&&&&&&
+
+
+
+================================================================
+  Faker Panda (38852ms)
+================================================================
+================================================================
+PIXEL SEGMENTATION RESULTS
+================================================================
+
+Resolution: 616x616
+Atomic segments: 74
+Felzenszwalb: scale=21.4, sigma=0.0000, min_size=69
+RAG thresholds (Jenks): [141.6, 214.2, 285.1, 349.3, 370.7]
+RAG levels: 5 (data-determined)
+
+--- PRIMARY BOUNDARY ---
+Center: (0.49,0.51), radius=25% of canvas, 35 sub-centers
+
+--- BACKGROUND (1) ---
+  R1: 67.6%, color=rgb(0, 0, 0)
+
+--- LARGE REGIONS (10) ---
+  R14[#]: 3.4% at (0.38,0.37), ecc=0.839, sol=0.7, euler=0, color=rgb(244, 249, 251), adj=[R12,R18,R19,R24,R28,R33], contains=[R26,R24], grid[16:40,43:73]
+  R73[@]: 3.1% at (0.56,0.85), ecc=0.691, sol=0.794, color=rgb(120, 120, 120), adj=[R66,R69,R71,R72,R74], grid[57:74,66:104]
+  R13[%]: 2.1% at (0.57,0.36), ecc=0.897, sol=0.625, euler=-2, color=rgb(159, 163, 166), adj=[R12,R19,R28,R40,R48,R56], grid[15:40,76:100]
+  R74[&]: 1.9% at (0.42,0.87), ecc=0.668, sol=0.954, color=rgb(166, 164, 164), adj=[R71,R73], grid[60:73,53:75]
+  R44[*]: 1.6% at (0.50,0.58), ecc=0.981, sol=0.187, euler=-2, color=rgb(119, 119, 119), adj=[R45,R47,R62], contains=[R47,R59,R46,R52], grid[31:51,26:124]
+  R69[+]: 1.4% at (0.50,0.74), ecc=0.905, sol=0.925, color=rgb(213, 61, 61), adj=[R66,R68,R71,R73], grid[53:60,57:95]
+  R47[=]: 1.3% at (0.50,0.57), ecc=0.99, sol=0.232, euler=-1, color=rgb(75, 75, 75), adj=[R44,R57,R61], inside=R44, contains=[R48,R61,R58,R63,R53,R57], grid[32:50,32:122]
+  R67[-]: 1.3% at (0.74,0.79), ecc=0.919, sol=0.705, euler=-1, color=rgb(55, 55, 55), adj=[R64,R72], grid[51:70,104:122]
+  R72[~]: 1.1% at (0.66,0.83), ecc=0.918, sol=0.397, color=rgb(75, 75, 75), adj=[R66,R67,R73], grid[55:74,76:110]
+  R48[:]: 1.0% at (0.37,0.52), ecc=0.976, sol=0.391, euler=0, color=rgb(55, 55, 55), adj=[R13,R46,R56,R58], inside=R47, contains=[R56], grid[33:43,34:86]
+
+--- SMALL REGIONS (63) ---
+  R61[;]: 0.8% at (0.40,0.60), ecc=0.991, sol=0.484, color=rgb(55, 55, 55), adj=[R47], inside=R47, grid[42:48,37:92]
+  R12[!]: 0.8% at (0.48,0.22), ecc=0.853, sol=0.537, color=rgb(195, 199, 202), adj=[R9,R13,R14,R19], grid[14:21,58:89]
+  R65[?]: 0.7% at (0.51,0.66), ecc=0.988, sol=0.778, color=rgb(74, 74, 74), adj=[R66,R68], grid[49:53,51:95]
+  R32[/]: 0.6% at (0.65,0.44), ecc=0.914, sol=0.603, euler=-1, color=rgb(120, 120, 120), adj=[R35,R38,R41,R55], grid[27:38,90:108]
+  R66[\]: 0.6% at (0.61,0.70), ecc=0.819, sol=0.877, color=rgb(169, 40, 42), adj=[R65,R68,R69,R72,R73], grid[50:57,81:104]
+  R71[|]: 0.6% at (0.38,0.75), ecc=0.79, sol=0.98, color=rgb(221, 95, 99), adj=[R68,R69,R70,R73,R74], grid[54:60,51:68]
+  R64[<]: 0.6% at (0.70,0.66), ecc=0.605, sol=0.891, euler=-1, color=rgb(117, 28, 28), adj=[R63,R67], grid[46:55,99:114]
+  R26[>]: 0.5% at (0.37,0.36), ecc=0.75, sol=0.87, euler=0, color=rgb(74, 74, 74), adj=[R24,R25,R31,R37], inside=R14, grid[24:31,50:62]
+  R56[^]: 0.5% at (0.46,0.51), ecc=0.926, sol=0.562, color=rgb(196, 200, 202), adj=[R13,R14,R40,R48], inside=R48, grid[35:41,55:79]
+  R20[v]: 0.4% at (0.51,0.29), ecc=0.675, sol=0.854, euler=0, color=rgb(74, 74, 74), adj=[R19,R21,R22,R23], grid[20:25,71:85]
+  R35[X]: 0.4% at (0.66,0.47), ecc=0.919, sol=0.334, color=rgb(75, 75, 75), adj=[R32,R53], contains=[R41,R38,R42], grid[28:39,88:110]
+  R58[O]: 0.4% at (0.29,0.53), ecc=0.991, sol=0.71, color=rgb(74, 74, 74), adj=[R48,R59], inside=R47, grid[36:45,32:63]
+  R68[Q]: 0.4% at (0.43,0.69), ecc=0.99, sol=0.865, color=rgb(121, 119, 119), adj=[R65,R66,R69,R70,R71], contains=[R70], grid[52:54,51:81]
+  R19[W]: 0.4% at (0.52,0.30), ecc=0.728, sol=0.346, euler=0, color=rgb(5, 5, 5), adj=[R12,R13,R14,R20,R21,R22], contains=[R22,R23,R21], grid[19:27,68:90]
+  R63[M]: 0.4% at (0.67,0.61), ecc=0.921, sol=0.901, color=rgb(55, 55, 55), adj=[R64], inside=R47, grid[44:50,93:111]
+  R24[B]: 0.4% at (0.36,0.37), ecc=0.727, sol=0.338, euler=0, color=rgb(7, 7, 7), adj=[R14,R25,R26,R37], inside=R14, contains=[R37,R31,R25], grid[23:33,48:64]
+  R53[Z]: 0.3% at (0.65,0.51), ecc=0.963, sol=0.498, euler=0, color=rgb(54, 54, 54), adj=[R35], inside=R47, contains=[R55], grid[34:41,87:111]
+  R28[S]: 0.3% at (0.49,0.38), ecc=0.846, sol=0.676, color=rgb(195, 199, 201), adj=[R13,R14,R19,R33,R40], grid[25:33,69:80]
+  R34[0]: 0.3% at (0.18,0.40), ecc=0.836, sol=0.492, color=rgb(74, 74, 74), adj=[R30,R39], contains=[R39], grid[28:36,23:36]
+  R7[1]: 0.3% at (0.55,0.17), ecc=0.914, sol=0.415, color=rgb(74, 74, 74), adj=[R5,R6,R9], grid[10:18,72:92]
+  R30[2]: 0.3% at (0.17,0.39), ecc=0.876, sol=0.325, color=rgb(120, 120, 120), adj=[R29,R34], grid[26:37,22:36]
+  R40[3]: 0.3% at (0.48,0.44), ecc=0.714, sol=0.564, euler=0, color=rgb(6, 5, 5), adj=[R13,R14,R28,R49,R50,R51], contains=[R50,R49], grid[29:36,65:79]
+  R39[4]: 0.3% at (0.20,0.41), ecc=0.691, sol=0.865, color=rgb(55, 55, 55), adj=[R34], inside=R34, grid[29:35,26:36]
+  R6[5]: 0.2% at (0.56,0.16), ecc=0.911, sol=0.276, euler=-1, color=rgb(119, 119, 119), adj=[R5,R7], contains=[R9], grid[9:17,73:93]
+  R15[6]: 0.2% at (0.27,0.27), ecc=0.912, sol=0.356, color=rgb(122, 122, 122), adj=[R16,R17], contains=[R17], grid[16:27,35:50]
+  R59[7]: 0.2% at (0.29,0.55), ecc=0.995, sol=0.569, color=rgb(120, 120, 120), adj=[R58,R60], inside=R44, contains=[R60], grid[38:45,32:59]
+  R17[8]: 0.2% at (0.27,0.28), ecc=0.928, sol=0.54, color=rgb(75, 75, 75), adj=[R15,R18], inside=R15, contains=[R18], grid[18:26,38:49]
+  R62[9]: 0.2% at (0.18,0.63), ecc=0.844, sol=0.32, color=rgb(162, 160, 160), adj=[R44], grid[43:51,23:39]
+  R9[a]: 0.2% at (0.55,0.18), ecc=0.926, sol=0.871, color=rgb(56, 56, 56), adj=[R7,R12], inside=R6, grid[12:16,77:89]
+  R22[b]: 0.2% at (0.55,0.32), ecc=0.757, sol=0.496, color=rgb(55, 55, 55), adj=[R19,R20], inside=R19, grid[20:26,77:88]
+  R18[c]: 0.1% at (0.29,0.28), ecc=0.936, sol=0.827, color=rgb(58, 58, 58), adj=[R14,R17], inside=R17, grid[19:24,41:48]
+  R37[d]: 0.1% at (0.36,0.41), ecc=0.809, sol=0.499, color=rgb(55, 55, 55), adj=[R24,R26], inside=R24, grid[28:32,50:60]
+  R33[e]: 0.1% at (0.46,0.38), ecc=0.729, sol=0.71, euler=0, color=rgb(6, 6, 6), adj=[R14,R28,R36], contains=[R36], grid[27:30,66:74]
+  R5[f]: 0.1% at (0.52,0.14), ecc=0.945, sol=0.226, euler=0, color=rgb(157, 155, 155), adj=[R6,R7], grid[9:13,72:92]
+  R29[#]: 0.1% at (0.15,0.40), ecc=0.948, sol=0.172, color=rgb(158, 156, 156), adj=[R30], grid[26:38,21:30]
+  R16[@]: 0.1% at (0.24,0.29), ecc=0.94, sol=0.262, color=rgb(159, 157, 157), adj=[R15], grid[18:27,34:42]
+  R41[%]: 0.1% at (0.67,0.43), ecc=0.964, sol=0.804, color=rgb(164, 162, 162), adj=[R32], inside=R35, grid[30:35,100:106]
+  R45[&]: 0.1% at (0.81,0.45), ecc=0.947, sol=0.52, color=rgb(160, 158, 158), adj=[R44], grid[31:37,121:126]
+  R46[*]: 0.1% at (0.26,0.43), ecc=0.755, sol=0.689, color=rgb(74, 74, 74), adj=[R43,R48], inside=R44, grid[31:34,36:43]
+  R23[+]: 0.1% at (0.51,0.29), ecc=0.909, sol=0.595, color=rgb(6, 2, 4), adj=[R20], inside=R19, grid[21:23,75:82]
+  R31[=]: 0.1% at (0.36,0.36), ecc=0.907, sol=0.597, color=rgb(5, 1, 3), adj=[R26], inside=R24, grid[26:29,53:59]
+  R52[-]: 0.1% at (0.20,0.48), ecc=0.996, sol=0.545, color=rgb(185, 188, 191), adj=[R54], inside=R44, contains=[R54], grid[34:41,29:32]
+  R57[~]: 0.1% at (0.73,0.49), ecc=0.979, sol=0.669, color=rgb(55, 55, 55), adj=[R47], inside=R47, grid[35:40,107:114]
+  R2[:]: 0.1% at (0.26,0.13), ecc=0.985, sol=0.88, color=rgb(236, 241, 243), adj=[R3,R8], grid[7:12,38:40]
+  R3[;]: 0.1% at (0.26,0.13), ecc=0.989, sol=0.474, color=rgb(200, 201, 204), adj=[R2,R4,R8], grid[7:12,38:42]
+  R10[!]: 0.1% at (0.24,0.21), ecc=0.988, sol=0.8, color=rgb(237, 242, 244), adj=[R8,R11], grid[13:18,36:39]
+  R11[?]: 0.1% at (0.25,0.20), ecc=0.972, sol=0.79, color=rgb(182, 185, 188), adj=[R8,R10], grid[13:17,37:40]
+  R36[/]: 0.1% at (0.46,0.38), ecc=0.864, sol=0.948, color=rgb(70, 70, 70), adj=[R33], inside=R33, grid[28:30,67:72]
+  R60[\]: 0.1% at (0.26,0.55), ecc=0.998, sol=0.491, color=rgb(155, 153, 153), adj=[R59], inside=R59, grid[39:44,32:48]
+  R4[|]: 0.0% at (0.27,0.13), ecc=0.995, sol=0.646, color=rgb(158, 161, 164), adj=[R3,R8], grid[7:12,40:43]
+  R8[<]: 0.0% at (0.26,0.17), ecc=0.445, sol=0.745, color=rgb(173, 52, 52), adj=[R2,R3,R4,R10,R11], grid[12:14,37:41]
+  R21[>]: 0.0% at (0.47,0.29), ecc=0.935, sol=0.432, color=rgb(157, 155, 155), adj=[R19,R20], inside=R19, grid[20:24,70:74]
+  R25[^]: 0.0% at (0.36,0.32), ecc=0.98, sol=0.381, color=rgb(153, 151, 151), adj=[R24,R26], inside=R24, grid[23:27,51:60]
+  R50[v]: 0.0% at (0.47,0.45), ecc=0.866, sol=0.835, color=rgb(206, 58, 58), adj=[R40,R49], inside=R40, grid[33:35,71:75]
+  R54[X]: 0.0% at (0.20,0.49), ecc=0.994, sol=0.831, color=rgb(237, 242, 244), adj=[R52], inside=R52, grid[35:40,29:31]
+  R38[O]: 0.0% at (0.66,0.40), ecc=0.918, sol=0.879, color=rgb(74, 74, 74), adj=[R32,R42], inside=R35, grid[29:32,100:103]
+  R43[Q]: 0.0% at (0.27,0.41), ecc=0.953, sol=0.877, color=rgb(116, 116, 116), adj=[R46], grid[31:32,38:43]
+  R49[W]: 0.0% at (0.48,0.45), ecc=0.959, sol=0.772, color=rgb(168, 39, 41), adj=[R40,R50,R51], inside=R40, contains=[R51], grid[33:35,73:77]
+  R55[M]: 0.0% at (0.64,0.46), ecc=0.408, sol=1.0, color=rgb(165, 163, 163), adj=[R32], inside=R53, grid[35:36,96:99]
+  R70[B]: 0.0% at (0.35,0.70), ecc=0.961, sol=0.895, color=rgb(164, 160, 160), adj=[R68,R71], inside=R68, grid[53:54,51:57]
+  R27[Z]: 0.0% at (0.23,0.33), ecc=0.916, sol=0.911, color=rgb(210, 214, 217), grid[24:26,33:36]
+  R42[S]: 0.0% at (0.65,0.41), ecc=0.872, sol=0.84, color=rgb(54, 54, 54), adj=[R38], inside=R35, grid[30:32,98:101]
+  R51[0]: 0.0% at (0.49,0.45), ecc=0.936, sol=0.908, color=rgb(119, 28, 28), adj=[R40,R49], inside=R49, grid[33:35,74:77]
+
+--- MERGE TREE ---
+  scale 141.6: 9 merge(s) -> 11 regions
+    [R0+R4+R5+R6+R8+R14+R15+R16+R17+R28+R29+R31+R33+R34+R37+R38+R40+R41+R42+R43+R44+R45+R46+R47+R52+R54+R56+R57+R58+R59+R60+R61+R62+R63+R64+R65+R66+R67+R68+R69+R70+R71+R72+R73]
+    [R1+R2+R3]
+    [R9+R10]
+    [R11+R12+R13+R27+R55]
+    [R18+R19+R20+R21+R22]
+    [R23+R24+R25+R30+R36]
+  scale 214.2: 1 merge(s) -> 7 regions
+    [R0+R1+R2+R3+R4]
+  scale 285.1: 1 merge(s) -> 5 regions
+    [R0+R1+R5]
+  scale 349.3: 1 merge(s) -> 3 regions
+    [R0+R3+R4]
+
+--- SEGMENT MAP ---
+..........................................................................................................................................................
+..........................................................................................................................................................
+..........................................................................................................................................................
+..........................................................................................................................................................
+..........................................................................................................................................................
+..........................................................................................................................................................
+..........................................................................................................................................................
+..........................................................................................................................................................
+........................................:;|...............................................................................................................
+........................................:;|...............................................................................................................
+.......................................::;|................................fffff5555555f..................................................................
+.......................................::|................................f5f51111555555ff................................................................
+.......................................:;|...............................ff5111111111111115f..............................................................
+......................................<<<<...............................f5111aaaaaaaaa111555.............................................................
+......................................!??........................................aaaaaaaa11555............................................................
+......................................!??......................!!!!!!!!!!!!!!!!!!!!!!aaaa11155............................................................
+.....................................!??...................!!!!!!!!!!!!!!!!!!!!%%%%%%!!!aa1155............................................................
+.....................................!??.....666........###########!!!!!!!!!!!!!!%%%%%%%!..15.............................................................
+..........................................66666666...###############!!!!!!!!!!!!!%%%%%%%%%%...............................................................
+......................................@6668888888..##################!!!!!!!!!!!!!!!%%%%%%%%..............................................................
+....................................@@668888cccc.#####################!!WWWWvvvvWWWW!!%%%%%%%.............................................................
+...................................@@666888cccc#######################WW>vvvvvvvvvvvWWW!%%%%%%............................................................
+...................................@666888cccc#######################WW>vvvv++++++vvvvbWW%%%%%%%..........................................................
+.....................................@68888cc############BBBB########WW>vvv+vvvvvv+vvvbbWW%%%%%%%%........................................................
+.....................................@66888c#########BBB^^^^^BBB######WW>vvvvvvvvvvvvvbbbWW%%%%%%%%.......................................................
+..................................Z...@668.#########BB^>>>>>>>>B########WWWWvvvvvvvvbbbbbWW%%%%%%%%%......................................................
+..................................ZZ...@68.########B^>>>>>>>>>>B##########SSSWWWWbbbbbbWW%%%%%%%%%%%......................................................
+.........................#2222222..........#######B^>>>=====>>>B#########SSSSSSS%%WWWWW%%%%%%%%%%%%%......................................................
+.......................#22222222222.........#####BB>>>==>>>>>>B######eeeeeeSSSSSS%%%%%%%%%%%%%%%%%%%...//.................................................
+......................#2220000000000........#####BB>>>==>>>>>BB###eee////eeSSSSSS%%%%%%%%%%%%%%%%%%...//////..............................................
+.....................#222000044444400........####BBd>>>>>>>ddBB####ee//eeSSSSSS3%%%%%%%%%%%%%%%%%%%..OO/////XX............................................
+.....................#220004444444444..Q.....#####Bdd>>>>dddBB#########SSSSSSS33%%%%%%%%%%%%%%%%%%...SO//%///XX...........................................
+.....................#22000444444444...**QQQ..####BBdddddddBBB##########S3SS333%%%%%%%%%%%%%%%%%%..SSS./%%///XX...*********&..............................
+......................#20004444444....******...#####BBBBBBBB###########S33333333%%%%%%%%%%%%.........//%%%/X/XX...**====****&&............................
+.......................#200044.....::::*:......####################33333vvvW0333%%%%%%%%%......//////%%%%/XXXXX...*========**&&...........................
+........................#20004.--.::::::::::...#######################33vvW0033%%%%%%%%....//////////%%//XXXXX....=========**&&...........................
+.........................#220..--..::::::::::...#######################^333333^%%%%%%%...X///////MMM////XXXXXZZ..~========***&............................
+..........................#22.X-..O..::::::::....######################^^^^^^^^%%%%%%...XX////////////XXXZZXZZ...~~=====****&.............................
+..............................X-.OOOO..:::::::....#####################^^^^^^^^%%%%%%....XXX///////XXXXXZZZZZ..~~~====*****...............................
+..............................X..7OOOOOOO:::::::....#################^^^^^^^^^^%%%%%%......XXXXXXXXXXZZZZZZ...~=====*****.................................
+..............................-..\777OOOOOOOO:::::....###########^^^^^^^^^^^^%%%%:::::..ZZ........ZZZZZZZ....====*****....................................
+...................................\7777OOOOOOOOO::::......^^^^^^^^^^^^^^::::::::::::::...ZZZZZZZZZZZZZ....==******.......................................
+......................................\\7777OOOO:::::::::::::::::::::::::::::::::.......................==*****...........................................
+.................................***......\77777OOOOOO........:::::::::::::........;;;;;;;;;.......==*******..............................................
+.............................9***.....==......\\777777OOOOOO................;;;;;;;;;;==========********..................................................
+...........................99***...===;;;;............77777..........;;;;;;;;;;;;=========*********........MMMM...........................................
+..........................99***...====;;;;;.................;;;;;;;;;;;;;;;=========**********........MMMMMMMMM...........................................
+........................999****..=====;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;==========**********.........MMMMMMMMMMMMM<<..........................................
+........................999****..========;;;;;;;;;;;;;;;;;;;==========************.............MMMMMMMMMMMM<<<<<<.........................................
+........................9999******===========================*************..........????..........MMMMMM<<<<<<<<<.........................................
+.........................99999********==========*****************............?????????????????......<<<<<<<<<<<<<<........................................
+............................999999******************.................??????????????????????????\\.....<<<<<<<<<<<<<.......................................
+............................................................?????????????????????????????\\\\\\\\\\\...<<<<<<<<<<<-.......................................
+....................................................QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ\\\\\\\\\\\\\\\\\\\\..<<<<<<<<----......................................
+....................................................BBBBQQQQQQQQQQQQQQQQ+++++++++++++++\\\\\\\\\\\\\\\\..<<<<<------......................................
+....................................................|||||||+++++++++++++++++++++++++++++++\\\\\\\\\\\\\\\<-----------.....................................
+....................................................||||||||||+++++++++++++++++++++++++++++++\\\\\\\\\~~~~---~--------....................................
+.....................................................|||||||||||+++++++++++++++++++++++++++++++\\\~~~~~~~~---~--------....................................
+.....................................................|||||||||||||+++++++++++++++++++++++++++@@@@~~~~~~~~~~--~~--------...................................
+.....................................................||||||||||||||++++++++++++++++++++@@@@@@@@@@@~~~~~@~~~~-~~---------..................................
+......................................................||||||||||||||++++++++++@@@@@@@@@@@@@@@@@@@@@~~~~@~~~~~~~---------..................................
+......................................................&&&&&&&&&&&&&&&@@@&@@@@@@@@@@@@@@@@@@@@@@@@@@@~~@@~~~~~~~----------.................................
+......................................................&&&&&&&&&&&&&&&&@@&&@@@@@@@@@@@@@@@@@@@@@@@@@@~@@@~~~~~~~----------.................................
+.......................................................&&&&&&&&&&&&&&&@@&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@~~~~~~~-----------................................
+.......................................................&&&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@~~~~~~~-----------................................
+.......................................................&&&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@~~~~~~~----------..................................
+.......................................................&&&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@~~~~~~~.--------....................................
+........................................................&&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@~~~~~~..-------......................................
+........................................................&&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@~~~~~...------........................................
+.........................................................&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@~~~~~~...----...........................................
+.........................................................&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@~~~~~.....--..............................................
+.........................................................&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@~~~~~~.......................................................
+..........................................................&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@~~~~~~~..........................................................
+............................................................&&&&&&&&&&@@@@@@@@@@@@@@~~~~~~~~..............................................................
+.....................................................................@@@@@@@@~~~..........................................................................
+..........................................................................................................................................................
+..........................................................................................................................................................
+--- ENRICHMENT OUTPUT ---
+PIXEL DECOMPOSITION (data-derived):
+  73 foreground regions (32%), background 68%
+  Major (10):
+    R14[#] (0.38,0.37) 3.4% ecc=0.839 sol=0.7 holes=0 rgb(244, 249, 251)
+      grid[16:40,43:73] | touches R12[!],R18[c],R19[W],R24[B],R28[S],R33[e] | contains R26[>],R24[B]
+    R73[@] (0.56,0.85) 3.1% ecc=0.691 sol=0.794 rgb(120, 120, 120)
+      grid[57:74,66:104] | touches R66[\],R69[+],R71[|],R72[~],R74[&]
+    R13[%] (0.57,0.36) 2.1% ecc=0.897 sol=0.625 holes=2 rgb(159, 163, 166)
+      grid[15:40,76:100] | touches R12[!],R19[W],R28[S],R40[3],R48[:],R56[^]
+    R74[&] (0.42,0.87) 1.9% ecc=0.668 sol=0.954 rgb(166, 164, 164)
+      grid[60:73,53:75] | touches R71[|],R73[@]
+    R44[*] (0.50,0.58) 1.6% ecc=0.981 sol=0.187 holes=2 rgb(119, 119, 119)
+      grid[31:51,26:124] | touches R45[&],R47[=],R62[9] | contains R47[=],R59[7],R46[*],R52[-]
+    R69[+] (0.50,0.74) 1.4% ecc=0.905 sol=0.925 rgb(213, 61, 61)
+      grid[53:60,57:95] | touches R66[\],R68[Q],R71[|],R73[@]
+    R47[=] (0.50,0.57) 1.3% ecc=0.99 sol=0.232 holes=1 rgb(75, 75, 75)
+      grid[32:50,32:122] | touches R44[*],R57[~],R61[;] | inside R44[*] | contains R48[:],R61[;],R58[O],R63[M],R53[Z],R57[~]
+    R67[-] (0.74,0.79) 1.3% ecc=0.919 sol=0.705 holes=1 rgb(55, 55, 55)
+      grid[51:70,104:122] | touches R64[<],R72[~]
+    R72[~] (0.66,0.83) 1.1% ecc=0.918 sol=0.397 rgb(75, 75, 75)
+      grid[55:74,76:110] | touches R66[\],R67[-],R73[@]
+    R48[:] (0.37,0.52) 1.0% ecc=0.976 sol=0.391 holes=0 rgb(55, 55, 55)
+      grid[33:43,34:86] | touches R13[%],R46[*],R56[^],R58[O] | inside R47[=] | contains R56[^]
+  Features (25, 38 omitted by entropy):
+    R61[;] (0.40,0.60) 0.8% ecc=0.991 sol=0.484 rgb(55, 55, 55)
+      grid[42:48,37:92] | touches R47[=] | inside R47[=]
+    R12[!] (0.48,0.22) 0.8% ecc=0.853 sol=0.537 rgb(195, 199, 202)
+      grid[14:21,58:89] | touches R9[a],R13[%],R14[#],R19[W]
+    R65[?] (0.51,0.66) 0.7% ecc=0.988 sol=0.778 rgb(74, 74, 74)
+      grid[49:53,51:95] | touches R66[\],R68[Q]
+    R32[/] (0.65,0.44) 0.6% ecc=0.914 sol=0.603 holes=1 rgb(120, 120, 120)
+      grid[27:38,90:108] | touches R35[X],R38[O],R41[%],R55[M]
+    R66[\] (0.61,0.70) 0.6% ecc=0.819 sol=0.877 rgb(169, 40, 42)
+      grid[50:57,81:104] | touches R65[?],R68[Q],R69[+],R72[~],R73[@]
+    R71[|] (0.38,0.75) 0.6% ecc=0.79 sol=0.98 rgb(221, 95, 99)
+      grid[54:60,51:68] | touches R68[Q],R69[+],R70[B],R73[@],R74[&]
+    R64[<] (0.70,0.66) 0.6% ecc=0.605 sol=0.891 holes=1 rgb(117, 28, 28)
+      grid[46:55,99:114] | touches R63[M],R67[-]
+    R26[>] (0.37,0.36) 0.5% ecc=0.75 sol=0.87 holes=0 rgb(74, 74, 74)
+      grid[24:31,50:62] | touches R24[B],R25[^],R31[=],R37[d] | inside R14[#]
+    R56[^] (0.46,0.51) 0.5% ecc=0.926 sol=0.562 rgb(196, 200, 202)
+      grid[35:41,55:79] | touches R13[%],R14[#],R40[3],R48[:] | inside R48[:]
+    R20[v] (0.51,0.29) 0.4% ecc=0.675 sol=0.854 holes=0 rgb(74, 74, 74)
+      grid[20:25,71:85] | touches R19[W],R21[>],R22[b],R23[+]
+    R35[X] (0.66,0.47) 0.4% ecc=0.919 sol=0.334 rgb(75, 75, 75)
+      grid[28:39,88:110] | touches R32[/],R53[Z] | contains R41[%],R38[O],R42[S]
+    R58[O] (0.29,0.53) 0.4% ecc=0.991 sol=0.71 rgb(74, 74, 74)
+      grid[36:45,32:63] | touches R48[:],R59[7] | inside R47[=]
+    R68[Q] (0.43,0.69) 0.4% ecc=0.99 sol=0.865 rgb(121, 119, 119)
+      grid[52:54,51:81] | touches R65[?],R66[\],R69[+],R70[B],R71[|] | contains R70[B]
+    R19[W] (0.52,0.30) 0.4% ecc=0.728 sol=0.346 holes=0 rgb(5, 5, 5)
+      grid[19:27,68:90] | touches R12[!],R13[%],R14[#],R20[v],R21[>],R22[b] | contains R22[b],R23[+],R21[>]
+    R63[M] (0.67,0.61) 0.4% ecc=0.921 sol=0.901 rgb(55, 55, 55)
+      grid[44:50,93:111] | touches R64[<] | inside R47[=]
+    R24[B] (0.36,0.37) 0.4% ecc=0.727 sol=0.338 holes=0 rgb(7, 7, 7)
+      grid[23:33,48:64] | touches R14[#],R25[^],R26[>],R37[d] | inside R14[#] | contains R37[d],R31[=],R25[^]
+    R53[Z] (0.65,0.51) 0.3% ecc=0.963 sol=0.498 holes=0 rgb(54, 54, 54)
+      grid[34:41,87:111] | touches R35[X] | inside R47[=] | contains R55[M]
+    R28[S] (0.49,0.38) 0.3% ecc=0.846 sol=0.676 rgb(195, 199, 201)
+      grid[25:33,69:80] | touches R13[%],R14[#],R19[W],R33[e],R40[3]
+    R34[0] (0.18,0.40) 0.3% ecc=0.836 sol=0.492 rgb(74, 74, 74)
+      grid[28:36,23:36] | touches R30[2],R39[4] | contains R39[4]
+    R7[1] (0.55,0.17) 0.3% ecc=0.914 sol=0.415 rgb(74, 74, 74)
+      grid[10:18,72:92] | touches R5[f],R6[5],R9[a]
+    R30[2] (0.17,0.39) 0.3% ecc=0.876 sol=0.325 rgb(120, 120, 120)
+      grid[26:37,22:36] | touches R29[#],R34[0]
+    R40[3] (0.48,0.44) 0.3% ecc=0.714 sol=0.564 holes=0 rgb(6, 5, 5)
+      grid[29:36,65:79] | touches R13[%],R14[#],R28[S],R49[W],R50[v],R51[0] | contains R50[v],R49[W]
+    R39[4] (0.20,0.41) 0.3% ecc=0.691 sol=0.865 rgb(55, 55, 55)
+      grid[29:35,26:36] | touches R34[0] | inside R34[0]
+    R6[5] (0.56,0.16) 0.2% ecc=0.911 sol=0.276 holes=1 rgb(119, 119, 119)
+      grid[9:17,73:93] | touches R5[f],R7[1] | contains R9[a]
+    R15[6] (0.27,0.27) 0.2% ecc=0.912 sol=0.356 rgb(122, 122, 122)
+      grid[16:27,35:50] | touches R16[@],R17[8] | contains R17[8]
+
+MERGE TREE:
+  scale 142: [R0+R4+R5+R6+R8+R14+R15+R16+R17+R28+R29+R31+R33+R34+R37+R38+R40+R41+R42+R43+R44+R45+R46+R47+R52+R54+R56+R57+R58+R59+R60+R61+R62+R63+R64+R65+R66+R67+R68+R69+R70+R71+R72+R73], [R1+R2+R3], [R9+R10], [R11+R12+R13+R27+R55], [R18+R19+R20+R21+R22], [R23+R24+R25+R30+R36] -> 11 regions
+  scale 214: [R0+R1+R2+R3+R4] -> 7 regions
+  scale 285: [R0+R1+R5] -> 5 regions
+  scale 349: [R0+R3+R4] -> 3 regions
+
+PRIMARY MASS: center=(0.49,0.51), inscribed_radius=25%, 35 sub-centers
+
+SEGMENT MAP (.=bg :=R2 ;=R3 |=R4 f=R5 5=R6 1=R7 <=R8 a=R9 !=R10 ?=R11 6=R15 @=R16 8=R17 c=R18 >=R21 b=R22 +=R23 ^=R25 Z=R27 #=R29 2=R30 ==R31 e=R33 /=R36 d=R37 O=R38 4=R39 3=R40 %=R41 S=R42 Q=R43 &=R45 *=R46 W=R49 v=R50 0=R51 -=R52 X=R54 M=R55 ~=R57 7=R59 \=R60 9=R62 B=R70):
+..........................................................................................................................................................
+..........................................................................................................................................................
+..........................................................................................................................................................
+..........................................................................................................................................................
+..........................................................................................................................................................
+..........................................................................................................................................................
+..........................................................................................................................................................
+..........................................................................................................................................................
+........................................:;|...............................................................................................................
+........................................:;|...............................................................................................................
+.......................................::;|................................fffff5555555f..................................................................
+.......................................::|................................f5f51111555555ff................................................................
+.......................................:;|...............................ff5111111111111115f..............................................................
+......................................<<<<...............................f5111aaaaaaaaa111555.............................................................
+......................................!??........................................aaaaaaaa11555............................................................
+......................................!??......................!!!!!!!!!!!!!!!!!!!!!!aaaa11155............................................................
+.....................................!??...................!!!!!!!!!!!!!!!!!!!!%%%%%%!!!aa1155............................................................
+.....................................!??.....666........###########!!!!!!!!!!!!!!%%%%%%%!..15.............................................................
+..........................................66666666...###############!!!!!!!!!!!!!%%%%%%%%%%...............................................................
+......................................@6668888888..##################!!!!!!!!!!!!!!!%%%%%%%%..............................................................
+....................................@@668888cccc.#####################!!WWWWvvvvWWWW!!%%%%%%%.............................................................
+...................................@@666888cccc#######################WW>vvvvvvvvvvvWWW!%%%%%%............................................................
+...................................@666888cccc#######################WW>vvvv++++++vvvvbWW%%%%%%%..........................................................
+.....................................@68888cc############BBBB########WW>vvv+vvvvvv+vvvbbWW%%%%%%%%........................................................
+.....................................@66888c#########BBB^^^^^BBB######WW>vvvvvvvvvvvvvbbbWW%%%%%%%%.......................................................
+..................................Z...@668.#########BB^>>>>>>>>B########WWWWvvvvvvvvbbbbbWW%%%%%%%%%......................................................
+..................................ZZ...@68.########B^>>>>>>>>>>B##########SSSWWWWbbbbbbWW%%%%%%%%%%%......................................................
+.........................#2222222..........#######B^>>>=====>>>B#########SSSSSSS%%WWWWW%%%%%%%%%%%%%......................................................
+.......................#22222222222.........#####BB>>>==>>>>>>B######eeeeeeSSSSSS%%%%%%%%%%%%%%%%%%%...//.................................................
+......................#2220000000000........#####BB>>>==>>>>>BB###eee////eeSSSSSS%%%%%%%%%%%%%%%%%%...//////..............................................
+.....................#222000044444400........####BBd>>>>>>>ddBB####ee//eeSSSSSS3%%%%%%%%%%%%%%%%%%%..OO/////XX............................................
+.....................#220004444444444..Q.....#####Bdd>>>>dddBB#########SSSSSSS33%%%%%%%%%%%%%%%%%%...SO//%///XX...........................................
+.....................#22000444444444...**QQQ..####BBdddddddBBB##########S3SS333%%%%%%%%%%%%%%%%%%..SSS./%%///XX...*********&..............................
+......................#20004444444....******...#####BBBBBBBB###########S33333333%%%%%%%%%%%%.........//%%%/X/XX...**====****&&............................
+.......................#200044.....::::*:......####################33333vvvW0333%%%%%%%%%......//////%%%%/XXXXX...*========**&&...........................
+........................#20004.--.::::::::::...#######################33vvW0033%%%%%%%%....//////////%%//XXXXX....=========**&&...........................
+.........................#220..--..::::::::::...#######################^333333^%%%%%%%...X///////MMM////XXXXXZZ..~========***&............................
+..........................#22.X-..O..::::::::....######################^^^^^^^^%%%%%%...XX////////////XXXZZXZZ...~~=====****&.............................
+..............................X-.OOOO..:::::::....#####################^^^^^^^^%%%%%%....XXX///////XXXXXZZZZZ..~~~====*****...............................
+..............................X..7OOOOOOO:::::::....#################^^^^^^^^^^%%%%%%......XXXXXXXXXXZZZZZZ...~=====*****.................................
+..............................-..\777OOOOOOOO:::::....###########^^^^^^^^^^^^%%%%:::::..ZZ........ZZZZZZZ....====*****....................................
+...................................\7777OOOOOOOOO::::......^^^^^^^^^^^^^^::::::::::::::...ZZZZZZZZZZZZZ....==******.......................................
+......................................\\7777OOOO:::::::::::::::::::::::::::::::::.......................==*****...........................................
+.................................***......\77777OOOOOO........:::::::::::::........;;;;;;;;;.......==*******..............................................
+.............................9***.....==......\\777777OOOOOO................;;;;;;;;;;==========********..................................................
+...........................99***...===;;;;............77777..........;;;;;;;;;;;;=========*********........MMMM...........................................
+..........................99***...====;;;;;.................;;;;;;;;;;;;;;;=========**********........MMMMMMMMM...........................................
+........................999****..=====;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;==========**********.........MMMMMMMMMMMMM<<..........................................
+........................999****..========;;;;;;;;;;;;;;;;;;;==========************.............MMMMMMMMMMMM<<<<<<.........................................
+........................9999******===========================*************..........????..........MMMMMM<<<<<<<<<.........................................
+.........................99999********==========*****************............?????????????????......<<<<<<<<<<<<<<........................................
+............................999999******************.................??????????????????????????\\.....<<<<<<<<<<<<<.......................................
+............................................................?????????????????????????????\\\\\\\\\\\...<<<<<<<<<<<-.......................................
+....................................................QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ\\\\\\\\\\\\\\\\\\\\..<<<<<<<<----......................................
+....................................................BBBBQQQQQQQQQQQQQQQQ+++++++++++++++\\\\\\\\\\\\\\\\..<<<<<------......................................
+....................................................|||||||+++++++++++++++++++++++++++++++\\\\\\\\\\\\\\\<-----------.....................................
+....................................................||||||||||+++++++++++++++++++++++++++++++\\\\\\\\\~~~~---~--------....................................
+.....................................................|||||||||||+++++++++++++++++++++++++++++++\\\~~~~~~~~---~--------....................................
+.....................................................|||||||||||||+++++++++++++++++++++++++++@@@@~~~~~~~~~~--~~--------...................................
+.....................................................||||||||||||||++++++++++++++++++++@@@@@@@@@@@~~~~~@~~~~-~~---------..................................
+......................................................||||||||||||||++++++++++@@@@@@@@@@@@@@@@@@@@@~~~~@~~~~~~~---------..................................
+......................................................&&&&&&&&&&&&&&&@@@&@@@@@@@@@@@@@@@@@@@@@@@@@@@~~@@~~~~~~~----------.................................
+......................................................&&&&&&&&&&&&&&&&@@&&@@@@@@@@@@@@@@@@@@@@@@@@@@~@@@~~~~~~~----------.................................
+.......................................................&&&&&&&&&&&&&&&@@&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@~~~~~~~-----------................................
+.......................................................&&&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@~~~~~~~-----------................................
+.......................................................&&&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@~~~~~~~----------..................................
+.......................................................&&&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@~~~~~~~.--------....................................
+........................................................&&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@@~~~~~~..-------......................................
+........................................................&&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@@@~~~~~...------........................................
+.........................................................&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@@~~~~~~...----...........................................
+.........................................................&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@~~~~~.....--..............................................
+.........................................................&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@~~~~~~.......................................................
+..........................................................&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@~~~~~~~..........................................................
+............................................................&&&&&&&&&&@@@@@@@@@@@@@@~~~~~~~~..............................................................
+.....................................................................@@@@@@@@~~~..........................................................................
+..........................................................................................................................................................
+..........................................................................................................................................................
+
+
+
+================================================================
+  Anthropic (70ms)
+================================================================
+================================================================
+PIXEL SEGMENTATION RESULTS
+================================================================
+
+Resolution: 48x48
+Atomic segments: 4
+Felzenszwalb: scale=7.2, sigma=0.0000, min_size=24
+RAG thresholds (Jenks): [41.4]
+RAG levels: 1 (data-determined)
+
+--- PRIMARY BOUNDARY ---
+Center: (0.33,0.27), radius=12% of canvas, 4 sub-centers
+
+--- BACKGROUND (1) ---
+  R1: 61.1%, color=rgb(0, 0, 0)
+
+--- LARGE REGIONS (2) ---
+  R2[#]: 25.3% at (0.35,0.53), ecc=0.467, sol=0.775, euler=0, color=rgb(24, 24, 24), adj=[R4], contains=[R4], grid[1:6,0:11]
+  R3[@]: 12.1% at (0.77,0.49), ecc=0.978, sol=0.914, color=rgb(23, 23, 23), grid[1:6,9:16]
+
+--- SMALL REGIONS (1) ---
+  R4[%]: 1.5% at (0.35,0.49), ecc=0.708, sol=0.875, color=rgb(0, 0, 0), adj=[R2], inside=R2, grid[3:4,4:7]
+
+--- SYMMETRIC PAIRS ---
+  R2[#] <-> R3[@] (vertical, sim=0.367)
+  R3[@] <-> R4[%] (vertical, sim=0.428)
+
+--- MERGE TREE ---
+
+--- SEGMENT MAP ---
+................
+................
+....####..@@@...
+...######..@@...
+..###%%###..@@..
+..########..@@@.
+.###....###..@@@
+................
+--- ENRICHMENT OUTPUT ---
+PIXEL DECOMPOSITION (data-derived):
+  3 foreground regions (39%), background 61%
+  Major (2):
+    R2[#] (0.35,0.53) 25.3% ecc=0.467 sol=0.775 holes=0 rgb(24, 24, 24)
+      grid[1:6,0:11] | touches R4[%] | contains R4[%]
+    R3[@] (0.77,0.49) 12.1% ecc=0.978 sol=0.914 rgb(23, 23, 23)
+      grid[1:6,9:16]
+  Features (1):
+    R4[%] (0.35,0.49) 1.5% ecc=0.708 sol=0.875 rgb(0, 0, 0)
+      grid[3:4,4:7] | touches R2[#] | inside R2[#]
+
+SYMMETRIC PAIRS:
+  R2[#] (0.35,0.53) <-> R3[@] (0.77,0.49) sim=0.367
+  R3[@] (0.77,0.49) <-> R4[%] (0.35,0.49) sim=0.428
+
+PRIMARY MASS: center=(0.33,0.27), inscribed_radius=12%, 4 sub-centers
+
+SEGMENT MAP (.=bg #=R2 @=R3 %=R4):
+................
+................
+....####..@@@...
+...######..@@...
+..###%%###..@@..
+..########..@@@.
+.###....###..@@@
+................
+
+

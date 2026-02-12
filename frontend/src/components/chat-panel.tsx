@@ -29,9 +29,11 @@ import {
   FileUploadContent,
 } from "@/components/prompt-kit/file-upload"
 import { SvgArtifact } from "@/components/svg-artifact"
+import { EditOpsChain } from "@/components/edit-ops-chain"
 import type { ChatMessage, SvgVersion } from "@/lib/types"
 import { detectIntent } from "@/lib/intent"
 import { generateId } from "@/lib/utils"
+import { parseSSE } from "@/lib/sse"
 
 const SUGGESTIONS = [
   "What shapes are in this SVG?",
@@ -46,41 +48,12 @@ interface ChatPanelProps {
   isLoading: boolean
   baselineEnabled: boolean
   versions: SvgVersion[]
+  enrichment: string | null
   onAddMessage: (message: ChatMessage) => void
   onUpdateMessage: (id: string, updates: Partial<ChatMessage>) => void
   onSetLoading: (loading: boolean) => void
   onAddVersion: (version: SvgVersion) => void
   onLoadSvg?: (svg: string) => void
-}
-
-/** Parse SSE text into events */
-function parseSSE(buffer: string): { events: Array<{ event: string; data: string }>; remaining: string } {
-  const events: Array<{ event: string; data: string }> = []
-  const lines = buffer.split("\n")
-  let currentEvent = ""
-  let remaining = ""
-
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i]
-
-    // If it's the last line and doesn't end with \n, it's incomplete
-    if (i === lines.length - 1 && !buffer.endsWith("\n")) {
-      remaining = line
-      break
-    }
-
-    if (line.startsWith("event: ")) {
-      currentEvent = line.slice(7).trim()
-    } else if (line.startsWith("data: ")) {
-      const data = line.slice(6)
-      events.push({ event: currentEvent || "message", data })
-      currentEvent = ""
-    } else if (line === "") {
-      // Empty line = end of event (already pushed)
-    }
-  }
-
-  return { events, remaining }
 }
 
 export function ChatPanel({
@@ -89,6 +62,7 @@ export function ChatPanel({
   isLoading,
   baselineEnabled,
   versions,
+  enrichment,
   onAddMessage,
   onUpdateMessage,
   onSetLoading,
@@ -160,7 +134,7 @@ export function ChatPanel({
         const res = await fetch("/api/chat/stream", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ svg, question: cleanInput, history }),
+          body: JSON.stringify({ svg, question: cleanInput, history, enrichment }),
           signal: controller.signal,
         })
 
@@ -172,6 +146,7 @@ export function ChatPanel({
         const reader = res.body.getReader()
         const decoder = new TextDecoder()
         let buffer = ""
+        let sseEvent = ""
         let thinkingAccum = ""
         let responseAccum = ""
 
@@ -180,8 +155,9 @@ export function ChatPanel({
           if (done) break
 
           buffer += decoder.decode(value, { stream: true })
-          const { events, remaining } = parseSSE(buffer)
+          const { events, remaining, currentEvent } = parseSSE(buffer, sseEvent)
           buffer = remaining
+          sseEvent = currentEvent
 
           for (const { event, data } of events) {
             try {
@@ -220,7 +196,7 @@ export function ChatPanel({
         const res = await fetch("/api/modify", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ svg, instruction: cleanInput, history }),
+          body: JSON.stringify({ svg, instruction: cleanInput, history, enrichment }),
           signal: controller.signal,
         })
         if (!res.ok) {
@@ -245,6 +221,8 @@ export function ChatPanel({
           content: `SVG modified successfully.${changesText}`,
           svgVersionId: version.id,
           svgChanges: result.changes || [],
+          editOps: result.edit_ops || undefined,
+          editReasoning: result.reasoning || undefined,
         })
       }
     } catch (err) {
@@ -343,6 +321,11 @@ export function ChatPanel({
                       {msg.reasoning!}
                     </ReasoningContent>
                   </Reasoning>
+                )}
+
+                {/* Surgical edit chain-of-thought */}
+                {msg.editOps && msg.editOps.length > 0 && (
+                  <EditOpsChain reasoning={msg.editReasoning} ops={msg.editOps} />
                 )}
 
                 {/* AI answer — on canvas, no bubble */}

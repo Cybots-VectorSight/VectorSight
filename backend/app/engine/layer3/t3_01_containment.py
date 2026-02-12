@@ -12,6 +12,12 @@ from app.engine.context import PipelineContext
 from app.engine.registry import Layer, transform
 from app.utils.geometry import points_in_polygon_majority
 
+# Container must have >= 50% area of contained element.
+# Prevents thin lines from being "containers" of larger shapes.
+_CONTAINMENT_MIN_AREA_RATIO = 0.5  # 1/2
+# Progress reporting: only for > 10 elements (O(n^2) containment check).
+_PROGRESS_THRESHOLD = 10  # 2x DOF for ellipse fitting
+
 
 @transform(
     id="T3.01",
@@ -25,8 +31,12 @@ def containment(ctx: PipelineContext) -> None:
         return
 
     matrix = np.zeros((n, n), dtype=bool)
+    report_progress = ctx.progress_callback
 
     for i, sp_outer in enumerate(ctx.subpaths):
+        if report_progress and n > _PROGRESS_THRESHOLD:
+            report_progress(i / n)
+
         if sp_outer.polygon is None or sp_outer.polygon.is_empty:
             continue
         outer_pts = sp_outer.points
@@ -48,7 +58,7 @@ def containment(ctx: PipelineContext) -> None:
             ]
             if points_in_polygon_majority(test_points, outer_pts):
                 # Also check area: container should be bigger
-                if sp_outer.area > sp_inner.area * 0.5:
+                if sp_outer.area > sp_inner.area * _CONTAINMENT_MIN_AREA_RATIO:
                     matrix[i][j] = True
 
     ctx.containment_matrix = matrix

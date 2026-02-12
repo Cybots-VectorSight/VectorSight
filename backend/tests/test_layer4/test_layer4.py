@@ -29,6 +29,7 @@ import app.engine.layer1.t1_20_symmetry_detection
 import app.engine.layer1.t1_21_corner_detection
 import app.engine.layer1.t1_23_shape_class_labeling
 import app.engine.layer1.t1_24_elliptic_fourier
+import app.engine.layer1.t1_25_color_analysis
 import app.engine.layer2.t2_01_ascii_grid
 import app.engine.layer2.t2_02_region_map
 import app.engine.layer2.t2_03_multi_resolution
@@ -79,7 +80,7 @@ def test_layer4_registers_5_transforms():
 def test_total_61_transforms():
     reg = get_registry()
     total = reg.count
-    assert total == 61, f"Expected 61 transforms, got {total}"
+    assert total == 62, f"Expected 62 transforms, got {total}"
 
 
 def test_canonical_orientation_circle():

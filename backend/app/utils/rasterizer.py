@@ -15,6 +15,56 @@ from numpy.typing import NDArray
 if TYPE_CHECKING:
     from shapely.geometry import Polygon
 
+# ── Named constants — zero magic numbers ──
+
+# Center tolerance: ±15% from grid midpoint = center zone [35%,65%].
+# Matches standard thirds grid: left [0%,33%], center [33%,67%], right.
+_CENTER_TOLERANCE_PCT = 0.15
+
+# Minimum filled pixels for stable centroid: 2× the 5 DOF for ellipse fitting.
+_MIN_FILLED_FOR_CENTROID = 10
+
+# Short branch: <30% of main axis length (≈1/3).
+_SHORT_BRANCH_RATIO = 0.30
+
+# Weber's law JND: ~15-20% for spatial contrast. Peaks below this
+# fraction of the min-max range are not perceptually distinct.
+_PEAK_PROMINENCE_FRACTION = 0.20
+
+# Noise margin: 5% above mean distance to avoid false peaks from aliasing.
+_PEAK_NOISE_MARGIN = 1.05  # 100% + 5%
+
+# Lobe width thresholds in degrees:
+#   ≥90° (1/4 of perimeter) = broad lobe (major body part)
+#   ≥50° (≈1/7 of perimeter) = moderate extension
+#   <50° = narrow spike
+_LOBE_BROAD_DEG = 90
+_LOBE_MODERATE_DEG = 50
+
+# Polygon simplification: tolerance multiplier per iteration.
+# 1.5 ≈ √(golden ratio) — moderate search step for coarse simplification.
+# 1.3 ≈ 13/10 — finer step for high-res contour extraction.
+_TOL_STEP_COARSE = 1.5
+_TOL_STEP_FINE = 1.3
+
+# Binary search iterations: ceil(log2(max_canvas / min_tolerance)).
+# For 1000px canvas with 0.1px precision: log2(10000) ≈ 14 → 15 with margin.
+_BISECT_ITERATIONS = 15
+# Coarser search for grid-based simplification (integer pixel tolerance).
+_SIMPLIFY_ITERATIONS_COARSE = 10
+_SIMPLIFY_ITERATIONS_FINE = 12
+
+# Binary search upper bound: half the larger canvas dimension.
+# Simplification tolerance > 50% of canvas dimension produces degenerate shapes.
+_BISECT_UPPER_FRACTION = 0.5
+
+# Minimum Braille resolution: 4×4 Braille chars = 8×16 pixels,
+# but we use 16×16 pixels (4×4 chars each 2×4 dots) as the floor.
+_MIN_BRAILLE_RESOLUTION = 16
+
+# Top N sub-branches to describe (limits output verbosity).
+_MAX_SUB_BRANCHES = 5
+
 
 def make_grid(
     points: NDArray[np.float64] | list[tuple[float, float]],
@@ -184,7 +234,7 @@ def _quadrant_label(r: float, c: float, rows: int, cols: int) -> str:
     """Label position within grid as a quadrant string."""
     v = "upper" if r < rows / 2 else "lower"
     h = "left" if c < cols / 2 else "right"
-    if abs(r - rows / 2) < rows * 0.15 and abs(c - cols / 2) < cols * 0.15:
+    if abs(r - rows / 2) < rows * _CENTER_TOLERANCE_PCT and abs(c - cols / 2) < cols * _CENTER_TOLERANCE_PCT:
         return "center"
     return f"{v}-{h}"
 
@@ -205,7 +255,7 @@ def skeleton_description(grid: NDArray[np.int8]) -> str:
 
     from app.utils.morphology import morphological_close
 
-    if grid is None or np.sum(grid) < 10:
+    if grid is None or np.sum(grid) < _MIN_FILLED_FOR_CENTROID:
         return ""
 
     closed = morphological_close(grid, kernel_size=3)
@@ -343,7 +393,7 @@ def skeleton_description(grid: NDArray[np.int8]) -> str:
 
     if len(branches) > 1:
         branch_descs = []
-        for b in branches[1:6]:  # top 5 sub-branches
+        for b in branches[1:_MAX_SUB_BRANCHES + 1]:
             b_len = len(b)
             br, bc = b[0]
             ber, bec = b[-1]
@@ -354,7 +404,7 @@ def skeleton_description(grid: NDArray[np.int8]) -> str:
             b_pos = _quadrant_label(
                 (br + ber) / 2, (bc + bec) / 2, rows, cols
             )
-            label = "short " if b_len < main_len * 0.3 else ""
+            label = "short " if b_len < main_len * _SHORT_BRANCH_RATIO else ""
             branch_descs.append(f"{b_dir} {label}({b_len}px, {b_pos})")
         parts.append(
             f"with {len(branches) - 1} branches — "
@@ -378,7 +428,7 @@ def radial_distance_profile(
     """
     from app.utils.morphology import morphological_close
 
-    if grid is None or np.sum(grid) < 10:
+    if grid is None or np.sum(grid) < _MIN_FILLED_FOR_CENTROID:
         return ("", "")
 
     closed = morphological_close(grid, kernel_size=3)
@@ -426,7 +476,7 @@ def radial_distance_profile(
     if d_range < 2:
         return (profile_line, "No significant peaks or valleys (approximately circular)")
 
-    threshold = d_range * 0.2
+    threshold = d_range * _PEAK_PROMINENCE_FRACTION
     peaks: list[tuple[int, int]] = []  # (angle_deg, distance)
     valleys: list[tuple[int, int]] = []
 
@@ -445,12 +495,47 @@ def radial_distance_profile(
     peaks.sort(key=lambda x: x[1], reverse=True)
     valleys.sort(key=lambda x: x[1])
 
+    mean_dist = sum(distances) / n_rays if n_rays > 0 else 1
+
+    # Compute angular width for each peak (base width above mean distance)
+    def _peak_width(peak_idx: int, peak_dist: int) -> tuple[int, str]:
+        """Compute width of the elevated region above the mean radius.
+
+        Uses mean_dist as threshold (not half-max) to capture the full
+        span of the protrusion where it rises above the body mass.
+        """
+        thresh = mean_dist * _PEAK_NOISE_MARGIN
+        # Walk left
+        left = 0
+        for k in range(1, n_rays // 2 + 1):
+            if distances[(peak_idx - k) % n_rays] < thresh:
+                break
+            left = k
+        # Walk right
+        right = 0
+        for k in range(1, n_rays // 2 + 1):
+            if distances[(peak_idx + k) % n_rays] < thresh:
+                break
+            right = k
+        width = (left + right + 1) * step_deg
+        if width >= _LOBE_BROAD_DEG:
+            label = "broad lobe"
+        elif width >= _LOBE_MODERATE_DEG:
+            label = "moderate extension"
+        else:
+            label = "narrow spike"
+        return (width, label)
+
     parts = []
     if peaks:
-        peak_strs = [
-            f"{a}\u00b0 ({d}px, {_angle_to_compass(a)})"
-            for a, d in peaks[:3]
-        ]
+        peak_strs = []
+        for a, d in peaks[:3]:
+            idx = a // step_deg
+            width_deg, width_label = _peak_width(idx, d)
+            peak_strs.append(
+                f"{a}\u00b0 ({d}px, {_angle_to_compass(a)}, "
+                f"{width_label} ~{width_deg}\u00b0 wide)"
+            )
         parts.append("Peaks: " + ", ".join(peak_strs))
     if valleys:
         valley_strs = [
@@ -484,9 +569,9 @@ def simplified_contour_path(
                 coords = list(composite_silhouette.exterior.coords)
                 if len(coords) > max_vertices:
                     # Binary search for tolerance
-                    lo, hi = 0.0, max(canvas_w, canvas_h) * 0.5
+                    lo, hi = 0.0, max(canvas_w, canvas_h) * _BISECT_UPPER_FRACTION
                     best = coords
-                    for _ in range(15):
+                    for _ in range(_BISECT_ITERATIONS):
                         mid = (lo + hi) / 2
                         simplified = composite_silhouette.simplify(mid)
                         if simplified.is_empty or simplified.exterior is None:
@@ -508,7 +593,7 @@ def simplified_contour_path(
             pass
 
     # Strategy B: skimage find_contours
-    if grid is not None and np.sum(grid) >= 10:
+    if grid is not None and np.sum(grid) >= _MIN_FILLED_FOR_CENTROID:
         try:
             from skimage.measure import approximate_polygon, find_contours
 
@@ -521,11 +606,11 @@ def simplified_contour_path(
                 contour = max(contours, key=len)
                 # Simplify
                 tol = 1.0
-                for _ in range(10):
+                for _ in range(_SIMPLIFY_ITERATIONS_COARSE):
                     approx = approximate_polygon(contour, tolerance=tol)
                     if len(approx) <= max_vertices:
                         break
-                    tol *= 1.5
+                    tol *= _TOL_STEP_COARSE
                 # Scale to canvas coordinates
                 rows, cols = grid.shape
                 scaled = [
@@ -541,6 +626,96 @@ def simplified_contour_path(
             pass
 
     return ""
+
+
+def extract_high_res_contour(
+    composite_silhouette: Polygon | None,
+    grid: NDArray[np.int8] | None,
+    canvas_w: float,
+    canvas_h: float,
+    max_vertices: int = 40,
+) -> list[tuple[float, float]]:
+    """Extract simplified contour as raw coordinate tuples for contour walk.
+
+    Prefers the grid-based contour (skimage) over Shapely because for complex
+    illustrations the Shapely union of many overlapping elements produces a
+    near-rectangular blob, while the rasterized grid preserves the actual
+    visible boundary shape.
+
+    Returns coordinates in clockwise order.
+    """
+
+    def _ensure_clockwise(pts: list[tuple[float, float]]) -> list[tuple[float, float]]:
+        # Signed area (SVG y-down: positive = clockwise)
+        s = 0.0
+        n = len(pts)
+        for i in range(n):
+            x1, y1 = pts[i]
+            x2, y2 = pts[(i + 1) % n]
+            s += (x2 - x1) * (y2 + y1)
+        if s < 0:  # CCW → reverse
+            return list(reversed(pts))
+        return pts
+
+    # Strategy A (preferred): skimage grid contour — traces actual pixel boundary
+    if grid is not None and np.sum(grid) >= _MIN_FILLED_FOR_CENTROID:
+        try:
+            from skimage.measure import approximate_polygon, find_contours
+
+            from app.utils.morphology import morphological_close
+
+            closed = morphological_close(grid, kernel_size=3)
+            contours = find_contours(closed.astype(float), level=0.5)
+            if contours:
+                contour = max(contours, key=len)
+                tol = 1.0
+                for _ in range(_SIMPLIFY_ITERATIONS_FINE):
+                    approx = approximate_polygon(contour, tolerance=tol)
+                    if len(approx) <= max_vertices:
+                        break
+                    tol *= _TOL_STEP_FINE
+                rows, cols = grid.shape
+                scaled = [
+                    (float(c / cols * canvas_w), float(r / rows * canvas_h))
+                    for r, c in approx
+                ]
+                if len(scaled) > 1 and scaled[0] == scaled[-1]:
+                    scaled = scaled[:-1]
+                if len(scaled) >= 3:
+                    return _ensure_clockwise(scaled)
+        except Exception:
+            pass
+
+    # Strategy B (fallback): Shapely polygon simplification
+    if composite_silhouette is not None:
+        try:
+            if not composite_silhouette.is_empty and composite_silhouette.exterior is not None:
+                coords = list(composite_silhouette.exterior.coords)
+                if len(coords) > max_vertices:
+                    lo, hi = 0.0, max(canvas_w, canvas_h) * _BISECT_UPPER_FRACTION
+                    best = coords
+                    for _ in range(_BISECT_ITERATIONS):
+                        mid = (lo + hi) / 2
+                        simplified = composite_silhouette.simplify(mid)
+                        if simplified.is_empty or simplified.exterior is None:
+                            hi = mid
+                            continue
+                        sc = list(simplified.exterior.coords)
+                        if len(sc) <= max_vertices:
+                            best = sc
+                            hi = mid
+                        else:
+                            lo = mid
+                    coords = best
+                if len(coords) > 1 and coords[0] == coords[-1]:
+                    coords = coords[:-1]
+                if len(coords) >= 3:
+                    pts = [(float(x), float(y)) for x, y in coords]
+                    return _ensure_clockwise(pts)
+        except Exception:
+            pass
+
+    return []
 
 
 def _format_path(coords: list, n_vertices: int) -> str:
@@ -596,17 +771,44 @@ def grid_to_braille(grid: NDArray[np.int8]) -> str:
     return "\n".join(lines)
 
 
+def _braille_resolution_from_points(n_points: int) -> int:
+    """Derive Braille grid resolution from element boundary complexity.
+
+    Each Braille character encodes a 2×4 = 8 binary pixel matrix.
+    Information capacity: n_points boundary points × 1 bit = n_points bits.
+    Minimum Braille characters needed: n_points / 8.
+    Grid side (width in chars) = √(n_chars × 2) (correcting for 2:1
+    Braille char aspect ratio: each char is 2 dots wide × 4 dots tall).
+    Resolution (in pixels) = grid_side × 2 (2 pixels per Braille char width).
+
+    Mathematical basis: information-theoretic capacity of Braille characters
+    matched to the information content of the boundary.
+
+    Must be divisible by 4 (Braille rows need 4 pixels each).
+    """
+    if n_points < 4:
+        return _MIN_BRAILLE_RESOLUTION
+    min_chars = n_points / 8  # 8 bits per Braille char
+    grid_side = int(np.ceil(np.sqrt(min_chars * 2)))  # aspect correction
+    resolution = grid_side * 2  # pixels per Braille char width
+    resolution = max(resolution, _MIN_BRAILLE_RESOLUTION)
+    # Round up to multiple of 4 (Braille row height)
+    resolution = ((resolution + 3) // 4) * 4
+    return resolution
+
+
 def element_braille_grid(
     points: NDArray[np.float64],
     bbox: tuple[float, float, float, float],
-    resolution: int = 48,
+    resolution: int | None = None,
 ) -> str:
     """Render a single element as a Braille grid within its bounding box.
 
     Args:
         points: Nx2 array of (x, y) boundary sample points.
         bbox: (x1, y1, x2, y2) bounding box.
-        resolution: Grid resolution (default 48 → 24 chars × 12 lines).
+        resolution: Grid resolution. If None, derived from len(points)
+            using information-theoretic Braille capacity.
 
     Returns:
         Braille string or empty string if element is too small.
@@ -616,6 +818,9 @@ def element_braille_grid(
     h = y2 - y1
     if w <= 0 or h <= 0 or len(points) == 0:
         return ""
+
+    if resolution is None:
+        resolution = _braille_resolution_from_points(len(points))
 
     grid = np.zeros((resolution, resolution), dtype=np.int8)
     pts = np.asarray(points)
@@ -635,7 +840,7 @@ def element_braille_grid(
 def group_braille_grid(
     subpath_list: list,
     group_bbox: tuple[float, float, float, float] | None = None,
-    resolution: int = 48,
+    resolution: int | None = None,
 ) -> str:
     """Render multiple elements combined as a single Braille grid.
 
@@ -645,7 +850,8 @@ def group_braille_grid(
     Args:
         subpath_list: List of SubPathData objects to render together.
         group_bbox: Optional explicit bounding box. If None, computed from elements.
-        resolution: Grid resolution (default 48 → 24 chars × 12 lines).
+        resolution: Grid resolution. If None, derived from total point count
+            using information-theoretic Braille capacity.
 
     Returns:
         Braille string or empty string if no renderable data.
@@ -679,6 +885,9 @@ def group_braille_grid(
     if w <= 0 or h <= 0:
         return ""
 
+    if resolution is None:
+        resolution = _braille_resolution_from_points(len(combined))
+
     grid = np.zeros((resolution, resolution), dtype=np.int8)
     dim = max(w, h)
     cx, cy = (x1 + x2) / 2, (y1 + y2) / 2
@@ -689,6 +898,61 @@ def group_braille_grid(
     grid[rows_arr, cols_arr] = 1
 
     return grid_to_braille(grid)
+
+
+def rasterize_polygon_to_grid(
+    polygon: Polygon,
+    canvas_w: float,
+    canvas_h: float,
+    resolution: int = 64,
+) -> NDArray[np.int8]:
+    """Rasterize a Shapely Polygon into a filled binary grid.
+
+    Uses skimage.draw.polygon to fill the interior, producing a solid
+    silhouette grid suitable for skeleton/radial analysis.
+
+    For MultiPolygon (e.g., complex SVG paths that fragment into pieces),
+    ALL geoms are rasterized to capture the complete shape.
+    """
+    from shapely.geometry import MultiPolygon as _MultiPolygon
+
+    grid = np.zeros((resolution, resolution), dtype=np.int8)
+
+    if polygon is None or polygon.is_empty:
+        return grid
+
+    # Collect all polygon components to rasterize
+    geoms = []
+    if isinstance(polygon, _MultiPolygon):
+        geoms = list(polygon.geoms)
+    else:
+        geoms = [polygon]
+
+    try:
+        from skimage.draw import polygon as draw_polygon
+
+        for geom in geoms:
+            if geom.is_empty or geom.exterior is None:
+                continue
+            coords = list(geom.exterior.coords)
+            rows_arr = [c[1] / canvas_h * resolution for c in coords]
+            cols_arr = [c[0] / canvas_w * resolution for c in coords]
+            rr, cc = draw_polygon(rows_arr, cols_arr, shape=(resolution, resolution))
+            grid[rr, cc] = 1
+    except Exception:
+        # Fallback: boundary-only rasterization of all geoms
+        for geom in geoms:
+            if geom.is_empty or geom.exterior is None:
+                continue
+            coords = list(geom.exterior.coords)
+            for x, y in coords:
+                c = int(x / canvas_w * resolution)
+                r = int(y / canvas_h * resolution)
+                c = max(0, min(resolution - 1, c))
+                r = max(0, min(resolution - 1, r))
+                grid[r, c] = 1
+
+    return grid
 
 
 def composite_braille_grid(

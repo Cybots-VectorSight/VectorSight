@@ -1,0 +1,297 @@
+=== VECTORSIGHT ENRICHMENT ===
+
+ELEMENTS: 67 paths | CANVAS: 256×259 | TYPE: fill-based
+
+SPATIAL INTERPRETATION:
+  LAYOUT SUMMARY: asymmetric composition; 6 structural layers; large background element: extends into upper half, spans wide, area=106% of primary (LARGER than primary boundary); Highest-circularity concentric group at x=89% — offset from center (far right)
+  Composition: complex illustration with deep nesting (3 levels), mixed shapes (circular, elliptical, linear, organic)
+  Orientation: semi-symmetric; roughly centered but with asymmetric features; moderate vertical symmetry (0.57)
+  Silhouette: mostly filled with shaped contour; roughly square proportions; bottom edge: mostly right; principal axis: diagonal (43°, eccentricity=0.16); boundary lobes: 2 distinct protruding regions (max/min distance ratio=inf)
+  Skeleton: main lower-left axis (27px). with 15 branches — left (21px, upper-left), lower-right (19px, lower-right), lower-right (16px, lower-right), lower-right (13px, center), right short (6px, upper-right). 15 junctions, 4 endpoints
+  Radial profile (0°=right, CCW, 10°): 11,14,19,30,32,24,20,18,17,16,16,16,17,18,21,24,29,28,26,22,20,20,18,18,18,18,19,19,22,23,20,28,24,18,13,11
+  Peaks: 40° (32px, upper-right, narrow spike ~30° wide), 160° (29px, left, moderate extension ~50° wide), 310° (28px, lower-right, narrow spike ~20° wide). Valleys: 300° (20px, lower-right)
+  Simplified outline (15 vertices): M 192,229 L 168,221 L 164,208 L 140,208 L 60,168 L 14,113 L 14,73 L 200,42 L 216,30 L 240,38 L 246,45 L 170,117 L 174,138 L 198,170 L 198,210 Z
+  Shape topology: body mass with 1 moderate extension (left), 2 narrow spikes (upper-right, lower-right); complex internal branching (15 branches, 15 junctions); 14 circular focal features
+  Mass distribution: broadly distributed; vertically centered; quadrants: upper-left=90%, upper-right=85%, lower-left=73%, lower-right=82%; vertical thirds: top=33%, mid=33%, bottom=34%
+  Focal elements:
+    - Concentric group [E10, E55, E11] at (229,147) [mid-right], 3 layers, max circularity=1.00, tiers=SMALL/SMALL/SMALL, root-level (independent, drawn on top)
+    - Concentric group [E52, E56, E4, E66] at (0,1) [top-left], 4 layers, max circularity=0.95, tiers=SMALL/SMALL/SMALL/SMALL, at canvas edge
+    - Concentric group [E40, E41, E50, E51] at (235,215) [bottom-right], 4 layers, max circularity=0.86, tiers=LARGE/MEDIUM/SMALL/SMALL, inside E1
+    - Concentric group [E22, E21] at (159,33) [top-center], 2 layers, max circularity=0.73, tiers=LARGE/LARGE, root-level (independent, drawn on top)
+    -   -> group at (235,215) is below group at (229,147), 68px apart
+    -   -> group at (159,33) is above-left of group at (229,147), 134px apart
+    - Highest-circularity concentric group at x=89% — offset from center (far right)
+  Scene decomposition:
+    - Cluster 0 (mid-center, 50 elements, dominant shape: organic)
+    - Cluster 2 (upper-left, 8 elements, dominant shape: organic)
+    - Cluster 3 (lower-right, 7 elements, dominant shape: organic)
+    - Cluster 0 (mid-center) — Cluster 2 (upper-left) — separated by 143px
+    - Cluster 0 (mid-center) — Cluster 3 (lower-right) — separated by 155px
+    - Cluster 2 (upper-left) — Cluster 3 (lower-right) — separated by 298px
+  Reading hints:
+    - Deep nesting (3 levels).
+    - Major structural elements (top-level, ordered by draw layer — low z drawn first/behind, high z drawn last/in front): E1 (bottom-center, 97%w x 58%h, 18 children, z=0 ← background layer (lower z-index, drawn first), curved organic (conv=0.74, aspect=1.7), area=106% of primary (LARGER than primary boundary)); E7 (bottom-left, 26%w x 26%h, 4 children, z=6 ← background layer (lower z-index, drawn first), curved organic (conv=0.81, aspect=1.0), area=11% of primary); E22 (top-center, 17%w x 23%h, 2 children, z=21 ← background layer (lower z-index, drawn first), compact rounded (conv=0.97, aspect=0.7), area=7% of primary); E23 (top-center, 30%w x 16%h, 3 children, z=22 ← background layer (lower z-index, drawn first), compact rounded (conv=0.90, aspect=1.9), area=11% of primary); E44 (mid-left, 11%w x 25%h, 2 children, z=43 ← background layer (lower z-index, drawn first), curved organic (conv=0.77, aspect=0.5), area=4% of primary); E62 (spans full canvas, 24 children, z=61 ← primary boundary (outermost enclosing element)).
+    - Background element layout: largest background element (E1) centroid at y=65%, bbox top edge at y=41%, bbox bottom at y=99%. This background element extends UP into the upper half of the canvas (top edge at y=41%). Width spans 97% of canvas. Aspect=1.7 (wider than tall) — spreads laterally. Top-most feature (E23) at y=9%. Separation=56% — background element center is far below top feature.
+    - 4 spatial clusters.
+    - 3 circular elements.
+
+SHAPE NARRATIVE:
+  Contour: Starting from bottom-center: extends short right at bottom (narrow peak), descends down at bottom, extends short right at bottom (broad curved lobe), rises through lower region (long up), rises long upper-right at upper-right (broad curved lobe), rises short upper-left at top-right, descends short lower-left at top-right, extends long left at top (broad curved lobe), descends long down at mid.
+  Paired features:
+    - Paired concentric groups at right, y-aligned ~51%, 38px apart ([E10,E55,E11] and [E63,E65,E64])
+    - Paired concentric groups at top, y-aligned ~11%, 41px apart ([E22,E21] and [E23,E26,E24])
+    - Symmetric organic pair at lower (E2, E59), mirrored across vertical axis
+  Extensions from core:
+    - Contour protrusion toward upper-right at top-right, prominence=45% above mean radius
+  Structural detail:
+    - E1: moderately curved, complex boundary (75 inflections), branching internal structure (36 junctions, 3 endpoints)
+    - E62: moderately curved, complex boundary (242 inflections)
+    - E12: moderately curved, complex boundary (72 inflections), branching internal structure (34 junctions, 3 endpoints)
+    - E29: mostly straight edges, complex boundary (24 inflections), branching internal structure (21 junctions, 0 endpoints)
+    - E23: moderately curved, complex boundary (16 inflections)
+    - E7: highly curved, moderate complexity (5 inflections), branching internal structure (10 junctions, 1 endpoints)
+    - E18: moderately curved, complex boundary (8 inflections), deeply nested (depth=2), branching internal structure (9 junctions, 1 endpoints)
+    - E22: mostly straight edges, complex boundary (26 inflections)
+
+── VISUAL PYRAMID ──
+
+LEVEL 1 — PRIMARY BOUNDARY E62 (16×16, subject outline only):
+................
+................
+................
+..........######
+....###########.
+.#############..
+.#.###.######...
+.########.##....
+...########.....
+...####.#.##....
+....#####..##...
+.....#.##.#.#...
+.......#.##.#...
+............#...
+............#...
+................
+
+LEVEL 2 — INTERIOR FEATURES (14×14, 24 elements inside E62, boundary removed):
+..###....#....
+..######.##...
+.#.##.#####...
+.##########...
+.###########..
+.###########..
+###########...
+############..
+#########.....
+.####....##...
+...####..##...
+.........#....
+........##....
+..............
+
+LEVEL 3 — FEATURE ZOOMS (10×10 each, zoomed to feature bbox):
+  [E40+E41+E50+E51] at bottom-right:
+    ...#######
+    .###....##
+    .#.#.....#
+    .#.#######
+    .#..##..##
+    .##.######
+    .#########
+    #####.####
+    ##..######
+    ##........
+
+  [E10+E55+E11] at right:
+    ..########
+    .###...#.#
+    ####...###
+    #.##....##
+    #..#...###
+    #..##.##.#
+    #...######
+    #......###
+    #.....####
+    #######...
+
+  [E18+E17+E19] at center:
+    ......###.
+    ######.###
+    ##########
+    ..####.###
+    ...#######
+    ..#####..#
+    .###..####
+    ########..
+    ######....
+    ###.......
+
+  [E23+E26+E24] at top:
+    ###..#####
+    ######..##
+    ####...###
+    ##.#####.#
+    ###..#####
+    ##########
+    .#########
+    ..########
+    ..########
+    ....#####.
+
+  [E63+E65+E64] at right:
+    ..#####...
+    .##.###...
+    #######...
+    #######...
+    ####.###..
+    ####.#####
+    ####.###.#
+    .####.##.#
+    ...#######
+    ....#####.
+
+  [E7+E9] at bottom-left:
+    .###......
+    .###......
+    #####.....
+    ######....
+    ####.###..
+    #.###..##.
+    #..######.
+    ##...#####
+    .##.....##
+    ..########
+
+PRIMARY BOUNDARY BRAILLE (E62, 64×64, 2×4 dots/char):
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⣀⣠⡄⢷⣶⣤⣄⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣠⣤⣤⣴⣶⣶⣾⣿⣿⣳⣿⣿⣿⣿⣷⣝⠛⠁⠀
+⠀⠀⡤⡀⣤⢲⣶⣞⡿⠿⠷⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⢧⣿⣿⣿⣿⡿⠟⠁⠀⠀⠀
+⠀⠀⣽⡃⣿⣷⣭⣛⣿⠿⠿⢦⠻⣿⣿⣿⣿⣿⣛⣯⣵⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀
+⠀⠀⣵⣿⣌⢿⣿⣿⣛⡿⠿⣿⣶⣤⣉⠛⠿⢿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠹⣿⢻⡇⣍⣛⡿⢿⣿⣿⣿⣿⣿⣿⣷⣶⣶⣬⣍⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠈⠸⡇⡟⣿⣿⣿⣷⣾⣭⡉⡙⠛⠻⠿⣿⣿⣿⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢻⡻⣿⣿⣿⣿⣿⣿⣾⣦⣷⡀⣌⠙⢿⠿⢿⣆⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠑⠙⢿⣯⠻⣿⣿⣿⣿⣿⣇⢸⣷⡄⠺⣥⣲⢥⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠃⠸⣿⣿⣿⣿⢇⣼⣿⣿⡀⢮⣕⡙⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠺⢿⣿⣿⡟⠀⣸⣮⢿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠾⣾⡿⡏⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠁⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+RECONSTRUCTION (build image mentally, step by step):
+  1. Background: E1 (organic), E5 (organic), E7 (organic) — behind everything
+  2. Primary boundary (E62): organic, covers 100%×100% of canvas — this IS the subject's outline
+  3. Inside E62 at bottom-left: organic feature [E7+E9] (2 concentric layers)
+  4. Inside E62 at right: circular feature [E10+E55+E11] (3 concentric layers)
+  5. Inside E62 at top: organic feature [E12+E38] (2 concentric layers)
+  6. Inside E62 at center: organic feature [E15+E16] (2 concentric layers)
+  7. Inside E62 at center: organic feature [E18+E17+E19] (3 concentric layers)
+  8. Inside E62 at top: circular feature [E22+E21] (2 concentric layers)
+  9. Inside E62 at top: circular feature [E23+E26+E24] (3 concentric layers)
+  10. Inside E62 at center: organic feature [E29+E30] (2 concentric layers)
+  11. Inside E62 at right: organic feature [E34+E35] (2 concentric layers)
+  12. Inside E62 at bottom-right: circular feature [E40+E41+E50+E51] (4 concentric layers)
+  13. Inside E62 at left: organic feature [E42+E43] (2 concentric layers)
+  14. Inside E62 at left: organic feature [E44+E45] (2 concentric layers)
+  15. Inside E62 at bottom-left: organic feature [E59+E61] (2 concentric layers)
+  16. Inside E62 at right: circular feature [E63+E65+E64] (3 concentric layers)
+  17. Inside E62 at top-right: E20 (organic)
+  18. Inside E62 at center: E32 (organic, blue)
+  19. Inside E62 at bottom-right: E3 (organic, black)
+  20. Inside E62 at top: E27 (organic)
+  21. Inside E62 at top: E39 (organic, white)
+  22. Inside E62 at center: E33 (organic, dark)
+  23. 5 small detail elements distributed throughout interior
+
+KEY ELEMENTS (top 12 by importance):
+  E12: [LARGE] organic(closed_loop), bbox(50,5,200,139), at(121,77), circ=0.09, conv=0.75, aspect=1.12, salience=47
+  E40: [LARGE] circular(semicircle_or_arc), bbox(214,200,251,231), at(234,214), circ=0.86, conv=0.95, aspect=1.17, salience=40
+  E55: [SMALL] circular(closed_loop), bbox(225,140,234,149), at(229,144), circ=1.00, conv=1.00, aspect=1.00, salience=40
+  E56: [SMALL] circular(closed_loop), bbox(0,0,3,3), at(1,1), circ=0.95, conv=1.00, aspect=0.86, salience=39
+  E30: [MEDIUM] linear(semicircle_or_arc), bbox(54,141,151,159), at(104,153), circ=0.11, conv=0.51, aspect=5.46, color=white(#FFFFFF), salience=37
+  E29: [LARGE] organic(semicircle_or_arc), bbox(28,90,200,195), at(111,147), circ=0.15, conv=0.72, aspect=1.63, salience=35
+  E18: [LARGE] organic(semicircle_or_arc), bbox(94,56,138,126), at(117,88), circ=0.49, conv=0.70, aspect=0.62, salience=34
+  E41: [MEDIUM] organic(semicircle_or_arc), bbox(223,198,251,216), at(238,206), circ=0.75, conv=0.91, aspect=1.60, color=white(#F6E8A0), salience=34
+  E10: [SMALL] elliptical(closed_loop), bbox(220,140,237,154), at(228,147), circ=0.86, conv=0.97, aspect=1.28, color=white(#F9E0E7), salience=33
+  E1: [LARGE] organic(closed_loop), bbox(4,106,252,256), at(140,168), circ=0.16, conv=0.74, aspect=1.66, color=red(#E65270), salience=33
+  E19: [LARGE] organic(semicircle_or_arc), bbox(96,64,125,127), at(113,94), circ=0.29, conv=0.52, aspect=0.46, color=red(#E65271), salience=33
+  E62: [LARGE] organic(closed_loop), bbox(0,0,255,258), at(124,117), circ=0.03, conv=0.38, aspect=0.99, color=black(#0D0D0D), salience=31
+  + 55 more elements (53×organic, 2×linear)
+
+SYMMETRY: vertical (score 0.57)
+  Pairs: (E2↔E59), (E3↔E7), (E6↔E40), (E10↔E44), (E11↔E45), (E15↔E32), (E16↔E34), (E27↔E38)
+
+CONCENTRIC GROUPS:
+  [E52, E56, E4, E66] at top-left (0,1)
+  [E7, E9] at bottom-left (62,204)
+  [E10, E55, E11] at right (229,147)
+  [E12, E38] at top (122,78)
+  [E15, E16] at center (98,97)
+  [E18, E17, E19] at center (123,93)
+  [E22, E21] at top (159,33)
+  [E23, E26, E24] at top (120,23)
+  [E29, E30] at center (111,147)
+  [E34, E35] at right (170,109)
+  [E40, E41, E50, E51] at bottom-right (235,215)
+  [E42, E43] at left (44,118)
+  [E44, E45] at left (23,138)
+  [E59, E61] at bottom-left (75,183)
+  [E63, E65, E64] at right (207,116)
+
+COLOR PALETTE: #8b4fba ×8, #2b2b2b ×7, #ffffff ×7, #430a1d ×6, #e65270 ×4, #e65271 ×3
+  white: [E8, E10, E11, E14, E23, E24, E25, E30] +3 more
+  black: [E2, E3, E58, E60, E61, E62, E65, E67]
+  blue: [E9, E13, E15, E16, E32, E35, E38, E49]
+  red: [E1, E19, E21, E31, E46, E50, E63]
+  dark: [E6, E33, E43, E45, E51, E59, E64]
+
+CONTAINMENT TREE:
+  E1 [LARGE] organic at center (9 children)
+    E2 [MEDIUM] organic at bottom-right
+    E5 [LARGE] organic at bottom-left
+    E29 [LARGE] organic at center (1 children)
+      E30 [MEDIUM] linear at center
+    E40 [LARGE] circular at bottom-right (1 children)
+      E41 [MEDIUM] organic at bottom-right (1 children)
+        E57 [SMALL] organic at bottom-right
+    E46 [MEDIUM] organic at bottom-right
+    E50 [SMALL] organic at bottom-right
+    E51 [SMALL] organic at bottom-right
+    E61 [MEDIUM] organic at bottom-left
+    ...+1 more
+  E6 [SMALL] organic at bottom-left
+  E7 [LARGE] organic at bottom-left (4 children)
+    E8 [MEDIUM] organic at bottom-left
+    E9 [MEDIUM] organic at bottom-left
+    E58 [MEDIUM] organic at bottom-left
+    E60 [SMALL] organic at bottom-left
+  E10 [SMALL] elliptical at right (1 children)
+    E55 [SMALL] circular at right
+  E11 [SMALL] organic at right
+  E14 [MEDIUM] organic at top
+  E22 [LARGE] organic at top (2 children)
+    E20 [LARGE] organic at top-right
+    E21 [LARGE] organic at top
+  E23 [LARGE] organic at top (2 children)
+    E24 [MEDIUM] organic at top (1 children)
+      E25 [SMALL] organic at top
+    E26 [LARGE] organic at top
+  ...+9 more root elements
+
+KEY OVERLAPS:
+  E50↔E51 (IoU=1.000)
+  E27↔E39 (IoU=0.795)
+  E34↔E35 (IoU=0.749)
+  E23↔E26 (IoU=0.747)
+  E7↔E9 (IoU=0.742)
+
+LEARNED PATTERNS:
+  1. Low fill percentage with many elements means stroke-based or outline-only rendering. The shapes exist as boundaries, not as filled regions. The visual result may appear solid to a viewer but the SVG construction uses outlines. Don't confuse SVG rendering technique with visual appearance.
+  2. High bilateral symmetry with few elements indicates intentional geometric construction — likely a designed symbol, icon, or simple illustration. The symmetry axis and paired elements define the compositional structure directly.
+  3. Concentric groups (elements sharing a center) are multi-ring constructions — a detail feature built from layered shapes. Their position relative to the largest containing element and their size tier determine their structural role.
+  4. Read the positive space grid as a low-resolution thumbnail. Trace the boundary between X and dot — that is the silhouette outline. Curved non-rectangular boundaries indicate non-geometric construction. The grid shape is often more informative than individual element properties.
+  5. Elements at 0px distance are touching or overlapping — they form continuous visual surfaces. This construction uses stacked shapes for shading, gradient simulation, or color regions rather than discrete separate parts. Read the stacking tree to see layering order.
+
+=== END ENRICHMENT ===

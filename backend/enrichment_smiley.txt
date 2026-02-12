@@ -1,0 +1,82 @@
+=== VECTORSIGHT ENRICHMENT ===
+
+ELEMENTS: 4 paths | CANVAS: 24×24 | TYPE: stroke-based
+
+SPATIAL INTERPRETATION:
+  LAYOUT SUMMARY: symmetric composition (strong bilateral)
+  Composition: simple icon
+  Orientation: strong bilateral symmetry; strong vertical symmetry (1.00)
+  Silhouette: sparse, open composition; widest at top; roughly square proportions; upward protrusion from center; extends down on center; narrowest at row 47% (width drops to 6% vs 21% above/below) — distinct upper and lower mass regions; empty: upper-left, upper-right, lower-left, lower-right; principal axis: horizontal (3°, eccentricity=0.03); highly concave silhouette (hull fill=21%)
+  Skeleton: main down axis (4px). with 3 branches — right (3px, upper-left), right (3px, lower-left), right (3px, lower-right). 0 junctions, 6 endpoints
+  Radial profile (0°=right, CCW, 15°): 14,7,8,8,13,13,13,13,13,8,8,7,13,13,6,6,6,6,6,6,6,6,6,13
+  Peaks: 0° (14px, right, narrow spike ~30° wide). Valleys: 15° (7px, right), 165° (7px, left)
+  Simplified outline (5 vertices): M 8,10 L 6,10 L 7,7 L 8,7 L 9,9 Z
+  Shape topology: body mass with 1 narrow spike (right)
+  Mass distribution: evenly distributed; vertically centered; quadrants: upper-left=12%, upper-right=12%, lower-left=11%, lower-right=11%; vertical thirds: top=25%, mid=40%, bottom=35%
+  Focal elements:
+    - E3: circular (circular, circ=1.00) inside E2
+    - E4: circular (circular, circ=1.00) inside E2
+  Reading hints:
+    - High symmetry (1.00) — balanced/symmetric design or front-facing orientation.
+    - 3 circular elements.
+
+SHAPE NARRATIVE:
+  Contour: Starting from bottom-center: rises upper-right at upper (broad curved lobe), rises short upper-left at upper, extends left at upper (broad curved lobe), descends short down at upper (broad curved lobe), extends short right at upper.
+  Structural detail:
+    - E2: mostly straight edges
+    - E1: highly curved
+    - E3: highly curved
+    - E4: highly curved
+
+── VISUAL PYRAMID ──
+
+LEVEL 0 — ALL ELEMENTS (12×12, #=filled .=empty):
+............
+...######...
+..#......#..
+.#........#.
+.#.##..##.#.
+.#..#...#.#.
+.#........##
+.#..#####.#.
+.#........#.
+..#......#..
+...######...
+.....#......
+
+RECONSTRUCTION (build image mentally, step by step):
+  1. E2 [LARGE] circular at center
+  2. E1 [MEDIUM] triangular at center
+  3. E3 [SMALL] circular at center
+  4. E4 [SMALL] circular at right
+
+KEY ELEMENTS (top 4 by area):
+  E2: [LARGE] circular(closed_loop), bbox(2,2,22,22), at(12,12), circ=1.00, conv=1.00, aspect=1.00
+    svg: <circle cx="12" cy="12" r="10"/>
+  E1: [MEDIUM] triangular(curved), bbox(8,14,16,15), at(12,14), circ=0.47, conv=1.00, aspect=4.00
+    svg: <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+  E3: [SMALL] circular(closed_loop), bbox(7,8,9,10), at(8,9), circ=1.00, conv=1.00, aspect=1.00
+    svg: <circle cx="8" cy="9" r="1"/>
+  E4: [SMALL] circular(closed_loop), bbox(15,8,17,10), at(16,9), circ=1.00, conv=1.00, aspect=1.00
+    svg: <circle cx="16" cy="9" r="1"/>
+
+SYMMETRY: vertical (score 1.00)
+  Pairs: (E3↔E4)
+
+CONTAINMENT TREE:
+  E2 [LARGE] circular at center (3 children)
+    E1 [MEDIUM] triangular at center
+    E3 [SMALL] circular at center
+    E4 [SMALL] circular at right
+
+LEARNED PATTERNS:
+  1. Low fill percentage with many elements means stroke-based or outline-only rendering. The shapes exist as boundaries, not as filled regions. The visual result may appear solid to a viewer but the SVG construction uses outlines. Don't confuse SVG rendering technique with visual appearance.
+  2. High bilateral symmetry with few elements indicates intentional geometric construction — likely a designed symbol, icon, or simple illustration. The symmetry axis and paired elements define the compositional structure directly.
+  3. Concentric groups (elements sharing a center) are multi-ring constructions — a detail feature built from layered shapes. Their position relative to the largest containing element and their size tier determine their structural role.
+
+=== END ENRICHMENT ===
+
+--- STATS ---
+Characters: 3989
+Words: 517
+Lines: 77

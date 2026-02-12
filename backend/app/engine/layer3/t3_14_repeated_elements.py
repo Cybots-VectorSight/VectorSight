@@ -11,6 +11,18 @@ import numpy as np
 from app.engine.context import PipelineContext
 from app.engine.registry import Layer, transform
 
+# CV = sigma/mu. Statistical interpretation:
+# < 0.10 -> relative SD < 10% — "essentially constant"
+_CV_CONSTANT = 0.10
+# < 0.30 -> relative SD < 30% — "moderately variable"
+_CV_MODERATE = 0.30
+
+# Radial: distances must be near-constant (midpoint of constant band).
+_CV_RADIAL = (_CV_CONSTANT + _CV_MODERATE) / 2  # 0.20 -> generous for radial
+_CV_RADIAL_STRICT = _CV_CONSTANT * 1.5           # 0.15 -> equidistant check
+# Grid: spacing in x or y must be near-constant.
+_CV_GRID = _CV_MODERATE * (2 / 3)                # 0.20 -> regular spacing
+
 
 @transform(
     id="T3.14",
@@ -48,10 +60,10 @@ def repeated_elements(ctx: PipelineContext) -> None:
         # Check grid pattern: regular spacing in x and y
         dx = np.diff(np.sort(centroids[:, 0]))
         dy = np.diff(np.sort(centroids[:, 1]))
-        grid_x = len(dx) > 0 and np.std(dx) / (np.mean(dx) + 1e-10) < 0.2 if len(dx) > 1 else False
-        grid_y = len(dy) > 0 and np.std(dy) / (np.mean(dy) + 1e-10) < 0.2 if len(dy) > 1 else False
+        grid_x = len(dx) > 0 and np.std(dx) / (np.mean(dx) + 1e-10) < _CV_GRID if len(dx) > 1 else False
+        grid_y = len(dy) > 0 and np.std(dy) / (np.mean(dy) + 1e-10) < _CV_GRID if len(dy) > 1 else False
 
-        if dist_cv < 0.15 and len(members) >= 3:
+        if dist_cv < _CV_RADIAL_STRICT and len(members) >= 3:
             pattern = "radial"
         elif grid_x and grid_y:
             pattern = "grid"

@@ -1,9 +1,74 @@
-"""SVG Anonymizer — refactored from svg_anonymizer.py. Strips colors, IDs, classes, styles, metadata."""
+"""SVG Anonymizer — strips identity-revealing metadata before LLM sees SVG.
+
+Two levels:
+- sanitize_for_llm(): Light-touch — removes <title>, <desc>, comments, descriptive
+  attributes (id, class, aria-*, data-*) while keeping ALL visual attributes (fill,
+  stroke, d, cx, cy, etc.).  Used before injecting SVG into LLM prompts.
+- anonymize(): Heavy — rebuilds SVG with only geometry attributes.  Not used in the
+  main pipeline but available for research/testing.
+"""
 
 from __future__ import annotations
 
 import re
 import xml.etree.ElementTree as ET
+
+# ── Light-touch sanitization (used in main pipeline) ──────────────────────
+
+# Attributes that reveal identity — strip these before LLM sees the SVG
+_IDENTITY_ATTRS_RE = re.compile(
+    r"""\s+(?:
+        id | class | name
+        | aria-\w+
+        | data-\w+
+        | inkscape:\w+
+        | sodipodi:\w+
+    )\s*=\s*"[^"]*" """,
+    re.VERBOSE,
+)
+
+# Metadata tags to remove entirely (with their content)
+_META_TAG_RE = re.compile(
+    r"<\s*(?:title|desc|metadata)[^>]*>.*?</\s*(?:title|desc|metadata)\s*>",
+    re.DOTALL | re.IGNORECASE,
+)
+_META_SELFCLOSE_RE = re.compile(
+    r"<\s*(?:title|desc|metadata)[^/]*/\s*>",
+    re.IGNORECASE,
+)
+_COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
+
+
+def sanitize_for_llm(svg_text: str) -> str:
+    """Strip identity-revealing metadata from SVG while keeping all visual attributes.
+
+    Removes: <title>, <desc>, <metadata>, HTML comments, id/class/aria-*/data-* attrs.
+    Keeps: fill, stroke, d, cx, cy, r, viewBox, transform, etc.
+    """
+    # Remove comments
+    svg_text = _COMMENT_RE.sub("", svg_text)
+    # Remove metadata tags
+    svg_text = _META_TAG_RE.sub("", svg_text)
+    svg_text = _META_SELFCLOSE_RE.sub("", svg_text)
+    # Remove identity attributes
+    svg_text = _IDENTITY_ATTRS_RE.sub(" ", svg_text)
+    # Clean up extra whitespace in tags
+    svg_text = re.sub(r"  +", " ", svg_text)
+    svg_text = re.sub(r" /?>", "/>", svg_text)
+    svg_text = re.sub(r" >", ">", svg_text)
+    return svg_text.strip()
+
+
+def sanitize_tag(tag_text: str) -> str:
+    """Strip identity attributes from a single SVG tag (for source_tag in enrichment)."""
+    result = _IDENTITY_ATTRS_RE.sub(" ", tag_text)
+    result = re.sub(r"  +", " ", result)
+    result = re.sub(r" /?>", "/>", result)
+    result = re.sub(r" >", ">", result)
+    return result.strip()
+
+
+# ── Heavy anonymization (for research/testing) ───────────────────────────
 
 REMOVE_TAGS = {
     "title", "desc", "metadata", "style", "defs",

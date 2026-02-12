@@ -32,6 +32,45 @@ app.get("/health", async (c) => {
   }
 })
 
+// Prompt templates
+app.get("/prompts", async (c) => {
+  try {
+    const { data, status } = await proxyToBackend("/prompts", "GET")
+    return c.json(data, status)
+  } catch {
+    return c.json({ error: "Failed to load prompts" }, 503)
+  }
+})
+
+// Analyze streaming (SSE passthrough) — must be before /analyze
+app.post("/analyze/stream", async (c) => {
+  try {
+    const body = await c.req.json()
+    const url = `${BACKEND_URL}/api/analyze/stream`
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    })
+
+    if (!res.ok || !res.body) {
+      return c.json({ error: "Stream failed" }, res.status as StatusCode)
+    }
+
+    return new Response(res.body, {
+      status: 200,
+      headers: {
+        "Content-Type": "text/event-stream",
+        "Cache-Control": "no-cache",
+        Connection: "keep-alive",
+        "X-Accel-Buffering": "no",
+      },
+    })
+  } catch {
+    return c.json({ error: "Stream failed" }, 500)
+  }
+})
+
 // Analyze SVG
 app.post("/analyze", async (c) => {
   try {

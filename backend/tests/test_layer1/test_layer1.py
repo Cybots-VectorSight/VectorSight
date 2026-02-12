@@ -29,6 +29,7 @@ import app.engine.layer1.t1_20_symmetry_detection
 import app.engine.layer1.t1_21_corner_detection
 import app.engine.layer1.t1_23_shape_class_labeling
 import app.engine.layer1.t1_24_elliptic_fourier
+import app.engine.layer1.t1_25_color_analysis
 
 from app.engine.pipeline import Pipeline
 from app.engine.registry import Layer, get_registry
@@ -39,7 +40,7 @@ from tests.conftest import CIRCLE_SVG, SMILEY_SVG, HOME_SVG
 def test_layer1_registers_21_transforms():
     reg = get_registry()
     layer1 = reg.get_layer(Layer.SHAPE_ANALYSIS)
-    assert len(layer1) == 21
+    assert len(layer1) == 22
 
 
 def test_full_pipeline_circle():

@@ -10,6 +10,14 @@ import numpy as np
 
 from app.engine.context import PipelineContext
 from app.engine.registry import Layer, transform
+from app.engine.spatial_constants import SYMMETRY_MIRROR_FRACTION
+
+# Multi-element symmetry: >50% matched = majority rule (democracy threshold).
+_SYM_MAJORITY = 0.50
+# Reportable bilateral: >70% matched = strong majority (supermajority).
+_SYM_REPORTABLE = 0.70
+# Minimum points for bilateral analysis: 2x ellipse DOF (5) = 10.
+_MIN_POINTS_SYMMETRY = 10
 
 
 @transform(
@@ -24,7 +32,7 @@ def symmetry_detection(ctx: PipelineContext) -> None:
 
     # Per-element symmetry (bilateral)
     for sp in ctx.subpaths:
-        if len(sp.points) < 10:
+        if len(sp.points) < _MIN_POINTS_SYMMETRY:
             sp.features["bilateral_symmetry_score"] = 0.0
             sp.features["bilateral_symmetry_axis"] = "none"
             continue
@@ -64,7 +72,7 @@ def symmetry_detection(ctx: PipelineContext) -> None:
         pairs: list[tuple[int, int]] = []
         used: set[int] = set()
         on_axis: list[int] = []
-        eps = ctx.viewbox_diagonal * 0.05
+        eps = ctx.viewbox_diagonal * SYMMETRY_MIRROR_FRACTION
 
         for i in range(len(centroids)):
             if i in used:
@@ -92,7 +100,7 @@ def symmetry_detection(ctx: PipelineContext) -> None:
         total = len(ctx.subpaths)
         sym_score = matched / max(total, 1)
 
-        if sym_score > 0.5:
+        if sym_score > _SYM_MAJORITY:
             ctx.symmetry_axis = "vertical"
             ctx.symmetry_score = round(sym_score, 3)
             ctx.symmetry_pairs = pairs

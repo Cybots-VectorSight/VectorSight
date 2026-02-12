@@ -3,9 +3,9 @@
     "id": "p001",
     "condition": "0px nearest-neighbor distance on many pairs",
     "insight": "Elements at 0px distance are touching or overlapping — they form continuous visual surfaces. This construction uses stacked shapes for shading, gradient simulation, or color regions rather than discrete separate parts. Read the stacking tree to see layering order.",
-    "confidence": 0.85,
-    "times_confirmed": 1,
-    "times_contradicted": 0,
+    "confidence": 0.8,
+    "times_confirmed": 2,
+    "times_contradicted": 1,
     "tags": [
       "organic"
     ],
@@ -15,9 +15,9 @@
     "id": "p002",
     "condition": "concentric groups of 2-3 elements",
     "insight": "Concentric groups (elements sharing a center) are multi-ring constructions — a detail feature built from layered shapes. Their position relative to the largest containing element and their size tier determine their structural role.",
-    "confidence": 0.95,
-    "times_confirmed": 4,
-    "times_contradicted": 0,
+    "confidence": 0.9,
+    "times_confirmed": 11,
+    "times_contradicted": 1,
     "tags": [
       "circular"
     ],
@@ -27,9 +27,9 @@
     "id": "p003",
     "condition": "deep nesting (3+ containment levels), 40+ elements",
     "insight": "Deep nesting with many elements indicates hierarchical assembly — large shapes contain medium shapes which contain small shapes. Analyze the stacking tree level by level rather than element by element. Each nesting level represents a different construction layer.",
-    "confidence": 0.85,
-    "times_confirmed": 1,
-    "times_contradicted": 0,
+    "confidence": 0.8,
+    "times_confirmed": 2,
+    "times_contradicted": 1,
     "tags": [
       "organic"
     ],
@@ -39,9 +39,9 @@
     "id": "p004",
     "condition": "high overlap count (IoU > 0.3 in 10+ pairs)",
     "insight": "Dense overlapping means shapes are stacked on top of each other — layered construction building up regions. The stacking tree reveals the layering order. Don't interpret each shape independently — they combine to form composite regions.",
-    "confidence": 0.8,
-    "times_confirmed": 1,
-    "times_contradicted": 0,
+    "confidence": 0.7500000000000001,
+    "times_confirmed": 2,
+    "times_contradicted": 1,
     "tags": [
       "organic"
     ],
@@ -51,9 +51,9 @@
     "id": "p005",
     "condition": "one dominant spatial cluster + smaller satellite clusters",
     "insight": "When one cluster contains most elements and smaller clusters sit at edges, the dominant cluster is the main mass. Satellite clusters are extensions or separate sub-assemblies. Analyze each cluster's internal structure independently, then consider how they connect.",
-    "confidence": 0.8,
-    "times_confirmed": 1,
-    "times_contradicted": 0,
+    "confidence": 0.7500000000000001,
+    "times_confirmed": 2,
+    "times_contradicted": 1,
     "tags": [
       "organic"
     ],
@@ -63,9 +63,9 @@
     "id": "p006",
     "condition": "symmetry pairs present but moderate score (0.4-0.7)",
     "insight": "Moderate symmetry with defined mirror pairs means some elements are mirrored across an axis while the overall composition is not symmetric. The paired elements share structural function. Elements ON the axis (unpaired) are typically central features.",
-    "confidence": 0.8,
-    "times_confirmed": 1,
-    "times_contradicted": 0,
+    "confidence": 0.7500000000000001,
+    "times_confirmed": 2,
+    "times_contradicted": 1,
     "tags": [
       "organic"
     ],
@@ -75,9 +75,9 @@
     "id": "p007",
     "condition": "large non-convex element (convexity < 0.6) with high area",
     "insight": "A large element with low convexity has distinct sub-parts — concavities divide it into regions. The convex hull ratio tells you how much branching or indentation exists. Combined with the element's position relative to the main mass, this reveals the overall structural topology.",
-    "confidence": 0.8,
-    "times_confirmed": 1,
-    "times_contradicted": 0,
+    "confidence": 0.7500000000000001,
+    "times_confirmed": 2,
+    "times_contradicted": 1,
     "tags": [
       "organic"
     ],
@@ -87,9 +87,9 @@
     "id": "p008",
     "condition": "positive space grid shows curved, non-rectangular silhouette",
     "insight": "Read the positive space grid as a low-resolution thumbnail. Trace the boundary between X and dot — that is the silhouette outline. Curved non-rectangular boundaries indicate non-geometric construction. The grid shape is often more informative than individual element properties.",
-    "confidence": 0.9,
-    "times_confirmed": 1,
-    "times_contradicted": 0,
+    "confidence": 0.85,
+    "times_confirmed": 2,
+    "times_contradicted": 1,
     "tags": [
       "organic"
     ],
@@ -99,9 +99,9 @@
     "id": "p009",
     "condition": "fill percentage < 15% despite many elements",
     "insight": "Low fill percentage with many elements means stroke-based or outline-only rendering. The shapes exist as boundaries, not as filled regions. The visual result may appear solid to a viewer but the SVG construction uses outlines. Don't confuse SVG rendering technique with visual appearance.",
-    "confidence": 0.95,
-    "times_confirmed": 4,
-    "times_contradicted": 0,
+    "confidence": 0.9,
+    "times_confirmed": 11,
+    "times_contradicted": 1,
     "tags": [
       "circular"
     ],
@@ -111,9 +111,9 @@
     "id": "p010",
     "condition": "strong symmetry (score > 0.85) with few elements (< 10)",
     "insight": "High bilateral symmetry with few elements indicates intentional geometric construction — likely a designed symbol, icon, or simple illustration. The symmetry axis and paired elements define the compositional structure directly.",
-    "confidence": 0.95,
-    "times_confirmed": 4,
-    "times_contradicted": 0,
+    "confidence": 0.9,
+    "times_confirmed": 11,
+    "times_contradicted": 1,
     "tags": [
       "circular"
     ],
@@ -197,6 +197,320 @@
       "canonical-metrics",
       "minimal-design",
       "centered-placement"
+    ],
+    "source_svg_hash": "edad620b041d"
+  },
+  {
+    "id": "vc016",
+    "condition": "Stroke-based circle with perfect metrics (circ=1.00, conv=1.00, aspect=1.00), single element, centered placement, ~8% fill, 12 Bézier corners (from: A simple black circle with a thick stroke outline,)",
+    "insight": "This is a canonical functional UI icon—a selection ring, checkbox, radio button outline, or decorative circular border. The low fill percentage reflects stroke-only rendering, not sparsity. The 12 corners are a standard cubic Bézier approximation artifact (4 curves × 3 control points), not visual angularity.",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "UI_icon",
+      "geometric_primitive",
+      "stroke_based",
+      "canonical_circle",
+      "functional_UI_element"
+    ],
+    "source_svg_hash": "edad620b041d"
+  },
+  {
+    "id": "vc017",
+    "condition": "Perfect radial symmetry in silhouette Braille grid despite enrichment reporting 0.00 symmetry (from: A simple black circle with a thick stroke outline,)",
+    "insight": "The symmetry score calculation may be using a frame or composition-level metric rather than the shape's intrinsic symmetry. The actual silhouette is perfectly symmetric; the reported 0.00 is likely an error or based on element positioning relative to canvas zones rather than the shape itself.",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "symmetry_score_anomaly",
+      "discrepancy",
+      "grid_vs_metric_mismatch"
+    ],
+    "source_svg_hash": "edad620b041d"
+  },
+  {
+    "id": "vc018",
+    "condition": "Centered single element, 12×12 bounding box size, circular silhouette in a 24×24 canvas (from: A simple black circle with a thick stroke outline,)",
+    "insight": "This is a minimal, well-proportioned icon design. The centering and scale suggest intentional UI design rather than organic or illustrative artwork. The 2:1 canvas-to-element scale is typical for icon grids with padding.",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "icon_grid",
+      "minimal_design",
+      "centered_placement",
+      "well_proportioned"
+    ],
+    "source_svg_hash": "edad620b041d"
+  },
+  {
+    "id": "vc019",
+    "condition": "when enrichment reports '0 paths' and provides SPATIAL INTERPRETATION anyway (from: A completely blank white canvas with no visible SV)",
+    "insight": "the enrichment system is applying default semantic rules to empty or malformed SVGs, generating spurious descriptions that contradict the geometric data",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "enrichment-error",
+      "empty-canvas",
+      "semantic-hallucination"
+    ],
+    "source_svg_hash": "b12e0d83ce23"
+  },
+  {
+    "id": "vc020",
+    "condition": "when element count is zero but symmetry/layout/mass distribution are still reported (from: A completely blank white canvas with no visible SV)",
+    "insight": "the enrichment pipeline should halt semantic analysis and explicitly report 'no elements to analyze' rather than generating default descriptions",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "null-case",
+      "pipeline-robustness",
+      "data-validation"
+    ],
+    "source_svg_hash": "b12e0d83ce23"
+  },
+  {
+    "id": "vc021",
+    "condition": "When enrichment shows perfect metrics (circ=1.00, conv=1.00, aspect=1.00) with 12 corners, single element, centered placement, and stroke-based rendering (from: A simple black circle with a thick stroke on a whi)",
+    "insight": "This is a canonical geometric UI icon. The SPATIAL INTERPRETATION layer should recognize this pattern immediately and output: 'geometric UI icon: circle' rather than attempting semantic interpretation that generates false negatives like 'asymmetric', 'highly concave', or 'abstract'.",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "stroke-based-circle",
+      "perfect-metrics",
+      "UI-icon",
+      "geometric-primitive",
+      "canonical-form"
+    ],
+    "source_svg_hash": "edad620b041d"
+  },
+  {
+    "id": "vc022",
+    "condition": "When radial profile shows valleys at cardinal directions (0°, 90°, 180°, 270°) with significantly lower values than other angles on a shape marked circular with perfect metrics (from: A simple black circle with a thick stroke on a whi)",
+    "insight": "This is a grid discretization artifact from tracing a stroke outline, not a true shape property. True circles should have flat radial profiles (constant radius). The enrichment should filter or flag these as measurement noise.",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "discretization-artifact",
+      "grid-tracing-error",
+      "stroke-circle",
+      "radial-profile-noise"
+    ],
+    "source_svg_hash": "edad620b041d"
+  },
+  {
+    "id": "vc023",
+    "condition": "When fill percentage is 8-14% on a shape with perfect circularity and perfect convexity (from: A simple black circle with a thick stroke on a whi)",
+    "insight": "This indicates stroke-based rendering technique, not shape concavity or sparsity. Stroke circles by construction have low fill percentage. The semantic interpretation should not infer structural properties from fill percentage on stroke-rendered primitives.",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "stroke-rendering",
+      "fill-percentage-misleading",
+      "rendering-technique-vs-shape"
+    ],
+    "source_svg_hash": "edad620b041d"
+  },
+  {
+    "id": "vc024",
+    "condition": "Perfect metrics (circularity=1.00, convexity=1.00, aspect_ratio=1.00) + single-element structure + centered placement + stroke-based rendering with low fill percentage (from: A simple black circle rendered as a stroke outline)",
+    "insight": "This is a canonical geometric UI icon (circle), not an illustration or logo. The SPATIAL INTERPRETATION should bypass semantic analysis and output the shape class directly.",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "geometric-ui-icon",
+      "stroke-based-primitive",
+      "perfect-metrics",
+      "canonical-circle"
+    ],
+    "source_svg_hash": "edad620b041d"
+  },
+  {
+    "id": "vc025",
+    "condition": "Radial profile shows constant distance to boundary (~13-14px) at all angles with only cardinal-direction valleys (0°, 270°) (from: A simple black circle rendered as a stroke outline)",
+    "insight": "The valleys are grid discretization artifacts from rasterizing a stroke outline, not structural concavities. A true circle's radial profile should be flat (constant radius). The enrichment's grid-tracing method produces these artifacts and should filter them or flag them separately.",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "grid-artifact",
+      "stroke-rasterization",
+      "false-concavity",
+      "discretization-error"
+    ],
+    "source_svg_hash": "edad620b041d"
+  },
+  {
+    "id": "vc026",
+    "condition": "Composition-level symmetry=0.00 but shape-level rotational symmetry=1.00 + single centered element (from: A simple black circle rendered as a stroke outline)",
+    "insight": "The symmetry metric conflates composition-level (no paired sub-elements) with shape-level (perfect rotational symmetry). For single-element shapes, shape-level symmetry should be reported separately and takes priority for identification.",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "symmetry-metric-bug",
+      "composition-vs-shape-level",
+      "single-element-shape"
+    ],
+    "source_svg_hash": "edad620b041d"
+  },
+  {
+    "id": "vc027",
+    "condition": "A stroke-based circle with perfect metrics (circularity=1.00, convexity=1.00, aspect_ratio=1.00), 12 Bézier corners, single-element structure, centered placement, and 8% fill percentage (from: A simple black circle outline (stroke-based) cente)",
+    "insight": "This is a canonical geometric UI icon. The metrics are mathematically idealized, the corner count reflects SVG cubic Bézier approximation (not visual angularity), and the low fill percentage reflects rendering technique (stroke-only), not compositional sparsity.",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "geometric-ui-icon",
+      "stroke-based-primitive",
+      "perfect-symmetry",
+      "bézier-artifact",
+      "canonical-circle"
+    ],
+    "source_svg_hash": "edad620b041d"
+  },
+  {
+    "id": "vc028",
+    "condition": "SPATIAL INTERPRETATION layer reports 0.00 symmetry and 'highly concave' on a shape with perfect metrics and a flat radial profile (from: A simple black circle outline (stroke-based) cente)",
+    "insight": "The enrichment's semantic interpretation rules are incorrectly applying illustration/organic-shape logic to geometric primitives. The 0.00 symmetry reflects composition (single centered element, no mirrors), not shape-level symmetry. The concavity is a grid artifact, not a structural feature.",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "enrichment-bug",
+      "semantic-mismatch",
+      "composition-vs-shape-symmetry",
+      "grid-artifact-misclassification"
+    ],
+    "source_svg_hash": "edad620b041d"
+  },
+  {
+    "id": "vm029",
+    "condition": "when locating and annotating specific features in character illustrations (from: A pink/magenta stylized squirrel or similar creatu)",
+    "insight": "Concentric groups (especially those with high circularity scores) are reliable targets for precise annotations. The enrichment data identified 'Highest-circularity concentric group at x=89% — offset from center (far right)' which correctly pinpoints the right eye. Using the composition's quadrant distribution and focal element coordinates allows annotations to be placed with surgical precision without searching the entire canvas.",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "concentric-groups",
+      "feature-annotation",
+      "high-circularity-targets",
+      "focal-elements"
+    ],
+    "source_svg_hash": "a7654b93ec2a"
+  },
+  {
+    "id": "vm030",
+    "condition": "when working with asymmetric character designs with multiple similar features (from: A pink/magenta stylized squirrel or similar creatu)",
+    "insight": "The spatial offset ('far right', x=89%) combined with composition clusters provides enough precision to disambiguate between paired features (two eyes). Directional qualifiers in enrichment data (cardinal directions, quadrant positions, offset percentages) translate directly to practical annotation placement. A single x-coordinate or cluster identifier would be insufficient; the full spatial description is necessary.",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "feature-disambiguation",
+      "asymmetric-design",
+      "directional-precision",
+      "paired-features"
+    ],
+    "source_svg_hash": "a7654b93ec2a"
+  },
+  {
+    "id": "vm031",
+    "condition": "when annotating small focal features within larger organic shapes (from: A pink/magenta stylized squirrel or similar creatu)",
+    "insight": "The arrow's scale (small relative to the creature) and position (adjacent to, not overlapping) the eye both respect visual hierarchy. Annotations should be sized relative to the feature they target, not the overall canvas. Placing the arrow at the periphery of the eye's bounding region rather than at its exact center maintains readability of the original feature while making the annotation clear.",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "annotation-scale",
+      "visual-hierarchy",
+      "feature-preservation",
+      "peripheral-placement"
+    ],
+    "source_svg_hash": "a7654b93ec2a"
+  },
+  {
+    "id": "vm032",
+    "condition": "when a user requests a specific part replacement ('make X into Y') in a character illustration with identifiable focal details (from: A stylized pink/magenta squirrel-like creature wit)",
+    "insight": "Use the enrichment's focal element coordinates and concentric group data to precisely target the part to replace. The 'highest-circularity concentric group at x=89%' (bottom-right) in this squirrel illustration is almost certainly the nut/acorn detail. Target it directly, replace its path geometry with an apple silhouette, and adjust fill colors to warm reds/browns. Do not re-analyze—act.",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "targeted-part-replacement",
+      "focal-element-targeting",
+      "character-design",
+      "detail-substitution"
+    ],
+    "source_svg_hash": "6223e0edf93c"
+  },
+  {
+    "id": "vm033",
+    "condition": "when enrichment data identifies a 'small concentric group' at a cardinal position (bottom-right, bottom-center, etc.) in an illustration (from: A stylized pink/magenta squirrel-like creature wit)",
+    "insight": "These are almost always held objects, carried items, or body details (not major structural features). They are high-priority targets for replacement or modification requests because they are perceptually distinct, spatially isolated, and don't affect composition stability if changed. Use their bounding box coordinates directly.",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "detail-element-identification",
+      "concentric-groups",
+      "held-objects",
+      "easy-replacement-targets"
+    ],
+    "source_svg_hash": "6223e0edf93c"
+  },
+  {
+    "id": "vm034",
+    "condition": "when the user's language is colloquial or ambiguous ('make nut into apple' rather than 'replace element E23 with apple SVG') (from: A stylized pink/magenta squirrel-like creature wit)",
+    "insight": "The user expects you to infer the target from context (illustration type, enrichment focal points, common sense about what 'nut' and 'apple' mean in a squirrel context). Do not ask for clarification—use the enrichment to make the inference and execute immediately. This is a 'show, don't tell' interaction.",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "user-intent-inference",
+      "context-driven-modification",
+      "no-clarification-needed",
+      "action-orientation"
+    ],
+    "source_svg_hash": "6223e0edf93c"
+  },
+  {
+    "id": "vc035",
+    "condition": "When a single-element SVG shows circularity=1.00, convexity=1.00, aspect_ratio=1.00, 12 corners, centered placement, and stroke-only rendering with low fill percentage (<15%) (from: A simple black circle rendered with a stroke outli)",
+    "insight": "This is a canonical stroke-based geometric UI icon (circle, ring, or similar). The shape-level rotational symmetry is 1.00 (infinite), though composition-level symmetry may be 0.00 due to lack of paired sub-elements. Grid discretization artifacts (spurious valleys on otherwise-flat radial profiles) should not be interpreted as true structural concavities.",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "stroke-based-icon",
+      "geometric-primitive",
+      "perfect-metrics",
+      "UI-element",
+      "bézier-approximation",
+      "grid-discretization-artifact"
+    ],
+    "source_svg_hash": "edad620b041d"
+  },
+  {
+    "id": "vc036",
+    "condition": "When SPATIAL INTERPRETATION reports asymmetry/concavity/abstract qualities but the visual grid shows a smooth, symmetric shape (from: A simple black circle rendered with a stroke outli)",
+    "insight": "The interpretation layer is applying organic/illustrative rules to geometric primitives. For perfect-metrics shapes (all values 1.00), skip semantic interpretation and output the shape class directly.",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "interpretation-bug",
+      "rule-priority-issue",
+      "semantic-override-needed"
     ],
     "source_svg_hash": "edad620b041d"
   }

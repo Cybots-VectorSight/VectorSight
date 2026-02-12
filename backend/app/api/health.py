@@ -1,4 +1,4 @@
-"""Health check endpoint."""
+"""Health check + meta endpoints."""
 
 from __future__ import annotations
 
@@ -17,3 +17,10 @@ async def health() -> HealthResponse:
         version="0.1.0",
         transforms_registered=get_registry().count,
     )
+
+
+@router.get("/prompts")
+async def prompts() -> dict[str, str]:
+    from app.llm.prompts import get_all_templates
+
+    return get_all_templates()

@@ -6,6 +6,8 @@ check if gaps form recognizable pattern.
 
 from __future__ import annotations
 
+import math
+
 import numpy as np
 
 from app.engine.context import PipelineContext
@@ -46,7 +48,10 @@ def gap_analysis(ctx: PipelineContext) -> None:
             mean_area = np.mean(areas)
             if mean_area > 0:
                 cv = float(np.std(areas) / mean_area)
-                if cv < 0.3:
+                # Gap areas are "regular" if CV < 1/sqrt(n) (expected CV for n equal
+                # items with normal noise). Stricter for larger n, looser for smaller n.
+                _cv_threshold = 1.0 / math.sqrt(max(len(areas), 1))
+                if cv < _cv_threshold:
                     gap_pattern = "regular"
                 else:
                     gap_pattern = "irregular"

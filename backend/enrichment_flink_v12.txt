@@ -1,0 +1,284 @@
+=== VECTORSIGHT ENRICHMENT ===
+
+ELEMENTS: 67 paths | CANVAS: 256×259 | TYPE: fill-based
+
+SPATIAL INTERPRETATION:
+  LAYOUT SUMMARY: asymmetric composition; 6 structural layers; large background element: extends into upper half, spans wide, area=106% of primary (LARGER than primary boundary); Highest-circularity concentric group at x=89% — offset from center (far right)
+  Composition: complex illustration with deep nesting (3 levels), mixed shapes (circular, elliptical, linear, organic)
+  Orientation: semi-symmetric; roughly centered but with asymmetric features; moderate vertical symmetry (0.57)
+  Silhouette: mostly filled with shaped contour; roughly square proportions; bottom edge: mostly right; principal axis: diagonal (43°, eccentricity=0.16); boundary lobes: 2 distinct protruding regions (max/min distance ratio=inf)
+  Skeleton: main lower-left axis (27px). with 15 branches — left (21px, upper-left), lower-right (19px, lower-right), lower-right (16px, lower-right), lower-right (13px, center), right short (6px, upper-right). 15 junctions, 4 endpoints
+  Radial profile (0°=right, CCW, 10°): 11,14,19,30,32,24,20,18,17,16,16,16,17,18,21,24,29,28,26,22,20,20,18,18,18,18,19,19,22,23,20,28,24,18,13,11
+  Peaks: 40° (32px, upper-right, narrow spike ~30° wide), 160° (29px, left, moderate extension ~50° wide), 310° (28px, lower-right, narrow spike ~20° wide). Valleys: 300° (20px, lower-right)
+  Simplified outline (15 vertices): M 192,229 L 168,221 L 164,208 L 140,208 L 60,168 L 14,113 L 14,73 L 200,42 L 216,30 L 240,38 L 246,45 L 170,117 L 174,138 L 198,170 L 198,210 Z
+  Shape topology: body mass with 1 moderate extension (left), 2 narrow spikes (upper-right, lower-right); complex internal branching (15 branches, 15 junctions); 14 circular focal features
+  Mass distribution: broadly distributed; vertically centered; quadrants: upper-left=90%, upper-right=85%, lower-left=73%, lower-right=82%; vertical thirds: top=33%, mid=33%, bottom=34%
+  Focal elements:
+    - Concentric group [E10, E55, E11] at (229,147) [mid-right], 3 layers, max circularity=1.00, tiers=MEDIUM/SMALL/MEDIUM, root-level (independent, drawn on top)
+    - Concentric group [E52, E56, E4, E66] at (0,1) [top-left], 4 layers, max circularity=0.95, tiers=SMALL/MEDIUM/SMALL/SMALL, at canvas edge
+    - Concentric group [E40, E41, E50, E51] at (235,215) [bottom-right], 4 layers, max circularity=0.86, tiers=LARGE/LARGE/MEDIUM/MEDIUM, inside E1
+    - Concentric group [E22, E21] at (159,33) [top-center], 2 layers, max circularity=0.73, tiers=LARGE/LARGE, root-level (independent, drawn on top)
+    -   -> group at (235,215) is below group at (229,147), 68px apart
+    -   -> group at (159,33) is above-left of group at (229,147), 134px apart
+    - Highest-circularity concentric group at x=89% — offset from center (far right)
+  Scene decomposition:
+    - Cluster 1 (upper-left, 8 elements, dominant shape: organic)
+    - Cluster 2 (mid-center, 28 elements, dominant shape: organic)
+    - Cluster 3 (mid-right, 3 elements, dominant shape: elliptical)
+    - Cluster 4 (upper-center, 12 elements, dominant shape: organic)
+    - Cluster 5 (mid-center, 3 elements, dominant shape: organic)
+    - Cluster 6 (lower-right, 7 elements, dominant shape: organic)
+    - Cluster 7 (mid-right, 3 elements, dominant shape: organic)
+    - Cluster 1 (upper-left) — Cluster 2 (mid-center) — separated by 137px
+    - Cluster 2 (mid-center) — Cluster 5 (mid-center) — separated by 22px
+    - Cluster 3 (mid-right) — Cluster 7 (mid-right) — separated by 39px
+    - Cluster 4 (upper-center) — Cluster 7 (mid-right) — separated by 90px
+    - Cluster 6 (lower-right) — Cluster 3 (mid-right) — separated by 74px
+  Reading hints:
+    - Deep nesting (3 levels).
+    - Major structural elements (top-level, ordered by draw layer — low z drawn first/behind, high z drawn last/in front): E1 (bottom-center, 97%w x 58%h, 18 children, z=0 ← background layer (lower z-index, drawn first), curved organic (conv=0.74, aspect=1.7), area=106% of primary (LARGER than primary boundary)); E7 (bottom-left, 26%w x 26%h, 4 children, z=6 ← background layer (lower z-index, drawn first), curved organic (conv=0.81, aspect=1.0), area=11% of primary); E14 (top-center, 25%w x 6%h, 0 children, z=13 ← background layer (lower z-index, drawn first), elongated (conv=0.68, aspect=4.3), area=3% of primary); E22 (top-center, 17%w x 23%h, 2 children, z=21 ← background layer (lower z-index, drawn first), compact rounded (conv=0.97, aspect=0.7), area=7% of primary); E23 (top-center, 30%w x 16%h, 3 children, z=22 ← background layer (lower z-index, drawn first), compact rounded (conv=0.90, aspect=1.9), area=11% of primary); E37 (top-left, 10%w x 18%h, 0 children, z=36 ← background layer (lower z-index, drawn first), curved organic (conv=0.70, aspect=0.5), area=3% of primary).
+    - Background element layout: largest background element (E1) centroid at y=65%, bbox top edge at y=41%, bbox bottom at y=99%. This background element extends UP into the upper half of the canvas (top edge at y=41%). Width spans 97% of canvas. Aspect=1.7 (wider than tall) — spreads laterally. Top-most feature (E23) at y=9%. Separation=56% — background element center is far below top feature.
+    - 8 spatial clusters.
+    - 3 circular elements.
+    - Detail/features concentrated on left side of canvas.
+
+SHAPE NARRATIVE:
+  Contour: Starting from bottom-center: extends short right at bottom (narrow peak), descends down at bottom, extends short right at bottom (broad curved lobe), rises through lower region (long up), rises long upper-right at upper-right (broad curved lobe), rises short upper-left at top-right, descends short lower-left at top-right, extends long left at top (broad curved lobe), descends long down at mid.
+  Paired features:
+    - Paired concentric groups at right, y-aligned ~51%, 38px apart ([E10,E55,E11] and [E63,E65,E64])
+    - Paired concentric groups at top, y-aligned ~11%, 41px apart ([E22,E21] and [E23,E26,E24])
+    - Symmetric organic pair at lower (E2, E59), mirrored across vertical axis
+  Structural detail:
+    - E1: moderately curved, complex boundary (75 inflections), branching internal structure (36 junctions, 3 endpoints)
+    - E62: moderately curved, complex boundary (242 inflections)
+    - E12: moderately curved, complex boundary (72 inflections), branching internal structure (34 junctions, 3 endpoints)
+    - E29: mostly straight edges, complex boundary (24 inflections), branching internal structure (21 junctions, 0 endpoints)
+    - E23: moderately curved, complex boundary (16 inflections)
+    - E7: highly curved, moderate complexity (5 inflections), branching internal structure (10 junctions, 1 endpoints)
+    - E18: moderately curved, complex boundary (8 inflections), deeply nested (depth=2), branching internal structure (9 junctions, 1 endpoints)
+    - E22: mostly straight edges, complex boundary (26 inflections)
+
+── VISUAL PYRAMID ──
+
+INTERIOR FEATURES (14×14, 24 elements inside E62, boundary removed):
+..###....#....
+..######.##...
+.#.##.#####...
+.##########...
+.###########..
+.###########..
+###########...
+############..
+#########.....
+.####....##...
+...####..##...
+.........#....
+........##....
+..............
+
+── SCENE WALKTHROUGH (outside → inside) ──
+
+Background:
+  E1 [LARGE] organic(closed_loop), covers 97%×58%, circ=0.16, conv=0.74, aspect=1.66, color=red(#E65270), salience=33
+    path(10v): M 64,0 L 16,10 L 3,37 L 1,71 L 14,29 L 20,20 L 23,17 L 27,14 L 18,54 L 92,92 Z
+    → children: E2, E5, E29, E40, E46, E50, E51, E61, E67
+    → touches: E7(0.1px), E8(0.1px), E9(0.1px), E10(1.1px), E12(0.1px)
+    → overlaps: E1↔E5(IoU=0.086), E1↔E7(IoU=0.117), E1↔E9(IoU=0.087), E1↔E12(IoU=0.096), E1↔E29(IoU=0.383)
+
+Primary boundary:
+  E62 [LARGE] organic(closed_loop), covers 100%×100%, circ=0.03, conv=0.38, aspect=0.99, color=black(#0D0D0D), salience=31
+    path(9v): M 34,23 L 42,37 L 67,46 L 91,23 L 74,17 L 64,31 L 57,35 L 53,34 L 75,16 Z
+    → children: E3, E12, E13, E15, E16, E28, E31, E33, E42, E43 +2
+    → touches: E1(0.1px), E2(0.1px), E5(0.1px), E7(0.1px), E8(1.4px)
+    → overlaps: E1↔E62(IoU=0.563), E5↔E62(IoU=0.051), E62↔E7(IoU=0.066), E12↔E62(IoU=0.305), E17↔E62(IoU=0.051)
+
+Feature group [E40+E41+E50+E51] at bottom-right (4 concentric layers, max circ=0.86):
+    E40 [LARGE] circular(semicircle_or_arc), covers 14%×12%, circ=0.86, conv=0.95, aspect=1.17, salience=40
+      path(8v): M 86,100 L 71,89 L 39,93 L 1,53 L 6,22 L 49,1 L 87,8 L 100,58 Z
+      → children: E41
+      → touches: E46(0.0px), E50(0.0px), E51(0.0px), E67(0.0px)
+      → overlaps: E40↔E41(IoU=0.362), E40↔E46(IoU=0.079), E40↔E50(IoU=0.320), E40↔E51(IoU=0.320), E40↔E57(IoU=0.053)
+    E41 [LARGE] organic(semicircle_or_arc), covers 11%×7%, circ=0.75, conv=0.91, aspect=1.60, color=white(#F6E8A0), salience=34
+      path(9v): M 20,82 L 64,75 L 85,100 L 99,66 L 95,30 L 60,1 L 15,17 L 0,43 L 8,66 Z
+      → children: E57
+      → touches: E50(5.1px), E51(5.1px)
+      → overlaps: E40↔E41(IoU=0.362), E41↔E57(IoU=0.102), E41↔E67(IoU=0.228)
+    E50 [MEDIUM] organic(semicircle_or_arc), covers 17%×6%, circ=0.18, conv=0.35, aspect=2.62, color=red(#E65270), salience=19
+      path(10v): M 95,57 L 81,24 L 55,19 L 20,48 L 7,100 L 0,83 L 19,30 L 54,1 L 95,18 L 100,36 Z
+      → touches: E40(0.0px), E41(5.1px), E46(3.9px), E51(0.0px), E57(2.9px)
+      → overlaps: E40↔E50(IoU=0.320), E46↔E50(IoU=0.238), E50↔E51(IoU=1.000), E50↔E67(IoU=0.314)
+    E51 [MEDIUM] organic(semicircle_or_arc), covers 17%×6%, circ=0.18, conv=0.35, aspect=2.62, color=dark(#2B2B2B), salience=19
+      path: same as E50
+      → touches: E40(0.0px), E41(5.1px), E46(3.9px), E50(0.0px), E57(2.9px)
+      → overlaps: E40↔E51(IoU=0.320), E46↔E51(IoU=0.238), E50↔E51(IoU=1.000), E51↔E67(IoU=0.314)
+
+Feature group [E10+E55+E11] at right (3 concentric layers, max circ=1.00):
+    E10 [MEDIUM] elliptical(closed_loop), covers 7%×5%, circ=0.86, conv=0.97, aspect=1.28, color=white(#F9E0E7), salience=33
+      path(7v): M 2,73 L 12,95 L 65,98 L 98,48 L 99,4 L 36,0 L 5,29 Z
+      → children: E55
+      → touches: E1(1.1px), E11(0.0px), E62(0.0px)
+      → overlaps: E10↔E11(IoU=0.115), E10↔E55(IoU=0.316)
+    E11 [SMALL] organic(semicircle_or_arc), covers 2%×2%, circ=0.68, conv=0.91, aspect=0.84, color=white(#FFFFFF), salience=21
+      path(7v): M 30,65 L 69,99 L 92,93 L 100,57 L 85,0 L 59,13 L 0,10 Z
+      → touches: E10(0.0px), E55(0.0px), E62(2.0px)
+      → overlaps: E10↔E11(IoU=0.115), E11↔E55(IoU=0.051)
+    E55 [MEDIUM] circular(closed_loop), covers 3%×3%, circ=1.00, conv=1.00, aspect=1.00, salience=40
+      path(8v): M 0,50 L 14,15 L 49,0 L 85,14 L 100,50 L 85,86 L 49,100 L 14,85 Z
+      → touches: E11(0.0px), E62(0.1px)
+      → overlaps: E10↔E55(IoU=0.316), E11↔E55(IoU=0.051)
+
+Feature group [E18+E17+E19] at center (3 concentric layers, max circ=0.49):
+    E17 [LARGE] organic(semicircle_or_arc), covers 18%×28%, circ=0.24, conv=0.46, aspect=0.63, salience=27
+      path(7v): M 62,0 L 89,22 L 92,38 L 16,75 L 0,100 L 96,64 L 93,25 Z
+      → touches: E1(0.0px), E14(0.0px), E15(0.0px), E16(0.0px), E18(0.0px)
+      → overlaps: E12↔E17(IoU=0.167), E15↔E17(IoU=0.094), E16↔E17(IoU=0.053), E17↔E18(IoU=0.731), E17↔E19(IoU=0.447)
+    E18 [LARGE] organic(semicircle_or_arc), covers 17%×27%, circ=0.49, conv=0.70, aspect=0.62, salience=34
+      path(7v): M 67,10 L 0,1 L 36,34 L 0,93 L 7,100 L 97,55 L 96,35 Z
+      → children: E19
+      → touches: E1(0.0px), E15(0.0px), E16(0.0px), E17(0.0px), E27(0.0px)
+      → overlaps: E12↔E18(IoU=0.151), E15↔E18(IoU=0.132), E16↔E18(IoU=0.078), E17↔E18(IoU=0.731), E18↔E19(IoU=0.589)
+    E19 [LARGE] organic(semicircle_or_arc), covers 11%×24%, circ=0.29, conv=0.52, aspect=0.46, color=red(#E65271), salience=33
+      path(6v): M 75,13 L 98,36 L 95,55 L 4,100 L 61,37 L 0,1 Z
+      → touches: E1(0.1px), E15(0.0px), E16(0.3px), E17(0.0px), E27(0.0px)
+      → overlaps: E12↔E19(IoU=0.090), E15↔E19(IoU=0.148), E16↔E19(IoU=0.066), E17↔E19(IoU=0.447), E18↔E19(IoU=0.589)
+
+Feature group [E23+E26+E24] at top (3 concentric layers, max circ=0.63):
+    E23 [LARGE] organic(semicircle_or_arc), covers 30%×16%, circ=0.63, conv=0.90, aspect=1.87, color=white(#F6E8A0), salience=28
+      path(10v): M 23,0 L 0,31 L 24,73 L 57,94 L 74,88 L 71,100 L 97,70 L 100,25 L 93,5 L 38,14 Z
+      → children: E24, E26
+      → touches: E12(0.0px), E14(0.0px), E17(4.0px), E21(0.0px), E22(0.8px)
+      → overlaps: E12↔E23(IoU=0.148), E14↔E23(IoU=0.187), E21↔E23(IoU=0.194), E22↔E23(IoU=0.092), E23↔E24(IoU=0.273)
+    E24 [LARGE] organic(semicircle_or_arc), covers 22%×6%, circ=0.30, conv=0.74, aspect=3.77, color=white(#FFFFFF), salience=22
+      path(7v): M 100,45 L 49,98 L 23,67 L 11,38 L 0,0 L 28,34 L 92,19 Z
+      → children: E25
+      → touches: E12(0.0px), E14(0.0px), E21(3.0px), E22(6.5px), E26(0.0px)
+      → overlaps: E14↔E24(IoU=0.158), E21↔E24(IoU=0.073), E23↔E24(IoU=0.273), E24↔E25(IoU=0.363), E24↔E26(IoU=0.282)
+    E26 [LARGE] organic(closed_loop), covers 30%×12%, circ=0.15, conv=0.50, aspect=2.48, color=light(#F8D285), salience=21
+      path(11v): M 53,81 L 34,82 L 53,100 L 73,89 L 92,48 L 100,0 L 58,43 L 0,10 L 12,47 L 31,66 L 80,34 Z
+      → touches: E12(0.0px), E14(2.8px), E21(7.1px), E24(0.0px), E62(1.4px)
+      → overlaps: E12↔E26(IoU=0.115), E21↔E26(IoU=0.162), E22↔E26(IoU=0.079), E23↔E26(IoU=0.747), E24↔E26(IoU=0.282)
+
+Feature group [E63+E65+E64] at right (3 concentric layers, max circ=0.70):
+    E63 [LARGE] organic(closed_loop), covers 8%×9%, circ=0.70, conv=0.86, aspect=0.81, color=red(#E65270), salience=22
+      path(8v): M 68,0 L 64,38 L 74,50 L 100,60 L 68,100 L 22,73 L 0,40 L 25,9 Z
+      → children: E64
+      → touches: E1(0.0px), E12(6.6px), E31(2.6px), E32(4.5px), E34(1.1px)
+      → overlaps: E63↔E64(IoU=0.382), E63↔E65(IoU=0.707)
+    E64 [MEDIUM] organic(closed_loop), covers 3%×8%, circ=0.43, conv=0.77, aspect=0.43, color=dark(#2B2B2B), salience=23
+      path(5v): M 43,82 L 100,100 L 55,37 L 66,0 L 0,38 Z
+      → touches: E1(0.0px), E31(5.6px), E34(5.0px), E35(6.6px), E65(0.0px)
+      → overlaps: E63↔E64(IoU=0.382), E64↔E65(IoU=0.479)
+    E65 [MEDIUM] organic(semicircle_or_arc), covers 6%×9%, circ=0.11, conv=0.38, aspect=0.66, color=black(#0D0D0D), salience=13
+      path(12v): M 85,0 L 75,27 L 100,78 L 96,95 L 92,99 L 86,100 L 29,75 L 0,41 L 28,18 L 28,63 L 90,99 L 60,23 Z
+      → touches: E1(0.0px), E12(6.8px), E31(2.4px), E32(4.0px), E34(0.6px)
+      → overlaps: E63↔E65(IoU=0.707), E64↔E65(IoU=0.479)
+
+Feature group [E7+E9] at bottom-left (2 concentric layers, max circ=0.23):
+    E7 [LARGE] organic(closed_loop), covers 26%×26%, circ=0.23, conv=0.81, aspect=0.99, salience=22
+      path(9v): M 36,0 L 29,22 L 35,46 L 79,70 L 31,55 L 23,34 L 28,7 L 8,74 L 100,98 Z
+      → children: E8, E9, E58, E60
+      → touches: E1(0.1px), E6(0.0px), E59(0.0px), E61(0.0px), E62(0.1px)
+      → overlaps: E1↔E7(IoU=0.117), E5↔E7(IoU=0.106), E7↔E8(IoU=0.318), E7↔E9(IoU=0.742), E29↔E7(IoU=0.109)
+    E9 [LARGE] organic(semicircle_or_arc), covers 21%×23%, circ=0.16, conv=0.35, aspect=0.91, color=blue(#8B4FBA), salience=20
+      path(10v): M 88,98 L 100,96 L 86,76 L 38,66 L 17,52 L 10,32 L 12,1 L 0,25 L 8,55 L 76,85 Z
+      → touches: E1(0.1px), E6(4.5px), E8(0.0px), E58(0.0px), E59(0.0px)
+      → overlaps: E1↔E9(IoU=0.087), E7↔E9(IoU=0.742), E8↔E9(IoU=0.355), E29↔E9(IoU=0.089), E58↔E9(IoU=0.283)
+
+Inside E62, individual:
+    E12 [LARGE] organic(closed_loop), covers 59%×52%, circ=0.09, conv=0.75, aspect=1.12, salience=47
+      path(10v): M 39,97 L 0,0 L 77,45 L 37,85 L 81,43 L 99,56 L 98,71 L 92,57 L 87,53 L 88,87 Z
+      → children: E17, E18, E27, E32, E34, E35, E38, E39
+      → touches: E1(0.1px), E13(0.0px), E14(0.0px), E15(0.0px), E16(0.1px)
+      → overlaps: E1↔E12(IoU=0.096), E12↔E13(IoU=0.057), E12↔E17(IoU=0.167), E12↔E18(IoU=0.151), E12↔E19(IoU=0.090)
+
+Inside E62, individual:
+    E30 [LARGE] linear(semicircle_or_arc), covers 38%×7%, circ=0.11, conv=0.51, aspect=5.46, color=white(#FFFFFF), salience=37
+      path(5v): M 0,0 L 12,49 L 29,79 L 100,100 L 26,54 Z
+      → touches: E33(0.0px), E42(0.0px), E43(0.0px), E61(4.9px)
+      → overlaps: E29↔E30(IoU=0.095), E30↔E33(IoU=0.468), E30↔E59(IoU=0.165)
+
+Feature, individual:
+    E29 [LARGE] organic(semicircle_or_arc), covers 67%×41%, circ=0.15, conv=0.72, aspect=1.63, salience=35
+      path(11v): M 71,51 L 90,69 L 100,100 L 13,51 L 1,28 L 1,8 L 4,0 L 12,22 L 53,45 L 9,28 L 24,42 Z
+      → children: E30
+      → touches: E2(0.0px), E3(0.0px), E5(2.6px), E12(0.1px), E15(0.0px)
+      → overlaps: E1↔E29(IoU=0.383), E29↔E7(IoU=0.109), E29↔E9(IoU=0.089), E12↔E29(IoU=0.241), E17↔E29(IoU=0.068)
+
+Inside E62, individual:
+    E35 [MEDIUM] organic(closed_loop), covers 26%×5%, circ=0.08, conv=0.32, aspect=4.75, color=blue(#8B4FBA), salience=28
+      path(6v): M 69,22 L 100,99 L 86,41 L 68,4 L 0,2 L 22,33 Z
+      → touches: E17(4.9px), E18(3.9px), E32(0.0px), E34(0.0px), E63(3.0px)
+      → overlaps: E29↔E35(IoU=0.051), E32↔E35(IoU=0.190), E34↔E35(IoU=0.749)
+
+Feature, individual:
+    E22 [LARGE] organic(closed_loop), covers 17%×23%, circ=0.73, conv=0.97, aspect=0.74, salience=27
+      path(7v): M 22,100 L 78,84 L 94,71 L 99,30 L 85,0 L 7,66 L 1,95 Z
+      → children: E20, E21
+      → touches: E12(0.1px), E13(0.0px), E14(0.0px), E17(3.9px), E23(0.8px)
+      → overlaps: E12↔E22(IoU=0.125), E13↔E22(IoU=0.086), E14↔E22(IoU=0.079), E20↔E22(IoU=0.296), E21↔E22(IoU=0.597)
+
+Inside E62, individual:
+    E16 [MEDIUM] linear(closed_loop), covers 4%×19%, circ=0.11, conv=0.37, aspect=0.19, color=blue(#8B4FBA), salience=27
+      path(6v): M 45,2 L 100,64 L 87,82 L 47,100 L 83,61 L 0,18 Z
+      → touches: E1(0.1px), E12(0.1px), E15(0.0px), E17(0.0px), E18(0.0px)
+      → overlaps: E15↔E16(IoU=0.724), E16↔E17(IoU=0.053), E16↔E18(IoU=0.078), E16↔E19(IoU=0.066), E16↔E27(IoU=0.052)
+
+Inside E62, individual:
+    E38 [LARGE] organic(closed_loop), covers 12%×24%, circ=0.22, conv=0.55, aspect=0.51, color=blue(#8B4FBA), salience=26
+      path(7v): M 75,33 L 84,0 L 99,20 L 94,44 L 15,80 L 1,100 L 10,75 Z
+      → touches: E1(0.1px), E14(5.8px), E15(0.0px), E16(0.0px), E17(0.0px)
+      → overlaps: E12↔E38(IoU=0.094), E15↔E38(IoU=0.112), E16↔E38(IoU=0.054), E17↔E38(IoU=0.564), E18↔E38(IoU=0.580)
+
+Feature, individual:
+    E34 [LARGE] organic(closed_loop), covers 26%×7%, circ=0.21, conv=0.63, aspect=3.71, salience=26
+      path(6v): M 96,96 L 90,46 L 69,6 L 0,2 L 32,46 L 74,46 Z
+      → touches: E17(1.1px), E18(0.7px), E27(7.3px), E32(0.0px), E35(0.0px)
+      → overlaps: E12↔E34(IoU=0.061), E29↔E34(IoU=0.068), E32↔E34(IoU=0.254), E34↔E35(IoU=0.749)
+
+Inside E62, individual:
+    E59 [LARGE] organic(closed_loop), covers 36%×19%, circ=0.15, conv=0.38, aspect=1.88, color=dark(#2B2B2B), salience=26
+      path(7v): M 10,58 L 47,91 L 100,100 L 22,61 L 7,36 L 2,0 L 1,32 Z
+      → touches: E5(0.0px), E7(0.0px), E8(0.0px), E9(0.0px), E42(6.6px)
+      → overlaps: E1↔E59(IoU=0.120), E5↔E59(IoU=0.083), E59↔E7(IoU=0.333), E59↔E8(IoU=0.127), E59↔E9(IoU=0.291)
+
+Feature, individual:
+    E57 [MEDIUM] organic(closed_loop), covers 2%×5%, circ=0.59, conv=0.87, aspect=0.37, color=white(#FFFFFF), salience=25
+      path(8v): M 22,2 L 70,5 L 99,41 L 84,81 L 42,100 L 0,88 L 26,53 L 5,14 Z
+      → touches: E50(2.9px), E51(2.9px)
+      → overlaps: E40↔E57(IoU=0.053), E41↔E57(IoU=0.102)
+
+Inside E62, individual:
+    E45 [LARGE] organic(curved), covers 6%×22%, circ=0.11, conv=0.65, aspect=0.29, color=dark(#2B2B2B), salience=24
+      path(11v): M 59,100 L 52,67 L 95,0 L 31,24 L 1,53 L 22,88 L 22,48 L 37,33 L 48,27 L 62,21 L 30,63 Z
+      → touches: E1(0.0px), E5(0.0px), E29(0.0px), E42(2.8px), E47(0.0px)
+      → overlaps: E45↔E5(IoU=0.096), E44↔E45(IoU=0.491), E45↔E47(IoU=0.289)
+
+Inside E62, individual:
+    E15 [LARGE] organic(closed_loop), covers 5%×19%, circ=0.29, conv=0.63, aspect=0.26, color=blue(#8B4FBA), salience=21
+      path(6v): M 32,2 L 83,5 L 100,60 L 34,100 L 60,60 L 0,18 Z
+      → touches: E1(0.1px), E12(0.0px), E16(0.0px), E17(0.0px), E18(0.0px)
+      → overlaps: E15↔E16(IoU=0.724), E15↔E17(IoU=0.094), E15↔E18(IoU=0.132), E15↔E19(IoU=0.148), E15↔E27(IoU=0.071)
+
++ 35 small detail elements
+
+SYMMETRY: vertical (score 0.57)
+  Pairs: (E2↔E59), (E3↔E7), (E6↔E40), (E10↔E44), (E11↔E45), (E15↔E32), (E16↔E34), (E27↔E38), (E28↔E35), (E42↔E63)
+
+COLOR PALETTE: #8b4fba ×8, #2b2b2b ×7, #ffffff ×7, #430a1d ×6, #e65270 ×4, #e65271 ×3, #f6e8a0 ×3, #0d0d0d ×2
+  white: [E8, E10, E11, E14, E23, E24, E25] +4 more
+  black: [E2] +7 more
+  blue: [E9, E13, E15, E16, E32, E35] +2 more
+  red: [E1, E19] +5 more
+  dark: [E6, E33, E43, E45, E51] +2 more
+
+REPEATED ELEMENTS:
+  [E1, E29] ×2 organic, pattern=irregular
+
+LEARNED PATTERNS:
+  1. Low fill percentage with many elements means stroke-based or outline-only rendering. The shapes exist as boundaries, not as filled regions. The visual result may appear solid to a viewer but the SVG construction uses outlines. Don't confuse SVG rendering technique with visual appearance.
+  2. High bilateral symmetry with few elements indicates intentional geometric construction — likely a designed symbol, icon, or simple illustration. The symmetry axis and paired elements define the compositional structure directly.
+  3. Concentric groups (elements sharing a center) are multi-ring constructions — a detail feature built from layered shapes. Their position relative to the largest containing element and their size tier determine their structural role.
+  4. Read the positive space grid as a low-resolution thumbnail. Trace the boundary between X and dot — that is the silhouette outline. Curved non-rectangular boundaries indicate non-geometric construction. The grid shape is often more informative than individual element properties.
+  5. Elements at 0px distance are touching or overlapping — they form continuous visual surfaces. This construction uses stacked shapes for shading, gradient simulation, or color regions rather than discrete separate parts. Read the stacking tree to see layering order.
+
+=== END ENRICHMENT ===

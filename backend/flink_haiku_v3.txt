@@ -1,0 +1,71 @@
+# Shape Analysis: SVG Depiction
+
+## Overall Identification
+
+This SVG depicts a **stylized female face or head in profile**, viewed from the side. The illustration is a complex, layered artwork with a flowing, organic aesthetic using gradient-filled curves.
+
+---
+
+## Key Evidence from Primary Boundary
+
+**Primary Boundary (E62)** analysis:
+- **Bbox**: (0, 0, 255, 258) — nearly square canvas, full-width composition
+- **Complexity**: 385 corners, 242 inflections — highly detailed, curved contour
+- **Silhouette shape**: Asymmetric, with distinct protrusions and concavities
+
+### Contour Tracing (from simplified outline):
+The boundary traces a profile-like path:
+- **Bottom-center**: sharp peaks (chin area)
+- **Right side**: prominent protrusion at upper-right (45° above mean radius) — **hair or head crown**
+- **Left side**: long descending axis (back of head/neck)
+- **Top**: extends leftward with peaks — **forehead/facial features**
+
+---
+
+## Radial Profile Analysis (Critical Evidence)
+
+The **radial profile** at 24 angles reveals the characteristic shape:
+
+```
+Peaks:    30° (30px, upper-right), 165° (28px, left), 315° (26px, lower-right)
+Valleys:  0° (11px, right), 300° (20px, lower-right)
+```
+
+**Interpretation:**
+- **30° peak (upper-right, 30px)**: corresponds to the **top of the head/hair**, projecting upward and rightward
+- **165° peak (left, 28px)**: the **back of the head**, extending leftward
+- **315° peak (lower-right)**: the **chin/jaw line**, prominent in profile view
+- **Right side valley (0°, 11px)**: the **face profile** curves inward (forehead/nose area dips)
+
+This radial signature is **characteristic of a side-view human head** — asymmetric, with the crown and back as furthest projections.
+
+---
+
+## Visual Composition Details
+
+**Structure:**
+- **E1** (primary organic element, area=20,969): the main head/face shape with internal curves
+- **E12** (area=9,117): upper region — likely **hair or crown detail**
+- **E40** (circular, area=847, centroid at 234,214): **eye detail** (lower-right position)
+- **Concentric groups** at (229,147) and (235,215): **small decorative features** (highlights, pupils, or facial accents)
+
+**Color & Gradient:**
+- Dominant gradients shift from **yellow/orange (#FAA100) to pink/red (#E65270)**
+- Transitions through **purple (#BF73F2)** mid-tones
+- White highlights on curved regions (radial gradients) suggest **3D shading/light reflection**
+
+**Symmetry:**
+- Vertical symmetry score: **0.57** (moderate) — not perfectly symmetric, suggesting profile asymmetry
+- This confirms **side-view, not frontal** orientation
+
+---
+
+## Conclusion
+
+This is a **stylized portrait of a woman's head in left profile**, rendered as a complex vector illustration with:
+- Flowing, organic curves simulating **hair**
+- Gradient colors creating depth and dimension
+- Subtle facial features (indicated by the concentric circles around x=229, y=147)
+- High artistic abstraction with smooth, sweeping curves rather than realistic anatomical detail
+
+The shape follows the classic **profile silhouette** of a human head, with the widest point at the crown/hair and the narrowest at the chin/neck.

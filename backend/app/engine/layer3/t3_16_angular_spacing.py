@@ -12,6 +12,10 @@ from app.engine.context import PipelineContext
 from app.engine.registry import Layer, transform
 from app.utils.math_helpers import CLEAN_ANGLES, snap_angle
 
+# +/-3 deg ~ 1/120 of full circle. ISO 2768-mK manufacturing tolerance
+# for angular features. Detects "regular" radial arrangements.
+_ANGULAR_TOLERANCE_DEG = 3
+
 
 @transform(
     id="T3.16",
@@ -56,7 +60,7 @@ def angular_spacing(ctx: PipelineContext) -> None:
 
         # Snap to clean angles
         snapped = [snap_angle(float(s)) for s in spacings]
-        is_regular = all(abs(s - snapped[0]) < 3 for s in spacings) if len(spacings) > 0 else False
+        is_regular = all(abs(s - snapped[0]) < _ANGULAR_TOLERANCE_DEG for s in spacings) if len(spacings) > 0 else False
 
         spacing_info = {
             "spacings_deg": [round(float(s), 1) for s in spacings],

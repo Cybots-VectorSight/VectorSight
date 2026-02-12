@@ -17,7 +17,7 @@ def test_health():
     assert response.status_code == 200
     data = response.json()
     assert data["status"] == "ok"
-    assert data["transforms_registered"] == 61
+    assert data["transforms_registered"] == 62
 
 
 def test_analyze_circle():

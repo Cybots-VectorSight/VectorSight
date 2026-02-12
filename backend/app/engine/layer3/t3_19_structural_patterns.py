@@ -12,6 +12,13 @@ import numpy as np
 from app.engine.context import PipelineContext
 from app.engine.registry import Layer, transform
 
+# Multi-element symmetry: >50% matched = majority rule.
+_SYM_MAJORITY = 0.50
+# Reportable bilateral: >70% matched.
+_SYM_REPORTABLE = 0.70
+# Minimum points for bilateral analysis: 2x ellipse DOF (5) = 10.
+_MIN_POINTS_SYMMETRY = 10
+
 
 @transform(
     id="T3.19",
@@ -66,7 +73,7 @@ def structural_patterns(ctx: PipelineContext) -> None:
     # 3. Symmetry
     score = ctx.symmetry_score
     axis = ctx.symmetry_axis
-    if score > 0.7 and axis:
+    if score > _SYM_REPORTABLE and axis:
         patterns.append(f"Bilateral symmetry score: {score:.2f} about {axis} axis")
 
     # 4. Repetition

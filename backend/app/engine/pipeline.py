@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 import time
+from collections.abc import Generator
 from typing import Any
 
 from app.engine.config import PipelineConfig
@@ -61,6 +62,93 @@ class Pipeline:
             total,
         )
         return ctx
+
+    def run_streaming(self, ctx: PipelineContext) -> Generator[dict[str, Any], None, None]:
+        """Run the pipeline, yielding a progress dict after each transform.
+
+        The caller's ``ctx`` is mutated in-place, so after the generator is
+        exhausted the context contains all results (same as ``run()``).
+        """
+        skip_ids = self._adaptive_gate(ctx)
+
+        all_specs = self.registry.all()
+        requested = {s.id for s in all_specs} - skip_ids
+        ordered = self.registry.resolve_order(requested)
+        total = len(ordered)
+
+        # Map layer enum values to how many transforms are in each layer
+        layer_indices: dict[int, int] = {}
+
+        # Sub-progress events collected from transforms via callback
+        sub_events: list[dict[str, Any]] = []
+
+        for i, spec in enumerate(ordered):
+            layer_val = int(spec.layer)
+            layer_indices[layer_val] = layer_indices.get(layer_val, 0)
+
+            # Emit "running" event so the UI shows what's in progress
+            yield {
+                "transform_id": spec.id,
+                "description": spec.description,
+                "layer": spec.layer.name,
+                "layer_index": layer_indices[layer_val],
+                "index": i,
+                "total": total,
+                "elapsed_ms": 0.0,
+                "status": "running",
+                "error": "",
+            }
+
+            # Set up sub-progress callback for long transforms
+            def _on_sub_progress(pct: float, _spec=spec, _i=i, _lv=layer_val) -> None:
+                sub_events.append({
+                    "transform_id": _spec.id,
+                    "description": _spec.description,
+                    "layer": _spec.layer.name,
+                    "layer_index": layer_indices[_lv],
+                    "index": _i,
+                    "total": total,
+                    "elapsed_ms": 0.0,
+                    "status": "running",
+                    "error": "",
+                    "sub_progress": round(pct, 2),
+                })
+
+            ctx.progress_callback = _on_sub_progress
+
+            t0 = time.perf_counter()
+            status = "ok"
+            error = ""
+            try:
+                spec.fn(ctx)
+                ctx.completed_transforms.add(spec.id)
+            except Exception as e:
+                ctx.errors[spec.id] = str(e)
+                status = "error"
+                error = str(e)
+
+            ctx.progress_callback = None
+
+            # Yield any sub-progress events that accumulated
+            for evt in sub_events:
+                yield evt
+            sub_events.clear()
+
+            elapsed_ms = round((time.perf_counter() - t0) * 1000, 1)
+
+            yield {
+                "transform_id": spec.id,
+                "description": spec.description,
+                "layer": spec.layer.name,
+                "layer_index": layer_indices[layer_val],
+                "index": i,
+                "total": total,
+                "elapsed_ms": elapsed_ms,
+                "status": status,
+                "error": error,
+            }
+
+            layer_indices[layer_val] += 1
 
     def run_layer(self, ctx: PipelineContext, layer: Layer) -> PipelineContext:
         """Run only transforms in a specific layer."""

@@ -1,16 +1,30 @@
 """T3.07 — DBSCAN Grouping. ★★★ CRITICAL
 
 Cluster elements using DBSCAN on centroids.
-eps = 8-12% of viewBox diagonal, min_samples=2.
+eps derived from Clark-Evans expected nearest-neighbor distance.
 """
 
 from __future__ import annotations
+
+import math
 
 import numpy as np
 from sklearn.cluster import DBSCAN
 
 from app.engine.context import PipelineContext
 from app.engine.registry import Layer, transform
+
+# Clark-Evans (1954): expected NN distance for uniform distribution.
+# E[d_NN] = 0.5 * sqrt(A/n). We use 2x this as DBSCAN eps.
+_EPS_CLARK_EVANS_K = 1.0  # 2 * 0.5 = 1.0
+_EPS_MIN_FRAC = 0.03      # Floor: 3% of diagonal
+_EPS_MAX_FRAC = 0.20      # Ceiling: 20% of diagonal
+
+
+def _compute_dbscan_eps(diag: float, n_elements: int, canvas_area: float) -> float:
+    """Compute DBSCAN eps from Clark-Evans expected nearest-neighbor distance."""
+    expected_nn = _EPS_CLARK_EVANS_K * math.sqrt(canvas_area / max(n_elements, 1))
+    return max(diag * _EPS_MIN_FRAC, min(expected_nn, diag * _EPS_MAX_FRAC))
 
 
 @transform(
@@ -26,7 +40,8 @@ def dbscan_grouping(ctx: PipelineContext) -> None:
 
     centroids = np.array([sp.centroid for sp in ctx.subpaths])
     diag = ctx.viewbox_diagonal
-    eps = diag * 0.10  # 10% of diagonal
+    canvas_area = ctx.canvas_width * ctx.canvas_height
+    eps = _compute_dbscan_eps(diag, n, canvas_area)
 
     db = DBSCAN(eps=eps, min_samples=2).fit(centroids)
     labels = db.labels_

@@ -15,6 +15,12 @@ from app.utils.geometry import centroid_distance_cv, pca_orientation
 from app.utils.morphology import boundary_trace, morphological_close
 from app.utils.rasterizer import grid_fill_percentage
 
+# CV = sigma/mu. Statistical interpretation:
+_CV_CONSTANT = 0.10
+_CV_MODERATE = 0.30
+# Near-perfect circularity for composite detection.
+_CIRC_HIGH = 0.75  # 3/4
+
 
 @transform(
     id="T3.20",
@@ -48,11 +54,11 @@ def composite_silhouette_ext(ctx: PipelineContext) -> None:
         orientation = pca_orientation(canvas_pts)
 
         # Classify silhouette shape
-        if cv < 0.1:
+        if cv < _CV_CONSTANT:
             sil_class = "circular"
-        elif cv < 0.3:
+        elif cv < _CV_MODERATE:
             sil_class = "elliptical"
-        elif fill_pct > 80:
+        elif fill_pct > _CIRC_HIGH * 100:
             sil_class = "rectangular"
         else:
             sil_class = "organic"

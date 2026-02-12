@@ -10,6 +10,7 @@ import numpy as np
 
 from app.engine.context import PipelineContext
 from app.engine.registry import Layer, transform
+from app.engine.spatial_constants import SPATIAL_JND_FRACTION
 
 
 def _union_find_root(parent: list[int], x: int) -> int:
@@ -47,7 +48,7 @@ def connected_components(ctx: PipelineContext) -> None:
     cmat = ctx.containment_matrix
     dmat = ctx.distance_matrix
     diag = ctx.viewbox_diagonal
-    proximity_threshold = diag * 0.02  # 2% of diagonal
+    proximity_threshold = diag * SPATIAL_JND_FRACTION
 
     if cmat is None or dmat is None:
         return

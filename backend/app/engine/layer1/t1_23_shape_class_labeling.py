@@ -14,6 +14,21 @@ from __future__ import annotations
 from app.engine.context import PipelineContext
 from app.engine.registry import Layer, transform
 
+# Rosin (1999): circularity > 0.85 identifies circles with 15% digitization noise.
+_CIRC_CIRCULAR = 0.85
+# Aspect of a circle = 1.0 +/-20% for bbox quantization.
+_ASPECT_CIRCULAR_LO = 0.8   # 1 - 1/5
+_ASPECT_CIRCULAR_HI = 1.2   # 1 + 1/5
+# Ellipse: isoperimetric ratio of 2:1 ellipse = pi/(2*sqrt(2)) ~= 0.78. Floor: 0.75.
+_CIRC_ELLIPTICAL = 0.75
+# Zunic (2004): rectangularity > 0.85 robust with convex hull noise.
+_RECT_THRESHOLD = 0.85
+# Near-convex + 3 corners = triangle. 0.9 allows slight edge roughness.
+_CONVEX_TRIANGLE = 0.9
+# 5:1 aspect = standard "elongated shape" threshold in document analysis.
+_ASPECT_LINEAR_HI = 5.0
+_ASPECT_LINEAR_LO = 1.0 / _ASPECT_LINEAR_HI  # = 0.2
+
 
 @transform(
     id="T1.23",
@@ -30,15 +45,15 @@ def shape_class_labeling(ctx: PipelineContext) -> None:
         aspect = sp.features.get("aspect_ratio", 1.0)
         corners = sp.features.get("corner_count", 0)
 
-        if circ > 0.85 and 0.8 <= aspect <= 1.2:
+        if circ > _CIRC_CIRCULAR and _ASPECT_CIRCULAR_LO <= aspect <= _ASPECT_CIRCULAR_HI:
             label = "circular"
-        elif circ > 0.75:
+        elif circ > _CIRC_ELLIPTICAL:
             label = "elliptical"
-        elif rect > 0.85:
+        elif rect > _RECT_THRESHOLD:
             label = "rectangular"
-        elif convexity > 0.9 and corners == 3:
+        elif convexity > _CONVEX_TRIANGLE and corners == 3:
             label = "triangular"
-        elif aspect > 5 or (aspect > 0 and aspect < 0.2):
+        elif aspect > _ASPECT_LINEAR_HI or (aspect > 0 and aspect < _ASPECT_LINEAR_LO):
             label = "linear"
         else:
             label = "organic"
