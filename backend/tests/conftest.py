@@ -4,9 +4,6 @@ from __future__ import annotations
 
 import pytest
 
-from app.engine.context import PipelineContext
-from app.svg.parser import parse_svg
-
 
 # Sample SVGs from data_spec.md
 
@@ -38,26 +35,46 @@ SETTINGS_SVG = '''<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 </svg>'''
 
 
-@pytest.fixture
-def circle_ctx() -> PipelineContext:
-    return parse_svg(CIRCLE_SVG)
+# Filled SVG for breakdown testing (has areas, not just strokes)
+FILLED_RECT_SVG = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect x="10" y="10" width="80" height="80" fill="#4ECDC4"/>
+  <circle cx="50" cy="50" r="20" fill="#FF6B6B"/>
+</svg>'''
+
+FILLED_COMPLEX_SVG = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 259">
+  <path d="M128 10 L240 80 L240 200 L128 249 L16 200 L16 80 Z" fill="#4ECDC4"/>
+  <path d="M128 50 L200 100 L200 180 L128 220 L56 180 L56 100 Z" fill="#45B7D1"/>
+  <circle cx="128" cy="130" r="30" fill="#FF6B6B"/>
+  <circle cx="100" cy="110" r="10" fill="#FFEAA7"/>
+  <circle cx="156" cy="110" r="10" fill="#FFEAA7"/>
+</svg>'''
 
 
 @pytest.fixture
-def smiley_ctx() -> PipelineContext:
-    return parse_svg(SMILEY_SVG)
+def circle_svg() -> str:
+    return CIRCLE_SVG
 
 
 @pytest.fixture
-def home_ctx() -> PipelineContext:
-    return parse_svg(HOME_SVG)
+def smiley_svg() -> str:
+    return SMILEY_SVG
 
 
 @pytest.fixture
-def bar_chart_ctx() -> PipelineContext:
-    return parse_svg(BAR_CHART_SVG)
+def home_svg() -> str:
+    return HOME_SVG
 
 
 @pytest.fixture
-def settings_ctx() -> PipelineContext:
-    return parse_svg(SETTINGS_SVG)
+def settings_svg() -> str:
+    return SETTINGS_SVG
+
+
+@pytest.fixture
+def filled_rect_svg() -> str:
+    return FILLED_RECT_SVG
+
+
+@pytest.fixture
+def filled_complex_svg() -> str:
+    return FILLED_COMPLEX_SVG

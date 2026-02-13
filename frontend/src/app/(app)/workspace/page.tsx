@@ -10,7 +10,7 @@ import { VersionTimeline } from "@/components/version-timeline"
 import { BaselineToggle } from "@/components/baseline-toggle"
 import { useWorkspace } from "@/hooks/use-workspace"
 import { parseSSE } from "@/lib/sse"
-import type { TransformProgress, StreamingAnalyzeResult } from "@/lib/types"
+import type { TransformProgress, StreamingAnalyzeResult, StepVisual } from "@/lib/types"
 
 const MIN_WIDTH = 320
 const MAX_WIDTH = 640
@@ -40,30 +40,46 @@ export default function WorkspacePage() {
   const [pipelineTransforms, setPipelineTransforms] = useState<TransformProgress[]>([])
   const [pipelineResult, setPipelineResult] = useState<StreamingAnalyzeResult | null>(null)
   const [pipelineError, setPipelineError] = useState<string | null>(null)
+  const [stepVisuals, setStepVisuals] = useState<StepVisual[]>([])
   const analyzedSvgRef = useRef<string | null>(null)
+  const isInitialLoadRef = useRef(true)
+  // Keep the best enrichment text seen so far — don't lose rich enrichment
+  // when a modified SVG produces 0 groups
+  const [bestEnrichment, setBestEnrichment] = useState<string | null>(null)
 
   // Cache: SVG content → enrichment result (avoids re-running pipeline on version switch)
-  const enrichmentCacheRef = useRef<Map<string, { result: StreamingAnalyzeResult; transforms: TransformProgress[] }>>(new Map())
+  const enrichmentCacheRef = useRef<Map<string, { result: StreamingAnalyzeResult; transforms: TransformProgress[]; visuals: StepVisual[] }>>(new Map())
 
   // Run streaming analysis when SVG changes
-  const runAnalysis = useCallback(async (svgContent: string) => {
+  // showProgress=true shows the ProcessingDialog; false runs silently in background
+  const runAnalysis = useCallback(async (svgContent: string, showProgress = true) => {
     // Check cache first
     const cached = enrichmentCacheRef.current.get(svgContent)
     if (cached) {
       setPipelineResult(cached.result)
       setPipelineTransforms(cached.transforms)
+      setStepVisuals(cached.visuals)
       setPipelineError(null)
       analyzedSvgRef.current = svgContent
       setProcessingPhase("idle")
+      // Update best enrichment if this result has content
+      const cachedText = cached.result?.enrichment?.enrichment_text
+      if (cachedText && cachedText.length > (bestEnrichment?.length ?? 0)) {
+        setBestEnrichment(cachedText)
+      }
       return
     }
 
-    setProcessingPhase("streaming")
+    if (showProgress) {
+      setProcessingPhase("streaming")
+    }
     setPipelineError(null)
     setPipelineResult(null)
     setPipelineTransforms([])
+    setStepVisuals([])
 
     const collectedTransforms: TransformProgress[] = []
+    const collectedVisuals: StepVisual[] = []
 
     try {
       const res = await fetch("/api/analyze/stream", {
@@ -104,9 +120,18 @@ export default function WorkspacePage() {
                 collectedTransforms.push(tp)
               }
               setPipelineTransforms([...collectedTransforms])
+            } else if (event === "step_visual") {
+              const sv = parsed as StepVisual
+              collectedVisuals.push(sv)
+              setStepVisuals([...collectedVisuals])
             } else if (event === "result") {
               finalResult = parsed as StreamingAnalyzeResult
               setPipelineResult(finalResult)
+              // Keep the best enrichment — don't lose rich data when modified SVG produces 0 groups
+              const newText = finalResult?.enrichment?.enrichment_text
+              if (newText && newText.length > (bestEnrichment?.length ?? 0)) {
+                setBestEnrichment(newText)
+              }
             } else if (event === "error") {
               throw new Error(parsed.message || parsed.content || "Pipeline error")
             }
@@ -120,21 +145,36 @@ export default function WorkspacePage() {
       analyzedSvgRef.current = svgContent
       // Cache the result
       if (finalResult) {
-        enrichmentCacheRef.current.set(svgContent, { result: finalResult, transforms: collectedTransforms })
+        enrichmentCacheRef.current.set(svgContent, { result: finalResult, transforms: collectedTransforms, visuals: collectedVisuals })
       }
-      setProcessingPhase("complete")
+      if (showProgress) {
+        setProcessingPhase("complete")
+      }
     } catch (err) {
-      setPipelineError(err instanceof Error ? err.message : "Something went wrong")
-      setProcessingPhase("error")
+      if (showProgress) {
+        setPipelineError(err instanceof Error ? err.message : "Something went wrong")
+        setProcessingPhase("error")
+      }
+      // Silent failures are logged but don't block UI
     }
   }, [])
 
   // Trigger analysis when SVG loads
+  // First analysis after loadSvg → shows ProcessingDialog
+  // Subsequent analyses (modifications, version switches) → run silently
   useEffect(() => {
     if (state.currentSvg && state.currentSvg !== analyzedSvgRef.current) {
-      runAnalysis(state.currentSvg)
+      runAnalysis(state.currentSvg, isInitialLoadRef.current)
+      isInitialLoadRef.current = false
     }
   }, [state.currentSvg, runAnalysis])
+
+  // Wrap loadSvg to reset initial load flag (show ProcessingDialog for new SVGs)
+  const handleLoadSvg = useCallback((svg: string) => {
+    isInitialLoadRef.current = true
+    setBestEnrichment(null) // reset — new SVG needs fresh enrichment
+    loadSvg(svg)
+  }, [loadSvg])
 
   const handleDialogClose = useCallback(() => {
     setProcessingPhase("idle")
@@ -173,6 +213,7 @@ export default function WorkspacePage() {
           transforms={pipelineTransforms}
           result={pipelineResult}
           error={pipelineError}
+          stepVisuals={stepVisuals}
           onClose={handleDialogClose}
         />
       )}
@@ -193,7 +234,7 @@ export default function WorkspacePage() {
           style={{ width: panelWidth }}
         >
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
-            <SvgInput onLoad={loadSvg} hasSvg={!!state.currentSvg} currentSvg={state.currentSvg ?? undefined} />
+            <SvgInput onLoad={handleLoadSvg} hasSvg={!!state.currentSvg} currentSvg={state.currentSvg ?? undefined} />
             <SvgPreview
               svg={state.currentSvg}
               versions={state.versions}
@@ -253,17 +294,18 @@ export default function WorkspacePage() {
                 isLoading={state.isLoading}
                 baselineEnabled={state.baselineEnabled}
                 versions={state.versions}
-                enrichment={pipelineResult?.enrichment?.enrichment_text ?? null}
+                enrichment={bestEnrichment ?? pipelineResult?.enrichment?.enrichment_text ?? null}
                 onAddMessage={addMessage}
                 onUpdateMessage={updateMessage}
                 onSetLoading={setLoading}
                 onAddVersion={addVersion}
-                onLoadSvg={loadSvg}
+                onLoadSvg={handleLoadSvg}
               />
             ) : (
               <PipelinePanel
                 data={pipelineResult}
                 transforms={pipelineTransforms}
+                stepVisuals={stepVisuals}
               />
             )}
           </div>

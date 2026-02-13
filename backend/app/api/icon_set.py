@@ -1,4 +1,4 @@
-"""POST /api/icon-set/* — icon set analysis and generation."""
+"""POST /api/icon-set/* -- icon set analysis and generation."""
 
 from __future__ import annotations
 
@@ -13,23 +13,23 @@ router = APIRouter(prefix="/icon-set")
 @router.post("/analyze", response_model=IconSetRulesResponse)
 async def analyze_set(req: IconSetAnalyzeRequest) -> IconSetRulesResponse:
     from app.engine.pipeline import create_pipeline
-    from app.svg.parser import parse_svg
 
-    pipeline = create_pipeline()
-    all_features: list[dict] = []
-
-    for svg in req.svgs:
-        ctx = parse_svg(svg)
-        ctx = pipeline.run(ctx)
-        for sp in ctx.subpaths:
-            all_features.append(sp.features)
-
-    # Extract common rules across the set
     rules: dict[str, str] = {}
     common_props: dict[str, float] = {}
 
-    if all_features:
-        rules["style"] = "outline" if any(f.get("is_stroke") for f in all_features) else "filled"
+    all_elements = []
+    for svg in req.svgs:
+        pipeline = create_pipeline()
+        result = pipeline.run(svg)
+        all_elements.extend(result.enrichment_output.elements)
+
+    if all_elements:
+        # Infer style from shapes
+        shape_counts: dict[str, int] = {}
+        for elem in all_elements:
+            shape_counts[elem.shape_class] = shape_counts.get(elem.shape_class, 0) + 1
+        if shape_counts:
+            rules["dominant_shape"] = max(shape_counts, key=shape_counts.get)
 
     return IconSetRulesResponse(rules=rules, common_properties=common_props)
 

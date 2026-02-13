@@ -1,4 +1,4 @@
-"""POST /api/modify — SVG modification via surgical edit operations (with full-rewrite fallback)."""
+"""POST /api/modify -- SVG modification via surgical edit operations (with full-rewrite fallback)."""
 
 from __future__ import annotations
 
@@ -37,6 +37,11 @@ def _parse_edit_plan(text: str):
     cleaned = re.sub(r"\n?```\s*$", "", cleaned)
     cleaned = cleaned.strip()
 
+    # Also try to extract JSON from surrounding text
+    json_match = re.search(r"\{[\s\S]*\}", cleaned)
+    if json_match:
+        cleaned = json_match.group(0)
+
     try:
         data = json.loads(cleaned)
         plan = EditPlan(**data)
@@ -47,27 +52,148 @@ def _parse_edit_plan(text: str):
         return None, str(e)
 
 
+def _build_element_listing(
+    svg_text: str,
+    breakdown_result=None,
+) -> str:
+    """Build element listing with group labels so LLM knows what each element IS.
+
+    Maps each E# element to its enrichment group (A, B, C...) by spatial overlap,
+    so the LLM sees: 'E5: group C "elongated extension" at bottom-left'.
+    """
+    from app.svg.parser import parse_svg
+
+    try:
+        ctx = parse_svg(svg_text)
+    except Exception as e:
+        logger.warning("parse_svg failed for element listing: %s", e)
+        return ""
+
+    if not ctx.subpaths:
+        return ""
+
+    canvas_w = ctx.canvas_width or 300
+    canvas_h = ctx.canvas_height or 150
+
+    # Build group mapping: for each E# element, find which enrichment group it belongs to
+    group_labels: dict[str, str] = {}  # E# -> "C 'elongated extension'"
+    if breakdown_result is not None:
+        from app.engine.breakdown.prompt_builder import _label, _infer_feature_role
+        from shapely.geometry import Point
+
+        groups = breakdown_result.groups or []
+        for sp in ctx.subpaths:
+            cx, cy = sp.centroid
+            pt = Point(cx, cy)
+            best_gi = -1
+            best_area = float("inf")
+            # Find smallest group whose polygon contains this element's centroid
+            for gi, g in enumerate(groups):
+                if g.polygon is None or g.polygon.is_empty:
+                    continue
+                try:
+                    if g.polygon.contains(pt) and g.area < best_area:
+                        best_gi = gi
+                        best_area = g.area
+                except Exception:
+                    continue
+            if best_gi >= 0:
+                lbl = _label(best_gi)
+                role = _infer_feature_role(groups[best_gi], best_gi, canvas_w, canvas_h)
+                group_labels[sp.id] = f'{lbl} "{role}"'
+
+    def _pos(cx: float, cy: float) -> str:
+        h = "left" if cx < canvas_w / 3 else ("center" if cx < 2 * canvas_w / 3 else "right")
+        v = "top" if cy < canvas_h / 3 else ("middle" if cy < 2 * canvas_h / 3 else "bottom")
+        return f"{v}-{h}"
+
+    def _tag_name(tag: str) -> str:
+        m = re.match(r"<(\w+)", tag)
+        return m.group(1) if m else "?"
+
+    def _fill(tag: str) -> str:
+        m = re.search(r'fill="([^"]+)"', tag)
+        if m:
+            f = m.group(1)
+            return f if f.lower() not in ("none", "transparent") else ""
+        return ""
+
+    lines = [f"ELEMENTS ({len(ctx.subpaths)} total — use these IDs for edit targets):"]
+    for sp in ctx.subpaths:
+        cx, cy = sp.centroid
+        pos = _pos(cx, cy)
+        tag_type = _tag_name(sp.source_tag)
+        fill = _fill(sp.source_tag)
+        w, h = sp.bbox[2] - sp.bbox[0], sp.bbox[3] - sp.bbox[1]
+
+        # Core description
+        desc = f"  {sp.id} [{pos}]: {tag_type} {w:.0f}x{h:.0f}px"
+        if fill:
+            desc += f" fill={fill}"
+
+        # Group mapping — the key info: what IS this element?
+        grp = group_labels.get(sp.id)
+        if grp:
+            desc += f"  → group {grp}"
+
+        lines.append(desc)
+
+    return "\n".join(lines)
+
+
+def _validate_svg(svg_text: str) -> tuple[bool, str]:
+    """Basic SVG validation. Returns (is_valid, error_message)."""
+    if not svg_text or not svg_text.strip():
+        return False, "Empty SVG output"
+
+    # Must contain <svg and </svg>
+    if not re.search(r"<svg[\s>]", svg_text, re.IGNORECASE):
+        return False, "Missing <svg> tag"
+    if not re.search(r"</svg\s*>", svg_text, re.IGNORECASE):
+        return False, "Missing </svg> closing tag"
+
+    # Check for obviously broken XML (unmatched quotes in attributes)
+    # Count quotes — should be even
+    in_tag = False
+    quote_count = 0
+    for ch in svg_text:
+        if ch == '<':
+            in_tag = True
+            quote_count = 0
+        elif ch == '>':
+            if quote_count % 2 != 0:
+                return False, "Unmatched quotes in SVG tag"
+            in_tag = False
+        elif in_tag and ch == '"':
+            quote_count += 1
+
+    return True, ""
+
+
 @router.post("/modify", response_model=ModifyResponse)
 async def modify(req: ModifyRequest, background_tasks: BackgroundTasks) -> ModifyResponse:
     from app.llm.client import get_chat_response
 
-    if req.enrichment:
+    if req.enrichment is not None:
         enrichment_text = req.enrichment
-        ctx = None
+        breakdown_result = None
     else:
         from app.engine.pipeline import create_pipeline
-        from app.llm.enrichment_formatter import context_to_enrichment_text
-        from app.svg.parser import parse_svg
 
-        ctx = parse_svg(req.svg)
         pipeline = create_pipeline()
-        ctx = pipeline.run(ctx)
-        enrichment_text = context_to_enrichment_text(ctx)
+        breakdown_result = pipeline.run(req.svg)
+        enrichment_text = breakdown_result.enrichment_text
+
+    # Build element listing for surgical edit path (maps E# IDs → group labels)
+    element_listing = _build_element_listing(req.svg, breakdown_result)
+    edit_enrichment = enrichment_text
+    if element_listing:
+        edit_enrichment = element_listing + "\n\n" + enrichment_text
 
     # --- Try surgical edit path first ---
     edit_result = await get_chat_response(
         svg=req.svg,
-        enrichment=enrichment_text,
+        enrichment=edit_enrichment,
         question=req.instruction,
         history=req.history,
         task="edit",
@@ -81,14 +207,24 @@ async def modify(req: ModifyRequest, background_tasks: BackgroundTasks) -> Modif
         from app.svg.edit_applier import apply_edits
         from app.svg.parser import parse_svg
 
-        # apply_edits needs a parsed context for element offsets
-        edit_ctx = ctx if ctx is not None else parse_svg(req.svg)
-        logger.info("Surgical edit: %d operations", len(plan.operations))
-        clean_svg = apply_edits(req.svg, plan.operations, edit_ctx)
-        edit_ops_debug = [op.model_dump(exclude_none=True) for op in plan.operations]
-    else:
+        try:
+            edit_ctx = parse_svg(req.svg)
+            logger.info("Surgical edit: %d operations", len(plan.operations))
+            clean_svg = apply_edits(req.svg, plan.operations, edit_ctx)
+            edit_ops_debug = [op.model_dump(exclude_none=True) for op in plan.operations]
+
+            # Validate the result
+            valid, err = _validate_svg(clean_svg)
+            if not valid:
+                logger.warning("Surgical edit produced invalid SVG (%s), falling back to full rewrite", err)
+                plan = None  # fall through to full rewrite
+        except Exception as e:
+            logger.warning("Surgical edit apply failed (%s), falling back to full rewrite", e)
+            plan = None  # fall through to full rewrite
+
+    if plan is None:
         # --- Fallback: full-rewrite via modify prompt ---
-        logger.info("Edit plan parse failed (%s), falling back to full rewrite", parse_error)
+        logger.info("Edit plan parse failed (%s), falling back to full rewrite", parse_error or "apply error")
         fallback_result = await get_chat_response(
             svg=req.svg,
             enrichment=enrichment_text,
@@ -97,18 +233,27 @@ async def modify(req: ModifyRequest, background_tasks: BackgroundTasks) -> Modif
             task="modify",
         )
         clean_svg = _extract_svg(fallback_result)
+        edit_ops_debug = None
 
-    # Auto-record session for learning (skip if no pipeline context)
-    if ctx is not None:
-        from app.learning.memory import record_from_context
+        # Validate fallback too — if still broken, return original SVG with error
+        valid, err = _validate_svg(clean_svg)
+        if not valid:
+            logger.error("Full rewrite also produced invalid SVG: %s", err)
+            clean_svg = req.svg  # return original unchanged
 
-        record_from_context(ctx, svg=req.svg, question=req.instruction)
+    # Auto-record session for learning
+    if breakdown_result is not None:
+        from app.learning.memory import record_from_breakdown
+
+        record_from_breakdown(
+            breakdown_result, svg=req.svg, question=req.instruction
+        )
 
         from app.learning.self_reflect import reflect_background_modify
 
         background_tasks.add_task(
             reflect_background_modify,
-            req.svg, clean_svg, enrichment_text, req.instruction, ctx,
+            req.svg, clean_svg, enrichment_text, req.instruction,
         )
 
     return ModifyResponse(

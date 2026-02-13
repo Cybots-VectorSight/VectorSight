@@ -126,7 +126,6 @@ async def reflect_on_chat(
     enrichment_text: str,
     user_question: str,
     llm_answer: str,
-    ctx: Any | None = None,
 ) -> dict | None:
     """After a chat: vision verifies what the LLM told the user."""
     from app.learning.tags import get_knowledge, get_spatial_reference
@@ -138,7 +137,7 @@ async def reflect_on_chat(
         knowledge=get_knowledge(),
         spatial_reference=get_spatial_reference(),
     )
-    return await _reflect(svg, prompt, ctx, task="chat",
+    return await _reflect(svg, prompt, task="chat",
                           user_input=user_question, llm_output=llm_answer)
 
 
@@ -147,7 +146,6 @@ async def reflect_on_modify(
     modified_svg: str,
     enrichment_text: str,
     user_instruction: str,
-    ctx: Any | None = None,
 ) -> dict | None:
     """After a modify: vision verifies the modification result."""
     from app.learning.tags import get_knowledge, get_spatial_reference
@@ -159,14 +157,13 @@ async def reflect_on_modify(
         spatial_reference=get_spatial_reference(),
     )
     # Show the MODIFIED svg to vision, not the original
-    return await _reflect(modified_svg, prompt, ctx, task="modify",
+    return await _reflect(modified_svg, prompt, task="modify",
                           user_input=user_instruction, llm_output="")
 
 
 async def _reflect(
     svg: str,
     prompt: str,
-    ctx: Any | None,
     task: str,
     user_input: str,
     llm_output: str,
@@ -213,7 +210,7 @@ async def _reflect(
             return None
 
         # Store patterns + adjust existing ones
-        _store_and_adjust(reflection, svg, ctx, task, user_input)
+        _store_and_adjust(reflection, svg, task, user_input)
 
         visual = reflection.get("visual_description", "?")[:50]
         n_patterns = len(reflection.get("patterns", []))
@@ -252,7 +249,6 @@ def _parse_reflection(text: str) -> dict | None:
 def _store_and_adjust(
     reflection: dict,
     svg: str,
-    ctx: Any | None,
     task: str,
     user_input: str,
 ) -> None:
@@ -274,26 +270,23 @@ def _store_and_adjust(
     was_correct = llm_correct if task == "chat" else mod_succeeded
 
     if existing:
-        # Build tags from current SVG using shared rules
-        current_tags: set[str] = set()
-        if ctx:
-            from app.learning.tags import build_factual_tags_from_context
-
-            current_tags = build_factual_tags_from_context(ctx)
-
         changed = False
         for pat in existing:
-            overlap = len(current_tags.intersection(set(pat.tags)))
+            # Without context-derived tags, adjust all patterns that
+            # share tags with the reflection's new patterns
+            reflection_tags = set()
+            for p in patterns_data:
+                reflection_tags.update(p.get("tags", []))
+
+            overlap = len(reflection_tags.intersection(set(pat.tags)))
             if overlap == 0:
                 continue
 
             if was_correct:
                 pat.times_confirmed += 1
-                # Nudge confidence up (max 0.95)
                 pat.confidence = min(0.95, pat.confidence + 0.05)
             else:
                 pat.times_contradicted += 1
-                # Nudge confidence down (min 0.1)
                 pat.confidence = max(0.1, pat.confidence - 0.1)
             changed = True
 
@@ -355,11 +348,10 @@ async def reflect_background_chat(
     enrichment_text: str,
     user_question: str,
     llm_answer: str,
-    ctx: Any | None = None,
 ) -> None:
     """Fire-and-forget after chat. Never blocks the response."""
     try:
-        await reflect_on_chat(svg, enrichment_text, user_question, llm_answer, ctx)
+        await reflect_on_chat(svg, enrichment_text, user_question, llm_answer)
     except Exception as e:
         logger.debug("Background chat reflection failed: %s", e)
 
@@ -369,12 +361,11 @@ async def reflect_background_modify(
     modified_svg: str,
     enrichment_text: str,
     user_instruction: str,
-    ctx: Any | None = None,
 ) -> None:
     """Fire-and-forget after modify. Never blocks the response."""
     try:
         await reflect_on_modify(
-            original_svg, modified_svg, enrichment_text, user_instruction, ctx
+            original_svg, modified_svg, enrichment_text, user_instruction
         )
     except Exception as e:
         logger.debug("Background modify reflection failed: %s", e)

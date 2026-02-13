@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react"
 import { Check, X } from "lucide-react"
 import { Loader } from "@/components/prompt-kit/loader"
 import { Button } from "@/components/ui/button"
-import type { TransformProgress, StreamingAnalyzeResult } from "@/lib/types"
+import type { TransformProgress, StreamingAnalyzeResult, StepVisual } from "@/lib/types"
 
 const LAYER_LABELS: Record<string, string> = {
   PARSING: "L0 Parsing",
@@ -21,6 +21,7 @@ interface ProcessingDialogProps {
   transforms: TransformProgress[]
   result: StreamingAnalyzeResult | null
   error: string | null
+  stepVisuals: StepVisual[]
   onClose: () => void
 }
 
@@ -29,6 +30,7 @@ export function ProcessingDialog({
   transforms,
   result,
   error,
+  stepVisuals,
   onClose,
 }: ProcessingDialogProps) {
   const scrollRef = useRef<HTMLDivElement>(null)
@@ -97,6 +99,21 @@ export function ProcessingDialog({
             </div>
           )}
         </div>
+
+        {/* Live visual preview */}
+        {stepVisuals.length > 0 && (
+          <div className="shrink-0 border-b border-border px-5 py-3">
+            <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              {stepVisuals[stepVisuals.length - 1].label}
+            </p>
+            <div
+              className="flex h-[200px] items-center justify-center overflow-hidden rounded-lg bg-[#1a1a2e]"
+              dangerouslySetInnerHTML={{
+                __html: stepVisuals[stepVisuals.length - 1].svg,
+              }}
+            />
+          </div>
+        )}
 
         {/* Transform list */}
         <div ref={scrollRef} className="flex-1 overflow-y-auto px-5 py-3">

@@ -277,9 +277,9 @@
     "id": "vc021",
     "condition": "When enrichment shows perfect metrics (circ=1.00, conv=1.00, aspect=1.00) with 12 corners, single element, centered placement, and stroke-based rendering (from: A simple black circle with a thick stroke on a whi)",
     "insight": "This is a canonical geometric UI icon. The SPATIAL INTERPRETATION layer should recognize this pattern immediately and output: 'geometric UI icon: circle' rather than attempting semantic interpretation that generates false negatives like 'asymmetric', 'highly concave', or 'abstract'.",
-    "confidence": 0.75,
+    "confidence": 0.65,
     "times_confirmed": 1,
-    "times_contradicted": 0,
+    "times_contradicted": 1,
     "tags": [
       "stroke-based-circle",
       "perfect-metrics",
@@ -442,9 +442,9 @@
     "id": "vm032",
     "condition": "when a user requests a specific part replacement ('make X into Y') in a character illustration with identifiable focal details (from: A stylized pink/magenta squirrel-like creature wit)",
     "insight": "Use the enrichment's focal element coordinates and concentric group data to precisely target the part to replace. The 'highest-circularity concentric group at x=89%' (bottom-right) in this squirrel illustration is almost certainly the nut/acorn detail. Target it directly, replace its path geometry with an apple silhouette, and adjust fill colors to warm reds/browns. Do not re-analyze—act.",
-    "confidence": 0.75,
+    "confidence": 0.65,
     "times_confirmed": 1,
-    "times_contradicted": 0,
+    "times_contradicted": 1,
     "tags": [
       "targeted-part-replacement",
       "focal-element-targeting",
@@ -513,5 +513,52 @@
       "semantic-override-needed"
     ],
     "source_svg_hash": "edad620b041d"
+  },
+  {
+    "id": "vc037",
+    "condition": "when enrichment shows a large circular/rounded MEDIUM element with TWO small identical circular elements positioned symmetrically inside it at approximately equal height (from: A stylized character or mascot face with a teal/tu)",
+    "insight": "this is almost certainly a FACE—the large element is the head, the paired circles are eyes",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "character-icon",
+      "face",
+      "mascot",
+      "paired-eyes",
+      "anthropomorphic"
+    ],
+    "source_svg_hash": "53e51c1c05ed"
+  },
+  {
+    "id": "vc038",
+    "condition": "when a large central element is surrounded by a larger geometric container (hexagon, rounded-square, circle) with different color/styling (from: A stylized character or mascot face with a teal/tu)",
+    "insight": "the outer container is a FRAME or BACKGROUND, not part of the subject itself—the subject is the inner element",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "layered-design",
+      "frame-and-subject",
+      "UI-icon",
+      "background-container"
+    ],
+    "source_svg_hash": "53e51c1c05ed"
+  },
+  {
+    "id": "vc039",
+    "condition": "when color palette uses warm tones (coral, red, pink) for a central circular feature, cool tones (teal, blue, cyan) for surrounding frame, and white/light for small accents (from: A stylized character or mascot face with a teal/tu)",
+    "insight": "characteristic of character mascot or app icon design; warm central subject, cool background, white highlights for features",
+    "confidence": 0.75,
+    "times_confirmed": 1,
+    "times_contradicted": 0,
+    "tags": [
+      "character-design",
+      "app-icon",
+      "mascot",
+      "UI-color-semantics",
+      "warm-subject-cool-background"
+    ],
+    "source_svg_hash": "53e51c1c05ed"
   }
 ]

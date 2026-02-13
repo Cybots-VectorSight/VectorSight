@@ -1,4 +1,4 @@
-"""POST /api/chat — SVG analysis + LLM Q&A (standard + streaming)."""
+"""POST /api/chat -- SVG analysis + LLM Q&A (standard + streaming)."""
 
 from __future__ import annotations
 
@@ -12,26 +12,23 @@ router = APIRouter()
 
 
 def _run_pipeline(svg: str):
-    """Run the full pipeline and return (ctx, enrichment_text)."""
+    """Run the full pipeline and return (result, enrichment_text)."""
     from app.engine.pipeline import create_pipeline
-    from app.llm.enrichment_formatter import context_to_enrichment_text
-    from app.svg.parser import parse_svg
 
-    ctx = parse_svg(svg)
     pipeline = create_pipeline()
-    ctx = pipeline.run(ctx)
-    return ctx, context_to_enrichment_text(ctx)
+    result = pipeline.run(svg)
+    return result, result.enrichment_text
 
 
 @router.post("/chat", response_model=ChatResponse)
 async def chat(req: ChatRequest, background_tasks: BackgroundTasks) -> ChatResponse:
     from app.llm.client import get_chat_response
 
-    if req.enrichment:
+    if req.enrichment is not None:
         enrichment_text = req.enrichment
-        ctx = None
+        breakdown_result = None
     else:
-        ctx, enrichment_text = _run_pipeline(req.svg)
+        breakdown_result, enrichment_text = _run_pipeline(req.svg)
 
     answer = await get_chat_response(
         svg=req.svg,
@@ -41,17 +38,19 @@ async def chat(req: ChatRequest, background_tasks: BackgroundTasks) -> ChatRespo
         task="chat",
     )
 
-    # Auto-record session for learning (skip if no pipeline context)
-    if ctx is not None:
-        from app.learning.memory import record_from_context
+    # Auto-record session for learning (skip if no pipeline result)
+    if breakdown_result is not None:
+        from app.learning.memory import record_from_breakdown
 
-        record_from_context(ctx, svg=req.svg, question=req.question, answer=answer)
+        record_from_breakdown(
+            breakdown_result, svg=req.svg, question=req.question, answer=answer
+        )
 
         from app.learning.self_reflect import reflect_background_chat
 
         background_tasks.add_task(
             reflect_background_chat,
-            req.svg, enrichment_text, req.question, answer, ctx,
+            req.svg, enrichment_text, req.question, answer,
         )
 
     return ChatResponse(answer=answer, enrichment_used=True)
@@ -61,23 +60,25 @@ async def chat(req: ChatRequest, background_tasks: BackgroundTasks) -> ChatRespo
 async def chat_stream(req: ChatRequest, background_tasks: BackgroundTasks) -> StreamingResponse:
     from app.llm.stream import stream_chat_response
 
-    if req.enrichment:
+    if req.enrichment is not None:
         enrichment_text = req.enrichment
-        ctx = None
+        breakdown_result = None
     else:
-        ctx, enrichment_text = _run_pipeline(req.svg)
+        breakdown_result, enrichment_text = _run_pipeline(req.svg)
 
-    # Auto-record session for learning (skip if no pipeline context)
-    if ctx is not None:
-        from app.learning.memory import record_from_context
+    # Auto-record session for learning (skip if no pipeline result)
+    if breakdown_result is not None:
+        from app.learning.memory import record_from_breakdown
 
-        record_from_context(ctx, svg=req.svg, question=req.question)
+        record_from_breakdown(
+            breakdown_result, svg=req.svg, question=req.question
+        )
 
         from app.learning.self_reflect import reflect_background_chat
 
         background_tasks.add_task(
             reflect_background_chat,
-            req.svg, enrichment_text, req.question, "(streaming — answer not captured)", ctx,
+            req.svg, enrichment_text, req.question, "(streaming -- answer not captured)",
         )
 
     return StreamingResponse(

@@ -74,21 +74,21 @@ def build_factual_tags(
     return tags
 
 
-def build_factual_tags_from_context(ctx: Any) -> set[str]:
-    """Extract factual tags from a PipelineContext."""
+def build_factual_tags_from_breakdown(result: Any) -> set[str]:
+    """Extract factual tags from a BreakdownResult."""
     shape_dist: dict[str, int] = {}
-    for sp in ctx.subpaths:
-        s = sp.features.get("shape_class", "organic")
-        shape_dist[s] = shape_dist.get(s, 0) + 1
+    for g in getattr(result, "groups", []):
+        if g.polygon and not g.polygon.is_empty:
+            try:
+                from app.engine.breakdown.prompt_builder import _shape_descriptor
 
-    composition_type = ""
-    try:
-        from app.engine.interpreter import _interpret_composition
-        composition_type = _interpret_composition(ctx)
-    except Exception:
-        pass
+                sd = _shape_descriptor(g.polygon)
+                s = sd["shape"] if sd else "organic"
+                shape_dist[s] = shape_dist.get(s, 0) + 1
+            except Exception:
+                shape_dist["organic"] = shape_dist.get("organic", 0) + 1
 
     return build_factual_tags(
         shape_distribution=shape_dist,
-        composition_type=composition_type,
+        composition_type="breakdown",
     )

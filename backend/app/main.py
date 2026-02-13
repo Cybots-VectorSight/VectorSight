@@ -21,8 +21,8 @@ logging.basicConfig(
 def create_app() -> FastAPI:
     app = FastAPI(
         title="VectorSight",
-        description="SVG spatial analysis engine — geometry transforms for LLM comprehension",
-        version="0.1.0",
+        description="SVG spatial analysis engine -- 3-stage breakdown pipeline for LLM comprehension",
+        version="0.2.0",
     )
 
     app.add_middleware(
@@ -33,29 +33,11 @@ def create_app() -> FastAPI:
         allow_headers=["*"],
     )
 
-    # Import all transform modules to trigger registration
-    _register_transforms()
-
     from app.api.router import api_router
 
     app.include_router(api_router)
 
     return app
-
-
-def _register_transforms() -> None:
-    """Import all transform modules so @transform decorators fire."""
-    import importlib
-    import pkgutil
-
-    for layer_name in ["layer0", "layer1", "layer2", "layer3", "layer4"]:
-        package_name = f"app.engine.{layer_name}"
-        try:
-            package = importlib.import_module(package_name)
-            for _, module_name, _ in pkgutil.iter_modules(package.__path__):
-                importlib.import_module(f"{package_name}.{module_name}")
-        except ModuleNotFoundError:
-            pass
 
 
 app = create_app()

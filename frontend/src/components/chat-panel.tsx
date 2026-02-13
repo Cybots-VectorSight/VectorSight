@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useCallback, useRef } from "react"
-import { Send, Square, Sparkles, Paperclip } from "lucide-react"
+import { Send, Square, Sparkles, Paperclip, AlignLeft, LoaderCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   PromptInput,
@@ -36,10 +36,10 @@ import { generateId } from "@/lib/utils"
 import { parseSSE } from "@/lib/sse"
 
 const SUGGESTIONS = [
+  "What does this SVG depict?",
   "What shapes are in this SVG?",
-  "How many elements does it have?",
-  "Make it larger and add color",
   "Describe the spatial layout",
+  "Make it larger and add color",
 ]
 
 interface ChatPanelProps {
@@ -116,12 +116,14 @@ export function ChatPanel({
     history.push({ role: "user", content: input })
 
     const assistantId = generateId()
+    const useBaseline = baselineEnabled && intent === "chat"
     const placeholderMessage: ChatMessage = {
       id: assistantId,
       role: "assistant",
       content: "",
       intent,
       timestamp: Date.now(),
+      ...(useBaseline ? { baselineContent: "" } : {}),
     }
     onAddMessage(placeholderMessage)
 
@@ -130,7 +132,48 @@ export function ChatPanel({
 
     try {
       if (intent === "chat") {
-        // Use streaming endpoint
+        // Fire baseline stream in parallel when compare mode is on
+        if (useBaseline) {
+          (async () => {
+            try {
+              const baselineRes = await fetch("/api/chat/stream", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ svg, question: cleanInput, history, enrichment: "" }),
+                signal: controller.signal,
+              })
+              if (!baselineRes.ok || !baselineRes.body) {
+                onUpdateMessage(assistantId, { baselineContent: "Baseline request failed." })
+                return
+              }
+              const r = baselineRes.body.getReader()
+              const d = new TextDecoder()
+              let buf = "", evt = "", accum = ""
+              while (true) {
+                const { done, value } = await r.read()
+                if (done) break
+                buf += d.decode(value, { stream: true })
+                const { events, remaining, currentEvent } = parseSSE(buf, evt)
+                buf = remaining
+                evt = currentEvent
+                for (const { event, data } of events) {
+                  try {
+                    const parsed = JSON.parse(data)
+                    if (event === "response") {
+                      accum += parsed.content
+                      onUpdateMessage(assistantId, { baselineContent: accum })
+                    }
+                  } catch { /* skip malformed */ }
+                }
+              }
+              if (accum) onUpdateMessage(assistantId, { baselineContent: accum })
+            } catch {
+              onUpdateMessage(assistantId, { baselineContent: "Baseline request failed." })
+            }
+          })()
+        }
+
+        // Enriched streaming request
         const res = await fetch("/api/chat/stream", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -239,7 +282,7 @@ export function ChatPanel({
       abortControllerRef.current = null
       onSetLoading(false)
     }
-  }, [input, svg, isLoading, onAddMessage, onUpdateMessage, onSetLoading, onAddVersion])
+  }, [input, svg, isLoading, baselineEnabled, enrichment, messages, onAddMessage, onUpdateMessage, onSetLoading, onAddVersion])
 
   if (!svg) {
     return (
@@ -328,35 +371,65 @@ export function ChatPanel({
                   <EditOpsChain reasoning={msg.editReasoning} ops={msg.editOps} />
                 )}
 
-                {/* AI answer — on canvas, no bubble */}
-                {msg.content && (
-                  <div className="max-w-[95%] text-sm">
-                    <Markdown className="prose prose-sm dark:prose-invert prose-p:leading-relaxed prose-pre:bg-card">
-                      {msg.content}
-                    </Markdown>
-                  </div>
-                )}
+                {/* Baseline comparison — replaces normal answer when present */}
+                {msg.baselineContent !== undefined ? (
+                  <>
+                    <div className="flex items-center gap-2 pt-1">
+                      <AlignLeft className="h-4 w-4 text-foreground" />
+                      <span className="text-sm font-semibold">Comparison</span>
+                    </div>
+                    <div className="grid gap-2 md:grid-cols-2">
+                      <div className="min-w-0 overflow-hidden rounded-lg border border-border bg-card p-3">
+                        <p className="mb-1 text-xs font-medium text-emerald-500">
+                          With VectorSight
+                        </p>
+                        {msg.content ? (
+                          <div className="text-sm break-words">
+                            <Markdown>{msg.content}</Markdown>
+                          </div>
+                        ) : (
+                          <div className="flex items-center gap-2 py-4 text-xs text-muted-foreground">
+                            <LoaderCircle className="h-3.5 w-3.5 animate-spin" />
+                            Streaming enriched response...
+                          </div>
+                        )}
+                      </div>
+                      <div className="min-w-0 overflow-hidden rounded-lg border border-dashed border-border bg-card/50 p-3">
+                        <p className="mb-1 text-xs font-medium text-muted-foreground">
+                          Without VectorSight
+                        </p>
+                        {msg.baselineContent ? (
+                          <div className="text-sm break-words">
+                            <Markdown>{msg.baselineContent}</Markdown>
+                          </div>
+                        ) : (
+                          <div className="flex items-center gap-2 py-4 text-xs text-muted-foreground">
+                            <LoaderCircle className="h-3.5 w-3.5 animate-spin" />
+                            Streaming baseline response...
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {/* Answer header — Perplexity-style divider */}
+                    {msg.content && (
+                      <div className="flex items-center gap-2 pt-1">
+                        <AlignLeft className="h-4 w-4 text-foreground" />
+                        <span className="text-sm font-semibold">Answer</span>
+                      </div>
+                    )}
 
-                {/* Baseline comparison */}
-                {msg.baselineContent && (
-                  <div className="mt-3 space-y-2">
-                    <div className="rounded-lg border border-border bg-card p-3">
-                      <p className="mb-1 text-xs font-medium text-muted-foreground">
-                        With VectorSight
-                      </p>
-                      <div className="text-sm">
-                        <Markdown>{msg.content}</Markdown>
+                    {/* AI answer — on canvas, no bubble */}
+                    {msg.content && (
+                      <div className="max-w-[95%] text-sm">
+                        <Markdown className="prose prose-sm dark:prose-invert prose-p:leading-relaxed prose-pre:bg-card">
+                          {msg.content}
+                        </Markdown>
                       </div>
-                    </div>
-                    <div className="rounded-lg border border-dashed border-border bg-card/50 p-3">
-                      <p className="mb-1 text-xs font-medium text-muted-foreground">
-                        Without VectorSight
-                      </p>
-                      <div className="text-sm">
-                        <Markdown>{msg.baselineContent}</Markdown>
-                      </div>
-                    </div>
-                  </div>
+                    )}
+                  </>
                 )}
 
                 {/* SVG artifact indicator */}

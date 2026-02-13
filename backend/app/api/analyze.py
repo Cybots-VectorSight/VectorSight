@@ -1,4 +1,4 @@
-"""POST /api/analyze — full pipeline analysis."""
+"""POST /api/analyze -- full pipeline analysis."""
 
 from __future__ import annotations
 
@@ -13,7 +13,6 @@ from fastapi.responses import StreamingResponse
 from app.engine.pipeline import create_pipeline
 from app.models.requests import AnalyzeRequest
 from app.models.responses import AnalyzeResponse
-from app.svg.parser import parse_svg
 
 router = APIRouter()
 
@@ -25,22 +24,20 @@ async def _stream_analyze(svg: str) -> AsyncGenerator[str, None]:
     """Drive pipeline.run_streaming() in a thread, yielding SSE events as they arrive."""
     start = time.perf_counter()
 
-    try:
-        ctx = parse_svg(svg)
-    except Exception as e:
-        data = json.dumps({"type": "error", "message": str(e)})
-        yield f"event: error\ndata: {data}\n\n"
-        return
-
     pipeline = create_pipeline()
     loop = asyncio.get_running_loop()
     queue: asyncio.Queue = asyncio.Queue()
 
     def _run_pipeline() -> None:
-        """Sync pipeline in thread — pushes progress dicts onto the async queue."""
-        for progress in pipeline.run_streaming(ctx):
-            loop.call_soon_threadsafe(queue.put_nowait, progress)
-        loop.call_soon_threadsafe(queue.put_nowait, _SENTINEL)
+        """Sync pipeline in thread -- pushes progress dicts onto the async queue."""
+        try:
+            for progress in pipeline.run_streaming(svg):
+                loop.call_soon_threadsafe(queue.put_nowait, progress)
+        except Exception as e:
+            error_event = {"type": "error", "message": str(e)}
+            loop.call_soon_threadsafe(queue.put_nowait, error_event)
+        finally:
+            loop.call_soon_threadsafe(queue.put_nowait, _SENTINEL)
 
     # Start pipeline in a thread so the event loop stays free to flush SSE
     asyncio.get_running_loop().run_in_executor(None, _run_pipeline)
@@ -50,26 +47,31 @@ async def _stream_analyze(svg: str) -> AsyncGenerator[str, None]:
         item = await queue.get()
         if item is _SENTINEL:
             break
-        data = json.dumps(item)
-        yield f"event: progress\ndata: {data}\n\n"
+        if isinstance(item, dict) and item.get("type") == "step_visual":
+            yield f"event: step_visual\ndata: {json.dumps(item)}\n\n"
+        else:
+            data = json.dumps(item)
+            yield f"event: progress\ndata: {data}\n\n"
 
-    # Build enrichment after pipeline completes
+    # Build response after pipeline completes
     elapsed = (time.perf_counter() - start) * 1000
+    result = pipeline.result
 
-    from app.llm.enrichment_formatter import context_to_enrichment
-
-    enrichment = context_to_enrichment(ctx)
+    if result is None:
+        data = json.dumps({"type": "error", "message": "Pipeline produced no result"})
+        yield f"event: error\ndata: {data}\n\n"
+        return
 
     response = AnalyzeResponse(
-        enrichment=enrichment,
+        enrichment=result.enrichment_output,
         processing_time_ms=round(elapsed, 1),
-        transforms_completed=len(ctx.completed_transforms),
-        transforms_failed=len(ctx.errors),
-        errors=ctx.errors,
+        transforms_completed=len(result.completed_steps),
+        transforms_failed=len(result.errors),
+        errors=result.errors,
     )
 
     # Estimate tokens: ~1.3 tokens per word in enrichment text
-    word_count = len((enrichment.enrichment_text or "").split())
+    word_count = len((result.enrichment_text or "").split())
     estimated_tokens = round(word_count * 1.3)
 
     result_data = response.model_dump()
@@ -96,24 +98,16 @@ async def analyze_stream(req: AnalyzeRequest) -> StreamingResponse:
 async def analyze(req: AnalyzeRequest) -> AnalyzeResponse:
     start = time.perf_counter()
 
-    # Parse SVG into PipelineContext
-    ctx = parse_svg(req.svg)
-
     # Run full pipeline
     pipeline = create_pipeline()
-    ctx = pipeline.run(ctx)
+    result = pipeline.run(req.svg)
 
     elapsed = (time.perf_counter() - start) * 1000
 
-    # Build enrichment output from context
-    from app.llm.enrichment_formatter import context_to_enrichment
-
-    enrichment = context_to_enrichment(ctx)
-
     return AnalyzeResponse(
-        enrichment=enrichment,
+        enrichment=result.enrichment_output,
         processing_time_ms=round(elapsed, 1),
-        transforms_completed=len(ctx.completed_transforms),
-        transforms_failed=len(ctx.errors),
-        errors=ctx.errors,
+        transforms_completed=len(result.completed_steps),
+        transforms_failed=len(result.errors),
+        errors=result.errors,
     )

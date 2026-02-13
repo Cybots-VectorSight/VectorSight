@@ -17,8 +17,11 @@ export function BaselineToggle({ enabled, onToggle }: BaselineToggleProps) {
         onCheckedChange={onToggle}
       />
       <Label htmlFor="baseline" className="text-xs cursor-pointer">
-        Baseline
+        Compare mode
       </Label>
+      {enabled && (
+        <span className="text-[10px] text-amber-500 font-medium">2x LLM calls</span>
+      )}
     </div>
   )
 }

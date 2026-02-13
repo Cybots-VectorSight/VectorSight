@@ -271,66 +271,56 @@ def get_memory_store() -> MemoryStore:
     return _store
 
 
-def record_from_context(
-    ctx: Any,
+def record_from_breakdown(
+    result: Any,
     svg: str,
     question: str = "",
     answer: str = "",
 ) -> None:
-    """Auto-record an analysis session from a PipelineContext.
+    """Auto-record an analysis session from a BreakdownResult.
 
     Called after every chat/modify interaction so the system learns
-    from every user — what SVGs are being analyzed, what features
+    from every user -- what SVGs are being analyzed, what features
     they have, and what questions are asked.
     """
     try:
         store = get_memory_store()
         svg_h = store.svg_hash(svg)
 
-        # Extract features from context
+        # Extract shape distribution from groups
         shape_dist: dict[str, int] = {}
-        for sp in ctx.subpaths:
-            s = sp.features.get("shape_class", "organic")
-            shape_dist[s] = shape_dist.get(s, 0) + 1
+        for g in result.groups:
+            if g.polygon and not g.polygon.is_empty:
+                from app.engine.breakdown.prompt_builder import _shape_descriptor
 
-        fill_pct = 0.0
-        if ctx.subpaths:
-            fill_pct = ctx.subpaths[0].features.get("positive_fill_pct", 0.0)
+                sd = _shape_descriptor(g.polygon)
+                s = sd["shape"] if sd else "organic"
+                shape_dist[s] = shape_dist.get(s, 0) + 1
 
-        max_depth = 0
-        if ctx.containment_matrix is not None:
-            n = len(ctx.subpaths)
-            for i in range(n):
-                depth = sum(
-                    1 for j in range(n)
-                    if j != i and ctx.containment_matrix[j][i]
-                )
-                max_depth = max(max_depth, depth)
-
-        cluster_count = 0
-        if ctx.cluster_labels is not None:
-            cluster_count = len(set(int(l) for l in ctx.cluster_labels if l >= 0))
-
-        # Build composition type from interpreter
-        from app.engine.interpreter import _interpret_composition, _interpret_orientation
-        comp = _interpret_composition(ctx)
-        pose = _interpret_orientation(ctx, [])
+        # Symmetry from enrichment output
+        sym_score = 0.0
+        sym_axis = "none"
+        if result.enrichment_output:
+            sym_score = result.enrichment_output.symmetry.score
+            sym_axis = result.enrichment_output.symmetry.axis_type
 
         session = AnalysisSession(
             svg_hash=svg_h,
-            element_count=len(ctx.subpaths),
-            fill_pct=fill_pct,
-            symmetry_score=ctx.symmetry_score,
-            symmetry_axis=ctx.symmetry_axis or "none",
-            composition_type=comp,
-            pose=pose,
+            element_count=len(result.groups),
+            fill_pct=0.0,
+            symmetry_score=sym_score,
+            symmetry_axis=sym_axis,
+            composition_type="breakdown",
+            pose="",
             shape_distribution=shape_dist,
-            cluster_count=cluster_count,
-            max_nesting_depth=max_depth,
-            prediction=question,  # Store what was asked
-            actual=answer[:200] if answer else "",  # Store truncated response
+            cluster_count=len(result.groups),
+            max_nesting_depth=0,
+            prediction=question,
+            actual=answer[:200] if answer else "",
         )
         store.record_session(session)
-        logger.debug("Auto-recorded session for SVG %s (%d elements)", svg_h, len(ctx.subpaths))
+        logger.debug(
+            "Auto-recorded session for SVG %s (%d groups)", svg_h, len(result.groups)
+        )
     except Exception as e:
         logger.warning("Failed to auto-record session: %s", e)

@@ -1,8 +1,8 @@
 import type { Intent } from "@/lib/types"
 
 const CHAT_PREFIXES = ["ask:", "question:", "explain:", "describe:", "what "]
-const MODIFY_PREFIXES = ["edit:", "modify:", "change:", "make:", "add:", "remove:", "delete:", "update:"]
-const QUESTION_WORDS = ["what", "why", "how", "where", "when", "which", "who", "is", "are", "does", "do", "can", "could", "would", "should", "tell"]
+const MODIFY_PREFIXES = ["edit:", "modify:", "change:", "make:", "add:", "remove:", "delete:", "update:", "set:", "replace:", "swap:", "move:", "rotate:", "scale:", "resize:", "flip:", "mirror:", "convert:"]
+const QUESTION_WORDS = ["what", "why", "how", "where", "when", "which", "who", "is", "are", "does", "do", "can", "could", "would", "should", "tell", "describe", "explain", "list", "show", "identify", "count", "compare", "analyze", "analyse"]
 
 export function detectIntent(input: string): { intent: Intent; cleanInput: string } {
   const trimmed = input.trim()

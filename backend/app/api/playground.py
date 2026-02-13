@@ -1,4 +1,4 @@
-"""POST /api/playground/* — interactive SVG playground."""
+"""POST /api/playground/* -- interactive SVG playground."""
 
 from __future__ import annotations
 
@@ -14,22 +14,21 @@ router = APIRouter(prefix="/playground")
 async def handle_click(req: PlaygroundClickRequest) -> PlaygroundResponse:
     from app.engine.pipeline import create_pipeline
     from app.llm.client import get_chat_response
-    from app.llm.enrichment_formatter import context_to_enrichment_text
-    from app.svg.parser import parse_svg
 
-    ctx = parse_svg(req.svg)
     pipeline = create_pipeline()
-    ctx = pipeline.run(ctx)
+    breakdown_result = pipeline.run(req.svg)
 
-    # Find which element was clicked
+    enrichment_text = breakdown_result.enrichment_text
+
+    # Find which group the click falls in
     clicked_element = None
-    for sp in ctx.subpaths:
-        xmin, ymin, xmax, ymax = sp.bbox
-        if xmin <= req.x <= xmax and ymin <= req.y <= ymax:
-            clicked_element = sp.id
-            break
+    from shapely.geometry import Point
 
-    enrichment_text = context_to_enrichment_text(ctx)
+    click_pt = Point(req.x, req.y)
+    for gi, g in enumerate(breakdown_result.groups):
+        if g.polygon and g.polygon.contains(click_pt):
+            clicked_element = f"G{gi}"
+
     instruction = f"The user clicked on element {clicked_element or 'empty space'} at ({req.x}, {req.y}). Do something creative with it."
 
     result = await get_chat_response(

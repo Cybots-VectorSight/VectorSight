@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-from app.engine.context import PipelineContext
-from app.engine.pipeline import Pipeline, create_pipeline
-from app.svg.parser import parse_svg
+from app.engine.pipeline import create_pipeline
 
 
 def validate_generated_svg(svg: str) -> dict:
@@ -17,16 +15,17 @@ def validate_generated_svg(svg: str) -> dict:
     - enrichment_text: str (if valid)
     """
     try:
-        ctx = parse_svg(svg)
+        pipeline = create_pipeline()
+        result = pipeline.run(svg)
     except Exception as e:
         return {
             "valid": False,
             "element_count": 0,
-            "issues": [f"Parse error: {e}"],
+            "issues": [f"Pipeline error: {e}"],
             "enrichment_text": "",
         }
 
-    if ctx.num_elements == 0:
+    if not result.groups:
         return {
             "valid": False,
             "element_count": 0,
@@ -34,27 +33,13 @@ def validate_generated_svg(svg: str) -> dict:
             "enrichment_text": "",
         }
 
-    # Run pipeline
-    pipeline = create_pipeline()
-    ctx = pipeline.run(ctx)
-
-    # Collect validation issues
     issues: list[str] = []
-    for sp in ctx.subpaths:
-        sp_issues = sp.features.get("consistency_issues", [])
-        for issue in sp_issues:
-            issues.append(f"{sp.id}: {issue}")
-
-    # Check for pipeline errors
-    for tid, err in ctx.errors.items():
-        issues.append(f"Transform {tid}: {err}")
-
-    from app.llm.enrichment_formatter import context_to_enrichment_text
-    enrichment_text = context_to_enrichment_text(ctx)
+    for step_id, err in result.errors.items():
+        issues.append(f"Step {step_id}: {err}")
 
     return {
         "valid": len(issues) == 0,
-        "element_count": ctx.num_elements,
+        "element_count": len(result.groups),
         "issues": issues,
-        "enrichment_text": enrichment_text,
+        "enrichment_text": result.enrichment_text,
     }

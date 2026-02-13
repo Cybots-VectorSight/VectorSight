@@ -136,10 +136,16 @@ def _apply_attr_overrides(source_tag: str, overrides: dict[str, str]) -> str:
     # Determine closing style
     is_self_closing = source_tag.rstrip().endswith("/>")
 
-    # Rebuild the tag
-    attrs_str = " ".join(f'{k}="{v}"' for k, v in merged.items())
+    # Rebuild the tag — escape any quotes in attribute values
+    parts = []
+    for k, v in merged.items():
+        # Escape embedded double quotes (shouldn't happen in SVG but be safe)
+        safe_v = v.replace('"', "&quot;")
+        parts.append(f'{k}="{safe_v}"')
+    attrs_str = " ".join(parts)
+
     if is_self_closing:
-        return f"<{tag_name} {attrs_str}/>"
+        return f"<{tag_name} {attrs_str} />"
     else:
         return f"<{tag_name} {attrs_str}>"
 

@@ -1,14 +1,8 @@
-"""VectorSight geometry transform engine."""
+"""VectorSight geometry engine -- 3-stage breakdown pipeline."""
 
-from app.engine.registry import transform, Layer, get_registry
-from app.engine.context import PipelineContext, SubPathData
-from app.engine.pipeline import Pipeline
+from app.engine.pipeline import BreakdownPipeline, create_pipeline
 
 __all__ = [
-    "transform",
-    "Layer",
-    "get_registry",
-    "PipelineContext",
-    "SubPathData",
-    "Pipeline",
+    "BreakdownPipeline",
+    "create_pipeline",
 ]

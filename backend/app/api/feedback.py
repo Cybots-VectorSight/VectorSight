@@ -105,14 +105,11 @@ async def self_reflect(req: ReflectRequest) -> ReflectResponse:
     from app.engine.pipeline import create_pipeline
     from app.learning.self_reflect import reflect_on_chat
     from app.llm.client import get_chat_response
-    from app.llm.enrichment_formatter import context_to_enrichment_text
-    from app.svg.parser import parse_svg
 
-    ctx = parse_svg(req.svg)
     pipeline = create_pipeline()
-    ctx = pipeline.run(ctx)
+    breakdown_result = pipeline.run(req.svg)
 
-    enrichment_text = context_to_enrichment_text(ctx)
+    enrichment_text = breakdown_result.enrichment_text
 
     # Get LLM's answer first
     llm_answer = await get_chat_response(
@@ -125,7 +122,7 @@ async def self_reflect(req: ReflectRequest) -> ReflectResponse:
 
     # Then let vision verify
     result = await reflect_on_chat(
-        req.svg, enrichment_text, req.question, llm_answer, ctx
+        req.svg, enrichment_text, req.question, llm_answer
     )
 
     if result is None:

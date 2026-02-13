@@ -141,6 +141,13 @@ export interface StreamingAnalyzeResult extends AnalyzeResponse {
   estimated_tokens: number
 }
 
+export interface StepVisual {
+  type: "step_visual"
+  transform_id: string
+  label: string
+  svg: string
+}
+
 export interface HealthResponse {
   status: string
   version: string

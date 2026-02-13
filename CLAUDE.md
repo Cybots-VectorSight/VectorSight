@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-VectorSight — SVG spatial analysis engine that transforms SVG code into structured spatial enrichment text for LLM comprehension. 61 geometry transforms across 5 layers, plugin-based with `@transform` decorator and topological dependency sort.
+VectorSight — SVG spatial analysis engine that transforms SVG code into structured spatial enrichment text for LLM comprehension. 3-stage breakdown pipeline (Path Separation → Silhouette → Prompt Building) with 14 steps across 5 layers.
 
 ## Commands
 
@@ -12,11 +12,11 @@ VectorSight — SVG spatial analysis engine that transforms SVG code into struct
 
 ```bash
 uv sync                                      # Install/update dependencies
-uv run pytest                                # Run all tests (55 tests, 6 modules)
-uv run pytest tests/test_layer1/ -q          # Run one test module
-uv run pytest tests/test_engine/test_pipeline.py::test_name -q  # Run single test
+uv run pytest                                # Run all tests (68 tests, 4 modules)
+uv run pytest tests/test_breakdown/ -q       # Run breakdown tests
+uv run pytest tests/test_breakdown/test_pipeline.py::test_name -q  # Run single test
 uv run pytest --tb=short -q                  # CI mode
-uv run uvicorn app.main:app --reload --port 8000  # Dev server
+uv run uvicorn app.main:app --reload --port 8003  # Dev server
 ```
 
 ### Frontend (working directory: `frontend/`)
@@ -30,28 +30,37 @@ bun run lint                 # ESLint
 
 ## Architecture
 
-### Backend: Transform Pipeline
+### Backend: Breakdown Pipeline
 
-SVG → L0 Parse (7) → L1 Shape Analysis (21) → L2 Visualization (7) → L3 Relationships (21) → L4 Validation (5) → Enrichment Text → LLM
+SVG → Path Separation (3 steps) → Shape Analysis (4 steps) → Visualization (3 steps) → Relationships (3 steps) → Validation (1 step) → Enrichment Text → LLM
+
+**3 stages:**
+1. **Separate** (`app/engine/breakdown/separate.py`) — Split compound SVG paths, convert to polygons, merge overlapping layers via Ochiai coefficient, group by containment tree
+2. **Silhouette** (`app/engine/breakdown/silhouette.py`) — B-spline smoothing + Schneider Bezier fitting + spike detection for each group
+3. **Prompt Builder** (`app/engine/breakdown/prompt_builder.py`) — Shape descriptors, ASCII/Braille grids, protrusion detection, symmetric pairs, VoT reasoning framework, enrichment text generation
 
 **Core engine classes:**
-- `app/engine/registry.py` — `@transform` decorator, `TransformRegistry` singleton, `Layer` enum, Kahn's topological sort for dependency resolution
-- `app/engine/context.py` — `PipelineContext` (shared state: SVG doc, subpaths, enrichment, config) + `SubPathData` (per-element features dict)
-- `app/engine/pipeline.py` — `Pipeline` orchestrator with `AdaptiveGate` (skips irrelevant transforms based on SVG complexity)
-- `app/engine/interpreter.py` — Post-pipeline spatial interpretation (silhouette, orientation, mass, protrusions, focal elements)
+- `app/engine/breakdown/__init__.py` — `BreakdownResult` dataclass, `run_breakdown()` orchestrator
+- `app/engine/breakdown/separate.py` — `GroupData` dataclass, `load_and_split()`, `merge_overlapping()`, `group_by_proximity()`
+- `app/engine/breakdown/silhouette.py` — `SilhouetteResult` dataclass, `research_silhouette()`
+- `app/engine/breakdown/prompt_builder.py` — `build_enrichment_text()`, `build_enrichment_output()`
+- `app/engine/pipeline.py` — `BreakdownPipeline` with `run()` and `run_streaming()`, `create_pipeline()` factory
 
-**Adding a new transform:** Create one file in the appropriate `layer{N}/` directory with the `@transform` decorator. Nothing else needs to change — the registry auto-discovers via `_register_transforms()` in `app/main.py`.
-
-**Transform layers** live in `app/engine/layer{0-4}/`, each file is a standalone transform (e.g., `t1_05_fourier_descriptors.py`).
+**14 pipeline steps** (emitted as SSE progress events for frontend):
+- B0.01-B0.03: PARSING (load paths, split compounds, convert to polygons)
+- B1.01-B1.04: SHAPE_ANALYSIS (similarity matrix, merge overlapping, group by containment, shape descriptors)
+- B2.01-B2.03: VISUALIZATION (silhouettes, ASCII grids, Braille outlines)
+- B3.01-B3.03: RELATIONSHIPS (protrusions, symmetric pairs, feature roles)
+- B4.01: VALIDATION (build enrichment text)
 
 ### Backend: Other Key Modules
 
 - `app/svg/parser.py` — Regex-based SVG parsing with order-independent attribute extraction (handles line/circle/rect/path/polyline/polygon/ellipse)
-- `app/llm/enrichment_formatter.py` — Converts `PipelineContext` → enrichment text with spatial interpretation + Braille grids
 - `app/llm/model_router.py` — Routes to Haiku (cheap), Sonnet (mid/frontier) via `app/config.py` settings
-- `app/utils/rasterizer.py` — Unicode Braille grid rendering (U+2800-U+28FF), composite/element/group grids, silhouette descriptors
 - `app/learning/` — JSONL session memory, self-reflection, knowledge tags, seed patterns
 - `app/engine/resolver/` — Intent parsing + SVG generation for create/modify endpoints
+- `app/engine/pixel_segmentation.py` — Standalone pixel-based segmentation (not yet integrated)
+- `app/svg/anonymizer.py` — `sanitize_for_llm()` strips identifying attributes before LLM sees SVG
 
 ### Frontend
 
@@ -68,16 +77,16 @@ SVG → L0 Parse (7) → L1 Shape Analysis (21) → L2 Visualization (7) → L3 
 
 ## Important Patterns
 
-- **Transform registration outside FastAPI:** Call `_register_transforms()` from `app.main` before running the pipeline standalone (tests do this implicitly via conftest imports)
-- **Adaptive gating:** Skips T3.07/18/19/20/21 for SVGs with ≤5 elements. Tests that need these transforms must use `NO_SKIP_CONFIG` in pipeline config
+- **Pipeline takes SVG string directly:** `create_pipeline().run(svg_text)` — no separate parse step needed, the breakdown pipeline handles SVG parsing internally via `svgpathtools`
 - **SVG parsing:** Attribute regexes are order-independent — `cx`, `cy`, `r` can appear in any order on circle/line tags
 - **Build system:** Backend uses `uv_build` (not hatchling) with `module-name="app"` and `module-root=""` in pyproject.toml. Dev deps use `[dependency-groups]` not `[project.optional-dependencies]`
-- **Test fixtures:** `tests/conftest.py` provides 5 pre-parsed `PipelineContext` fixtures: `circle_ctx`, `smiley_ctx`, `home_ctx`, `bar_chart_ctx`, `settings_ctx`
+- **Test fixtures:** `tests/conftest.py` provides SVG string fixtures: `circle_svg`, `smiley_svg`, `home_svg`, `settings_svg`, `filled_rect_svg`, `filled_complex_svg`
 - **Environment:** Backend needs `ANTHROPIC_API_KEY` in `backend/.env`. Frontend needs `BACKEND_URL` in `frontend/.env.local`
+- **Generalized vocabulary:** No animal-specific terms in enrichment text — uses generic spatial descriptions (e.g., "primary upper region" instead of "head/face region")
 
 ## Documentation
 
-- `docs/vectorsight_guide.md` — Comprehensive technical guide covering all 61 transforms and enrichment format (94KB)
+- `docs/vectorsight_guide.md` — Comprehensive technical guide (enrichment format reference)
 - `docs/prd.md` — Product requirements, demo script, research landscape
 - `docs/data_spec.md` — Input/output schemas, icon sets, benchmarks
 - `docs/user_journeys.md` — 5 user flows
